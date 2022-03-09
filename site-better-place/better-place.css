@@ -54,8 +54,8 @@ header .img-profile {
 
 .img-primeira-div img{
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     margin: 50px;
 }
 
@@ -76,3 +76,70 @@ header .img-profile {
     padding: 50px;
     font-size: 20px;
 }
+
+.primeira-div b{
+    font-size: 30px;
+}
+
+.box-2{
+    height: 300px;
+    width: auto;
+    box-shadow: 0px 0px 10px rgb(136, 136, 136);
+}
+
+.div-logo{
+    margin: 20px;
+    justify-content: center;
+    display: inline-block;
+    position: flex;
+    width: 350px;
+    height: 200px;
+}
+
+.div-logo img{
+    margin-top: 75px;
+    float: left;
+    width: 100px;
+    height: 100px;
+}
+
+.div-logo h1{
+    margin-top: 100px;
+    float: right;
+    font-size: 38px;
+    color: rgb(204, 204, 204);
+}
+
+.div-info{
+    font-size: 25px;
+    margin: 10px;
+    margin-top: 100px;
+    width: 500px;
+    height: 50px;
+    float: right;
+    position: relative;
+    color: rgb(204, 204, 204);
+}
+
+
+.div-info p{
+    text-align: right;
+    float: right;
+}
+
+.img-redes-sociais{
+    position: relative;
+    margin: 10px;
+    width: 500px;
+    height: 50px;
+    float: right;
+}
+
+.img-redes-sociais img{
+    margin: 5px;
+    float: right;
+    width: 50px;
+    height: 50px;
+}
+
+
