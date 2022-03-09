@@ -1,0 +1,78 @@
+* {
+    margin: 0%;
+    font-family: 'Comfortaa', cursive;
+}
+
+header {
+    height: 60px;
+    width: auto;
+    box-shadow: 0px 5px 10px rgb(136, 136, 136);
+}
+
+header img {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    float: left;
+}
+
+header h2 {
+    margin-top: 20px;
+    float: left;
+    font-size: 20px;
+}
+
+header .img-profile {
+    float: right;
+}
+
+/*make-things-better*/
+.make-things-better img {
+    width: auto;
+    height: 535px;
+    position: absolute;
+}
+
+.titulo{
+    position: relative;
+    color: white;
+    margin-top: 250px;
+    font-size: 40px;
+}
+
+.primeira-div{
+    margin: 100px;
+    margin-top: 20%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    box-shadow: 0px 5px 10px rgb(136, 136, 136);
+    color: black;
+    border-radius: 10px;
+    position: relative;
+}
+
+.img-primeira-div img{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin: 50px;
+}
+
+.primeira-div h1 {
+    float: right;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 20px;
+    margin-top: 100px;
+    position: relative;
+}
+
+.primeira-div p {
+    float: right;
+    position: sticky;
+    text-align: center;
+    padding: 50px;
+    font-size: 20px;
+}
