@@ -27,8 +27,12 @@ header .img-profile {
 }
 
 /*make-things-better*/
+.make-things-better{
+    position: relative;
+}
+
 .make-things-better img {
-    width: auto;
+    width: 100%;
     height: 535px;
     position: absolute;
 }
@@ -39,7 +43,49 @@ header .img-profile {
     margin-top: 250px;
     font-size: 40px;
 }
+/*make-things-better*/
 
+
+/*menu*/
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+/*menu*/
 .primeira-div{
     margin: 100px;
     margin-top: 20%;
@@ -49,14 +95,15 @@ header .img-profile {
     box-shadow: 0px 5px 10px rgb(136, 136, 136);
     color: black;
     border-radius: 10px;
-    position: relative;
+    position: relative;     
+    height: 300px;
 }
 
 .img-primeira-div img{
     border-radius: 50%;
-    width: 300px;
-    height: 300px;
-    margin: 50px;
+    width: 230px;
+    height: 230px;
+    padding: 50px;
 }
 
 .primeira-div h1 {
@@ -64,7 +111,7 @@ header .img-profile {
     align-items: center;
     justify-content: center;
     display: flex;
-    margin: 20px;
+    margin: 10px;
     margin-top: 100px;
     position: relative;
 }
@@ -73,7 +120,7 @@ header .img-profile {
     float: right;
     position: sticky;
     text-align: center;
-    padding: 50px;
+    padding: 30px;
     font-size: 20px;
 }
 
@@ -88,30 +135,30 @@ header .img-profile {
 }
 
 .div-logo{
-    margin: 20px;
+    margin: 15px;
     justify-content: center;
     display: inline-block;
     position: flex;
-    width: 350px;
+    width: 400px;
     height: 200px;
 }
 
 .div-logo img{
     margin-top: 75px;
     float: left;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }
 
 .div-logo h1{
-    margin-top: 100px;
+    margin-top: 150px;
     float: right;
-    font-size: 38px;
+    font-size: 35px;
     color: rgb(204, 204, 204);
 }
 
 .div-info{
-    font-size: 25px;
+    font-size: 20px;
     margin: 10px;
     margin-top: 100px;
     width: 500px;

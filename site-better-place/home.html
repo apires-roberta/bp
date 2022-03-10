@@ -9,7 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <title>Better Place</title>
 </head>
 
 <body>
@@ -18,7 +19,14 @@
         <h2>Better Place</h2>
         <img class="img-profile" src="img/profile.PNG" alt="profile">
     </header>
-
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+    <span style="font-size:40px;cursor:pointer;color: rgb(255, 0, 0);" onclick="openNav()">&#9776;</span>
     <div class="make-things-better">
         <img src="img/make-things-better-img.jfif" alt="">
     </div>
@@ -29,7 +37,6 @@
     </center>
 
     <div class="box-1">
-
         <div class="primeira-div">
             <div class="img-primeira-div">
                 <img src="img/img-primeira-div.jpg" alt="">
@@ -64,3 +71,13 @@
 </body>
 
 </html>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
