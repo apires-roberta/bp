@@ -5,13 +5,14 @@
 
 header {
     height: 60px;
-    width: auto;
-    box-shadow: 0px 5px 10px rgb(136, 136, 136);
+    width: 100%;
+    background-color: transparent;
+    position: absolute;
 }
 
 header img {
-    height: 50px;
-    width: 50px;
+    height: 100px;
+    width: 100px;
     margin: 5px;
     float: left;
 }
@@ -19,74 +20,110 @@ header img {
 header h2 {
     margin-top: 20px;
     float: left;
-    font-size: 20px;
+    font-size: 30px;
+    color: white;
 }
 
 header .img-profile {
+    position: relative;
     float: right;
+    margin: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+ul {
+    float: right;
+    position: absolute;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
 }
 
 /*make-things-better*/
-.make-things-better{
-    position: relative;
-}
-
-.make-things-better img {
+.make-things-better {
+    background-repeat: no-repeat;
+    background-image: url("img/make-things-better-img.jfif");
+    background-size: 1350px;
     width: 100%;
-    height: 535px;
-    position: absolute;
+    height: 620px;
 }
 
-.titulo{
+.titulo {
     position: relative;
     color: white;
     margin-top: 250px;
     font-size: 40px;
 }
+
 /*make-things-better*/
 
 
 /*menu*/
 .sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
 }
 
 .sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
 }
 
 .sidenav a:hover {
-  color: #f1f1f1;
+    color: #f1f1f1;
 }
 
 .sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
 }
+
 /*menu*/
-.primeira-div{
+.primeira-div {
     margin: 100px;
     margin-top: 20%;
     align-items: center;
@@ -95,11 +132,11 @@ header .img-profile {
     box-shadow: 0px 5px 10px rgb(136, 136, 136);
     color: black;
     border-radius: 10px;
-    position: relative;     
+    position: relative;
     height: 300px;
 }
 
-.img-primeira-div img{
+.img-primeira-div img {
     border-radius: 50%;
     width: 230px;
     height: 230px;
@@ -124,17 +161,17 @@ header .img-profile {
     font-size: 20px;
 }
 
-.primeira-div b{
+.primeira-div b {
     font-size: 30px;
 }
 
-.box-2{
+.box-2 {
     height: 300px;
     width: auto;
     box-shadow: 0px 0px 10px rgb(136, 136, 136);
 }
 
-.div-logo{
+.div-logo {
     margin: 15px;
     justify-content: center;
     display: inline-block;
@@ -143,21 +180,21 @@ header .img-profile {
     height: 200px;
 }
 
-.div-logo img{
+.div-logo img {
     margin-top: 75px;
     float: left;
     width: 150px;
     height: 150px;
 }
 
-.div-logo h1{
+.div-logo h1 {
     margin-top: 150px;
     float: right;
     font-size: 35px;
     color: rgb(204, 204, 204);
 }
 
-.div-info{
+.div-info {
     font-size: 20px;
     margin: 10px;
     margin-top: 100px;
@@ -169,12 +206,12 @@ header .img-profile {
 }
 
 
-.div-info p{
+.div-info p {
     text-align: right;
     float: right;
 }
 
-.img-redes-sociais{
+.img-redes-sociais {
     position: relative;
     margin: 10px;
     width: 500px;
@@ -182,11 +219,9 @@ header .img-profile {
     float: right;
 }
 
-.img-redes-sociais img{
+.img-redes-sociais img {
     margin: 5px;
     float: right;
     width: 50px;
     height: 50px;
 }
-
-
