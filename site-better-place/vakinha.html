@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="better-place.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="vakinha.css" media="screen" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <script src="./menuLateral.js"></script>
+    <script src="./grafico.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <title>Better Place</title>
+</head>
+
+<body onload="carregarGrafico()">
+    <header>
+        <img src="img/logo.png" alt="logo">
+        <h2>Better Place</h2>
+        <img class="img-profile" src="img/profile.PNG" alt="profile">
+    </header>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+    <span style="font-size:40px;cursor:pointer;color: rgb(255, 0, 0);" onclick="openNav()">&#9776;</span>
+    <div class="sitePrincipal">
+        <div class="empresa-produto">
+            <div class="produto">
+                <img class="logoEmpresa" src="./img/cadeira.webp">
+            </div>
+            <div class="empresa">
+                <img class="logoEmpresa" src="./img/amigosBem.svg">
+                <div class="descricao">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus nostrum rem id voluptas velit, facilis, quasi mollitia, dignissimos non officiis minus repellat ut porro necessitatibus? Similique quidem perspiciatis eius ut.</p>
+                </div>
+            </div>
+        </div>
+        <div class="vakinha">
+            <div class="grafico">
+                <div class="graph">
+                    <canvas id="myChartPiz"></canvas>
+                </div>
+            </div>
+            <div class="botoes">
+                <div class="botaoEsquerda">
+                    <button class="botao">R$10,00</button>
+                    <button class="botao">R$20,00</button>
+                </div>
+                <div class="botaoDireito">
+                    <button class="botao">R$50,00</button>
+                    <button class="botao">R$100,00</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

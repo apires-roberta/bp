@@ -1,0 +1,65 @@
+.empresa {
+    height: 20vh;
+    margin-top: 2%;
+    box-shadow: 0px 5px 10px rgb(110, 110, 110);
+}
+
+.logoEmpresa{
+    width: 20%;
+    margin-top: 5%;
+    margin-left: 2%;
+    float: left;
+}
+
+.descricao p{
+    padding-top: 4%;
+}
+
+.produto{
+    height: 50vh;
+    margin-top: 5%;
+}
+
+.produto img{
+    width: 80%;
+    height: 40vh;
+    margin-left: 10%;
+    margin-top: 10%;
+}
+
+.empresa-produto{
+    margin-left: 10%;
+    width: 35%;
+    float: left;
+}
+
+.vakinha{
+    margin-left: 10%;
+    width: 35%;
+    float: left;
+    height: 75VH;
+}
+
+.botao{
+    background-color: black;
+    color: white;
+    width: 45%;
+    margin: 2%;
+    border: none;
+    height: 5vh;
+    font-size: large;
+    border-radius: 24px;
+}
+
+.botoes{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+.grafico{
+    width: 90%;
+    height: 55vh;
+    margin-left: 5%;
+    margin-top: 5%;
+}
