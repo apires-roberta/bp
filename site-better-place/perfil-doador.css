@@ -1,0 +1,44 @@
+.doador-flex-centralizar-itens {
+    display: flex;
+    align-items: center;
+}
+
+/*Início NavBar*/
+.doador-navbar {
+    height: 60px;
+    padding: 8px 40px 0px 40px;
+    border: 1px solid rgba(0, 0, 0, 0.01);
+    box-shadow: 10px 10px 50px 5px rgba(0, 0, 0, 0.2);
+}
+
+.doador-navbar img {
+    max-height: 60px;
+}
+
+#div-direita-navbar {
+    height: 60px;
+    margin-left: auto;
+    align-items: center;
+}
+
+#div-direita-navbar span {
+    margin-right: 8px
+}
+
+/*Fim NavBar*/
+
+/*Início Corpo*/
+.div-container-geral {
+    padding: 0px 40px;
+}
+
+#menu-hamburguer {
+    height: 40px;
+    margin-top: 16px;
+}
+
+.div-container-perfil {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 10px 10px 50px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
