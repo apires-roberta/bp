@@ -1,60 +1,78 @@
+var valorArrecadacao=0;
+var myChartPiz;
+
 function carregarGrafico(){
-    const labelspiz = [
-    'Argentina',
-    'Brasil'
-    ];
-    valor = [200,400]
-    const counter={
+    document.getElementById("logoImg").style.cursor = "pointer"
+    document.getElementById("logoH2").style.cursor = "pointer"
+    const labelspiz = [];
+    var counter={
         id: "counter",
         beforeDraw( chart, args, options ){
             const { ctx, chartArea:{ top, bottom, right, left, width, height } }= chart;
             ctx.save();
-            ctx.font = '60px sans-serif';
+            ctx.font = '40px Comfortaa';
             ctx.textAlign = 'center';
             ctx.fillStyle = options.fontColor;
-            ctx.fillText(((valor[0]*100)/valor[1]).toFixed(2)+"%", (width/2), (height/2)+20);
+            ctx.fillText("R$"+options.fillText+",00", (width/2), (height/2)+20);
         }
     };
 
-    const datapiz = {
+    var datapiz = {
         labels: labelspiz,
         datasets: [{
             label: 'My First dataset',
-            backgroundColor: ['#6699ff', "transparent"],
-            borderColor: ['#6699ff', "transparent"],
-            borderRadius: 10,
-            data: valor,
+            backgroundColor: ['#01396F', "#EEEEEE"],
+            borderColor: ['#01396F', "#EEEEEE"],
+            data: calcularRestante(2000,valorArrecadacao),
             cutout: "90%"
         }]
     };
-    const configPiz = {
+    var configPiz = {
         type: 'doughnut',
         data: datapiz,
         options: {
             maintainAspectRatio: false,
             plugins: {
                 tooltip:{
-                    enabled : false
+                    enabled: false
                 },
                 legend: {
                     display: false
                 },
                 counter:{
-                    fontColor: 'blue'
+                    fontColor: '#01396F',
+                    fillText: calcularRestante(2000,valorArrecadacao)[0]
                 }
             }
         },
         plugins:[counter]
     };
-    var myChartPiz = new Chart(
+    myChartPiz = new Chart(
         document.getElementById('myChartPiz'),
         configPiz
     );
 }
 
+function calcularRestante(valorDesejado, valorAtual){
+    if(valorAtual<=valorDesejado){
+        return [valorAtual, valorDesejado-valorAtual];
+    }
+    else{
+        return [valorAtual]
+    }
+    
+}
 
+function adicionarDinheiro(valor){
+    valorArrecadacao+=valor;
+    myChartPiz.data.datasets[0].data=calcularRestante(2000,valorArrecadacao);
+    myChartPiz.config.options.plugins.counter.fillText= valorArrecadacao;
+    myChartPiz.update();
+}
 
-
+function home(){
+    window.location.href= "./home.html";
+}
 
 
 /*

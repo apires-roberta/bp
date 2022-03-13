@@ -1,18 +1,37 @@
 .empresa {
-    height: 20vh;
+    height: 30vh;
     margin-top: 2%;
-    box-shadow: 0px 5px 10px rgb(110, 110, 110);
 }
 
 .logoEmpresa{
     width: 20%;
-    margin-top: 5%;
+    height: 30vh;
     margin-left: 2%;
+    margin-right: 2%;
     float: left;
 }
 
+.descricao{
+    padding-top: 10%;
+    text-justify: inter-word;
+    line-height: 4vh;
+    text-align: center;
+}
+
+.descricao h3{
+    font-weight: bolder;
+}
+
+.descricao h4{
+    font-weight: inherit;
+}
+
 .descricao p{
-    padding-top: 4%;
+    font-weight: lighter;
+}
+
+.descricao span{
+    color:#E67D86;
 }
 
 .produto{
@@ -28,20 +47,27 @@
 }
 
 .empresa-produto{
-    margin-left: 10%;
+    margin-left: 6%;
     width: 35%;
     float: left;
+    height: 90vh;
+    margin-top: 3%;
+    background-color: white;
+    box-shadow: 0px 5px 10px rgb(110, 110, 110);
 }
 
 .vakinha{
     margin-left: 10%;
     width: 35%;
     float: left;
-    height: 75VH;
+    height: 90VH;
+    margin-top: 3%;
+    background-color: white;
+    box-shadow: 0px 5px 10px rgb(110, 110, 110);
 }
 
 .botao{
-    background-color: black;
+    background-color: #01396F;
     color: white;
     width: 45%;
     margin: 2%;
@@ -49,6 +75,7 @@
     height: 5vh;
     font-size: large;
     border-radius: 24px;
+    box-shadow: 0px 5px 10px rgb(110, 110, 110);
 }
 
 .botoes{
@@ -62,4 +89,46 @@
     height: 55vh;
     margin-left: 5%;
     margin-top: 5%;
+}
+
+.botao50{
+    color: white;
+    background-color: #01396F;
+    width: 95%;
+    margin: 2%;
+    border: none;
+    height: 5vh;
+    font-size: large;
+    border-radius: 24px;
+    box-shadow: 0px 5px 10px rgb(110, 110, 110);
+}
+
+.sitePrincipal{
+    height: 100vh;
+    margin-top: 0;
+    background-color: #EEEEEE;
+}
+
+.box-4{
+    margin-top: 0;
+}
+
+.header{
+    height: 15vh;
+}
+
+.header h2, .header a{
+    color: black;
+}
+
+.header h2{
+    margin-top: 3%;
+}
+
+.header a:hover{
+    color: white;
+}
+
+.box-4 h1{
+    margin-top: 30%;
 }

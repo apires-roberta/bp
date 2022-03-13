@@ -18,11 +18,18 @@
 </head>
 
 <body onload="carregarGrafico()">
-    <header>
-        <img src="img/logo.png" alt="logo">
-        <h2>Better Place</h2>
-        <img class="img-profile" src="img/profile.PNG" alt="profile">
-    </header>
+    <div class="header">
+        <header>
+            <img id="logoImg" src="img/logo-2.png" alt="logo" onclick="home()">
+            <h2 id="logoH2" onclick="home()">Better Place</h2>
+            <img class="img-profile" src="img/profile-black.png" alt="profile">
+            <ul>
+                <li><a class="active" href="#home">Sobre</a></li>
+                <li><a href="#news">Vaquinhas</a></li>
+            </ul>
+        </header>
+    </div>
+    
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">About</a>
@@ -30,8 +37,8 @@
         <a href="#">Clients</a>
         <a href="#">Contact</a>
     </div>
-    <span style="font-size:40px;cursor:pointer;color: rgb(255, 0, 0);" onclick="openNav()">&#9776;</span>
     <div class="sitePrincipal">
+        <span style="font-size:40px;cursor:pointer;color: #01396F; margin-left: 1%; float: left;" onclick="openNav()">&#9776;</span>
         <div class="empresa-produto">
             <div class="produto">
                 <img class="logoEmpresa" src="./img/cadeira.webp">
@@ -39,26 +46,46 @@
             <div class="empresa">
                 <img class="logoEmpresa" src="./img/amigosBem.svg">
                 <div class="descricao">
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus nostrum rem id voluptas velit, facilis, quasi mollitia, dignissimos non officiis minus repellat ut porro necessitatibus? Similique quidem perspiciatis eius ut.</p>
+                    <h3>Amigos do bem</h3>
+                    <h4>Arrecadação <span>R$2.000,00</span></h4>
+                    <p>Arrecadação para comprar uma cadeira de rodas</p>
                 </div>
             </div>
         </div>
         <div class="vakinha">
             <div class="grafico">
-                <div class="graph">
+                <div class="graph" id="graph">
                     <canvas id="myChartPiz"></canvas>
                 </div>
             </div>
             <div class="botoes">
                 <div class="botaoEsquerda">
-                    <button class="botao">R$10,00</button>
-                    <button class="botao">R$20,00</button>
+                    <button class="botao" onclick="adicionarDinheiro(10)">R$10,00</button>
+                    <button class="botao" onclick="adicionarDinheiro(20)">R$20,00</button>
                 </div>
                 <div class="botaoDireito">
-                    <button class="botao">R$50,00</button>
-                    <button class="botao">R$100,00</button>
+                    <button class="botao" onclick="adicionarDinheiro(30)">R$30,00</button>
+                    <button class="botao" onclick="adicionarDinheiro(40)">R$40,00</button>
                 </div>
+                <button class="botao50" onclick="adicionarDinheiro(50)">R$50,00</button>
             </div>
         </div>
     </div>
+    <footer>
+        <div class="box-4">
+            <div class="div-logo">
+                <img src="img/logo.png" alt="">
+                <h1>Better Place</h1>
+            </div>
+            <div class="div-info">
+                <p>E-mail: better.place@gmail.com<br>Tel: 4444-333</p>
+                <div class="img-redes-sociais">
+                    <img src="img/logo-facebook.png" alt="">
+                    <img src="img/logo-linkedin.png" alt="">
+                    <img src="img/logo-telegram.png" alt="">
+                </div>
+            </div>
+
+        </div>
+    </footer>
 </body>
