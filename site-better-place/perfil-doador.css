@@ -11,6 +11,11 @@
     box-shadow: 10px 10px 50px 5px rgba(0, 0, 0, 0.2);
 }
 
+.doador-navbar a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .doador-navbar img {
     max-height: 60px;
 }
@@ -23,6 +28,10 @@
 
 #div-direita-navbar span {
     margin-right: 8px
+}
+
+#div-direita-navbar img {
+    max-height: 32px;
 }
 
 /*Fim NavBar*/
@@ -41,4 +50,65 @@
     border: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: 10px 10px 50px 5px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.div-container-perfil img {
+    max-height: 170px;
+    margin: auto;
+}
+
+.div-container-perfil-interno {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.div-container-infos-user {
+    padding-top: 80px;
+}
+
+.div-container-infos-user h2 {
+    margin: 8px;
+}
+
+.div-container-pontos {
+    flex-direction: column;
+    margin: auto;
+}
+
+.div-container-pontos h2, .div-nivel-user h2 {
+    margin-top: 64px;
+}
+
+#div-qtd-pontos-user {
+    height: 178px;
+    width: 180px;
+    background-image: url("./img/perfil-doador/estrela.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+#div-qtd-pontos-user {
+    font-size: xx-large;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.div-nivel-user {
+    margin-bottom: 80px;
+}
+
+.div-nivel-user label {
+    display: block;
+    margin: 8px;
+    font-weight: bold;
 }

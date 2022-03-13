@@ -16,10 +16,12 @@
 
 <body>
     <div class="doador-navbar doador-flex-centralizar-itens">
-        <div class="doador-flex-centralizar-itens">
-            <img src="img/logo-2.png" alt="logo">
-            <h2>Better Place</h2>
-        </div>
+        <a href="home.html">
+            <div class="doador-flex-centralizar-itens">
+                <img src="img/logo-2.png" alt="logo">
+                <h2>Better Place</h2>
+            </div>
+        </a>
 
         <div id="div-direita-navbar" class="doador-flex-centralizar-itens">
             <span>Pontos: 500</span>
@@ -31,28 +33,49 @@
         <img id="menu-hamburguer" src="./img/perfil-doador/menu-hamburguer.png">
 
         <div class="div-container-perfil">
-
-        </div>
-
-
-        <!-- <div class="doador-footer">
-            <div class="box-2">
-                <div>
-                    <img src="img/logo.png" alt="">
-                    <h1>Better Place</h1>
+            <div class="div-container-perfil-interno">
+                <!--Div Infos Usuario-->
+                <div class="div-container-infos-user">
+                    <img src="./img/perfil-doador/user.png">
+                    <h2 id="nome-user">Maria Silva</h2>
+                    <h4 id="idade-user">45 anos</h4>
                 </div>
-                <div class="div-info">
-                    <p>E-mail: better.place@gmail.com<br>Tel: 4444-333</p>
-                    <div class="img-redes-sociais">
-                        <img src="img/logo-facebook.png" alt="">
-                        <img src="img/logo-linkedin.png" alt="">
-                        <img src="img/logo-telegram.png" alt="">
+
+                <!--Div Pontos Acumulados-->
+                <div class="div-container-pontos">
+                    <h2>Pontos Acumulados</h2>
+                    <div id="div-qtd-pontos-user">
+                        <span>200</span>
                     </div>
                 </div>
+
+                <!--Div Nivel User-->
+                <div class="div-nivel-user">
+                    <h2>Nivel</h2>
+                    <label for="#icone-nivel-user">Saturno</label>
+                    <img src="./img/perfil-doador/saturno.png">
+                </div>
             </div>
-        </div class="doador-footer"> -->
+        </div>
     </div>
 
+    <footer>
+        <div class="box-4">
+            <div class="div-logo">
+                <img src="img/logo.png" alt="">
+                <h1>Better Place</h1>
+            </div>
+            <div class="div-info">
+                <p>E-mail: better.place@gmail.com<br>Tel: 4444-333</p>
+                <div class="img-redes-sociais">
+                    <img src="img/logo-facebook.png" alt="">
+                    <img src="img/logo-linkedin.png" alt="">
+                    <img src="img/logo-telegram.png" alt="">
+                </div>
+            </div>
+
+        </div>
+    </footer>
 </body>
 
 </html>
