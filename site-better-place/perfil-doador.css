@@ -66,6 +66,7 @@
     margin: auto;
     display: flex;
     flex-direction: column;
+    width: 40%;
 }
 
 .div-container-infos-user {
@@ -82,7 +83,7 @@
 }
 
 .div-container-pontos h2, .div-nivel-user h2 {
-    margin-top: 64px;
+    margin-top: 16px;
 }
 
 #div-qtd-pontos-user {
