@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="better-place.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="vakinha.css" media="screen" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" type="text/css" href="Campanhas.css" 
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
@@ -18,37 +19,38 @@
 </head>
 
 <body onload="carregarGrafico()">
-    <div class="header">
-        <header>
-            <img id="logoImg" src="img/logo-2.png" alt="logo" onclick="home()">
-            <h2 id="logoH2" onclick="home()">Better Place</h2>
-            <img class="img-profile" src="img/profile-black.png" alt="profile">
-            <ul>
-                <li><a class="active" href="#home">Sobre</a></li>
-                <li><a href="#news">Vaquinhas</a></li>
-            </ul>
-        </header>
+    <div class="Campanhas-navbar Campanhas-flex-centralizar-itens">
+        <a href="home.html">
+            <div class="Campanhas-flex-centralizar-itens">
+                <img src="img/logo-2.png" alt="logo">
+                <h2>Better Place</h2>
+            </div>
+        </a>
+
+        <div id="div-direita-navbar" class="Campanhas-flex-centralizar-itens">
+            <span>Pontos: 500</span>
+            <img src="./img/perfil-doador/saturno.png">
+        </div>
     </div>
-    
+
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <a href="perfilDoador.html">Perfil</a>
+        <a href="Campanhas.html">Campanhas</a>
     </div>
     <div class="sitePrincipal">
-        <span style="font-size:40px;cursor:pointer;color: #01396F; margin-left: 1%; float: left;" onclick="openNav()">&#9776;</span>
+        <span style="font-size:40px;cursor:pointer;color: #01396F; margin-left: 1%; float: left;"
+            onclick="openNav()">&#9776;</span>
         <div class="empresa-produto">
             <div class="produto">
-                <img class="logoEmpresa" src="./img/cadeira.webp">
+                <img class="logoEmpresa" src="./img/vacina-foto.jpeg">
             </div>
             <div class="empresa">
                 <img class="logoEmpresa" src="./img/amigosBem.svg">
                 <div class="descricao">
                     <h3>Amigos do bem</h3>
                     <h4>Arrecadação <span>R$2.000,00</span></h4>
-                    <p>Arrecadação para comprar uma cadeira de rodas</p>
+                    <p>Arrecadação para compra de vacinas</p>
                 </div>
             </div>
         </div>
@@ -72,7 +74,7 @@
         </div>
     </div>
     <footer>
-        <div class="box-4">
+        <div class="box-6">
             <div class="div-logo">
                 <img src="img/logo.png" alt="">
                 <h1>Better Place</h1>

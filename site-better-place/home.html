@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="better-place.css" media="screen" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     <title>Better Place</title>
 </head>
@@ -19,8 +19,8 @@
         <h2>Better Place</h2>
         <img class="img-profile" src="img/profile-white.png" alt="profile">
         <ul>
-            <li><a class="active" href="#home">Sobre</a></li>
-            <li><a href="#news">Vaquinhas</a></li>
+            <li><a class="active" id="a_sobre" onclick="exibeDiv()">Sobre</a></li>
+            <li><a href="Campanhas.html">Campanhas</a></li>
         </ul>
     </header>
 
@@ -56,48 +56,68 @@
     <div class="box-3">
         <div class="box">
             <div class="gallery">
+                <h2> R$10,00 </h2>
             </div>
             <div class="desc">
-                jkasdhkjfhkjds
+                <p>É possível contribuir com pouco</p>
             </div>
         </div>
 
         <div class="box">
-            <div class="gallery">
+            <div style="background-color: #0055A8;" class="gallery">
+                <h2> R$20,00 </h2>
             </div>
             <div class="desc">
-                jkasdhkjfhkjds
+                <p>Todos ao seu redor irão agradecer</p>
             </div>
         </div>
 
         <div class="box">
-            <div class="gallery">
+            <div style="background-color: #0069CE;" class="gallery">
+                <h2> R$30,00 </h2>
             </div>
             <div class="desc">
-                jkasdhkjfhkjds
+                <p>Uma pequena mudança faz a diferença</p>
             </div>
         </div>
 
         <div class="box">
-            <div class="gallery">
+            <div style="background-color: #84C2FF;" class="gallery">
+                <h2> R$40,00 </h2>
             </div>
             <div class="desc">
-                jkasdhkjfhkjds
+                <p>Sua atitude pode influênciar aos outros</p>
             </div>
         </div>
 
         <div class="box">
-            <div class="gallery">
+            <div style="background-color: #BDDFFF;" class="gallery">
+                <h2> R$50,00 </h2>
             </div>
             <div class="desc">
-                jkasdhkjfhkjds
+                <p>Juntos somos mais fortes</p>
             </div>
+        </div>
+    </div>
+
+    <div class="box-4">
+        <h2>Quem somos?</h2>
+    </div>
+
+    <div class="box-5">
+        <div class="sobre">
+            <h2>Better Place</h2>
+            <p>Somos uma empresa que buscar ajudar ONGs e pessoas queprocuram doar.
+                Com nossos sistema unimos as duas satisfazendo os dois polos.</p>
+        </div>
+        <div class="img-sobre">
+            <img src="img/logo-2.png" alt="">
         </div>
     </div>
 
 
     <footer>
-        <div class="box-4">
+        <div class="box-6">
             <div class="div-logo">
                 <img src="img/logo.png" alt="">
                 <h1>Better Place</h1>
@@ -126,3 +146,10 @@
         document.getElementById("mySidenav").style.width = "0";
     }
 </script> -->
+
+<script type="text/javascript">
+    function exibeDiv(){
+        var destino = document.getElementById("sobre");
+        destino.value = document.getElementById("a_sobre").value;
+    }
+</script>

@@ -1,9 +1,10 @@
 .empresa {
+    margin-left: 15%;
     height: 30vh;
     margin-top: 2%;
 }
 
-.logoEmpresa{
+.logoEmpresa {
     width: 20%;
     height: 30vh;
     margin-left: 2%;
@@ -11,62 +12,68 @@
     float: left;
 }
 
-.descricao{
-    padding-top: 10%;
+.descricao {
+    width: 80%;
+    padding-top: 25%;
     text-justify: inter-word;
     line-height: 4vh;
     text-align: center;
 }
 
-.descricao h3{
+.descricao h3 {
     font-weight: bolder;
 }
 
-.descricao h4{
+.descricao h4 {
     font-weight: inherit;
 }
 
-.descricao p{
+.descricao p {
     font-weight: lighter;
 }
 
-.descricao span{
-    color:#E67D86;
+.descricao span {
+    color: #E67D86;
 }
 
-.produto{
+.produto {
     height: 50vh;
     margin-top: 5%;
 }
 
-.produto img{
+.produto img {
+    border: 5px solid #01396F;
+    border-radius: 50%;
     width: 80%;
-    height: 40vh;
+    height: 50vh;
     margin-left: 10%;
     margin-top: 10%;
 }
 
-.empresa-produto{
+.empresa-produto {
+    border-radius: 10px;
     margin-left: 6%;
     width: 35%;
     float: left;
-    height: 90vh;
+    height: 100vh;
     margin-top: 3%;
     background-color: white;
     box-shadow: 0px 5px 10px rgb(110, 110, 110);
 }
 
-.vakinha{
+.vakinha {
+    border-radius: 10px;
     margin-left: 10%;
     width: 35%;
     float: left;
-    height: 90VH;
+    height: 100VH;
     margin-top: 3%;
     background-color: white;
     box-shadow: 0px 5px 10px rgb(110, 110, 110);
 }
 
-.botao{
+.botao {
+    cursor: pointer;
     background-color: #01396F;
     color: white;
     width: 45%;
@@ -78,20 +85,21 @@
     box-shadow: 0px 5px 10px rgb(110, 110, 110);
 }
 
-.botoes{
+.botoes {
     width: 80%;
     margin-left: 10%;
     margin-top: 5%;
 }
 
-.grafico{
+.grafico {
     width: 90%;
     height: 55vh;
     margin-left: 5%;
     margin-top: 5%;
 }
 
-.botao50{
+.botao50 {
+    cursor: pointer;
     color: white;
     background-color: #01396F;
     width: 95%;
@@ -103,32 +111,32 @@
     box-shadow: 0px 5px 10px rgb(110, 110, 110);
 }
 
-.sitePrincipal{
+.sitePrincipal {
+    margin-bottom: 100px;
     height: 100vh;
     margin-top: 0;
-    background-color: #EEEEEE;
 }
 
-.box-4{
+.box-4 {
     margin-top: 0;
 }
 
-.header{
+.header {
     height: 15vh;
 }
 
-.header h2, .header a{
+.header h2, .header a {
     color: black;
 }
 
-.header h2{
+.header h2 {
     margin-top: 3%;
 }
 
-.header a:hover{
+.header a:hover {
     color: white;
 }
 
-.box-4 h1{
+.box-4 h1 {
     margin-top: 30%;
 }

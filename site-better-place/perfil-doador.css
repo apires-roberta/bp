@@ -47,6 +47,8 @@
 }
 
 .div-container-perfil {
+    margin: 100px;
+    width: 70%;
     border: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: 10px 10px 50px 5px rgba(0, 0, 0, 0.2);
     border-radius: 10px;

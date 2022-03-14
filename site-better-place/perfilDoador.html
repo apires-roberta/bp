@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="perfil-doador.css" media="screen" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="./menuLateral.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     <title>Perfil</title>
@@ -29,9 +30,15 @@
         </div>
     </div>
 
-    <div class="div-container-geral">
-        <img id="menu-hamburguer" src="./img/perfil-doador/menu-hamburguer.png">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="perfilDoador.html">Perfil</a>
+        <a href="Campanhas.html">Campanhas</a>
+    </div>
+    <span style="font-size:40px;cursor:pointer;color: #01396F; margin-left: 1%; float: left;"
+        onclick="openNav()">&#9776;</span>
 
+    <center>
         <div class="div-container-perfil">
             <div class="div-container-perfil-interno">
                 <!--Div Infos Usuario-->
@@ -57,10 +64,11 @@
                 </div>
             </div>
         </div>
-    </div>
+        </div>
+    </center>
 
     <footer>
-        <div class="box-4">
+        <div class="box-6">
             <div class="div-logo">
                 <img src="img/logo.png" alt="">
                 <h1>Better Place</h1>
