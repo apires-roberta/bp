@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="perfil-doador.css" media="screen" />
     <link rel="stylesheet" href="comprovante.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="./menuLateral.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
@@ -30,43 +31,51 @@
         </div>
     </div>
 
-    <div class="div-container-geral">
-        <img id="menu-hamburguer" src="./img/perfil-doador/menu-hamburguer.png">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="perfilDoador.html">Perfil</a>
+        <a href="Campanhas.html">Campanhas</a>
+    </div>
+    <span style="font-size:40px;cursor:pointer;color: #01396F; margin-left: 1%; float: left;"
+        onclick="openNav()">&#9776;</span>
 
-        <div class="div-container-perfil">
-            <div class="div-container-perfil-interno">
-                <!--Div Comprovante-->
-                <div class="div-container-infos-user">
-                    <img src="./img/Comprovante/amigos-do-bem-logo.svg">
-                    <h2 id="nome-user">Amigos do Bem</h2>
-                    <h4 id="idade-user">Comprovante Fiscal</h4>
-                </div>
-
-                <!--Div Valor Doado-->
-                <div class="div-valor-doado">
-                    <div>
-                        <h2>Valor Doado:</h2>
-                        <h3 id="pontos-recebidos" class="blue-txt">R$ 5000,00</h3>
-                        <span>
-                            Com esse valor foram possiveís obter um total de <strong class="blue-txt">400</strong>
-                            vacinas.<br>
-                            Com isso um total de <strong class="blue-txt">2000</strong> crianças foram vacinadas.
-                        </span>
+    <center>
+        <div class="div-container-geral">
+            <div class="div-container-perfil">
+                <div class="div-container-perfil-interno">
+                    <!--Div Comprovante-->
+                    <div class="div-container-infos-user">
+                        <img src="./img/Comprovante/amigos-do-bem-logo.svg">
+                        <h2 id="nome-user">Amigos do Bem</h2>
+                        <h4 id="idade-user">Comprovante Fiscal</h4>
                     </div>
-                </div>
 
-                <!--Div Pontos Nota-->
-                <div class="div-container-pontos">
-                    <h2>Pontos Acumulados</h2>
-                    <span id="div-qtd-pontos-user">200</span><br>
-                    <span>Nota emitida pela ONG <strong id="nome-ong">Amigos do Bem</strong></span>
+                    <!--Div Valor Doado-->
+                    <div class="div-valor-doado">
+                        <div>
+                            <h2>Valor Doado:</h2>
+                            <h3 id="pontos-recebidos" class="blue-txt">R$ 5000,00</h3>
+                            <span>
+                                Com esse valor foram possiveís obter um total de <strong class="blue-txt">400</strong>
+                                vacinas.<br>
+                                Com isso um total de <strong class="blue-txt">2000</strong> crianças foram vacinadas.
+                            </span>
+                        </div>
+                    </div>
+
+                    <!--Div Pontos Nota-->
+                    <div class="div-container-pontos">
+                        <h2>Pontos Acumulados</h2>
+                        <span id="div-qtd-pontos-user">200</span><br>
+                        <span>Nota emitida pela ONG <strong id="nome-ong">Amigos do Bem</strong></span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </center>
 
     <footer>
-        <div class="box-4">
+        <div class="box-6">
             <div class="div-logo">
                 <img src="img/logo.png" alt="">
                 <h1>Better Place</h1>
