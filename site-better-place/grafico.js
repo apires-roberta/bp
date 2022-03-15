@@ -2,8 +2,6 @@ var valorArrecadacao=0;
 var myChartPiz;
 
 function carregarGrafico(){
-    document.getElementById("logoImg").style.cursor = "pointer"
-    document.getElementById("logoH2").style.cursor = "pointer"
     const labelspiz = [];
     var counter={
         id: "counter",

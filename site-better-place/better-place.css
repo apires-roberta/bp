@@ -64,7 +64,7 @@ li a:hover {
 .make-things-better {
     background-repeat: no-repeat;
     background-image: url("img/make-things-better-5.png");
-    background-size: 1330px;
+    background-size: 100%;
     width: 100%;
     height: 670px;
 }
@@ -188,7 +188,6 @@ li a:hover {
     justify-content: center;
     justify-items: center;
     display: inline-flex;
-    margin: 3%;
 }
 
 .gallery {

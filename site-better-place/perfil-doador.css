@@ -52,6 +52,7 @@
     border: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: 10px 10px 50px 5px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
+    display: flex;
     align-items: center;
     text-align: center;
     flex-direction: column;
@@ -60,6 +61,14 @@
 .div-container-perfil img {
     max-height: 170px;
     margin: auto;
+}
+
+.linha-vertical{
+    border-left: 1px solid;
+    position: absolute;
+    margin: auto;
+    height: 78%;
+    margin-top: 6%;
 }
 
 .div-container-perfil-interno {
@@ -71,13 +80,6 @@
     justify-content: center;
     align-items: center;
     margin-top: 80px;
-}
-
-.linha-vertical{
-    border-left: 1px solid;
-    position: absolute;
-    margin: auto;
-    height: 100%;
 }
 
 .div-container-perfil-interno-superior{
