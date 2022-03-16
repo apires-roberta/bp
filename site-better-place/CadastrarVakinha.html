@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="better-place.css">
+    <link rel="stylesheet" type="text/css" href="perfil-doador.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="CadastrarVakinha.css" media="screen" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="./menuLateral.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <title>Adicionar vakinha</title>
+</head>
+<body>
+    <div class="doador-navbar doador-flex-centralizar-itens">
+        <a href="home.html">
+            <div class="doador-flex-centralizar-itens">
+                <img src="img/logo-2.png" alt="logo">
+                <h2>Better Place</h2>
+            </div>
+        </a>
+
+        <div id="div-direita-navbar" class="doador-flex-centralizar-itens">
+            <span>Amigos do bem</span>
+            <img src="./img/amigosBem.svg">
+        </div>
+    </div>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="home.html">Home</a>
+        <a href="Campanhas.html">Campanhas</a>
+    </div>
+    <span style="font-size:40px;cursor:pointer;color: #01396F; margin-left: 1%; float: left;"
+        onclick="openNav()">&#9776;</span>
+    <div class="corpo">
+        <div class="cadastro">
+            <div class="formulario">
+                <h3>Objetivo:</h3>
+                <textarea class="objetivo"></textarea>
+                <h3>Valor desejado:</h3>
+                <div class="pesquisa"><p>R$</p><input type="text" class="valor" id="valor" onkeyup="letras()"></div>
+                <label for="arquivo">Enviar arquivo</label>
+                <input type="file" class="foto" name="arquivo" id="arquivo" accept="image/*">
+            </div>
+            <div class="imagem">
+                <img id="imagem" class="logoEmpresa">
+            </div>
+            <button class="botao" onclick="cadastrar()">Cadastrar</button>
+        </div>
+        
+    </div>
+    <footer>
+        <div class="box-6">
+            <div class="div-logo">
+                <img src="img/logo.png" alt="">
+                <h1>Better Place</h1>
+            </div>
+            <div class="div-info">
+                <p>E-mail: better.place@gmail.com<br>Tel: 4444-333</p>
+                <div class="img-redes-sociais">
+                    <img src="img/logo-facebook.png" alt="">
+                    <img src="img/logo-linkedin.png" alt="">
+                    <img src="img/logo-telegram.png" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+<script>
+    'use strict'
+        let photo = document.getElementById('imagem');
+        let file = document.getElementById('arquivo');
+        
+
+        photo.addEventListener('click', () => {
+            file.click();
+        });
+
+        file.addEventListener('change', () => {
+        
+            if (file.files.length <= 0) {
+                return;
+            }
+        
+            let reader = new FileReader();
+        
+            reader.onload = () => {
+                photo.src = reader.result;
+            }
+        
+            reader.readAsDataURL(file.files[0]);
+        });
+        console.log(file)
+
+        function letras(){
+            var strValor = valor.value
+            if(!(strValor>0)){
+                valor.value=strValor.substring(0, strValor.length-1)
+            }
+        }
+
+        function cadastrar(){
+            window.location.href= "vakinha.html"
+        }
+</script>
