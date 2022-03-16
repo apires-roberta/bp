@@ -17,9 +17,9 @@
     <header>
         <img src="img/logo-2.png" alt="logo">
         <h2>Better Place</h2>
-        <img class="img-profile" src="img/profile-white.png" alt="profile">
+        <a href="perfilDoador.html"><img class="img-profile" src="img/profile-white.png" alt="profile"></a>
         <ul>
-            <li><a class="active" id="a_sobre" onclick="exibeDiv()">Sobre</a></li>
+            <li><a class="active" id="a_sobre" href="#sobre">Sobre</a></li>
             <li><a href="Campanhas.html">Campanhas</a></li>
         </ul>
     </header>
@@ -40,10 +40,11 @@
             <div class="img-primeira-div">
                 <img src="img/img-primeira-div.jpg" alt="">
             </div>
-            <p><b>Porque contribuir?</b><br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Fusce aliquet odio purus, et lacinia orci rutrum vel.
-                Curabitur ut urna libero. Fusce cursus dictum lobortis.
-                Nunc semper semper tellus, eget fermentum tortor consectetur vitae. Cras
+            <p><b>Porque contribuir?</b><br><br>Ao contribuir você ajuda uma comunidade inteira,
+                pois o dinheiro normalmente é redistribuido em grandes lotes de recursos (Ex: Vacinas, cestas básicas,
+                roupas, produtos de higiene, rémedios, etc). Dessa forma você faz parte de algo maior, e com a sua ajuda
+                todos
+                nós saímos ganhando!
             <p>
                 <br><br>
         </div>
@@ -100,15 +101,20 @@
         </div>
     </div>
 
-    <div class="box-4">
+    <div id="sobre" class="box-4">
         <h2>Quem somos?</h2>
     </div>
 
     <div class="box-5">
         <div class="sobre">
             <h2>Better Place</h2>
-            <p>Somos uma empresa que buscar ajudar ONGs e pessoas queprocuram doar.
-                Com nossos sistema unimos as duas satisfazendo os dois polos.</p>
+            <p>Somos uma empresa que buscar ajudar ONGs e pessoas que procuram doar.
+                Com nossos sistema unimos as duas satisfazendo os dois polos. <br><br>Nossa origem veio
+                quando vimos que ONGs mais pequenas não possuem tanto reconhecimento, e as pessoas normalmente
+                não doam dinheiro para as mesma por terem muita desconfiança se o seu dinheiro está sendo usado de
+                acordo. <br><br>Para que possamos resolver isso nossos sistema obriga as ONGs a postarem o comprovante de 
+                que o dinheiro das vaquinhas está sendo bem usado e dessa forma aumentando seu alcance.
+            </p>
         </div>
         <div class="img-sobre">
             <img src="img/logo-2.png" alt="">
@@ -146,10 +152,3 @@
         document.getElementById("mySidenav").style.width = "0";
     }
 </script> -->
-
-<script type="text/javascript">
-    function exibeDiv(){
-        var destino = document.getElementById("sobre");
-        destino.value = document.getElementById("a_sobre").value;
-    }
-</script>

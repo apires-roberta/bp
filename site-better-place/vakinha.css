@@ -90,6 +90,11 @@
     margin-left: 10%;
     margin-top: 5%;
 }
+.botao:hover{
+    background-color: #033561;
+    box-shadow: 5px  5px 19px rgb(0 0 0 / 60%);
+    cursor: pointer;
+}
 
 .grafico {
     width: 90%;
@@ -109,6 +114,11 @@
     font-size: large;
     border-radius: 24px;
     box-shadow: 0px 5px 10px rgb(110, 110, 110);
+}
+.botao50:hover{
+    background-color: #033561;
+    box-shadow: 5px  5px 19px rgb(0 0 0 / 60%);
+    cursor: pointer;
 }
 
 .sitePrincipal {
