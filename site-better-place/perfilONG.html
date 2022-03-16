@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="better-place.css">
     <link rel="stylesheet" type="text/css" href="perfil-doador.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="perfilONG.css" media="screen" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="./menuLateral.js"></script>
@@ -44,14 +45,13 @@
             <div class="div-container-perfil-interno-superior">
                 <!--Div Infos Usuario-->
                 <div class="div-container-infos-user container-params-gerais">
-                    <h2 id="nome-user">Maria Silva</h2>
-                    <h4 id="idade-user">45 anos</h4>
-                    <img src="./img/perfil-doador/user.png">
+                    <h2 id="nome-ong">Amigos do Bem</h2>
+                    <img src="./img/Comprovante/amigos-do-bem-logo.svg">
                 </div>
                 <!--Div Pontos Acumulados-->
                 <div class="div-container-pontos container-params-gerais">
-                    <h2>Pontos</h2>
-                    <div class="div-qtd-pontos-user">
+                    <h2>Total Recebido</h2>
+                    <div class="div-recebida-user">
                         <span>200</span>
                     </div>
                 </div>
@@ -59,10 +59,17 @@
 
             <div class="div-container-perfil-interno-inferior">
                 <!--Div Nivel User-->
+                <div class="desc-ong">
+                    <h4 id="desc-ong">"O nosso trabalho começou em 1993, com um pequeno grupo de
+                        amigos, liderado por Alcione Albanesi. Hoje, somos um dos maiores projetos sociais do país e
+                        atendemos, regularmente, a mais de 75 mil pessoas no sertão de Alagoas, de Pernambuco e do
+                        Ceará."
+                    </h4>
+                </div>
                 <div class="div-nivel-user container-params-gerais">
-                    <h2>Nivel</h2>
-                    <label for="#icone-nivel-user">Saturno</label>
-                    <img src="./img/perfil-doador/medalha-ouro.png">
+                    <div class="botao-fazer-vaquinha">
+                        <button class="botao-vaquinha">Fazer Vaquinha</button>
+                    </div>               
                 </div>
             </div>
         </div>
@@ -87,4 +94,5 @@
         </div>
     </footer>
 </body>
+
 </html>

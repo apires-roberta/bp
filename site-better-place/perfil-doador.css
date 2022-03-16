@@ -103,6 +103,7 @@
 
 .div-container-infos-user {
     margin-right: auto;
+    max-width: 180px;
 }
 
 .div-container-infos-user h2 {
