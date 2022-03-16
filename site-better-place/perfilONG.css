@@ -32,3 +32,8 @@
     color: wheat;
 
 }
+.botao-vaquinha:hover{
+    background-color: #033561;
+    box-shadow: 5px  5px 19px rgb(0 0 0 / 60%);
+    cursor: pointer;
+}

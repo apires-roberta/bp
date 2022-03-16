@@ -65,6 +65,11 @@ label {
     border: none;
     border-radius: 10px;
 }
+label:hover{
+    background-color: #033561;
+    box-shadow: 5px  5px 19px rgb(0 0 0 / 60%);
+    cursor: pointer;
+}
 
 .logoEmpresa{
     border: 5px solid #01396F ;
@@ -102,6 +107,8 @@ label {
 
 .botao:hover{
     background-color: #033561;
+    box-shadow: 5px  5px 19px rgb(0 0 0 / 60%);
+    cursor: pointer;
 }
 
 .pesquisa{
