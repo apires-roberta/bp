@@ -1,5 +1,5 @@
 .corpo{
-    height: 70vh;
+    height: 50vh;
     
 }
 
@@ -16,7 +16,7 @@
 .login input{
     width: 70%;
     height: 4vh;
-    margin-top: 10%;
+    margin-bottom: 10%;
     border-left: 20px ;
     box-shadow: 0px 5px 10px rgb(110, 110, 110);
     border-radius: 10px;
@@ -41,6 +41,7 @@
 
 .login h1{
     padding-top: 5%;
+    padding-bottom: 5%;
 }
 
 .login .link{
@@ -49,7 +50,6 @@
 }
 
 .login .botao{
-    margin-top: 5%;
     background-color: #01396F;
     border: none;
     width: 30%;
@@ -69,4 +69,8 @@
 
 .login .link a:visited{
     color: #01396F;
+}
+
+label{
+    margin-right: 35%;
 }

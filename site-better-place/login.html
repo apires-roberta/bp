@@ -39,11 +39,13 @@
     <div class="corpo">
         <div class="login">
             <h1>Login:</h1>
-            <input type="text" class="email" placeholder="Coloque o seu email">
-            <input type="password" class="senha" placeholder="Coloque a sua senha"><br>
-            <button class="botao">Login</button>
+            <label for="email">Coloque o seu email:</label>
+            <input type="text" id="email" class="email"><br>
+            <label for="senha">Coloque a sua senha:</label>
+            <input type="password" id="senha" class="senha"><br>
+            <button class="botao" onclick="logar()">Login</button>
             <div class="link">
-                <span>Não tem login? <a href="">Cadastre-se</a></span>
+                <span>Não tem login? <a href="./cadastro.html">Cadastre-se</a></span>
             </div>
         </div>
     </div>
@@ -65,3 +67,17 @@
     </footer>
 </body>
 </html>
+
+<script>
+    function logar(){
+        if(localStorage.getItem('Email')==email.value && localStorage.getItem('Senha')==senha.value){
+            console.log(localStorage.getItem('Usuario'))
+            if(localStorage.getItem('Usuario')=="Doador"){
+                window.location.href= "perfilDoador.html"
+            }
+            else{
+                window.location.href= "perfilONG.html"
+            }
+        }
+    }
+</script>

@@ -39,15 +39,15 @@
     <div class="corpo">
         <div class="cadastro">
             <div class="formulario">
-                <h3>Objetivo:</h3>
+                <h3>Objetivo da vaquinha:</h3>
                 <textarea class="objetivo"></textarea>
                 <h3>Valor desejado:</h3>
                 <div class="pesquisa"><p>R$</p><input type="text" class="valor" id="valor" onkeyup="letras()"></div>
-                <label for="arquivo">Enviar arquivo</label>
-                <input type="file" class="foto" name="arquivo" id="arquivo" accept="image/*">
             </div>
             <div class="imagem">
-                <img id="imagem" class="logoEmpresa">
+                <img id="imagem" class="logoEmpresa"/>
+                <label for="arquivo">Enviar foto do produto</label>
+                <input type="file" class="foto" name="arquivo" id="arquivo" accept="image/*">
             </div>
             <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>

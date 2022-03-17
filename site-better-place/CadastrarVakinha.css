@@ -1,6 +1,6 @@
 .corpo{
     width: 100%;
-    height: 100vh;
+    height: 70vh;
 }
 
 .cadastro{
@@ -9,7 +9,7 @@
     margin-left: 8%;
     margin-top: 5%;
     width: 80%;
-    height: 80vh;
+    height: 70vh;
     float: left;
     border-radius: 10px;
 }
@@ -17,7 +17,7 @@
 .cadastro input{
     border: none;
     width: 80%;
-    font-size: 24px;
+    font-size: 16px;
     margin-top: 1%;
     margin-left: 1%;
     border: none;
@@ -32,7 +32,7 @@
     height: 16vh;
     resize: none;
     box-shadow: 0px 5px 10px rgb(110, 110, 110);
-    font-size: 24px;
+    font-size: 16px;
     border: none;
     border-radius: 10px;
 }
@@ -52,19 +52,21 @@
 }
 
 label {
-    padding: 20px 10px;
-    width: 60%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    width: 30%;
+    display: flex;
     background-color: #01396F;
     color: #FFF;
-    text-transform: uppercase;
     text-align: center;
-    display: block;
     cursor: pointer;
-    margin-left: 10%;
+    margin-left: 35%;
     margin-top: 5%;
     border: none;
     border-radius: 10px;
+    height: 10%;
 }
+
 label:hover{
     background-color: #033561;
     box-shadow: 5px  5px 19px rgb(0 0 0 / 60%);
@@ -74,11 +76,10 @@ label:hover{
 .logoEmpresa{
     border: 5px solid #01396F ;
     border-radius: 50%;
-    width: 40%;
-    height: 50vh;
-    float: left;
-    margin-top: 2%;
-    margin-left: 5%;
+    width: 50%;
+    height: 30vh;
+    margin-top: 5%;
+    margin-left: 25%;
 }
 
 .formulario{
@@ -91,7 +92,9 @@ label:hover{
 }
 
 .imagem{
+    width: 50%;
     height: 50vh;
+    margin-left: 50%;
 }
 
 .botao{
@@ -99,6 +102,7 @@ label:hover{
     margin-left: 40%;
     width: 20%;
     height: 8vh;
+    font-size: 24px;
     background-color: #01396F;
     color: #FFF;
     border: none;
@@ -121,8 +125,12 @@ label:hover{
 }
 
 .pesquisa p{
-    font-size: 24px;
+    font-size: 16px;
     margin-left: 2%;
-    margin-top: 1%;
+    margin-top: 2.5%;
     float: left;
+}
+
+.formulario h3{
+    margin-top: 5%;
 }

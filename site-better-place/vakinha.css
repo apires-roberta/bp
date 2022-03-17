@@ -150,3 +150,34 @@
 .box-4 h1 {
     margin-top: 30%;
 }
+
+.outroValor{
+    height: 5vh;
+    margin-left: 3%;
+    width: 95%;
+    margin-top:2%;
+    box-shadow: 0px 5px 10px rgb(110, 110, 110);
+    border-radius: 10px;
+}
+
+#pReais{
+    font-size: 16px;
+    margin-left: 2%;
+    margin-top: 5%;
+    float: left;
+}
+
+#valor{
+    border: none;
+    width: 35%;
+    font-size: 16px;
+    margin-left: 1%;
+    border-radius: 10px;
+    margin-top: 2%;
+    margin-right: 4%;
+    border-bottom: #01396F 2px solid;
+}
+
+.valor:focus{
+    outline: none;
+}
