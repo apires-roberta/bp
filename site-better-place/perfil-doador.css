@@ -58,10 +58,10 @@
     flex-direction: column;
 }
 
-.div-container-perfil img {
+/* .div-container-perfil img {
     max-height: 170px;
     margin: auto;
-}
+} */
 
 .linha-vertical{
     border-left: 1px solid;
@@ -91,9 +91,36 @@
     width: 100%;
 }
 
-.div-container-perfil-interno-inferior{
+.div-container-perfil-user-interno-inferior{
     width: 100%;
     display: flex;
+}
+
+.div-inferior-dir{
+    width: 50%;
+    margin-left: auto;
+}
+
+.div-inferior-esq{
+    width: 50%;
+    margin-right: auto;
+}
+
+.div-superior-dir{
+    width: 100%;
+    margin-right: auto;
+    /* margin-bottom: auto; */
+}
+
+.div-superior-esq{
+    width: 100%;
+    margin-left: auto;
+    text-align: left;
+}
+
+.div-superior-esq h2{
+    width: fit-content;
+    margin: 8px 0px;
 }
 
 .container-params-gerais img{
@@ -102,47 +129,65 @@
 }
 
 .div-container-infos-user {
-    margin-right: auto;
+    /* margin-right: auto; */
+    width: 100%;
 }
 
-.div-container-infos-user h2 {
-    margin-bottom: 8px;
+.desc-user h4 {
+    margin: 16px 0PX;
+}
+
+.desc-user{
+    text-align: left;
+    width: fit-content;
 }
 
 .div-container-pontos {
-    flex-direction: column;
+   /* margin-left: auto; */
 }
 
 .div-nivel-user h2 {
     margin-top: 16px;
+    float: left;
 }
 
 .div-qtd-pontos-user {
     height: 178px;
     width: 180px;
-    background-image: url("./img/perfil-doador/estrela.png");
-    background-size: 100%;
-    background-repeat: no-repeat;
+    /* background-image: url("./img/perfil-doador/estrela.png"); */
+    /* background-size: 100%; */
+    /* background-repeat: no-repeat; */
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     align-content: center;
-    justify-content: center;
+    /* justify-content: center; */
+    /* font-size: xx-large; */
+    font-weight: bold;
+    /* margin-top: 26px; */
 }
 
-.div-qtd-pontos-user {
-    font-size: xx-large;
-    font-weight: bold;
-    margin-top: 26px;
+.div-qtd-pontos-user img{
+    max-height: 64px;
+}
+
+.div-qtd-pontos-user span{
+    padding-left: 16px;
 }
 
 .div-nivel-user {
     margin-bottom: 80px;
     margin-left: auto;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
 }
 
-.div-nivel-user label {
-    display: block;
-    margin: 8px;
-    font-weight: bold;
+.div-nivel-user span{
+    padding-left: 16px;
+}
+
+.div-nivel-user img{
+    max-height: 64px;
 }

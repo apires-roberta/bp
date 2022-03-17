@@ -39,30 +39,42 @@
         onclick="openNav()">&#9776;</span>
 <center>
     <div class="div-container-perfil">
-        <div class="linha-vertical"></div>
+        <!-- <div class="linha-vertical"></div> -->
         <div class="div-container-perfil-interno">
             <div class="div-container-perfil-interno-superior">
                 <!--Div Infos Usuario-->
                 <div class="div-container-infos-user container-params-gerais">
-                    <h2 id="nome-user">Maria Silva</h2>
-                    <h4 id="idade-user">45 anos</h4>
-                    <img src="./img/perfil-doador/user.png">
+                    <div class="div-superior-esq">
+                        <img src="./img/perfil-doador/user.png">
+                        <h2 id="nome-user">Maria Silva</h2>
+                    </div>
+                    
+                    
                 </div>
                 <!--Div Pontos Acumulados-->
-                <div class="div-container-pontos container-params-gerais">
-                    <h2>Pontos</h2>
-                    <div class="div-qtd-pontos-user">
-                        <span>500</span>
+                    <div class="div-superior-dir">
+                        <div class="div-qtd-pontos-user">
+                            <img src="./img/perfil-doador/estrela.png">
+                            <span>500 pontos</span>
+                        </div>
+                    </div>
+
+
+            </div>
+            <!--Div Nivel User-->
+            <div class="div-container-perfil-user-interno-inferior container-params-gerais">
+                <div class="div-inferior-esq">
+                    <div class="desc-user">
+                        <h4 id="idade-user">Idade: 45 anos</h4>
+                        <h4 id="email-user">E-mail: maria.silva@gmail.com</h4>
+                        <h4 id="endereco-user">Endereço: Rua Taipas 421, SCS</h4>
                     </div>
                 </div>
-            </div>
-
-            <div class="div-container-perfil-interno-inferior">
-                <!--Div Nivel User-->
-                <div class="div-nivel-user container-params-gerais">
-                    <h2>Nivel 3</h2>
-                    <label for="#icone-nivel-user">Bronze</label>
-                    <img src="./img/perfil-doador/medalha-bronze.png">
+                <div class="div-inferior-dir">
+                    <div class="div-nivel-user">
+                        <img src="./img/perfil-doador/medalha-bronze.png">
+                        <span>Nivel 3 Bronze</span>
+                    </div>
                 </div>
             </div>
         </div>

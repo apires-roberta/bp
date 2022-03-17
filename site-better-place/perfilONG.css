@@ -3,6 +3,14 @@
     margin-right: auto;
 }
 
+h4{
+    width: fit-content;
+}
+
+h2{
+    width: fit-content;
+}
+
 .div-recebida-user {
     height: 178px;
     width: 180px;
@@ -36,4 +44,9 @@
     background-color: #033561;
     box-shadow: 5px  5px 19px rgb(0 0 0 / 60%);
     cursor: pointer;
+}
+
+.div-container-perfil-interno-inferior{
+    width: 100%;
+    display: flex;
 }
