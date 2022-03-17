@@ -72,6 +72,13 @@ function home(){
     window.location.href= "./home.html";
 }
 
+function adicionarValor(){
+    valorArrecadacao+=Number(valor.value);
+    myChartPiz.data.datasets[0].data=calcularRestante(2000,valorArrecadacao);
+    myChartPiz.config.options.plugins.counter.fillText= valorArrecadacao;
+    myChartPiz.update();
+}
+
 
 /*
     25 100

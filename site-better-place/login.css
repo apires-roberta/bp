@@ -1,0 +1,76 @@
+.corpo{
+    height: 50vh;
+    
+}
+
+.login{
+    width: 40%;
+    height: 60vh;
+    margin-left: 30%;
+    margin-top: 5%;
+    text-align: center;
+    box-shadow: 0px 5px 10px rgb(110, 110, 110);
+    border-radius: 10px;
+}
+
+.login input{
+    width: 70%;
+    height: 4vh;
+    margin-bottom: 10%;
+    border-left: 20px ;
+    box-shadow: 0px 5px 10px rgb(110, 110, 110);
+    border-radius: 10px;
+    border:none;
+    border-bottom: #01396F 2px solid;
+    font-size: 20px;
+    text-align: center;
+}
+
+.login input:focus{
+    outline: none;
+    height: 30px;
+    border: #01396F 2px solid;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.Login input::placeholder{
+    color: #01396F;
+    text-align: center;
+}
+
+.login h1{
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.login .link{
+    margin-top: 5%;
+    font-size: 16px;
+}
+
+.login .botao{
+    background-color: #01396F;
+    border: none;
+    width: 30%;
+    height: 10vh;
+    color: white;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.botao:hover{
+    background-color: #033561;
+}
+
+.login .link a:link{
+    color: #01396F;
+}
+
+.login .link a:visited{
+    color: #01396F;
+}
+
+label{
+    margin-right: 35%;
+}
