@@ -10,4 +10,4 @@ Com nossos sistema unimos as duas satisfazendo os dois polos.
 ## Layout
 
 #### Nosso site
-![App Screenshot](https://drive.google.com/file/d/1YkaWNAvxP9L8HRnLMKLWF_dM_HDdt2zl/view?usp=sharing)
+![App Screenshot](▶-Page-1-Prototipo-Better-Place-Opera-2022-04-18-10-09-04_Trim.gif)
