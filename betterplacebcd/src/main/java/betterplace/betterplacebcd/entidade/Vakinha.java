@@ -13,7 +13,7 @@ public class Vakinha {
     private Integer idVakinha;
     private String nomeVakinha;
     private String nomeItem;
-    private String DescVakinha;
+    private String descVakinha;
     private Double valorNecessario;
     private LocalDateTime dataCriacao;
     private Integer fkOng;
@@ -23,11 +23,11 @@ public class Vakinha {
     public void setNomeItem(String nomeItem) { this.nomeItem = nomeItem; }
 
     public String getDescVakinha() {
-        return DescVakinha;
+        return descVakinha;
     }
 
     public void setDescVakinha(String descVakinha) {
-        DescVakinha = descVakinha;
+        this.descVakinha = descVakinha;
     }
 
     public Integer getFkOng() {

@@ -50,27 +50,42 @@ public class RelatorioController {
             listaObj[2] = vakinha.getDescVakinha();
             listaObj[3] = vakinha.getDataCriacao().format(formato);
             listaObj[4] = vakinha.getValorNecessario();
-            System.out.println(vakinha.getIdVakinha());
-            listaObj[5] = dcr.countByFkVakinha(vakinha.getIdVakinha());
-            System.out.println(listaObj[5] );
-            List<Doacao> listaDoacao =  dcr.findByFkVakinhaOrderByDataDoacaoDesc(vakinha.getIdVakinha());
-            Double valorAtual = 0.0;
-            for (Doacao doacoes : listaDoacao){
-                valorAtual+=doacoes.getValorDoacao();
-            }
-            listaObj[6] = valorAtual;
-            listaObj[7] = listaDoacao.get(0).getDataDoacao().format(formato);
-            listaObj[8] = listaDoacao.get(0).getValorDoacao();
-            listaObj[9] = dor.findByIdDoador(listaDoacao.get(0).getFkDoador()).get(0).getNomeDoador();
-            Media media = new Media(vakinha.getDataCriacao().toLocalDate());
-            listaObj[10] = media.calcularMedia(valorAtual);
-            LocalDate dia = previsao.gerarForecast(listaDoacao, vakinha.getDataCriacao().toLocalDate(), vakinha.getValorNecessario(), valorAtual);
-            if(dia!=null){
-                listaObj[11] = dia.format(formato);
+            Integer qtdeDoacoes = dcr.countByFkVakinha(vakinha.getIdVakinha());
+            if(qtdeDoacoes!=null){
+                listaObj[5] = 0;
             }
             else{
-                listaObj[11] = media.previsaoMedia(valorAtual, vakinha.getValorNecessario()).format(formato);
+                listaObj[5] = qtdeDoacoes;
             }
+            List<Doacao> listaDoacao =  dcr.findByFkVakinhaOrderByDataDoacaoDesc(vakinha.getIdVakinha());
+            Double valorAtual = 0.0;
+            if(!listaDoacao.isEmpty()){
+                for (Doacao doacoes : listaDoacao){
+                    valorAtual+=doacoes.getValorDoacao();
+                }
+                listaObj[6] = valorAtual;
+                listaObj[7] = listaDoacao.get(0).getDataDoacao().format(formato);
+                listaObj[8] = listaDoacao.get(0).getValorDoacao();
+                listaObj[9] = dor.findByIdDoador(listaDoacao.get(0).getFkDoador()).get(0).getNomeDoador();
+                Media media = new Media(vakinha.getDataCriacao().toLocalDate());
+                listaObj[10] = media.calcularMedia(valorAtual);
+                LocalDate dia = previsao.gerarForecast(listaDoacao, vakinha.getDataCriacao().toLocalDate(), vakinha.getValorNecessario(), valorAtual);
+                if(dia!=null){
+                    listaObj[11] = dia.format(formato);
+                }
+                else{
+                    listaObj[11] = media.previsaoMedia(valorAtual, vakinha.getValorNecessario()).format(formato);
+                }
+            }
+            else{
+                listaObj[6] = valorAtual;
+                listaObj[7] = "Não houve";
+                listaObj[8] = 0.0;
+                listaObj[9] = "";
+                listaObj[10] = 0.0;
+                listaObj[11] = "Não há dados";
+            }
+
             dados.adiciona(new DadosCsv(listaObj));
         }
         String nome = "Relatorio_"+or.findByIdOng(1).get(0).getNomeOng()+"_"+ LocalDate.now();
