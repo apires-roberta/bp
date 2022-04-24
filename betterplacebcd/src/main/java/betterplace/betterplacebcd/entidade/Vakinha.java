@@ -1,33 +1,49 @@
 package betterplace.betterplacebcd.entidade;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
-@Entity // do pacote javax.persistence
+@Entity
 public class Vakinha {
-    @Id  // do pacote javax.persistence
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codigo;
-
+    private Integer idVakinha;
     private String nomeVakinha;
-
-    private Double valorMeta;
-
     private String nomeItem;
-
-    private String descItem;
-
-    private Double valorArrecadado;
-
+    private String DescVakinha;
+    private Double valorNecessario;
+    private LocalDateTime dataCriacao;
     private Integer fkOng;
 
-    public Integer getCodigo() {
-        return codigo;
+    public String getNomeItem() { return nomeItem; }
+
+    public void setNomeItem(String nomeItem) { this.nomeItem = nomeItem; }
+
+    public String getDescVakinha() {
+        return DescVakinha;
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+    public void setDescVakinha(String descVakinha) {
+        DescVakinha = descVakinha;
+    }
+
+    public Integer getFkOng() {
+        return fkOng;
+    }
+
+    public void setFkOng(Integer fkOng) {
+        this.fkOng = fkOng;
+    }
+
+    public Integer getIdVakinha() {
+        return idVakinha;
+    }
+
+    public void setIdVakinha(Integer idVakinha) {
+        this.idVakinha = idVakinha;
     }
 
     public String getNomeVakinha() {
@@ -38,43 +54,20 @@ public class Vakinha {
         this.nomeVakinha = nomeVakinha;
     }
 
-    public Double getValorMeta() {
-        return valorMeta;
+    public Double getValorNecessario() {
+        return valorNecessario;
     }
 
-    public void setValorMeta(Double valorMeta) {
-        this.valorMeta = valorMeta;
+    public void setValorNecessario(Double valorNecessario) {
+        this.valorNecessario = valorNecessario;
     }
 
-    public String getNomeItem() {
-        return nomeItem;
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
     }
 
-    public void setNomeItem(String nomeItem) {
-        this.nomeItem = nomeItem;
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
-    public String getDescItem() {
-        return descItem;
-    }
-
-    public void setDescItem(String descItem) {
-        this.descItem = descItem;
-    }
-
-    public Double getValorArrecadado() {
-        return valorArrecadado;
-    }
-
-    public void setValorArrecadado(Double valorArrecadado) {
-        this.valorArrecadado = valorArrecadado;
-    }
-
-    public Integer getFkOng() {
-        return fkOng;
-    }
-
-    public void setFkOng(Integer fkOng) {
-        this.fkOng = fkOng;
-    }
 }
