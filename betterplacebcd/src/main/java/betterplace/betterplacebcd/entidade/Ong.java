@@ -1,40 +1,18 @@
 package betterplace.betterplacebcd.entidade;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 @Entity
-public class Ong {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idOng;
-    private String nomeOng;
+public class Ong extends Usuario {
+    @CNPJ
+    private String cnpj;
 
-    public Integer getIdOng() {
-        return idOng;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setIdOng(Integer idOng) {
-        this.idOng = idOng;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
-
-    public String getNomeOng() {
-        return nomeOng;
-    }
-
-    public void setNomeOng(String nomeOng) {
-        this.nomeOng = nomeOng;
-    }
-
-    public String getCnpjOng() {
-        return cnpjOng;
-    }
-
-    public void setCnpjOng(String cnpjOng) {
-        this.cnpjOng = cnpjOng;
-    }
-
-    private String cnpjOng;
 }

@@ -1,25 +1,20 @@
-package com.bp.bplogincadastro.entidade;
-
-import org.springframework.http.ResponseEntity;
+package betterplace.betterplacebcd.entidade;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.*;
-import java.time.LocalDate;
+import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class Usuario {
-    //Atributos
-
-    @Id // do pacote javax.persistence
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cod;
+    private Integer cod;
 
-    @NotNull// Deixar obrigatorio, do pacote. javax.persistence
-    @NotEmpty // Não deixa passar respostas em vazio Ex: ""
-    @NotBlank // apenas para texto (String)
+    @NotNull
+    @NotEmpty
+    @NotBlank
     @Size(min = 2, max = 15)
     private String nome;
 
@@ -32,30 +27,11 @@ public abstract class Usuario {
     @NotNull
     private boolean autenticado;
 
-    //Construtor
-    public Usuario(Long cod, String nome, String email, String senha, String usuario, String telefone) {
-        this.cod = cod;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.usuario = usuario;
-        this.telefone = telefone;
-    }
-
-    public Usuario() {
-    }
-
-    //Metodos
-    //public abstract ResponseEntity login(String email, String senha);
-
-    //public abstract ResponseEntity cadastro();
-
-    //Getters and Setters
-    public Long getCod() {
+    public Integer getCod() {
         return cod;
     }
 
-    public void setCod(Long cod) {
+    public void setCod(Integer cod) {
         this.cod = cod;
     }
 

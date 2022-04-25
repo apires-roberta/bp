@@ -1,7 +1,7 @@
-package com.bp.bplogincadastro.controle;
+package betterplace.betterplacebcd.controle;
 
-import com.bp.bplogincadastro.entidade.Doador;
-import com.bp.bplogincadastro.repositorio.DoadorRepository;
+import betterplace.betterplacebcd.entidade.Doador;
+import betterplace.betterplacebcd.repositorio.DoadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

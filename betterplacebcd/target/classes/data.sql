@@ -1,5 +1,7 @@
-insert into ong (cnpj_ong, nome_ong) values ('123', 'Amigos do Bem');
-insert into doador (cpf, nome_doador) values ('123', 'Juan Silva');
+insert into ong (autenticado, email, nome, senha, telefone, usuario, cnpj) values 
+(false, 'AmigosBem@gmail.com', 'Amigos do Bem', 'Senha123', '11953938243', 'AmigosBem', '32357241000189');
+insert into doador (autenticado, email, nome, senha, telefone, usuario, cpf) values 
+(false, 'JuanSilva@gmail.com', 'Juan da Silva', 'Senha456', '11966768265', 'JuanSilva', '40238315061');
 insert into vakinha (nome_item, desc_vakinha, data_criacao, fk_ong, nome_vakinha, valor_necessario)
 values ('Cadeira de rodas','Conseguir uma cadeira de rodas', '2022-04-20', 1, 'Cadeira de Rodas', 100.00),
 ('Vacinas', 'Conseguir vacinas para os necessitados', '2022-04-22', 1, 'Vacinas', 1000.00);

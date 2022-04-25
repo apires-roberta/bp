@@ -1,8 +1,7 @@
-package com.bp.bplogincadastro.controle;
+package betterplace.betterplacebcd.controle;
 
-import com.bp.bplogincadastro.entidade.Ong;
-import com.bp.bplogincadastro.repositorio.OngRepository;
-import com.bp.bplogincadastro.repositorio.OngRepository;
+import betterplace.betterplacebcd.entidade.Ong;
+import betterplace.betterplacebcd.repositorio.OngRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

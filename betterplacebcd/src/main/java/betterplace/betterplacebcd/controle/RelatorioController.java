@@ -66,7 +66,7 @@ public class RelatorioController {
                 listaObj[6] = valorAtual;
                 listaObj[7] = listaDoacao.get(0).getDataDoacao().format(formato);
                 listaObj[8] = listaDoacao.get(0).getValorDoacao();
-                listaObj[9] = dor.findByIdDoador(listaDoacao.get(0).getFkDoador()).get(0).getNomeDoador();
+                listaObj[9] = dor.findByCod(listaDoacao.get(0).getFkDoador()).get(0).getNome();
                 Media media = new Media(vakinha.getDataCriacao().toLocalDate());
                 listaObj[10] = media.calcularMedia(valorAtual);
                 LocalDate dia = previsao.gerarForecast(listaDoacao, vakinha.getDataCriacao().toLocalDate(), vakinha.getValorNecessario(), valorAtual);
@@ -88,7 +88,7 @@ public class RelatorioController {
 
             dados.adiciona(new DadosCsv(listaObj));
         }
-        String nome = "Relatorio_"+or.findByIdOng(1).get(0).getNomeOng()+"_"+ LocalDate.now();
+        String nome = "Relatorio_"+or.findByCod(1).get(0).getNome()+"_"+ LocalDate.now();
         String csv = gravaArquivoCsv(dados, nome);
         return ResponseEntity.status(200).header("content-type", "text/csv")
                 .header("content-disposition", "filename=\""+nome+".csv\"")
