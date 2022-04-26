@@ -8,20 +8,22 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cod;
 
-    @NotNull
-    @NotEmpty
-    @NotBlank
-    @Size(min = 2, max = 15)
+    @NotNull @NotBlank @Size(min = 2, max = 45)
     private String nome;
 
-    @Email
+    @Email @NotNull @NotBlank
     private String email;
+
+    @NotNull @NotBlank @Size(min = 8, max = 16)
     private String senha;
+
+    @NotNull @NotBlank @Size(min = 2, max = 20)
     private String usuario;
+
+    @NotNull @Pattern(regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})")
     private String telefone;
 
     @NotNull

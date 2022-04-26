@@ -28,7 +28,7 @@ public class OngController {
         if(ong.getSenha().equals(senha)){
             ong.setAutenticado(true);
             repository.Logar(email, true);
-            return ResponseEntity.status(200).build();
+            return ResponseEntity.status(200).body(ong);
         }
         return ResponseEntity.status(403).build();
     }

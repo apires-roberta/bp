@@ -4,18 +4,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
 @Entity
 public class Vakinha {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idVakinha;
+
+    @NotNull @NotBlank @Size(min = 2, max = 45)
     private String nomeVakinha;
+
+    @NotNull @NotBlank @Size(min = 2, max = 25)
     private String nomeItem;
+
+    @NotNull @NotBlank @Size(min = 2, max = 100)
     private String descVakinha;
+
+    @NotNull @Positive
     private Double valorNecessario;
+
+    @PastOrPresent @NotNull
     private LocalDateTime dataCriacao;
+
+    @NotNull @Positive
     private Integer fkOng;
 
     public String getNomeItem() { return nomeItem; }

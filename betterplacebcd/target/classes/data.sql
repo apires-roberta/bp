@@ -1,5 +1,5 @@
 insert into ong (autenticado, email, nome, senha, telefone, usuario, cnpj) values 
-(false, 'AmigosBem@gmail.com', 'Amigos do Bem', 'Senha123', '11953938243', 'AmigosBem', '32357241000189');
+(false, 'juansaopaulo17@gmail.com', 'Amigos do Bem', 'Senha123', '11953938243', 'AmigosBem', '32357241000189');
 insert into doador (autenticado, email, nome, senha, telefone, usuario, cpf) values 
 (false, 'JuanSilva@gmail.com', 'Juan da Silva', 'Senha456', '11966768265', 'JuanSilva', '40238315061');
 insert into vakinha (nome_item, desc_vakinha, data_criacao, fk_ong, nome_vakinha, valor_necessario)

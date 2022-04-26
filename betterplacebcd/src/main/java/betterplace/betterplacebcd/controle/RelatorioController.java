@@ -16,12 +16,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.FormatterClosedException;
 import java.util.List;
@@ -43,6 +41,12 @@ public class RelatorioController {
 
     @GetMapping("/csv/{cod}")
     public ResponseEntity montarDados(@PathVariable Integer cod){
+        if(or.findByCod(cod).isEmpty()){
+            return ResponseEntity.status(404).build();
+        }
+        if(vr.findByFkOng(cod).isEmpty()){
+            return ResponseEntity.status(204).build();
+        }
         ListaObj<DadosCsv> dados = new ListaObj(vr.countByFkOng(cod));
         for (Vakinha vakinha: vr.findByFkOng(cod)){
             Object[] listaObj = new Object[12];
@@ -68,21 +72,26 @@ public class RelatorioController {
                 listaObj[7] = listaDoacao.get(0).getDataDoacao().format(formato);
                 listaObj[8] = listaDoacao.get(0).getValorDoacao();
                 listaObj[9] = dor.findByCod(listaDoacao.get(0).getFkDoador()).get(0).getNome();
+                System.out.println("analise:");
                 Media media = new Media(vakinha.getDataCriacao().toLocalDate());
                 listaObj[10] = media.calcularMedia(valorAtual);
+                System.out.println("Media:");
                 LocalDate dia = previsao.gerarForecast(listaDoacao, vakinha.getDataCriacao().toLocalDate(), vakinha.getValorNecessario(), valorAtual);
+                System.out.println(dia);
                 if(dia!=null){
                     listaObj[11] = dia.format(formato);
                 }
                 else{
+                    System.out.println("previsao media");
                     listaObj[11] = media.previsaoMedia(valorAtual, vakinha.getValorNecessario()).format(formato);
+                    System.out.println("Acabou analise");
                 }
             }
             else{
                 listaObj[6] = valorAtual;
                 listaObj[7] = "Não houve";
                 listaObj[8] = 0.0;
-                listaObj[9] = "";
+                listaObj[9] = "Não há dados";
                 listaObj[10] = 0.0;
                 listaObj[11] = "Não há dados";
             }
@@ -102,7 +111,7 @@ public class RelatorioController {
                 }
             }
         }
-        String nome = "Relatorio_"+or.findByCod(1).get(0).getNome()+"_"+ LocalDate.now();
+        String nome = "Relatorio_"+or.findByCod(cod).get(0).getNome()+"_"+ LocalDate.now();
         String csv = gravaArquivoCsv(dados, nome);
         return ResponseEntity.status(200).header("content-type", "text/csv")
                 .header("content-disposition", "filename=\""+nome+".csv\"")

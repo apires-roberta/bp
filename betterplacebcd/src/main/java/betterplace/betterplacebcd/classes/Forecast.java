@@ -29,6 +29,7 @@ public class Forecast {
         }
         ForecastingModel forecaster = Forecaster.getBestForecast( observedData );
         int i = doacoesDia.length+1;
+        System.out.println("teste");
         while(valorAtual<=valorNecessario){
             DataSet requiredDataPoints = new DataSet();
             dp = new Observation( 0.0 );
@@ -39,7 +40,8 @@ public class Forecast {
             for(Object previsao : vetorForecast) {
                 String[] valor = previsao.toString().replace("(x=", "")
                         .replace("dependentValue=", "").replace(")", "").split(",");
-                if(Double.parseDouble(valor[1])<0){
+                System.out.println(Double.parseDouble(valor[1]));
+                if(Double.parseDouble(valor[1])<=0){
                     return null;
                 }
                 valorAtual+=Double.parseDouble(valor[1]);

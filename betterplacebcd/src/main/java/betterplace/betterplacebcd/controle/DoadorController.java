@@ -17,7 +17,7 @@ public class DoadorController {
 
     //Metodos
     @GetMapping("/login/{email}/{senha}")
-    public ResponseEntity login(@PathVariable  String email,
+    public ResponseEntity login(@PathVariable String email,
                                 @PathVariable String senha) {
 
         Doador doador = repository.findByEmail(email).get(0);
@@ -28,7 +28,7 @@ public class DoadorController {
         if(doador.getSenha().equals(senha)){
             doador.setAutenticado(true);
             repository.Logar(email, true);
-            return ResponseEntity.status(200).build();
+            return ResponseEntity.status(200).body(doador);
         }
         return ResponseEntity.status(403).build();
     }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,8 +17,7 @@ public class VakinhaController{
     private VakinhaRepository repository;
 
     @PostMapping
-    public ResponseEntity postVakinha(
-            @RequestBody Vakinha novaVakinha) {
+    public ResponseEntity postVakinha(@RequestBody @Valid Vakinha novaVakinha) {
         novaVakinha.setDataCriacao(LocalDateTime.now());
         repository.save(novaVakinha);
         return ResponseEntity.status(201).build();
