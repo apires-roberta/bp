@@ -13,6 +13,7 @@ import betterplace.betterplacebcd.repositorio.VakinhaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,7 @@ import java.util.FormatterClosedException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/doacao")
+@RequestMapping("/relatorio")
 public class RelatorioController {
 
     @Autowired
@@ -40,10 +41,10 @@ public class RelatorioController {
     private Forecast previsao = new Forecast();
     private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    @GetMapping
-    public ResponseEntity montarDados(){
-        ListaObj<DadosCsv> dados = new ListaObj(vr.countByFkOng(1));
-        for (Vakinha vakinha: vr.findByFkOng(1)){
+    @GetMapping("/csv/{cod}")
+    public ResponseEntity montarDados(@PathVariable Integer cod){
+        ListaObj<DadosCsv> dados = new ListaObj(vr.countByFkOng(cod));
+        for (Vakinha vakinha: vr.findByFkOng(cod)){
             Object[] listaObj = new Object[12];
             listaObj[0] = vakinha.getNomeVakinha();
             listaObj[1] = vakinha.getNomeItem();
@@ -87,6 +88,19 @@ public class RelatorioController {
             }
 
             dados.adiciona(new DadosCsv(listaObj));
+            Integer tamanho = dados.getTamanho();
+            for(int i=0; i<tamanho-1;i++){
+                Double menor = dados.getElemento(i).getValorNecessario();
+                int posicao = 0;
+                for(int j=i+1; j<tamanho;j++){
+                    if(menor>dados.getElemento(j).getValorNecessario()){
+                        posicao = j;
+                    }
+                }
+                if(posicao>0){
+                    dados.ordenar(i,posicao,dados.getElemento(i));
+                }
+            }
         }
         String nome = "Relatorio_"+or.findByCod(1).get(0).getNome()+"_"+ LocalDate.now();
         String csv = gravaArquivoCsv(dados, nome);

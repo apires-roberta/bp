@@ -35,6 +35,7 @@ public class DoadorController {
 
     @PostMapping("/cadastroDoador")
     public ResponseEntity cadastro(@RequestBody @Valid Doador doador) {
+        doador.setAutenticado(false);
         repository.save(doador);
         return ResponseEntity.status(201).build();
     }

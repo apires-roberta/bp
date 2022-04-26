@@ -35,6 +35,7 @@ public class OngController {
 
     @PostMapping("/cadastroOng")
     public ResponseEntity cadastro(@RequestBody @Valid Ong ong) {
+        ong.setAutenticado(false);
         repository.save(ong);
         return ResponseEntity.status(201).build();
     }

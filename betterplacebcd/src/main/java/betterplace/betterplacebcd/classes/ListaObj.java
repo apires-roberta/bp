@@ -18,6 +18,11 @@ public class ListaObj<T> {
         }
     }
 
+    public void ordenar(int indice1, int indice2, T dados){
+        vetor[indice1] = vetor[indice2];
+        vetor[indice2] = dados;
+    }
+
     public int getTamanho() {
         return nroElem;
     }
