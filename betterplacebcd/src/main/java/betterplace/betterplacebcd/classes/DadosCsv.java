@@ -1,14 +1,14 @@
 package betterplace.betterplacebcd.classes;
 
 public class DadosCsv {
-    private String nomeVakinha, itemVakinha, descVakinha, dataCriacao, dataDoacao, nomeDoador, dataPrevisao;
+    private String nomeCampanha, itemCampanha, descCampanha, dataCriacao, dataDoacao, nomeDoador, dataPrevisao;
     private Double valorNecessario, valorAtual, valorDoacao, media;
     private Integer qtdDoacoes;
 
     public DadosCsv(Object[] objetos) {
-        nomeVakinha = objetos[0].toString();
-        itemVakinha = objetos[1].toString();
-        descVakinha = objetos[2].toString();
+        nomeCampanha = objetos[0].toString();
+        itemCampanha = objetos[1].toString();
+        descCampanha = objetos[2].toString();
         dataCriacao = objetos[3].toString();
         dataDoacao = objetos[7].toString();
         nomeDoador = objetos[9].toString();
@@ -20,28 +20,28 @@ public class DadosCsv {
         qtdDoacoes = Integer.parseInt(objetos[5].toString());
     }
 
-    public String getNomeVakinha() {
-        return nomeVakinha;
+    public String getNomeCampanha() {
+        return nomeCampanha;
     }
 
-    public void setNomeVakinha(String nomeVakinha) {
-        this.nomeVakinha = nomeVakinha;
+    public void setNomeCampanha(String nomeCampanha) {
+        this.nomeCampanha = nomeCampanha;
     }
 
-    public String getItemVakinha() {
-        return itemVakinha;
+    public String getItemCampanha() {
+        return itemCampanha;
     }
 
-    public void setItemVakinha(String itemVakinha) {
-        this.itemVakinha = itemVakinha;
+    public void setItemCampanha(String itemCampanha) {
+        this.itemCampanha = itemCampanha;
     }
 
-    public String getDescVakinha() {
-        return descVakinha;
+    public String getDescCampanha() {
+        return descCampanha;
     }
 
-    public void setDescVakinha(String descVakinha) {
-        this.descVakinha = descVakinha;
+    public void setDescCampanha(String descCampanha) {
+        this.descCampanha = descCampanha;
     }
 
     public String getDataCriacao() {

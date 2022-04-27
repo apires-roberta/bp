@@ -25,14 +25,14 @@ public class Doacao {
     private LocalDateTime dataDoacao;
 
     @NotNull @Positive
-    private Integer fkVakinha;
+    private Integer fkCampanha;
 
-    public Integer getFkVakinha() {
-        return fkVakinha;
+    public Integer getFkCampanha() {
+        return fkCampanha;
     }
 
-    public void setFkVakinha(Integer fkVakinha) {
-        this.fkVakinha = fkVakinha;
+    public void setFkCampanha(Integer fkCampanha) {
+        this.fkCampanha = fkCampanha;
     }
 
     public Integer getFkDoador() {

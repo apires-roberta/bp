@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Forecast {
-    private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public LocalDate gerarForecast(List<Doacao> doacoes, LocalDate diaCriacao, Double valorNecessario, Double valorAtual){
         List<DataValor> listaDia = gerarValores(doacoes);
         Double[] doacoesDia = valoresPorDia(diaCriacao, listaDia);
@@ -67,6 +66,7 @@ public class Forecast {
     }
 
     public List<DataValor> gerarValores(List<Doacao> doacoes){
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         int contador =0;
         Double valorDia = 0.0;
         String dia = doacoes.get(0).getDataDoacao().format(formato);
@@ -100,10 +100,6 @@ public class Forecast {
             }
         }
         return vetorDoacoes;
-    }
-
-    public void criarDataSet(){
-
     }
 
 

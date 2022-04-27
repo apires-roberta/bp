@@ -14,26 +14,25 @@ public class Notificacao extends Observable {
     }
 
     public void novaDoacao(String emailOng, String mensagem){
-        Notificacao revistaInformatica = new Notificacao();
-        notificar assinante1 = new notificar(revistaInformatica, emailOng, mensagem);
-        revistaInformatica.setDoacao(true);
+        Notificacao notificacao = new Notificacao();
+        notificar assinante1 = new notificar(notificacao, emailOng, mensagem);
+        notificacao.setDoacao(true);
     }
 }
 
 class notificar implements Observer {
-    Observable revistaInformatica;
+    Observable notificacao;
     String emailOng, mensagem;
 
-    public notificar(Observable revistaInformatica, String emailOng, String mensagem) {
-        this.revistaInformatica = revistaInformatica;
+    public notificar(Observable notificacao, String emailOng, String mensagem) {
+        this.notificacao = notificacao;
         this.emailOng = emailOng;
-        System.out.println(emailOng);
         this.mensagem = mensagem;
-        revistaInformatica.addObserver(this);
+        notificacao.addObserver(this);
     }
     @Override
-    public void update(Observable revistaInfSubject, Object arg1) {
-        if (revistaInfSubject instanceof Notificacao) {
+    public void update(Observable notificacao, Object arg1) {
+        if (notificacao instanceof Notificacao) {
             Email email = new Email();
             email.enviarEmail(mensagem, emailOng);
         }

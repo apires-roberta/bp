@@ -27,11 +27,4 @@ public class DataValor {
         this.dia = dia;
     }
 
-    @Override
-    public String toString() {
-        return "dataValor{" +
-                "soma=" + soma +
-                ", dia=" + dia +
-                '}';
-    }
 }

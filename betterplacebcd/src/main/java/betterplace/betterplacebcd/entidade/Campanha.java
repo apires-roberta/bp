@@ -8,18 +8,18 @@ import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class Vakinha {
+public class Campanha {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idVakinha;
+    private Integer idCampanha;
 
     @NotNull @NotBlank @Size(min = 2, max = 45)
-    private String nomeVakinha;
+    private String nomeCampanha;
 
     @NotNull @NotBlank @Size(min = 2, max = 25)
     private String nomeItem;
 
     @NotNull @NotBlank @Size(min = 2, max = 100)
-    private String descVakinha;
+    private String descCampanha;
 
     @NotNull @Positive
     private Double valorNecessario;
@@ -34,12 +34,12 @@ public class Vakinha {
 
     public void setNomeItem(String nomeItem) { this.nomeItem = nomeItem; }
 
-    public String getDescVakinha() {
-        return descVakinha;
+    public String getDescCampanha() {
+        return descCampanha;
     }
 
-    public void setDescVakinha(String descVakinha) {
-        this.descVakinha = descVakinha;
+    public void setDescCampanha(String descCampanha) {
+        this.descCampanha = descCampanha;
     }
 
     public Integer getFkOng() {
@@ -50,20 +50,20 @@ public class Vakinha {
         this.fkOng = fkOng;
     }
 
-    public Integer getIdVakinha() {
-        return idVakinha;
+    public Integer getIdCampanha() {
+        return idCampanha;
     }
 
-    public void setIdVakinha(Integer idVakinha) {
-        this.idVakinha = idVakinha;
+    public void setIdCampanha(Integer idCampanha) {
+        this.idCampanha = idCampanha;
     }
 
-    public String getNomeVakinha() {
-        return nomeVakinha;
+    public String getNomeCampanha() {
+        return nomeCampanha;
     }
 
-    public void setNomeVakinha(String nomeVakinha) {
-        this.nomeVakinha = nomeVakinha;
+    public void setNomeCampanha(String nomeCampanha) {
+        this.nomeCampanha = nomeCampanha;
     }
 
     public Double getValorNecessario() {
