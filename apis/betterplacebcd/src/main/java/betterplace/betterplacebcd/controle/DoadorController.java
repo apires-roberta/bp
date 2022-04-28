@@ -1,6 +1,7 @@
 package betterplace.betterplacebcd.controle;
 
 import betterplace.betterplacebcd.entidade.Doador;
+import betterplace.betterplacebcd.entidade.Ong;
 import betterplace.betterplacebcd.repositorio.DoadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,17 +21,21 @@ public class DoadorController {
     public ResponseEntity login(@PathVariable String email,
                                 @PathVariable String senha) {
 
-        Doador doador = repository.findByEmail(email).get(0);
+        Doador doador;
 
-        if (doador.getEmail().isEmpty()) {
+        if(repository.findByEmail(email).isEmpty()){
             return ResponseEntity.status(404).build();
+        }else{
+           doador = repository.findByEmail(email).get(0);
         }
-        if(doador.getSenha().equals(senha)){
+
+        if (doador.getSenha().equals(senha) && doador.getEmail().equals(email)) {
             doador.setAutenticado(true);
             repository.Logar(email, true);
             return ResponseEntity.status(200).body(doador);
+        } else {
+            return ResponseEntity.status(403).build();
         }
-        return ResponseEntity.status(403).build();
     }
 
     @PostMapping("/cadastroDoador")

@@ -19,20 +19,23 @@ public class OngController {
 
     //Metodos
     @GetMapping("/login/{email}/{senha}")
-    public ResponseEntity login(@PathVariable String email,
-                                @PathVariable String senha) {
+    public ResponseEntity login(@PathVariable @Valid String email,
+                                @PathVariable @Valid String senha) {
+        Ong ong;
 
-        Ong ong = repository.findByEmail(email).get(0);
-
-        if (ong.getEmail().isEmpty()) {
+        if(repository.findByEmail(email).isEmpty()){
             return ResponseEntity.status(404).build();
+        }else{
+            ong = repository.findByEmail(email).get(0);
         }
-        if(ong.getSenha().equals(senha)){
+
+        if (ong.getSenha().equals(senha) && ong.getEmail().equals(email)) {
             ong.setAutenticado(true);
             repository.Logar(email, true);
             return ResponseEntity.status(200).body(ong);
+        } else {
+            return ResponseEntity.status(403).build();
         }
-        return ResponseEntity.status(403).build();
     }
 
     @PostMapping("/cadastroOng")
@@ -43,9 +46,9 @@ public class OngController {
     }
 
     @PatchMapping("/logoff/{idUsuario}")
-    public ResponseEntity logoff(@PathVariable Integer idUsuario){
+    public ResponseEntity logoff(@PathVariable Integer idUsuario) {
         List<Ong> ong = repository.findByCod(idUsuario);
-        if(ong.isEmpty()){
+        if (ong.isEmpty()) {
             return ResponseEntity.status(204).build();
         }
         ong.get(0).setAutenticado(false);
@@ -54,7 +57,7 @@ public class OngController {
     }
 
     @DeleteMapping("/deletarConta/{idUsuario}")
-    public ResponseEntity deletarConta(@PathVariable Integer idUsuario){
+    public ResponseEntity deletarConta(@PathVariable Integer idUsuario) {
         repository.delete(repository.getById(idUsuario));
         return ResponseEntity.status(201).build();
     }
