@@ -1,5 +1,5 @@
 insert into ong (autenticado, email, nome, senha, telefone, usuario, cnpj) values 
-(false, 'juansaopaulo17@gmail.com', 'Amigos do Bem', 'Senha123', '11953938243', 'AmigosBem', '32357241000189');
+(false, 'roberta2003p@gmail.com', 'Amigos do Bem', 'Senha123', '11953938243', 'AmigosBem', '32357241000189');
 insert into doador (autenticado, email, nome, senha, telefone, usuario, cpf) values 
 (false, 'JuanSilva@gmail.com', 'Juan da Silva', 'Senha456', '11966768265', 'JuanSilva', '40238315061');
 insert into campanha (nome_item, desc_campanha, data_criacao, fk_ong, nome_campanha, valor_necessario)
