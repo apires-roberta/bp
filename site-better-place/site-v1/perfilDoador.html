@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="better-place.css">
+    <link rel="stylesheet" type="text/css" href="perfil-doador.css" media="screen" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="./menuLateral.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <title>Perfil</title>
+</head>
+
+<body>
+    <div class="doador-navbar doador-flex-centralizar-itens">
+        <a href="home.html">
+            <div class="doador-flex-centralizar-itens">
+                <img src="img/logo-2.png" alt="logo">
+                <h2>Better Place</h2>
+            </div>
+        </a>
+
+        <div id="div-direita-navbar" class="doador-flex-centralizar-itens">
+            <span>Pontos: 500</span>
+            <img src="./img/perfil-doador/medalha-bronze.png">
+        </div>
+    </div>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="perfilDoador.html">Perfil</a>
+        <a href="Campanhas.html">Campanhas</a>
+    </div>
+    <span style="font-size:40px;cursor:pointer;color: #01396F; margin-left: 1%; float: left;"
+        onclick="openNav()">&#9776;</span>
+<center>
+    <div class="div-container-perfil">
+        <!-- <div class="linha-vertical"></div> -->
+        <div class="div-container-perfil-interno">
+            <div class="div-container-perfil-interno-superior">
+                <!--Div Infos Usuario-->
+                <div class="div-container-infos-user container-params-gerais">
+                    <div class="div-superior-esq">
+                        <img src="./img/perfil-doador/user.png">
+                        <h2 id="nome-user">Maria Silva</h2>
+                    </div>
+                    
+                    
+                </div>
+                <!--Div Pontos Acumulados-->
+                    <div class="div-superior-dir">
+                        <div class="div-qtd-pontos-user">
+                            <img src="./img/perfil-doador/estrela.png">
+                            <span>500 pontos</span>
+                        </div>
+                    </div>
+
+
+            </div>
+            <!--Div Nivel User-->
+            <div class="div-container-perfil-user-interno-inferior container-params-gerais">
+                <div class="div-inferior-esq">
+                    <div class="desc-user">
+                        <h4 id="idade-user">Idade: 45 anos</h4>
+                        <h4 id="email-user">E-mail: maria.silva@gmail.com</h4>
+                        <h4 id="endereco-user">Endereço: Rua Taipas 421, SCS</h4>
+                    </div>
+                </div>
+                <div class="div-inferior-dir">
+                    <div class="div-nivel-user">
+                        <img src="./img/perfil-doador/medalha-bronze.png">
+                        <span>Nivel 3 Bronze</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</center>
+
+    <footer>
+        <div class="box-6">
+            <div class="div-logo">
+                <img src="img/logo.png" alt="">
+                <h1>Better Place</h1>
+            </div>
+            <div class="div-info">
+                <p>E-mail: better.place@gmail.com<br>Tel: 4444-333</p>
+                <div class="img-redes-sociais">
+                    <img src="img/logo-facebook.png" alt="">
+                    <img src="img/logo-linkedin.png" alt="">
+                    <img src="img/logo-telegram.png" alt="">
+                </div>
+            </div>
+
+        </div>
+    </footer>
+</body>
+</html>

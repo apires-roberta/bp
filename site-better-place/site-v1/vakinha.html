@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="better-place.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="vakinha.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="Campanhas.css" 
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <script src="./menuLateral.js"></script>
+    <script src="./grafico.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <title>Better Place</title>
+</head>
+
+<body onload="carregarGrafico()">
+    <div class="Campanhas-navbar Campanhas-flex-centralizar-itens">
+        <a href="home.html">
+            <div class="Campanhas-flex-centralizar-itens">
+                <img src="img/logo-2.png" alt="logo">
+                <h2>Better Place</h2>
+            </div>
+        </a>
+
+        <div id="div-direita-navbar" class="Campanhas-flex-centralizar-itens">
+            <span>Pontos: 500</span>
+            <img src="./img/perfil-doador/medalha-bronze.png">
+        </div>
+    </div>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="perfilDoador.html">Perfil</a>
+        <a href="Campanhas.html">Campanhas</a>
+    </div>
+    <div class="sitePrincipal">
+        <span style="font-size:40px;cursor:pointer;color: #01396F; margin-left: 1%; float: left;"
+            onclick="openNav()">&#9776;</span>
+        <div class="empresa-produto">
+            <div class="produto">
+                <img class="logoEmpresa" src="./img/vacina-foto.jpeg">
+            </div>
+            <div class="empresa">
+                <img class="logoEmpresa" src="./img/amigosBem.svg">
+                <div class="descricao">
+                    <h3>Amigos do bem</h3>
+                    <h4>Arrecadação <span>R$2.000,00</span></h4>
+                    <p>Arrecadação para compra de vacinas</p>
+                </div>
+            </div>
+        </div>
+        <div class="vakinha">
+            <div class="grafico">
+                <div class="graph" id="graph">
+                    <canvas id="myChartPiz"></canvas>
+                </div>
+            </div>
+            <div class="botoes">
+                <button class="botao" onclick="adicionarDinheiro(10)">R$10,00</button>
+                <button class="botao" onclick="adicionarDinheiro(20)">R$20,00</button>
+                <button class="botao" onclick="adicionarDinheiro(30)">R$30,00</button>
+                <button class="botao" onclick="adicionarDinheiro(40)">R$40,00</button>
+                <button class="botao" onclick="adicionarDinheiro(50)">R$50,00</button><br>
+                <label id="pReais" for="valor">R$</label><input type="text" class="valor" id="valor"><button class="botao" onclick="adicionarValor()">Enviar</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="box-6">
+            <div class="div-logo">
+                <img src="img/logo.png" alt="">
+                <h1>Better Place</h1>
+            </div>
+            <div class="div-info">
+                <p>E-mail: better.place@gmail.com<br>Tel: 4444-333</p>
+                <div class="img-redes-sociais">
+                    <img src="img/logo-facebook.png" alt="">
+                    <img src="img/logo-linkedin.png" alt="">
+                    <img src="img/logo-telegram.png" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>

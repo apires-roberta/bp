@@ -1,0 +1,183 @@
+.empresa {
+    margin-left: 15%;
+    height: 30vh;
+    margin-top: 2%;
+}
+
+.logoEmpresa {
+    width: 20%;
+    height: 30vh;
+    margin-left: 2%;
+    margin-right: 2%;
+    float: left;
+}
+
+.descricao {
+    width: 80%;
+    padding-top: 25%;
+    text-justify: inter-word;
+    line-height: 4vh;
+    text-align: center;
+}
+
+.descricao h3 {
+    font-weight: bolder;
+}
+
+.descricao h4 {
+    font-weight: inherit;
+}
+
+.descricao p {
+    font-weight: lighter;
+}
+
+.descricao span {
+    color: #E67D86;
+}
+
+.produto {
+    height: 50vh;
+    margin-top: 5%;
+}
+
+.produto img {
+    border: 5px solid #01396F ;
+    border-radius: 50%;
+    width: 80%;
+    height: 50vh;
+    margin-left: 10%;
+    margin-top: 10%;
+}
+
+.empresa-produto {
+    border-radius: 10px;
+    margin-left: 6%;
+    width: 35%;
+    float: left;
+    height: 100vh;
+    margin-top: 3%;
+    background-color: white;
+    box-shadow: 0px 5px 10px rgb(110, 110, 110);
+}
+
+.vakinha {
+    border-radius: 10px;
+    margin-left: 10%;
+    width: 35%;
+    float: left;
+    height: 100VH;
+    margin-top: 3%;
+    background-color: white;
+    box-shadow: 0px 5px 10px rgb(110, 110, 110);
+}
+
+.botao {
+    cursor: pointer;
+    background-color: #01396F;
+    color: white;
+    width: 45%;
+    margin: 2%;
+    border: none;
+    height: 5vh;
+    font-size: large;
+    border-radius: 24px;
+    box-shadow: 0px 5px 10px rgb(110, 110, 110);
+}
+
+.botoes {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+.botao:hover{
+    background-color: #033561;
+    box-shadow: 5px  5px 19px rgb(0 0 0 / 60%);
+    cursor: pointer;
+}
+
+.grafico {
+    width: 90%;
+    height: 55vh;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+.botao50 {
+    cursor: pointer;
+    color: white;
+    background-color: #01396F;
+    width: 95%;
+    margin: 2%;
+    border: none;
+    height: 5vh;
+    font-size: large;
+    border-radius: 24px;
+    box-shadow: 0px 5px 10px rgb(110, 110, 110);
+}
+.botao50:hover{
+    background-color: #033561;
+    box-shadow: 5px  5px 19px rgb(0 0 0 / 60%);
+    cursor: pointer;
+}
+
+.sitePrincipal {
+    margin-bottom: 100px;
+    height: 100vh;
+    margin-top: 0;
+}
+
+.box-4 {
+    margin-top: 0;
+}
+
+.header {
+    height: 15vh;
+}
+
+.header h2, .header a {
+    color: black;
+}
+
+.header h2 {
+    margin-top: 3%;
+}
+
+.header a:hover {
+    color: white;
+}
+
+.box-4 h1 {
+    margin-top: 30%;
+}
+
+.outroValor{
+    height: 5vh;
+    margin-left: 3%;
+    width: 95%;
+    margin-top:2%;
+    box-shadow: 0px 5px 10px rgb(110, 110, 110);
+    border-radius: 10px;
+}
+
+#pReais{
+    font-size: 16px;
+    margin-left: 2%;
+    margin-top: 5%;
+    float: left;
+}
+
+#valor{
+    border: none;
+    width: 35%;
+    font-size: 16px;
+    margin-left: 1%;
+    border-radius: 10px;
+    margin-top: 2%;
+    margin-right: 4%;
+    border-bottom: #01396F 2px solid;
+}
+
+.valor:focus{
+    outline: none;
+}
