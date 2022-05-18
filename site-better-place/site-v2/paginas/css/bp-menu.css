@@ -5,8 +5,16 @@
 
 .menu{
     width: 100%;
-    height: 100px;
+    height: 80px;
 }
+
+.menu-movel{
+    position: fixed;
+    width: 100%;
+    height: 120px;
+    background-color: white;
+}
+
 
 .div-logo-menu{
     position: absolute;
@@ -92,7 +100,7 @@
     top: 0;
     left: 0;
     background-color: rgb(255, 255, 255);
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgb(255, 255, 255, 0.99);
     overflow-x: hidden;
     transition: 0.5s;
   }
