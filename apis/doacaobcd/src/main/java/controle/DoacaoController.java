@@ -19,11 +19,11 @@ public class DoacaoController {
     @Autowired
     private DoacoesRepository dcr;
     @Autowired
-    private DoadorRepository dor;
+    private DoadorRepository dor; // Requer conexão com as outras APIS
     @Autowired
-    private OngRepository or;
+    private OngRepository or; // Requer conexão com as outras APIS
     @Autowired
-    private CampanhaRepository vr;
+    private CampanhaRepository vr; // Requer conexão com as outras APIS
     @PostMapping("")
     public ResponseEntity doar(@RequestBody @Valid Doacao doacao){
         Integer idOng = doacao.getFkOng();
