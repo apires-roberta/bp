@@ -22,31 +22,15 @@ public class FeedController {
     public ResponseEntity<List<Feed>> getFeed() {
         return status(200).body(repository.findAllByOrderByDataPublicacaoDesc());
     }
-
-    @PostMapping(consumes =  "image/png")
+    // para usar esse post limpar o campo de byte[]
+    @PostMapping()
     public ResponseEntity postFeed(
             @RequestBody @Valid Feed novoFeed) {
         repository.save(novoFeed);
-        //atualizarFotoFeed(,novoFeed.getCodigo());
         return status(201).build();
     }
-/*
-    @PatchMapping(consumes = "image/png")
-    public  ResponseEntity atualizarFotoOng(@RequestBody byte[] fotoOng, long codigo){
-        Feed novoFeed = repository.findByCodigo(codigo);
 
-        if (novoFeed == null){
-            return status(404).build();
-        }
-
-        novoFeed.setFotoPerfil(fotoOng);
-
-        repository.save(novoFeed);
-
-        return status(200).build();
-    }
-
-    @PatchMapping(consumes = "image/png")
+    @PatchMapping(consumes = "image/jpg")
     public  ResponseEntity atualizarFotoFeed(@RequestBody byte[] fotoFeed, long codigo){
         Feed novoFeed = repository.findByCodigo(codigo);
 
@@ -59,6 +43,6 @@ public class FeedController {
         repository.save(novoFeed);
 
         return status(200).build();
-    }*/
+    }
 
 }

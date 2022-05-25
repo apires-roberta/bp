@@ -43,7 +43,7 @@ public class CampanhaController {
     }
 
     @DeleteMapping("/{cod}")
-    public ResponseEntity apagarVakinha(@PathVariable Integer cod){
+    public ResponseEntity apagarCampanha(@PathVariable Integer cod){
         repository.delete(repository.getById(cod));
         return ResponseEntity.status(201).build();
     }
