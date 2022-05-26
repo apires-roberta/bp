@@ -3,10 +3,10 @@ var myChartPiz;
 
 function carregarGrafico(){
     const labelspiz = [];
-    var counter={
+    var lopes={
         id: "counter",
         beforeDraw( chart, args, options ){
-            const { ctx, chartArea:{ top, bottom, right, left, width, height } }= chart;
+            const { ctx, chartArea:{width, height } }= chart;
             ctx.save();
             ctx.font = '40px Comfortaa';
             ctx.textAlign = 'center';
@@ -39,11 +39,19 @@ function carregarGrafico(){
                 },
                 counter:{
                     fontColor: '#01396F',
-                    fillText: calcularRestante(2000,valorArrecadacao)[0]
+                },
+                counter:{
+                    beforeDraw( chart, args, options ){
+                        const { ctx, chartArea:{width, height } }= chart;
+                        ctx.save();
+                        ctx.font = '40px Comfortaa';
+                        ctx.textAlign = 'center';
+                        ctx.fillText("R$0,00", (width/2), (height/2)+20);
+                    }
                 }
             }
         },
-        plugins:[counter]
+        plugins:[lopes]
     };
     myChartPiz = new Chart(
         document.getElementById('myChartPiz'),
