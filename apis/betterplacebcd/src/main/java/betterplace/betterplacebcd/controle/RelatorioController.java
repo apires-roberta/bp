@@ -1,26 +1,20 @@
 package betterplace.betterplacebcd.controle;
 
-import betterplace.betterplacebcd.classes.DadosCsv;
-import betterplace.betterplacebcd.classes.ListaObj;
-import betterplace.betterplacebcd.classes.Media;
+import betterplace.betterplacebcd.classes.*;
 import betterplace.betterplacebcd.entidade.Doacao;
-import betterplace.betterplacebcd.classes.Forecast;
 import betterplace.betterplacebcd.entidade.Campanha;
 import betterplace.betterplacebcd.entidade.Doador;
-import betterplace.betterplacebcd.repositorio.DoacoesRepository;
-import betterplace.betterplacebcd.repositorio.DoadorRepository;
-import betterplace.betterplacebcd.repositorio.OngRepository;
-import betterplace.betterplacebcd.repositorio.CampanhaRepository;
+import betterplace.betterplacebcd.entidade.Ong;
+import betterplace.betterplacebcd.repositorio.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.FormatterClosedException;
 import java.util.List;
@@ -39,6 +33,8 @@ public class RelatorioController {
     private OngRepository or;
     private Forecast previsao = new Forecast();
     private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private GravarArquivo ga = new GravarArquivo();
+    private ExportarDados ed = new ExportarDados();
 
     @GetMapping("/csv/{cod}")
     public ResponseEntity montarDados(@PathVariable Integer cod){
@@ -115,56 +111,75 @@ public class RelatorioController {
             }
         }
         String nome = "Relatorio_"+or.findByCod(cod).get(0).getNome()+"_"+ LocalDate.now();
-        String csv = gravaArquivoCsv(dados, nome);
+        String csv = ga.gravaArquivoCsv(dados, nome);
         return ResponseEntity.status(200).header("content-type", "text/csv")
                 .header("content-disposition", "filename=\""+nome+".csv\"")
                 .body(csv);
     }
 
-    public String gravaArquivoCsv(ListaObj<DadosCsv> lista, String nomeArq) {
-        FileWriter arq = null;
-        Formatter saida = null;
-        Boolean deuRuim = false;
-        nomeArq += ".csv";
-        String formatado="";
-
-        try {
-            arq = new FileWriter(nomeArq);
-            saida = new Formatter(arq);
+    @GetMapping("/Exportacao/{cod}")
+    public ResponseEntity exportarDados(@PathVariable Integer cod){
+        String nomeOng;
+        String nomeCampanha, itemCampanha, descCampanha, nomeDoador="";
+        Double valorNecessario, valorAtual, valorDoacao=0.0, media=0.0;
+        Integer qtdDoacoes;
+        LocalDate dataCriacao, dataDoacao=null, dataPrevisao=null;
+        List<Dados> dados = new ArrayList();
+        List<Ong> listaOng = or.findByCod(cod);
+        if(listaOng.isEmpty()){
+            return ResponseEntity.status(404).build();
         }
-        catch (IOException erro) {
-            System.out.println("Erro ao abrir o arquivo!");
-            System.exit(1);
+        else{
+            nomeOng = listaOng.get(0).getNome();
         }
-
-        try {
-            for (int i= 0; i< lista.getTamanho(); i++) {
-                DadosCsv dados = lista.getElemento(i);
-                formatado += String.format("%s;%s;%s;%s;%.2f;%.2f;%d;%s;%s;%.2f;%.2f;%s\n",
-                        dados.getNomeCampanha(), dados.getDescCampanha(), dados.getItemCampanha(), dados.getDataCriacao(),
-                        dados.getValorNecessario(), dados.getValorAtual(), dados.getQtdDoacoes(), dados.getNomeDoador(),
-                        dados.getDataDoacao(), dados.getValorDoacao(), dados.getMedia(), dados.getDataPrevisao());
-                saida.format(formatado);
+        for (Campanha campanha: vr.findByFkOng(cod)){
+            nomeCampanha = campanha.getNomeCampanha();
+            itemCampanha = campanha.getNomeItem();
+            descCampanha = campanha.getDescCampanha();
+            valorNecessario = campanha.getValorNecessario();
+            dataCriacao = campanha.getDataCriacao().toLocalDate();
+            Integer qtdeDoacoes = dcr.countByFkCampanha(campanha.getIdCampanha());
+            if(qtdeDoacoes!=null){
+                qtdDoacoes = 0;
             }
-        }
-        catch (FormatterClosedException erro) {
-            System.out.println("Erro ao gravar arquivo");
-            deuRuim = true;
-        }
-        finally {
-            saida.close();
-            try {
-                arq.close();
+            else{
+                qtdDoacoes = qtdeDoacoes;
             }
-            catch (IOException erro) {
-                System.out.println("Erro ao fechar o arquivo");
-                deuRuim = true;
+            List<Doacao> listaDoacao =  dcr.findByFkCampanhaOrderByDataDoacaoDesc(campanha.getIdCampanha());
+            valorAtual = 0.0;
+            if(!listaDoacao.isEmpty()){
+                for (Doacao doacoes : listaDoacao){
+                    valorAtual+=doacoes.getValorDoacao();
+                }
+                dataDoacao = listaDoacao.get(0).getDataDoacao().toLocalDate();
+                valorDoacao = listaDoacao.get(0).getValorDoacao();
+                List<Doador> doador = dor.findByCod(listaDoacao.get(0).getFkDoador());
+                if(doador.isEmpty()){
+                    nomeDoador = "Usuario nao esta mais no site";
+                }
+                else{
+                    nomeDoador = doador.get(0).getNome();
+                }
+                Media m = new Media(campanha.getDataCriacao().toLocalDate());
+                media = m.calcularMedia(valorAtual);
+                LocalDate dia = previsao.gerarForecast(listaDoacao, campanha.getDataCriacao().toLocalDate(), campanha.getValorNecessario(), valorAtual);
+                if(dia!=null){
+                    dataPrevisao = dia;
+                }
+                else{
+                    dataPrevisao = m.previsaoMedia(valorAtual, campanha.getValorNecessario());
+                }
             }
-            if (deuRuim) {
-                System.exit(1);
-            }
+            dados.add(new Dados(nomeCampanha,itemCampanha, descCampanha, dataCriacao, dataDoacao, nomeDoador, dataPrevisao,
+                                valorNecessario, valorAtual, valorDoacao, media, qtdDoacoes));
         }
-        return formatado;
+        return ResponseEntity.status(200).header("content-type", "text/csv")
+                .header("content-disposition", "filename=\"Relatorio_exportacao_"+nomeOng+".txt\"")
+                .body(ed.gravaArquivoTxt(dados, nomeOng));
     }
 
+    @PatchMapping(value = "/foto/{codigo}", consumes="image/jpeg")
+    public ResponseEntity patchFoto(@PathVariable long codigo, @RequestBody byte[] novaFoto){
+        return ResponseEntity.status(200).body(novaFoto);
+    }
 }
