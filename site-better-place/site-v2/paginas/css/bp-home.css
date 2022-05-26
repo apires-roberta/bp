@@ -206,7 +206,7 @@ button:hover {
     display: flex;
 }
 
-.box-5 {
+.box-4 {
     margin-top: 1800px;
     background-color: #ffffff;
     width: 60%;
@@ -216,14 +216,14 @@ button:hover {
     color: rgb(0, 0, 0);
 }
 
-.box-5 h2 {
+.box-4 h2 {
     float: right;
     font-size: 40px;
     padding: 30px;
     padding-top: 50px;
 }
 
-.box-6 {
+.box-5 {
     justify-content: center;
     justify-items: center;  
     margin-top: 10px;
@@ -257,7 +257,7 @@ button:hover {
 }
 
 /* footer */
-.box-7 {
+.box-6 {
     display: block;
     margin-top: 500px;
     height: 300px;
