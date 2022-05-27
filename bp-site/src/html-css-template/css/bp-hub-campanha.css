@@ -1,0 +1,83 @@
+.div-campanhas{
+    width: 180vh;
+    height: 100%;
+    margin-left: 150px;
+    margin-top: 50px;
+}
+.container-campanha{
+margin-top: 20px;
+margin-left: 20px;
+margin-bottom: 20px;
+float: left;
+width: 350px;
+height: 400px;
+left: 493px;
+top: 208px;
+
+background: rgba(255, 255, 255, 0.98);
+border: 1px solid rgba(0, 0, 0, 0.05);
+box-shadow: 10px 10px 50px 5px rgba(0, 0, 0, 0.2);
+border-radius: 10px;
+
+}
+
+.nome-ong{
+ font-family: 'Comfortaa';
+ font-style: normal;
+ font-size: 36px;
+ line-height: 40px;
+
+ color: #000000;
+ 
+}
+
+.descricao-campanha{
+ 
+ font-family: 'Comfortaa';
+ font-style: normal;
+ font-size: 25px;
+ line-height: 29px;
+ height: 200px;
+ color: #6D6D6D;
+
+
+}
+
+.valor-campanha{
+
+ padding-top: 5px;
+ font-family: 'Comfortaa';
+ font-style: normal;
+ font-size: 30px;
+ line-height: 36px;
+
+ color: #000000;
+ 
+}
+
+.div-nome{
+    padding-top: 20px;
+    padding-left: 15px;
+    width: 95%;
+    height: 50px;
+}
+
+.div-descricao{
+    padding-top: 10px;
+    padding-left: 15px;
+    width: 95%;
+    height: 240px;
+    
+}
+
+.div-valor{
+    padding-top: 10px;
+    width: 100%;
+    height: 80px;
+    text-align: center;
+}
+
+.div-img{
+    float: left;
+    margin-left: 15px;
+}
