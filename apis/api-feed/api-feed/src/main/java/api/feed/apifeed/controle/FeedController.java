@@ -1,5 +1,6 @@
 package api.feed.apifeed.controle;
 
+import api.feed.apifeed.dto.feed.CreateFeedDto;
 import api.feed.apifeed.entidade.Feed;
 import api.feed.apifeed.repositorio.FeedRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,27 +20,33 @@ public class FeedController {
     private FeedRepository repository;
 
     @GetMapping
-    public ResponseEntity<List<Feed>> getFeed() {
-        return status(200).body(repository.findAllByOrderByDataPublicacaoDesc());
+    public ResponseEntity<List<Feed>> getFeeds() {
+        List<Feed> feeds = repository.findAllByOrderByDataPublicacaoDesc();
+        if (feeds.isEmpty())
+            return status(204).build();
+
+        return status(200).body(feeds);
     }
     // para usar esse post limpar o campo de byte[]
     @PostMapping()
-    public ResponseEntity postFeed(
-            @RequestBody @Valid Feed novoFeed) {
-        repository.save(novoFeed);
-        return status(201).build();
+    public ResponseEntity<Long> createFeed(@RequestBody @Valid CreateFeedDto novoFeed) {
+
+        Feed feed = new Feed(novoFeed.getCodigo(), novoFeed.getDataPublicacao(), novoFeed.getDescricao());
+        repository.save(feed);
+        return status(201).body(novoFeed.getCodigo());
     }
 
     @PatchMapping(consumes = "image/jpg")
-    public  ResponseEntity atualizarFotoFeed(@RequestBody byte[] fotoFeed, long codigo){
+    public  ResponseEntity atualizarFotosFeed(@RequestBody byte[] fotoFeed, long codigo){
         Feed novoFeed = repository.findByCodigo(codigo);
 
-        if (novoFeed == null){
+        if (novoFeed == null)
             return status(404).build();
-        }
+
 
         novoFeed.setFotoFeed(fotoFeed);
 
+        //Fazer ligação com a api que tem as infos da Ong pra colocar a foto dela, fazer tambem a classe seguidores
         repository.save(novoFeed);
 
         return status(200).build();

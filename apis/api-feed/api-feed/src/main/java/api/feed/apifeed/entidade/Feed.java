@@ -12,18 +12,23 @@ public class Feed {
     @Id
     private Long codigo;
 
+    private String nome;
+
     @Column(length = 50_000_000)
     private byte[] fotoPerfil;
+
+    private LocalDateTime dataPublicacao;
+
+    private String descricao;
 
     @Column(length = 50_000_000)
     private byte[] fotoFeed;
 
-    private String nome;
-
-    private String descricao;
-
-    private LocalDateTime dataPublicacao;
-
+    public Feed(Long codigo, LocalDateTime dataPublicacao, String descricao) {
+        this.codigo = codigo;
+        this.dataPublicacao = dataPublicacao;
+        this.descricao = descricao;
+    }
 
     public LocalDateTime getDataPublicacao() {
         return dataPublicacao;
