@@ -2,7 +2,9 @@ package api.feed.apifeed.controle;
 
 import api.feed.apifeed.dto.feed.CreateFeedDto;
 import api.feed.apifeed.entidade.Feed;
+import api.feed.apifeed.entidade.Ong;
 import api.feed.apifeed.repositorio.FeedRepository;
+import api.feed.apifeed.services.OngService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +20,8 @@ public class FeedController {
 
     @Autowired
     private FeedRepository repository;
-
+    @Autowired
+    private OngService ongService;
     @GetMapping
     public ResponseEntity<List<Feed>> getFeeds() {
         List<Feed> feeds = repository.findAllByOrderByDataPublicacaoDesc();
@@ -27,29 +30,36 @@ public class FeedController {
 
         return status(200).body(feeds);
     }
-    // para usar esse post limpar o campo de byte[]
+
     @PostMapping()
     public ResponseEntity<Long> createFeed(@RequestBody @Valid CreateFeedDto novoFeed) {
-
-        Feed feed = new Feed(novoFeed.getCodigo(), novoFeed.getDataPublicacao(), novoFeed.getDescricao());
+        Feed feed = new Feed(novoFeed.getFkOng(), novoFeed.getDataPublicacao(), novoFeed.getDescricao());
         repository.save(feed);
-        return status(201).body(novoFeed.getCodigo());
+        return status(201).body(feed.getCodigo());
     }
 
-    @PatchMapping(consumes = "image/jpg")
-    public  ResponseEntity atualizarFotosFeed(@RequestBody byte[] fotoFeed, long codigo){
-        Feed novoFeed = repository.findByCodigo(codigo);
+    @PatchMapping(value = "/{idFeed}", consumes = "image/jpeg")
+    public  ResponseEntity<Void> atualizarFotosFeed(@RequestBody byte[] fotoFeed, @PathVariable long idFeed){
+        Feed novoFeed = repository.findByCodigo(idFeed);
 
         if (novoFeed == null)
             return status(404).build();
 
-
         novoFeed.setFotoFeed(fotoFeed);
 
-        //Fazer ligação com a api que tem as infos da Ong pra colocar a foto dela, fazer tambem a classe seguidores
+        Ong ong = ongService.getOng(novoFeed.getFkOng());
+        novoFeed.setFotoPerfilOng(ong.getFotoPerfil());
+        //fazer também a classe seguidores
         repository.save(novoFeed);
-
         return status(200).build();
     }
 
+    @DeleteMapping("/{idFeed}")
+    public ResponseEntity<Void> deleteFeed(@PathVariable long idFeed){
+        if (!repository.existsById(idFeed))
+            return status(404).build();
+
+        repository.deleteById(idFeed);
+        return status(200).build();
+    }
 }

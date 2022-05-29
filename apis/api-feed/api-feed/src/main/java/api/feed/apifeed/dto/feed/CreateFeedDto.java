@@ -1,16 +1,14 @@
 package api.feed.apifeed.dto.feed;
+import api.feed.apifeed.dto.ong.OngNewFeedDto;
+import api.feed.apifeed.entidade.Ong;
+
 import java.time.LocalDateTime;
 
 public class CreateFeedDto {
-    private Long codigo;
-
+    private Integer fkOng;
     private String descricao;
 
     private LocalDateTime dataPublicacao;
-
-    public Long getCodigo() {
-        return codigo;
-    }
 
     public String getDescricao() {
         return descricao;
@@ -18,5 +16,9 @@ public class CreateFeedDto {
 
     public LocalDateTime getDataPublicacao() {
         return dataPublicacao;
+    }
+
+    public Integer getFkOng() {
+        return fkOng;
     }
 }
