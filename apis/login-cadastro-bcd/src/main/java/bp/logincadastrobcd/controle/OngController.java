@@ -1,5 +1,6 @@
 package bp.logincadastrobcd.controle;
 
+import bp.logincadastrobcd.dto.ong.CreateOng;
 import bp.logincadastrobcd.entidade.Ong;
 import bp.logincadastrobcd.repositorio.OngRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.http.ResponseEntity.*;
@@ -29,14 +29,26 @@ public class OngController {
         return status(200).body(ong.getCod());
     }
     @PostMapping("/cadastroOng")
-    public ResponseEntity cadastro(@RequestBody @Valid Ong ong) {
-        if (repository.existsByEmail(ong.getEmail()))
+    public ResponseEntity cadastro(@RequestBody @Valid CreateOng novaOng) {
+        if (repository.existsByEmail(novaOng.getEmail()))
             return status(409).build(); //409 - Conflict
 
-        ong.setAutenticado(false);
+        Ong ong = new Ong(novaOng.getNome(), novaOng.getEmail(), novaOng.getSenha(),
+                novaOng.getUsuario(), novaOng.getTelefone(), novaOng.getCnpj());
         repository.save(ong);
-        return status(201).build();
+        return ResponseEntity.status(201).body(ong.getCod());
     }
+    @PatchMapping(value = "/{idOng}", consumes = "image/jpeg")
+    public ResponseEntity atualizarFotoOng(@PathVariable Integer idOng, @RequestBody byte[] fotoPerfil){
+        if (!repository.existsById(idOng))
+            return status(404).build();
+
+        Optional<Ong> ong = repository.findByCod(idOng);
+        ong.get().setFotoPerfil(fotoPerfil);
+        repository.save(ong.get());
+        return status(200).build();
+    }
+
     @DeleteMapping("/logoff/{idUsuario}")
     public ResponseEntity logoff(@PathVariable Integer idUsuario) {
         if (!repository.existsByCodAndAutenticadoTrue(idUsuario))

@@ -1,5 +1,6 @@
 package bp.logincadastrobcd.controle;
 
+import bp.logincadastrobcd.dto.doador.CreateDoador;
 import bp.logincadastrobcd.entidade.Doador;
 import bp.logincadastrobcd.repositorio.DoadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +31,25 @@ public class DoadorController {
     }
 
     @PostMapping("/cadastroDoador")
-    public ResponseEntity cadastro(@RequestBody @Valid Doador doador) {
-        if (repository.existsByEmail(doador.getEmail()))
+    public ResponseEntity cadastro(@RequestBody @Valid CreateDoador novoDoador) {
+        if (repository.existsByEmail(novoDoador.getEmail()))
             return status(409).build(); //409 - Conflict
 
-        doador.setAutenticado(false);
+        Doador doador = new Doador(novoDoador.getNome(), novoDoador.getEmail(), novoDoador.getSenha(),
+                novoDoador.getUsuario(), novoDoador.getTelefone(), novoDoador.getCpf());
         repository.save(doador);
-        return ResponseEntity.status(201).build();
+        return ResponseEntity.status(201).body(doador.getCod());
+    }
+
+    @PatchMapping(value = "/{idDoador}", consumes = "image/jpeg")
+    public ResponseEntity atualizarFotoDoador(@PathVariable Integer idDoador, @RequestBody byte[] fotoPerfil){
+        if (!repository.existsById(idDoador))
+            return status(404).build();
+
+        Optional<Doador> ong = repository.findByCod(idDoador);
+        ong.get().setFotoPerfil(fotoPerfil);
+        repository.save(ong.get());
+        return status(200).build();
     }
 
     @DeleteMapping("/logoff/{idUsuario}")

@@ -1,9 +1,6 @@
 package bp.logincadastrobcd.entidade;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @MappedSuperclass
@@ -28,6 +25,20 @@ public abstract class Usuario {
 
     @NotNull
     private boolean autenticado;
+
+    @Column(length = 50_000_000)
+    private byte[] fotoPerfil;
+
+    public Usuario() {
+    }
+
+    public Usuario(String nome, String email, String senha, String usuario, String telefone) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.usuario = usuario;
+        this.telefone = telefone;
+    }
 
     public Integer getCod() {
         return cod;
@@ -83,5 +94,13 @@ public abstract class Usuario {
 
     public void setAutenticado(boolean autenticado) {
         this.autenticado = autenticado;
+    }
+
+    public byte[] getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(byte[] fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
 }
