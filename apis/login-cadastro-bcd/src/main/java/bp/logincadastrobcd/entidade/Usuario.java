@@ -23,7 +23,7 @@ public abstract class Usuario {
     @NotNull @NotBlank @Size(min = 2, max = 20)
     private String usuario;
 
-    @NotNull @Pattern(regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})")
+    @NotNull @Pattern(regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})") //Exemplo: (11) 92005-7526
     private String telefone;
 
     @NotNull
