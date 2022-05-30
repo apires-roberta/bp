@@ -46,9 +46,9 @@ public class DoadorController {
         if (!repository.existsById(idDoador))
             return status(404).build();
 
-        Optional<Doador> ong = repository.findByCod(idDoador);
-        ong.get().setFotoPerfil(fotoPerfil);
-        repository.save(ong.get());
+        Optional<Doador> doador = repository.findByCod(idDoador);
+        doador.get().setFotoPerfil(fotoPerfil);
+        repository.save(doador.get());
         return status(200).build();
     }
 
@@ -69,7 +69,7 @@ public class DoadorController {
             return status(404).build();
 
         repository.delete(doador.get());
-        return status(200).body(doador);
+        return status(200).build();
     }
     @GetMapping("/{idDoador}")
     public ResponseEntity getDoador(@PathVariable Integer idDoador) {
