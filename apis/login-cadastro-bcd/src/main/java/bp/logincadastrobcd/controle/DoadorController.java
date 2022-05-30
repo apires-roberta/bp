@@ -1,6 +1,7 @@
 package bp.logincadastrobcd.controle;
 
 import bp.logincadastrobcd.dto.doador.CreateDoador;
+import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
 import bp.logincadastrobcd.entidade.Doador;
 import bp.logincadastrobcd.repositorio.DoadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,12 @@ public class DoadorController {
 
     @Autowired
     private DoadorRepository repository;
-    @PostMapping("/login/{email}/{senha}")
-    public ResponseEntity login(@PathVariable String email,
-                                @PathVariable String senha) {
-        if (!repository.existsByEmailAndSenha(email, senha))
+    @PostMapping("/login")
+    public ResponseEntity login(@RequestBody @Valid LoginUsuarioDto usuarioLogin) {
+        if (!repository.existsByEmailAndSenha(usuarioLogin.getEmail(), usuarioLogin.getSenha()))
             return status(404).build();
 
-        Doador doador = repository.findByEmail(email);
+        Doador doador = repository.findByEmail(usuarioLogin.getEmail());
         doador.setAutenticado(true);
         repository.save(doador);
         return status(200).body(doador.getCod());
