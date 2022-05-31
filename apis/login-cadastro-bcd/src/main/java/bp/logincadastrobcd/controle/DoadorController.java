@@ -14,6 +14,7 @@ import java.util.Optional;
 import static org.springframework.http.ResponseEntity.status;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/bp/doador")
 public class DoadorController {
 

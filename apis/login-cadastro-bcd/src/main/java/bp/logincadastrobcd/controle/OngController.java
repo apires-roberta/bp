@@ -14,6 +14,7 @@ import java.util.Optional;
 import static org.springframework.http.ResponseEntity.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/bp/ong")
 public class OngController {
     @Autowired
