@@ -8,26 +8,24 @@ import java.util.Date;
 
 @Entity
 public class Feed {
-
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
-
-    private String nome;
-
-    @Column(length = 50_000_000)
-    private byte[] fotoPerfil;
-
+    //@ManyToOne
+    private Integer fkOng;
     private LocalDateTime dataPublicacao;
-
     private String descricao;
-
     @Column(length = 50_000_000)
     private byte[] fotoFeed;
+    @Column(length = 50_000_000)
+    private byte[] fotoPerfilOng;
 
-    public Feed(Long codigo, LocalDateTime dataPublicacao, String descricao) {
-        this.codigo = codigo;
+    public Feed(Integer fkOng, LocalDateTime dataPublicacao, String descricao) {
+        this.fkOng = fkOng;
         this.dataPublicacao = dataPublicacao;
         this.descricao = descricao;
+    }
+
+    public Feed() {
     }
 
     public LocalDateTime getDataPublicacao() {
@@ -45,15 +43,6 @@ public class Feed {
     public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
-
-    public byte[] getFotoPerfil() {
-        return fotoPerfil;
-    }
-
-    public void setFotoPerfil(byte[] fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
-    }
-
     public byte[] getFotoFeed() {
         return fotoFeed;
     }
@@ -61,20 +50,27 @@ public class Feed {
     public void setFotoFeed(byte[] fotoFeed) {
         this.fotoFeed = fotoFeed;
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getDescricao() {
         return descricao;
     }
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Integer getFkOng() {
+        return fkOng;
+    }
+
+    public void setFkOng(Integer fkOng) {
+        this.fkOng = fkOng;
+    }
+
+    public byte[] getFotoPerfilOng() {
+        return fotoPerfilOng;
+    }
+
+    public void setFotoPerfilOng(byte[] fotoPerfilOng) {
+        this.fotoPerfilOng = fotoPerfilOng;
     }
 }
