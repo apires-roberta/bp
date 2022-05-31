@@ -1,6 +1,7 @@
 package bp.logincadastrobcd.controle;
 
 import bp.logincadastrobcd.dto.ong.CreateOng;
+import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
 import bp.logincadastrobcd.entidade.Ong;
 import bp.logincadastrobcd.repositorio.OngRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,12 @@ import static org.springframework.http.ResponseEntity.*;
 public class OngController {
     @Autowired
     private OngRepository repository;
-    @PostMapping("/login/{email}/{senha}")
-    public ResponseEntity login(@PathVariable @Valid String email,
-                                @PathVariable @Valid String senha) {
-        if (!repository.existsByEmailAndSenha(email, senha))
+    @PostMapping("/login")
+    public ResponseEntity login(@RequestBody @Valid LoginUsuarioDto usuarioLogin) {
+        if (!repository.existsByEmailAndSenha(usuarioLogin.getEmail(), usuarioLogin.getSenha()))
             return status(404).build();
 
-        Ong ong = repository.findByEmail(email);
+        Ong ong = repository.findByEmail(usuarioLogin.getEmail());
         ong.setAutenticado(true);
         repository.save(ong);
         return status(200).body(ong.getCod());
