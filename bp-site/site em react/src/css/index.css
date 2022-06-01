@@ -3,12 +3,6 @@
     font-family: 'Comfortaa', cursive;
 }
 
-.menu{
-    width: 100%;
-    height: 10vh;
-    box-shadow: 0px 5px 20px rgb(220, 220, 220);
-}
-
 .logo{
     width: 5%;
     margin-left: 3%;
@@ -16,62 +10,9 @@
     float: left;
 }
 
-.name{
-    font-size: 32px;
-    float: left;
-    margin-top: 1.5%;
-}
-
-.menuLateral{
-    font-size:40px;
-    cursor:pointer;
-    margin-left: 4.25%;
-    color: #01396F;
-    float: left;
-}
-
-.cadastroDoador{
-    float: left;
-    width: 80%;
-    margin-left: 4%;
-    margin-top: 3%;
-    height: 55vh;
-    box-shadow: 5px 5px 20px rgb(220, 220, 220);
-    color: #01396F;
-}
-
-.cadastroOng{
-    float: left;
-    width: 80%;
-    margin-left: 4%;
-    margin-top: 3%;
-    height: 80vh;
-    box-shadow: 5px 5px 20px rgb(220, 220, 220);
-    color: #01396F;
-}
-
-.cadastroOng h1{
-    padding-top: 1%;
-    text-align: center;
-}
-
-.cadastroDoador h1{
-    padding-top: 1%;
-    text-align: center;
-}
-
 .nomeInput{
     font-size: 16px;
     margin-left: 23%;
-}
-
-.input{
-    border-radius: 30px;
-    height: 5vh;
-    width: 60%;
-    margin-left: 20%;
-    text-align: center;
-    border: rgb(220, 220, 220) 2px solid;
 }
 
 .input:focus{
@@ -110,14 +51,6 @@ button{
     cursor:pointer;
 }
 
-.btnCadastrar{
-    font-size: 32px;
-    width: 40%;
-    height: 10vh;
-    margin-top: 1%;
-    margin-bottom: 2%;
-}
-
 .botao span{
     font-weight: bolder;
 }
@@ -126,34 +59,6 @@ button{
     color:#E67D86;
     cursor:pointer;
     padding-bottom: 2%;
-}
-
-.login{
-    width: 40%;
-    float: left;
-    margin-left: 23%;
-    margin-top: 5%;
-    color: #01396F;
-    height: 60vh;
-    box-shadow: 5px 5px 20px rgb(220, 220, 220);
-    background-color: coral;
-}
-
-.btnLogar{
-    width: 50%;
-    margin-top: 5%;
-    height: 7vh;
-    font-size: 20px;
-    margin-bottom: 5%;
-} 
-
-.login h1{
-    text-align: center;
-    margin-top: 10%;
-}
-
-.login a{
-    margin-left: 34%;
 }
 
 .divCadastrar{
@@ -176,21 +81,29 @@ button{
 .divDireita{
     float: right;
     margin-right: 3%;
-    margin-top: 1.5%;
-    width: 20%;
+    width: 40%;
+    height: 10vh;
 }
 
 .divDireita button{
     font-size: 16px;
     height: 5vh;
-    width: 65%;
+    width: 40%;
+    margin-left: 10%;
+    float: left;
+    margin-top: 4%;
 }
 
-.divDireita span{
-    filter:brightness(0);
-    font-size: 24px;
-    width: 10%;
-    margin-left: 5%;
+.divDireita img{
+    height: 50%;
+    float: right;
+    margin-right: 10%;
+    margin-top: 4%;
+}
+
+.divDireita .tema{
+    float: left;
+    margin-right: 0;
 }
 
 .grafico {
@@ -350,4 +263,11 @@ button{
     width: 80%;
     margin-top: 5%;
     margin-left: 5%;
+}
+
+.tema{
+    float: right;
+    margin-right: 4.5%;
+    margin-top: 1.5%;
+    height: 50%;
 }
