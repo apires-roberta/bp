@@ -55,7 +55,7 @@ function CadastroDoador() {
     `;
     return (
         <>
-            <Menu funcaoDark={toggleTheme} funcao="semCadastro" />
+            <Menu funcaoDark={toggleTheme} funcao="cadastro" />
             <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
                 <Fragment>
                     <GlobalTheme />
@@ -76,8 +76,8 @@ function CadastroDoador() {
                             </div>
                         </DivCadastro>
                         <div class="botao">
-                            <Botao class="btnCadastrar">Cadastrar</Botao><br />
-                            <Span>Para se cadastrar como Ong <a>clique aqui!</a></Span>
+                            <Botao onClick={() => redirecionar("login")} class="btnCadastrar">Cadastrar</Botao><br />
+                            <Span>Para se cadastrar como Ong <a onClick={() => redirecionar("cadastro-ong")}>clique aqui!</a></Span>
                         </div>
                     </div>
                 </Fragment>
@@ -88,3 +88,7 @@ function CadastroDoador() {
 }
 
 export default CadastroDoador;
+
+function redirecionar(pagina) {
+    window.location.href = "http://localhost:3000/"+pagina;
+  }

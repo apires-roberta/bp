@@ -39,20 +39,7 @@
     float: left;
     width: 100%;
     text-align: center;
-}
-
-button{
-    text-align: center;
-    background-color: #01396F;
-    color: white;
-    border: none;
-    border-radius: 50px;
-    box-shadow: 5px 5px 20px rgb(220, 220, 220);
-    cursor:pointer;
-}
-
-.botao span{
-    font-weight: bolder;
+    margin-top: 2%;
 }
 
 .botao span a{
@@ -69,13 +56,6 @@ button{
 
 .divCadastrar .btnDireita{
     margin-left: 2%;
-}
-
-.divCadastrar button{
-    height: 5vh;
-    width: 10%;
-    font-size: 16px;
-    margin-top: 1%;
 }
 
 .divDireita{
@@ -115,65 +95,16 @@ button{
     float: right;
 }
 
-.grafico h3{
-    padding-top: 2%;
-}
-
-.info{
-    width: 19%;
-    margin-left: 10%;
-    margin-bottom: 5%;
-    padding-top: 3%;
-    padding-left: 2%;
-    padding-right: 2%;
-    padding-bottom: 4%;
-    box-shadow: 5px 5px 20px rgb(220, 220, 220);
-    float: left;
-    box-shadow: 10px 10px 50px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-}
-
-.info p{
-    padding-top: 10%;
-    color: #6D6D6D;
-}
-
-.info img{
-    float: left;
-    width: 20%;
-}
-
-.info h3{
-    float: left;
-    padding-top: 6%;
-    margin-left: 2%;
-}
-
 .botoesDoacoes{
-    margin-top: 30%;
+    margin-top: 35%;
     width: 80%;
     margin-left: 12%;
-}
-
-.botoesDoacoes button{
-    color: black;
-    background-color: white;
-    width: 25%;
-    font-size: 24px;
-    height: 8vh;
-    margin-left: 5%;
-    margin-top: 2%;
-}
-
-.outroValor{
-    margin-top: 10%;
-    float: left;
 }
 
 .botaoOutro{
     float: right;
     width: 25%;
-    margin-right: 10%;
+    margin-right: 8%;
 }
 
 .botaoOutro button{
@@ -181,6 +112,8 @@ button{
     margin-top: 10%;
     width: 20%;
     float: left;
+    background-color: transparent;
+    border: none;
 }
 
 .outroValor span{
@@ -197,14 +130,6 @@ button{
     
 }
 
-.outroValor input{
-    float: left;
-    margin-left: 1%;
-    border: none;
-    border-bottom: 2px solid  black;
-    margin-top: 2%;
-    width: 80%;
-}
 
 .enviarValor{
     width: 90%;
@@ -215,30 +140,16 @@ button{
     outline: none;
 }
 
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgb(255, 255, 255);
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: #000000;
     display: block;
     transition: 0.3s;
 }
 
 .sidenav a:hover {
-    color: #f1f1f1;
+    color: #b1b1b1;
 }
 
 .sidenav .closebtn {

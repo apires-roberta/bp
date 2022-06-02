@@ -22,7 +22,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/relatorio")
 public class RelatorioController {
-
     @Autowired
     private CampanhaRepository vr;
     @Autowired
@@ -41,25 +40,25 @@ public class RelatorioController {
         if(or.findByCod(cod).isEmpty()){
             return ResponseEntity.status(404).build();
         }
-        if(vr.findByFkOng(cod).isEmpty()){
+        if(vr.findByOngCod(cod).isEmpty()){
             return ResponseEntity.status(204).build();
         }
-        ListaObj<DadosCsv> dados = new ListaObj(vr.countByFkOng(cod));
-        for (Campanha campanha: vr.findByFkOng(cod)){
+        ListaObj<DadosCsv> dados = new ListaObj(vr.countByOngCod(cod));
+        for (Campanha campanha: vr.findByOngCod(cod)){
             Object[] listaObj = new Object[12];
             listaObj[0] = campanha.getNomeCampanha();
             listaObj[1] = campanha.getNomeItem();
             listaObj[2] = campanha.getDescCampanha();
             listaObj[3] = campanha.getDataCriacao().format(formato);
             listaObj[4] = campanha.getValorNecessario();
-            Integer qtdeDoacoes = dcr.countByFkCampanha(campanha.getIdCampanha());
+            Integer qtdeDoacoes = dcr.countByCampanhaIdCampanha(campanha.getIdCampanha());
             if(qtdeDoacoes!=null){
                 listaObj[5] = 0;
             }
             else{
                 listaObj[5] = qtdeDoacoes;
             }
-            List<Doacao> listaDoacao =  dcr.findByFkCampanhaOrderByDataDoacaoDesc(campanha.getIdCampanha());
+            List<Doacao> listaDoacao =  dcr.findByCampanhaIdCampanhaOrderByDataDoacaoDesc(campanha.getIdCampanha());
             Double valorAtual = 0.0;
             if(!listaDoacao.isEmpty()){
                 for (Doacao doacoes : listaDoacao){
@@ -68,7 +67,7 @@ public class RelatorioController {
                 listaObj[6] = valorAtual;
                 listaObj[7] = listaDoacao.get(0).getDataDoacao().format(formato);
                 listaObj[8] = listaDoacao.get(0).getValorDoacao();
-                List<Doador> doador = dor.findByCod(listaDoacao.get(0).getFkDoador());
+                List<Doador> doador = dor.findByCod(listaDoacao.get(0).getDoador().getCod());
                 if(doador.isEmpty()){
                     listaObj[9] = "Usuario nao esta mais no site";
                 }
@@ -132,20 +131,20 @@ public class RelatorioController {
         else{
             nomeOng = listaOng.get(0).getNome();
         }
-        for (Campanha campanha: vr.findByFkOng(cod)){
+        for (Campanha campanha: vr.findByOngCod(cod)){
             nomeCampanha = campanha.getNomeCampanha();
             itemCampanha = campanha.getNomeItem();
             descCampanha = campanha.getDescCampanha();
             valorNecessario = campanha.getValorNecessario();
             dataCriacao = campanha.getDataCriacao().toLocalDate();
-            Integer qtdeDoacoes = dcr.countByFkCampanha(campanha.getIdCampanha());
+            Integer qtdeDoacoes = dcr.countByCampanhaIdCampanha(campanha.getIdCampanha());
             if(qtdeDoacoes!=null){
                 qtdDoacoes = 0;
             }
             else{
                 qtdDoacoes = qtdeDoacoes;
             }
-            List<Doacao> listaDoacao =  dcr.findByFkCampanhaOrderByDataDoacaoDesc(campanha.getIdCampanha());
+            List<Doacao> listaDoacao =  dcr.findByCampanhaIdCampanhaOrderByDataDoacaoDesc(campanha.getIdCampanha());
             valorAtual = 0.0;
             if(!listaDoacao.isEmpty()){
                 for (Doacao doacoes : listaDoacao){
@@ -153,7 +152,7 @@ public class RelatorioController {
                 }
                 dataDoacao = listaDoacao.get(0).getDataDoacao().toLocalDate();
                 valorDoacao = listaDoacao.get(0).getValorDoacao();
-                List<Doador> doador = dor.findByCod(listaDoacao.get(0).getFkDoador());
+                List<Doador> doador = dor.findByCod(listaDoacao.get(0).getDoador().getCod());
                 if(doador.isEmpty()){
                     nomeDoador = "Usuario nao esta mais no site";
                 }

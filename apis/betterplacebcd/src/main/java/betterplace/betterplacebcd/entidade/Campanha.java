@@ -1,9 +1,6 @@
 package betterplace.betterplacebcd.entidade;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
@@ -27,8 +24,16 @@ public class Campanha {
     @PastOrPresent @NotNull
     private LocalDateTime dataCriacao;
 
-    @NotNull @Positive
-    private Integer fkOng;
+    @ManyToOne
+    private Ong ong;
+
+    public Ong getOng() {
+        return ong;
+    }
+
+    public void setOng(Ong ong) {
+        this.ong = ong;
+    }
 
     public String getNomeItem() { return nomeItem; }
 
@@ -40,14 +45,6 @@ public class Campanha {
 
     public void setDescCampanha(String descCampanha) {
         this.descCampanha = descCampanha;
-    }
-
-    public Integer getFkOng() {
-        return fkOng;
-    }
-
-    public void setFkOng(Integer fkOng) {
-        this.fkOng = fkOng;
     }
 
     public Integer getIdCampanha() {

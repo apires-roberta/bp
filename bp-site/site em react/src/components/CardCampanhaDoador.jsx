@@ -1,18 +1,61 @@
-import estrela from '../img/estrela.png'
+import estrela from '../img/estrela.png';
+import styled from "styled-components";
 function CardCampanhaDoador(props){
+    const DivInfo = styled.div`
+    width: 20%;
+    margin-left: 8%;
+    margin-bottom: 5%;
+    padding-top: 3%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 4%;
+    float: left;
+    box-shadow: ${({ theme }) => theme.borda};
+    border-radius: 10px;
+    color: ${({ theme }) => theme.logo};
+    border: ${({ theme }) => theme.bordaInfo} 2px solid;
+`;
 
-      return(
-        <>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-            <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap" rel="stylesheet"/>
-            <div class="info">
-                <h2>{props.nome}</h2>
-                <p>{props.descricao}</p><br/>
-                <img class="img-estrela" src={estrela} alt=""/>
-                <h3>R${props.valorCampanha}</h3>
-            </div>
-        </>
-      );
+const P = styled.p`
+    padding-top: 10%;
+    color: ${({ theme }) => theme.letraInfo};
+    height: 15vh;
+`;
+
+const estiloH2={
+    height: "4vh"
+}
+
+const estiloDiv = {
+    marginTop: "6%",
+    marginBottom: "0%"
+};
+
+const estiloImg = {
+    float: "left",
+    width: "20%"
+}
+
+const estiloH3 = {
+    float: "left",
+    paddingTop: "8%",
+    marginLeft: "2%",
+    fontWeight: "normal"
+}
+return (
+    <>
+        <DivInfo onClick={redirecionar} style={estiloDiv}>
+            <h2 style={estiloH2}>{props.nome}</h2>
+            <P>{props.descricao}</P><br />
+            <img style={estiloImg} class="img-estrela" src={estrela} alt="" />
+            <h3 style={estiloH3}>R${props.valorCampanha}</h3>
+        </DivInfo>
+    </>
+);
   }
   
   export default CardCampanhaDoador;
+
+  function redirecionar() {
+    window.location.href = "http://localhost:3000/doacao";
+  }

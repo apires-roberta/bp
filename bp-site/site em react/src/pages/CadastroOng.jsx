@@ -60,7 +60,7 @@ function CadastroOng() {
 
     return (
         <>
-            <Menu funcaoDark={toggleTheme} funcao="semCadastro" />
+            <Menu funcaoDark={toggleTheme} funcao="cadastro" />
             <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
                 <Fragment>
                     <GlobalTheme />
@@ -85,8 +85,8 @@ function CadastroOng() {
                             </div>
                         </DivCadastro>
                         <div class="botao">
-                            <Botao class="btnCadastrar">Cadastrar</Botao><br />
-                            <Span>Para se cadastrar como Doador <a>clique aqui!</a></Span>
+                            <Botao onClick={() => redirecionar("login")} class="btnCadastrar">Cadastrar</Botao><br />
+                            <Span>Para se cadastrar como Doador <a onClick={() => redirecionar("cadastro-doador")}>clique aqui!</a></Span>
                         </div>
                     </div>
                 </Fragment>
@@ -98,5 +98,6 @@ function CadastroOng() {
 
 export default CadastroOng;
 
-
-
+function redirecionar(pagina) {
+    window.location.href = "http://localhost:3000/"+pagina;
+  }

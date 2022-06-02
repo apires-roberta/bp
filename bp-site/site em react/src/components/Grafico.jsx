@@ -1,21 +1,23 @@
-import { useEffect, useState } from "react";
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Chart } from 'react-chartjs-2';
 import { Pie } from 'react-chartjs-2';
-import api from "../api";
+import styled from "styled-components";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 var data;
 var options;
 
 export function Grafico(props) {
+  const H3Grafico = styled.h3`
+    padding-top: 8%;
+    color: ${({ theme }) => theme.logo};
+  `;
   var valores = calcularRestante(props.valorDesejado,props.valorAtual)
   configGrafico(valores);
   return (
   <>
   <Pie data={data} options={options}/>
-  <h3>{valores[0]}%</h3>
+  <H3Grafico>{valores[0]}%</H3Grafico>
   </>
   );
 }

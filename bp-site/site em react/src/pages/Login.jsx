@@ -75,7 +75,7 @@ function Login() {
     `;
     return (
         <>
-            <Menu funcaoDark={toggleTheme} funcao="semCadastro" />
+            <Menu funcaoDark={toggleTheme} funcao="cadastro" />
             <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
                 <Fragment>
                     <GlobalTheme />
@@ -83,13 +83,13 @@ function Login() {
                 <Titulo>Login</Titulo>
                 <Input nome="Email:" id="idEmail" tipo="text"/>
                 <Input nome="Senha:" id="idSenha" tipo="password"/>
-                <Botao className="btnLogar">Entrar</Botao><br/>
+                <Botao onClick={logar} className="btnLogar">Entrar</Botao><br/>
                 <a style={aCentro}>Esqueceu a senha?</a>
             </DivLogin>
             <div className="divCadastrar">
                 <Texto>Cadastre-se como:</Texto><br/>
-                <BotaoPequeno>Ong</BotaoPequeno>
-                <BotaoPequeno className="btnDireita">Doador</BotaoPequeno>
+                <BotaoPequeno onClick={() => redirecionar("cadastro-ong")}>Ong</BotaoPequeno>
+                <BotaoPequeno onClick={() => redirecionar("cadastro-doador")} className="btnDireita">Doador</BotaoPequeno>
             </div>
             </Fragment>
             </ThemeProvider>
@@ -98,3 +98,12 @@ function Login() {
   }
   
   export default Login;
+
+  function redirecionar(pagina) {
+    window.location.href = "http://localhost:3000/"+pagina;
+  }
+
+  function logar(){
+      var usuario = "ong";
+      usuario === "ong" ? redirecionar("campanhas-ong") : redirecionar("campanhas-doador")
+  }

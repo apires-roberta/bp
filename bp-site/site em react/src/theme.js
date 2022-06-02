@@ -3,9 +3,12 @@ export const lightTheme = {
   logo: "black",
   azulClaro: "#01396F",
   menu: "white",
-  borda: "5px 5px 20px rgb(220, 220, 220)",
+  borda: "10px 10px 50px 5px rgba(0, 0, 0, 0.2)",
   bordaInput: "black",
-  letraInput: "black"
+  letraInput: "black",
+  bordaBotao: "transparent",
+  letraInfo: "#6D6D6D",
+  bordaInfo: "transparent"
 };
 
 export const darkTheme = {
@@ -15,5 +18,8 @@ export const darkTheme = {
   menu: "#0A0A0A",
   borda: "0px 0px 0px",
   bordaInput: "#0070DC",
-  letraInput: "white"
+  letraInput: "white",
+  bordaBotao: "#0070DC",
+  letraInfo: "#CCCCCC",
+  bordaInfo: "#AAAAAA"
 };

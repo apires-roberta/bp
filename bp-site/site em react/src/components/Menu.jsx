@@ -46,7 +46,7 @@ function Menu(props) {
         margin-top: 1.5%;
     `;
 
-    const MenuLateral = styled.span`
+    const MenuLateralBotao = styled.span`
         font-size:40px;
         cursor:pointer;
         margin-left: 4.25%;
@@ -63,8 +63,30 @@ function Menu(props) {
         box-shadow: ${({ theme }) => theme.borda};
         cursor:pointer;
     `;
+    const estilo = {
+        float: "right",
+        marginRight: "10%"
+    }
 
-    if (props.funcao == "semCadastro") {
+    const MenuLateral = styled.div`
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: ${({ theme }) => theme.body};
+        color: white;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    `;
+
+    const A = styled.a`
+        color: ${({ theme }) => theme.logo};
+    `;
+
+    if (props.funcao == "cadastro") {
         return (
             <>
                 <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
@@ -76,18 +98,43 @@ function Menu(props) {
                             <img onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
                             <Title>bp</Title>
                         </EstiloMenu>
-                        <div id="mySidenav" className="sidenav">
-                            <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
-                            <a href="perfilDoador.html">Perfil</a>
-                            <a href="Campanhas.html">Campanhas</a>
-                        </div>
-                        <MenuLateral onClick={openNav}>&#9776;</MenuLateral>
+                        <MenuLateral id="mySidenav" className="sidenav">
+                            <A href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</A>
+                            <A href="">Configurações</A>
+                        </MenuLateral>
+                        <MenuLateralBotao onClick={openNav}>&#9776;</MenuLateralBotao>
                     </Fragment>
                 </ThemeProvider>
             </>
         );
     }
-    else {
+    else if(props.funcao == "campanha"){
+        return (
+            <>
+                <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+                    <Fragment>
+                        <GlobalTheme />
+                        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap" rel="stylesheet"></link>
+                        <EstiloMenu>
+                            <img className="logo" src={logo} />
+                            <Title>bp</Title>
+                            <div className="divDireita">
+                                <img src={theme === "light" ? notificacaoPreto : notificacaoBranco} alt="" />
+                                <img src={theme === "light" ? contaPreto : contaBranco} alt="" />
+                                <img style={estilo} onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
+                            </div>
+                        </EstiloMenu>
+                        <MenuLateral id="mySidenav" className="sidenav">
+                            <A href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</A>
+                            <A href="">Configurações</A>
+                        </MenuLateral>
+                        <MenuLateralBotao onClick={openNav}>&#9776;</MenuLateralBotao>
+                    </Fragment>
+                </ThemeProvider>
+            </>
+        );
+    }
+    else{
         return (
             <>
                 <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
@@ -104,12 +151,11 @@ function Menu(props) {
                                 <img src={theme === "light" ? contaPreto : contaBranco} alt="" />
                             </div>
                         </EstiloMenu>
-                        <div id="mySidenav" className="sidenav">
-                            <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
-                            <a href="perfilDoador.html">Perfil</a>
-                            <a href="Campanhas.html">Campanhas</a>
-                        </div>
-                        <MenuLateral onClick={openNav}>&#9776;</MenuLateral>
+                        <MenuLateral id="mySidenav" className="sidenav">
+                            <A href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</A>
+                            <A href="">Configurações</A>
+                        </MenuLateral>
+                        <MenuLateralBotao onClick={openNav}>&#9776;</MenuLateralBotao>
                     </Fragment>
                 </ThemeProvider>
             </>
@@ -127,6 +173,5 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
 function redirecionar() {
-    window.location.href = "http://localhost:3000/login";
+    window.location.href = "http://localhost:3000/campanhas-doador";
 }
-
