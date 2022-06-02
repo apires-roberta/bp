@@ -1,19 +1,16 @@
 package betterplace.betterplacebcd.entidade;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
 @Entity
 public class Doacao {
-    @NotNull @Positive
-    private Integer fkDoador;
+    @ManyToOne
+    private Doador doador;
 
-    @NotNull @Positive
-    private Integer fkOng;
+    @ManyToOne
+    private Ong ong;
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idDoacao;
@@ -24,31 +21,31 @@ public class Doacao {
     @PastOrPresent @NotNull
     private LocalDateTime dataDoacao;
 
-    @NotNull @Positive
-    private Integer fkCampanha;
+    @ManyToOne
+    private Campanha campanha;
 
-    public Integer getFkCampanha() {
-        return fkCampanha;
+    public Doador getDoador() {
+        return doador;
     }
 
-    public void setFkCampanha(Integer fkCampanha) {
-        this.fkCampanha = fkCampanha;
+    public void setDoador(Doador doador) {
+        this.doador = doador;
     }
 
-    public Integer getFkDoador() {
-        return fkDoador;
+    public Ong getOng() {
+        return ong;
     }
 
-    public void setFkDoador(Integer fkDoador) {
-        this.fkDoador = fkDoador;
+    public void setOng(Ong ong) {
+        this.ong = ong;
     }
 
-    public Integer getFkOng() {
-        return fkOng;
+    public Campanha getCampanha() {
+        return campanha;
     }
 
-    public void setFkOng(Integer fkOng) {
-        this.fkOng = fkOng;
+    public void setCampanha(Campanha campanha) {
+        this.campanha = campanha;
     }
 
     public Integer getIdDoacao() {

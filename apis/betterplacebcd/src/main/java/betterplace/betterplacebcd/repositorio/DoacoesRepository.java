@@ -7,6 +7,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface DoacoesRepository extends JpaRepository<Doacao, Integer> {
-    Integer countByFkCampanha(Integer idCampanha);
-    List<Doacao> findByFkCampanhaOrderByDataDoacaoDesc(Integer idCampanha);
+    Integer countByCampanhaIdCampanha(Integer idCampanha);
+    List<Doacao> findByCampanhaIdCampanhaOrderByDataDoacaoDesc(Integer idCampanha);
 }

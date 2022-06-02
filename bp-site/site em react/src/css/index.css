@@ -1,0 +1,184 @@
+*{
+    margin: 0;
+    font-family: 'Comfortaa', cursive;
+}
+
+.logo{
+    width: 5%;
+    margin-left: 3%;
+    margin-top: 0.25%;
+    float: left;
+}
+
+.nomeInput{
+    font-size: 16px;
+    margin-left: 23%;
+}
+
+.input:focus{
+    outline: none;
+}
+
+.inputDiv{
+    margin-top: 4%;
+}
+
+.direita{
+    float: right;
+    width: 50%;
+    height: 100%;
+}
+
+.esquerda{
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+
+.botao{
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.botao span a{
+    color:#E67D86;
+    cursor:pointer;
+    padding-bottom: 2%;
+}
+
+.divCadastrar{
+    margin-top: 40%;
+    text-align: center;
+    font-size: 20px;
+}
+
+.divCadastrar .btnDireita{
+    margin-left: 2%;
+}
+
+.divDireita{
+    float: right;
+    margin-right: 3%;
+    width: 40%;
+    height: 10vh;
+}
+
+.divDireita button{
+    font-size: 16px;
+    height: 5vh;
+    width: 40%;
+    margin-left: 10%;
+    float: left;
+    margin-top: 4%;
+}
+
+.divDireita img{
+    height: 50%;
+    float: right;
+    margin-right: 10%;
+    margin-top: 4%;
+}
+
+.divDireita .tema{
+    float: left;
+    margin-right: 0;
+}
+
+.grafico {
+    width: 30%;
+    height: 40vh;
+    margin-right: 12%;
+    margin-top: 5%;
+    text-align: center;
+    float: right;
+}
+
+.botoesDoacoes{
+    margin-top: 35%;
+    width: 80%;
+    margin-left: 12%;
+}
+
+.botaoOutro{
+    float: right;
+    width: 25%;
+    margin-right: 8%;
+}
+
+.botaoOutro button{
+    height: 6vh;
+    margin-top: 10%;
+    width: 20%;
+    float: left;
+    background-color: transparent;
+    border: none;
+}
+
+.outroValor span{
+    float: left;
+    font-size: 16px;
+    margin-left: 5%;
+    width: 60%;
+}
+
+.outroValor p{
+    float: left;
+    margin-top: 3%;
+    margin-left: 2%;
+    
+}
+
+
+.enviarValor{
+    width: 90%;
+    margin-top: 10%;
+}
+
+.outroValor input:focus{
+    outline: none;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #b1b1b1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+.div-campanhas{
+    width: 80%;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.tema{
+    float: right;
+    margin-right: 4.5%;
+    margin-top: 1.5%;
+    height: 50%;
+}

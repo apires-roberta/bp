@@ -18,22 +18,13 @@ import java.time.LocalDateTime;
 public class DoacaoController {
     @Autowired
     private DoacoesRepository dcr;
-    @Autowired
-    private DoadorRepository dor;
-    @Autowired
-    private OngRepository or;
-    @Autowired
-    private CampanhaRepository vr;
     @PostMapping("")
     public ResponseEntity doar(@RequestBody @Valid Doacao doacao){
-        Integer idOng = doacao.getFkOng();
-        Integer idDoador = doacao.getFkDoador();
-        Integer idCampanha = doacao.getFkCampanha();
         doacao.setDataDoacao(LocalDateTime.now());
         dcr.save(doacao);
-        String mensagem = String.format("A(O) %s mandou R$%.2f para campanha: %s", dor.findByCod(idDoador).get(0).getNome(),
-                doacao.getValorDoacao(), vr.findByIdCampanha(idCampanha).get(0).getNomeCampanha());
-        String email = or.findByCod(idOng).get(0).getEmail();
+        String mensagem = String.format("A(O) %s mandou R$%.2f para campanha: %s", doacao.getDoador().getNome(),
+                doacao.getValorDoacao(), doacao.getCampanha().getNomeCampanha());
+        String email = doacao.getOng().getEmail();
         Notificacao revistaInformatica = new Notificacao();
         revistaInformatica.novaDoacao(email, mensagem);
         return ResponseEntity.status(201).build();
