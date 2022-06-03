@@ -37,6 +37,8 @@ function Menu(props) {
         height: 10vh;
         box-shadow: ${({ theme }) => theme.borda};
         background-color:${({ theme }) => theme.menu};
+        position: fixed;
+        top: 0;
     `;
 
     const Title = styled.span`
@@ -52,6 +54,8 @@ function Menu(props) {
         margin-left: 4.25%;
         float: left;
         color: ${({ theme }) => theme.azulClaro};
+        position: fixed;
+        top: 10%;
     `;
 
     const Botao = styled.button`

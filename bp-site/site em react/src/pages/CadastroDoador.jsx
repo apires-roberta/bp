@@ -26,8 +26,8 @@ function CadastroDoador() {
     const DivCadastro = styled.div`
         float: left;
         width: 80%;
-        margin-left: 4%;
-        margin-top: 3%;
+        margin-left: 10%;
+        margin-top: 10%;
         height: 55vh;
         box-shadow: ${({ theme }) => theme.borda};
         color: ${({ theme }) => theme.azulClaro};

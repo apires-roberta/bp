@@ -5,7 +5,6 @@ import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
 import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
-import CriarCampanha from "../components/CriarCampanha";
 import BasicModal from "../components/Modal";
 
 function CampanhasOng() {
@@ -28,7 +27,7 @@ function CampanhasOng() {
 
     const DivInfo = styled.div`
       width: 80%;
-      margin-top: 5%;
+      margin-top: 10%;
       margin-left: 8%;
     `;
 
@@ -40,16 +39,23 @@ function CampanhasOng() {
           <GlobalTheme />
           <DivInfo>
             <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
-            <CriarCampanha onClick={teste}/>
+            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
+            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
+            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
+            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
+            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
+            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
+            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
+            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
+            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
+            <BasicModal/>
           </DivInfo>
         </Fragment>
       </ThemeProvider>
+      
     </>
   );
 }
 
 export default CampanhasOng;
 
-function teste(){
-  <BasicModal/>
-}

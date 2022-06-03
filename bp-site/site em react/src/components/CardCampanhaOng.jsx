@@ -20,7 +20,7 @@ function CardCampanhaOng(props) {
     `;
 
     const P = styled.p`
-        padding-top: 10%;
+        margin-top: 10%;
         color: ${({ theme }) => theme.letraInfo};
         height: 15vh;
     `;
