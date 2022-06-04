@@ -17,11 +17,11 @@ import java.time.LocalDateTime;
 @RequestMapping("/doacao")
 public class DoacaoController {
     @Autowired
-    private DoacoesRepository dcr;
+    private DoacoesRepository doacoesRepository;
     @PostMapping("")
     public ResponseEntity doar(@RequestBody @Valid Doacao doacao){
         doacao.setDataDoacao(LocalDateTime.now());
-        dcr.save(doacao);
+        doacoesRepository.save(doacao);
         String mensagem = String.format("A(O) %s mandou R$%.2f para campanha: %s", doacao.getDoador().getNome(),
                 doacao.getValorDoacao(), doacao.getCampanha().getNomeCampanha());
         String email = doacao.getOng().getEmail();

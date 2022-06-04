@@ -19,46 +19,48 @@ import java.util.Formatter;
 import java.util.FormatterClosedException;
 import java.util.List;
 
+import static org.springframework.http.ResponseEntity.*;
+
 @RestController
 @RequestMapping("/relatorio")
 public class RelatorioController {
     @Autowired
-    private CampanhaRepository vr;
+    private CampanhaRepository campanhaRepository;
     @Autowired
-    private DoacoesRepository dcr;
+    private DoacoesRepository doacoesRepository;
     @Autowired
-    private DoadorRepository dor;
+    private DoadorRepository doadorRepository;
     @Autowired
-    private OngRepository or;
+    private OngRepository ongRepository;
     private Forecast previsao = new Forecast();
     private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private GravarArquivo ga = new GravarArquivo();
-    private ExportarDados ed = new ExportarDados();
+    private GravarArquivo gravarArquivo = new GravarArquivo();
+    private ExportarDados exportarDados = new ExportarDados();
 
     @GetMapping("/csv/{cod}")
     public ResponseEntity montarDados(@PathVariable Integer cod){
-        if(or.findByCod(cod).isEmpty()){
-            return ResponseEntity.status(404).build();
+        if(ongRepository.findByCod(cod).isEmpty()){
+            return status(404).build();
         }
-        if(vr.findByOngCod(cod).isEmpty()){
-            return ResponseEntity.status(204).build();
+        if(campanhaRepository.findByOngCod(cod).isEmpty()){
+            return status(204).build();
         }
-        ListaObj<DadosCsv> dados = new ListaObj(vr.countByOngCod(cod));
-        for (Campanha campanha: vr.findByOngCod(cod)){
+        ListaObj<DadosCsv> dados = new ListaObj(campanhaRepository.countByOngCod(cod));
+        for (Campanha campanha: campanhaRepository.findByOngCod(cod)){
             Object[] listaObj = new Object[12];
             listaObj[0] = campanha.getNomeCampanha();
             listaObj[1] = campanha.getNomeItem();
             listaObj[2] = campanha.getDescCampanha();
             listaObj[3] = campanha.getDataCriacao().format(formato);
             listaObj[4] = campanha.getValorNecessario();
-            Integer qtdeDoacoes = dcr.countByCampanhaIdCampanha(campanha.getIdCampanha());
+            Integer qtdeDoacoes = doacoesRepository.countByCampanhaIdCampanha(campanha.getIdCampanha());
             if(qtdeDoacoes!=null){
                 listaObj[5] = 0;
             }
             else{
                 listaObj[5] = qtdeDoacoes;
             }
-            List<Doacao> listaDoacao =  dcr.findByCampanhaIdCampanhaOrderByDataDoacaoDesc(campanha.getIdCampanha());
+            List<Doacao> listaDoacao =  doacoesRepository.findByCampanhaIdCampanhaOrderByDataDoacaoDesc(campanha.getIdCampanha());
             Double valorAtual = 0.0;
             if(!listaDoacao.isEmpty()){
                 for (Doacao doacoes : listaDoacao){
@@ -67,7 +69,7 @@ public class RelatorioController {
                 listaObj[6] = valorAtual;
                 listaObj[7] = listaDoacao.get(0).getDataDoacao().format(formato);
                 listaObj[8] = listaDoacao.get(0).getValorDoacao();
-                List<Doador> doador = dor.findByCod(listaDoacao.get(0).getDoador().getCod());
+                List<Doador> doador = doadorRepository.findByCod(listaDoacao.get(0).getDoador().getCod());
                 if(doador.isEmpty()){
                     listaObj[9] = "Usuario nao esta mais no site";
                 }
@@ -109,9 +111,9 @@ public class RelatorioController {
                 }
             }
         }
-        String nome = "Relatorio_"+or.findByCod(cod).get(0).getNome()+"_"+ LocalDate.now();
-        String csv = ga.gravaArquivoCsv(dados, nome);
-        return ResponseEntity.status(200).header("content-type", "text/csv")
+        String nome = "Relatorio_" + ongRepository.findByCod(cod).get(0).getNome()+"_"+ LocalDate.now();
+        String csv = gravarArquivo.gravaArquivoCsv(dados, nome);
+        return status(200).header("content-type", "text/csv")
                 .header("content-disposition", "filename=\""+nome+".csv\"")
                 .body(csv);
     }
@@ -124,27 +126,27 @@ public class RelatorioController {
         Integer qtdDoacoes;
         LocalDate dataCriacao, dataDoacao=null, dataPrevisao=null;
         List<Dados> dados = new ArrayList();
-        List<Ong> listaOng = or.findByCod(cod);
+        List<Ong> listaOng = ongRepository.findByCod(cod);
         if(listaOng.isEmpty()){
-            return ResponseEntity.status(404).build();
+            return status(404).build();
         }
         else{
             nomeOng = listaOng.get(0).getNome();
         }
-        for (Campanha campanha: vr.findByOngCod(cod)){
+        for (Campanha campanha: campanhaRepository.findByOngCod(cod)){
             nomeCampanha = campanha.getNomeCampanha();
             itemCampanha = campanha.getNomeItem();
             descCampanha = campanha.getDescCampanha();
             valorNecessario = campanha.getValorNecessario();
             dataCriacao = campanha.getDataCriacao().toLocalDate();
-            Integer qtdeDoacoes = dcr.countByCampanhaIdCampanha(campanha.getIdCampanha());
+            Integer qtdeDoacoes = doacoesRepository.countByCampanhaIdCampanha(campanha.getIdCampanha());
             if(qtdeDoacoes!=null){
                 qtdDoacoes = 0;
             }
             else{
                 qtdDoacoes = qtdeDoacoes;
             }
-            List<Doacao> listaDoacao =  dcr.findByCampanhaIdCampanhaOrderByDataDoacaoDesc(campanha.getIdCampanha());
+            List<Doacao> listaDoacao =  doacoesRepository.findByCampanhaIdCampanhaOrderByDataDoacaoDesc(campanha.getIdCampanha());
             valorAtual = 0.0;
             if(!listaDoacao.isEmpty()){
                 for (Doacao doacoes : listaDoacao){
@@ -152,7 +154,7 @@ public class RelatorioController {
                 }
                 dataDoacao = listaDoacao.get(0).getDataDoacao().toLocalDate();
                 valorDoacao = listaDoacao.get(0).getValorDoacao();
-                List<Doador> doador = dor.findByCod(listaDoacao.get(0).getDoador().getCod());
+                List<Doador> doador = doadorRepository.findByCod(listaDoacao.get(0).getDoador().getCod());
                 if(doador.isEmpty()){
                     nomeDoador = "Usuario nao esta mais no site";
                 }
@@ -172,13 +174,13 @@ public class RelatorioController {
             dados.add(new Dados(nomeCampanha,itemCampanha, descCampanha, dataCriacao, dataDoacao, nomeDoador, dataPrevisao,
                                 valorNecessario, valorAtual, valorDoacao, media, qtdDoacoes));
         }
-        return ResponseEntity.status(200).header("content-type", "text/csv")
+        return status(200).header("content-type", "text/csv")
                 .header("content-disposition", "filename=\"Relatorio_exportacao_"+nomeOng+".txt\"")
-                .body(ed.gravaArquivoTxt(dados, nomeOng));
+                .body(exportarDados.gravaArquivoTxt(dados, nomeOng));
     }
 
     @PatchMapping(value = "/foto/{codigo}", consumes="image/jpeg")
     public ResponseEntity patchFoto(@PathVariable long codigo, @RequestBody byte[] novaFoto){
-        return ResponseEntity.status(200).body(novaFoto);
+        return status(200).body(novaFoto);
     }
 }
