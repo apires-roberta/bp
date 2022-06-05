@@ -6,12 +6,13 @@ function CadastroCampanha() {
 
     const DivCadastro = styled.div`
         float: left;
-        width: 40%;
-        margin-left: 26%;
-        margin-top: 3%;
+        width: 100%;
         height: 60vh;
-        box-shadow: ${({ theme }) => theme.borda};
         color: ${({ theme }) => theme.azulClaro};
+        background-color: ${({ theme }) => theme.body};
+        padding-top: 10%;
+        border-radius: 20px;
+        border: ${({ theme }) => theme.bordaInfo} 2px solid;
     `;
 
     const Botao = styled.button`
@@ -36,7 +37,6 @@ function CadastroCampanha() {
                         <Input nome="Descrição:" id="idDesc" tipo="text" />
                         <Input nome="Valor:" id="idValor" tipo="text" />
                         <Botao>Cadastrar</Botao>
-                        
                     </DivCadastro>
         </>
     );

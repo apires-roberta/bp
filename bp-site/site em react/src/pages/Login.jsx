@@ -25,12 +25,14 @@ function Login() {
     const DivLogin = styled.div`
         width: 40%;
         float: left;
-        margin-left: 23%;
+        margin-left: 30%;
         margin-top: 5%;
         color: #01396F;
         height: 60vh;
         box-shadow: ${({ theme }) => theme.borda};
         color: ${({ theme }) => theme.azulClaro};
+        position: fixed;
+        top: 8%;
     `;
     const Titulo = styled.h1`
         text-align: center;
