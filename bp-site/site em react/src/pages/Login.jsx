@@ -5,8 +5,36 @@ import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
 import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
+import api from "../api"
 
 function Login() {
+    const [funcData, setFuncData] = useState({
+        email: "",
+        senha: ""
+    })
+    async function enviar(e) {
+        e.preventDefault();
+        funcData.email = document.getElementById("idEmail").value;
+        funcData.senha = document.getElementById("idSenha").value;
+        console.log(funcData);
+        api.post("/bp/doador/login", {
+            email: funcData.email,
+            senha: funcData.senha
+        }).then((resposta) => {
+            console.log("post ok", resposta);
+            redirecionar("campanhas-doador");
+        })
+        api.post("/bp/ong/login", {
+            email: funcData.email,
+            senha: funcData.senha
+        }).then((resposta) => {
+            console.log("post ok", resposta);
+            sessionStorage.setItem("idOng", resposta.data)
+            redirecionar("campanhas-ong");
+        })
+        document.getElementById("idEmail").style="border: 2px solid red";
+        document.getElementById("idSenha").style="border: 2px solid red";
+    }
     const [theme, setTheme] = useState("light");
 
     const toggleTheme = () => {
@@ -85,7 +113,7 @@ function Login() {
                 <Titulo>Login</Titulo>
                 <Input nome="Email:" id="idEmail" tipo="text"/>
                 <Input nome="Senha:" id="idSenha" tipo="password"/>
-                <Botao onClick={logar} className="btnLogar">Entrar</Botao><br/>
+                <Botao onClick={enviar} className="btnLogar">Entrar</Botao><br/>
                 <a style={aCentro}>Esqueceu a senha?</a>
             </DivLogin>
             <div className="divCadastrar">

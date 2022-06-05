@@ -3,7 +3,7 @@ import styled from "styled-components";
 import React from "react";
 
 function CadastroCampanha() {
-
+    alert(sessionStorage.getItem("idOng"))
     const DivCadastro = styled.div`
         float: left;
         width: 100%;

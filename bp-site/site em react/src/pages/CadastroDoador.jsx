@@ -5,9 +5,41 @@ import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
 import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
-
+import api from "../api"
 
 function CadastroDoador() {
+    const [funcData, setFuncData] = useState({
+        nome: "",
+        email: "",
+        senha: "",
+        cpf: "",
+        usuario: "",
+        telefone: ""
+
+    })
+
+    async function enviar(e) {
+        e.preventDefault();
+        funcData.nome = document.getElementById("idNome").value;
+        funcData.email = document.getElementById("idEmail").value;
+        funcData.senha = document.getElementById("idSenha").value;
+        funcData.cpf = document.getElementById("idCpf").value;
+        funcData.usuario = document.getElementById("idUsuario").value;
+        funcData.telefone = document.getElementById("idTelefone").value;
+        console.log(funcData);
+        api.post("/bp/doador/cadastroDoador", {
+            nome: funcData.nome,
+            email: funcData.email,
+            senha: funcData.senha,
+            cpf: funcData.cpf,
+            usuario: funcData.usuario,
+            telefone: funcData.telefone
+
+
+        }).then((resposta) => {
+            console.log("post ok", resposta);
+        })
+    }
     const [theme, setTheme] = useState("light");
 
     const toggleTheme = () => {
@@ -53,6 +85,16 @@ function CadastroDoador() {
     const Span = styled.span`
         color:${({ theme }) => theme.logo};
     `;
+    const InputStyle = styled.input`
+        border-radius: 30px;
+        height: 5vh;
+        width: 60%;
+        margin-left: 20%;
+        text-align: center;
+        background-color: transparent;
+        border: ${({ theme }) => theme.bordaInput} 2px solid;
+        color: ${({ theme }) => theme.letraInput};
+    `;
     return (
         <>
             <Menu funcaoDark={toggleTheme} funcao="cadastro" />
@@ -63,20 +105,44 @@ function CadastroDoador() {
                         <DivCadastro>
                             <Titulo>Cadastre-se como doador:</Titulo>
                             <div class="esquerda">
-                                <Input nome="Nome:" id="idNome" tipo="text" />
-                                <Input nome="Email:" id="idEmail" tipo="text" />
-                                <Input nome="Senha:" id="idSenha" tipo="password" />
-                                <Input nome="CPF:" id="idCpf" tipo="text" />
+                                <div className="inputDiv">
+                                    <span className="nomeInput">Nome:</span><br/>
+                                    <InputStyle type="text" id="idNome"/>
+                                </div>
+                                <div className="inputDiv">
+                                    <span className="nomeInput">Email:</span><br/>
+                                    <InputStyle type="text" id="idEmail"/>
+                                </div>
+                                <div className="inputDiv">
+                                    <span className="nomeInput">Senha:</span><br/>
+                                    <InputStyle type="password" id="idSenha"/>
+                                </div>
+                                <div className="inputDiv">
+                                    <span className="nomeInput">CPF:</span><br/>
+                                    <InputStyle type="text" id="idCpf"/>
+                                </div>
                             </div>
                             <div class="direita">
-                                <Input nome="Usuário:" id="idUsuario" tipo="text" />
-                                <Input nome="Telefone:" id="idTelefone" tipo="text" />
-                                <Input nome="Confirmar senha:" id="idConfirmarSenha" tipo="password" />
-                                <Input nome="Data Nascimento:" id="idData" tipo="date" />
+                            <div className="inputDiv">
+                                    <span className="nomeInput">Usuário:</span><br/>
+                                    <InputStyle type="text" id="idUsuario"/>
+                                </div>
+                                <div className="inputDiv">
+                                    <span className="nomeInput">Telefone:</span><br/>
+                                    <InputStyle type="text" id="idTelefone"/>
+                                </div>
+                                <div className="inputDiv">
+                                    <span className="nomeInput">Confirmar senha:</span><br/>
+                                    <InputStyle type="password" id="idConfirmarSenha"/>
+                                </div>
+                                <div className="inputDiv">
+                                    <span className="nomeInput">Data Nascimento:</span><br/>
+                                    <InputStyle type="date" id="idData"/>
+                                </div>
                             </div>
                         </DivCadastro>
                         <div class="botao">
-                            <Botao onClick={() => redirecionar("login")} class="btnCadastrar">Cadastrar</Botao><br />
+                            <Botao onClick={enviar} class="btnCadastrar">Cadastrar</Botao><br />
                             <Span>Para se cadastrar como Ong <a onClick={() => redirecionar("cadastro-ong")}>clique aqui!</a></Span>
                         </div>
                     </div>
@@ -90,5 +156,5 @@ function CadastroDoador() {
 export default CadastroDoador;
 
 function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/"+pagina;
-  }
+    window.location.href = "http://localhost:3000/" + pagina;
+}

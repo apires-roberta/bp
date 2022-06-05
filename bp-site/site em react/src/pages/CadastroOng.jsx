@@ -5,8 +5,47 @@ import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
 import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
+import api from "../api"
 
 function CadastroOng() {
+    const [funcData, setFuncData] = useState({
+        nome: "",
+        email: "",
+        senha: "",
+        cnpj: "",
+        usuario: "",
+        telefone: ""
+
+    })
+
+    async function enviar(e) {
+        if (document.getElementById("idSenha").value === document.getElementById("idConfirmarSenha").value) {
+            e.preventDefault();
+            funcData.nome = document.getElementById("idNome").value;
+            funcData.email = document.getElementById("idEmail").value;
+            funcData.senha = document.getElementById("idSenha").value;
+            funcData.cnpj = document.getElementById("idCnpj").value;
+            funcData.usuario = document.getElementById("idUsuario").value;
+            funcData.telefone = document.getElementById("idTelefone").value;
+            console.log(funcData);
+            api.post("/bp/ong/cadastroOng", {
+                nome: funcData.nome,
+                email: funcData.email,
+                senha: funcData.senha,
+                cnpj: funcData.cnpj,
+                usuario: funcData.usuario,
+                telefone: funcData.telefone
+
+
+            }).then((resposta) => {
+                console.log("post ok", resposta);
+                redirecionar("login")
+            })
+        }
+        else{
+            document.getElementById("idConfirmarSenha").style="border: 2px solid red";
+        }
+    }
     const [theme, setTheme] = useState("light");
 
     const toggleTheme = () => {
@@ -85,7 +124,7 @@ function CadastroOng() {
                             </div>
                         </DivCadastro>
                         <div class="botao">
-                            <Botao onClick={() => redirecionar("login")} class="btnCadastrar">Cadastrar</Botao><br />
+                            <Botao onClick={enviar} class="btnCadastrar">Cadastrar</Botao><br />
                             <Span>Para se cadastrar como Doador <a onClick={() => redirecionar("cadastro-doador")}>clique aqui!</a></Span>
                         </div>
                     </div>
@@ -99,5 +138,5 @@ function CadastroOng() {
 export default CadastroOng;
 
 function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/"+pagina;
-  }
+    window.location.href = "http://localhost:3000/" + pagina;
+}
