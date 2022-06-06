@@ -6,6 +6,7 @@ import GlobalTheme from "../globals";
 import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
 import BasicModal from "../components/Modal";
+import api from "../api";
 
 function CampanhasOng() {
   const [theme, setTheme] = useState("light");
@@ -31,6 +32,15 @@ function CampanhasOng() {
       margin-left: 8%;
     `;
 
+    const [campanha, setcampanha] = useState([]);
+
+  useEffect(() => {
+    api.get("/").then((resposta) => {
+      console.log(resposta.data)
+      setcampanha(resposta.data)
+    })
+  }, [])
+
   return (
     <>
       <Menu funcaoDark={toggleTheme} funcao = "campanha"/>
@@ -38,16 +48,13 @@ function CampanhasOng() {
         <Fragment>
           <GlobalTheme />
           <DivInfo>
-            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
-            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
-            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
-            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
-            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
-            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
-            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
-            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
-            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
-            <CardCampanhaOng nome="Juan" descricao="texto para chegar nos 100 caracteres pois quero testar como vai ficar chegando na quantidade maxima." valorCampanha={1000.00} />
+          {
+              campanha.map((item) => (
+                <CardCampanhaOng nome={item.ong.nome}
+                descCampanha={item.descCampanha}
+                valorCampanha={item.valorNecessario} />
+              ))
+            }
             <BasicModal/>
           </DivInfo>
         </Fragment>

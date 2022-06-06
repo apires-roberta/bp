@@ -25,7 +25,7 @@ function CardCampanhaOng(props) {
         height: 15vh;
     `;
 
-    const estiloH2={
+    const estiloH2 = {
         height: "4vh",
         float: "left"
     }
@@ -55,8 +55,9 @@ function CardCampanhaOng(props) {
     return (
         <>
             <DivInfo style={estiloDiv}>
-                <h2 style={estiloH2}>{props.nome}</h2><img id='imgLixeira' onMouseOver={lixeiraMouse} onMouseLeave={lixeira} src={LixeiraCinza} style={estiloLixeira} alt="" /><br />
-                <P>{props.descricao}</P><br />
+                <h2 style={estiloH2}>{props.nome}</h2>
+                <img id='imgLixeira' onMouseOver={lixeiraMouse} onMouseLeave={lixeira} src={LixeiraCinza} style={estiloLixeira} alt="" /><br />
+                <P>{props.descCampanha}</P><br />
                 <img style={estiloImg} class="img-estrela" src={localTheme === "light" ? AlterarPreto : AlterarBranco} alt="" />
                 <h3 style={estiloH3}>R${props.valorCampanha}</h3>
             </DivInfo>
@@ -66,12 +67,12 @@ function CardCampanhaOng(props) {
 
 export default CardCampanhaOng;
 
-function lixeiraMouse(){
+function lixeiraMouse() {
     var imgLixeira = document.getElementById("imgLixeira");
-    imgLixeira.src= `${LixeiraVermelha}`;
+    imgLixeira.src = `${LixeiraVermelha}`;
 }
 
-function lixeira(){
+function lixeira() {
     var imgLixeira = document.getElementById("imgLixeira");
-    imgLixeira.src= `${LixeiraCinza}`;
+    imgLixeira.src = `${LixeiraCinza}`;
 }
