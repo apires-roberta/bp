@@ -1,7 +1,7 @@
 insert into ong (autenticado, email, nome, senha, telefone, usuario, cnpj) values 
-(false, 'roberta2003p@gmail.com', 'Amigos do Bem', 'Senha123', '11953938243', 'AmigosBem', '32357241000189');
+(false, 'roberta2003p@gmail.com', 'Amigos do Bem', 'Senha123', '(11) 95393-8243', 'AmigosBem', '32357241000189');
 insert into doador (autenticado, email, nome, senha, telefone, usuario, cpf) values 
-(false, 'JuanSilva@gmail.com', 'Juan da Silva', 'Senha456', '11966768265', 'JuanSilva', '40238315061');
+(false, 'JuanSilva@gmail.com', 'Juan da Silva', 'Senha456', '(11) 96676-8265', 'JuanSilva', '40238315061');
 insert into campanha (nome_item, desc_campanha, data_criacao, ong_cod, nome_campanha, valor_necessario)
 values ('Cadeira de rodas','Conseguir uma cadeira de rodas', '2022-04-20', 1, 'Cadeira de Rodas', 100.00),
 ('Vacinas', 'Conseguir vacinas para os necessitados', '2022-04-22', 1, 'Vacinas', 1000.00);

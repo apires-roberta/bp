@@ -25,8 +25,8 @@ public class DoacaoController {
         String mensagem = String.format("A(O) %s mandou R$%.2f para campanha: %s", doacao.getDoador().getNome(),
                 doacao.getValorDoacao(), doacao.getCampanha().getNomeCampanha());
         String email = doacao.getOng().getEmail();
-        Notificacao revistaInformatica = new Notificacao();
-        revistaInformatica.novaDoacao(email, mensagem);
+        Notificacao novaNotificacao = new Notificacao();
+        novaNotificacao.novaDoacao(email, mensagem);
         return ResponseEntity.status(201).build();
     }
 }
