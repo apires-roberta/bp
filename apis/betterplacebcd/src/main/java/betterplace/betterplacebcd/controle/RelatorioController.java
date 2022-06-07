@@ -14,10 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Formatter;
-import java.util.FormatterClosedException;
-import java.util.List;
+import java.util.*;
 
 import static org.springframework.http.ResponseEntity.*;
 
@@ -69,12 +66,12 @@ public class RelatorioController {
                 listaObj[6] = valorAtual;
                 listaObj[7] = listaDoacao.get(0).getDataDoacao().format(formato);
                 listaObj[8] = listaDoacao.get(0).getValorDoacao();
-                List<Doador> doador = doadorRepository.findByCod(listaDoacao.get(0).getDoador().getCod());
+                Optional<Doador> doador = doadorRepository.findByCod(listaDoacao.get(0).getDoador().getCod());
                 if(doador.isEmpty()){
                     listaObj[9] = "Usuario nao esta mais no site";
                 }
                 else{
-                    listaObj[9] = doador.get(0).getNome();
+                    listaObj[9] = doador.get().getNome();
                 }
                 Media media = new Media(campanha.getDataCriacao().toLocalDate());
                 listaObj[10] = media.calcularMedia(valorAtual);
@@ -111,7 +108,7 @@ public class RelatorioController {
                 }
             }
         }
-        String nome = "Relatorio_" + ongRepository.findByCod(cod).get(0).getNome()+"_"+ LocalDate.now();
+        String nome = "Relatorio_" + ongRepository.findByCod(cod).get().getNome()+"_"+ LocalDate.now();
         String csv = gravarArquivo.gravaArquivoCsv(dados, nome);
         return status(200).header("content-type", "text/csv")
                 .header("content-disposition", "filename=\""+nome+".csv\"")
@@ -126,12 +123,12 @@ public class RelatorioController {
         Integer qtdDoacoes;
         LocalDate dataCriacao, dataDoacao=null, dataPrevisao=null;
         List<Dados> dados = new ArrayList();
-        List<Ong> listaOng = ongRepository.findByCod(cod);
-        if(listaOng.isEmpty()){
+        Optional<Ong> Ong = ongRepository.findByCod(cod);
+        if(Ong.isEmpty()){
             return status(404).build();
         }
         else{
-            nomeOng = listaOng.get(0).getNome();
+            nomeOng = Ong.get().getNome();
         }
         for (Campanha campanha: campanhaRepository.findByOngCod(cod)){
             nomeCampanha = campanha.getNomeCampanha();
@@ -154,12 +151,12 @@ public class RelatorioController {
                 }
                 dataDoacao = listaDoacao.get(0).getDataDoacao().toLocalDate();
                 valorDoacao = listaDoacao.get(0).getValorDoacao();
-                List<Doador> doador = doadorRepository.findByCod(listaDoacao.get(0).getDoador().getCod());
+                Optional<Doador> doador = doadorRepository.findByCod(listaDoacao.get(0).getDoador().getCod());
                 if(doador.isEmpty()){
                     nomeDoador = "Usuario nao esta mais no site";
                 }
                 else{
-                    nomeDoador = doador.get(0).getNome();
+                    nomeDoador = doador.get().getNome();
                 }
                 Media m = new Media(campanha.getDataCriacao().toLocalDate());
                 media = m.calcularMedia(valorAtual);

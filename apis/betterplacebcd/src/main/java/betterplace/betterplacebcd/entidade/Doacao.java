@@ -6,14 +6,14 @@ import java.time.LocalDateTime;
 
 @Entity
 public class Doacao {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idDoacao;
+
     @ManyToOne
     private Doador doador;
 
     @ManyToOne
     private Ong ong;
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDoacao;
 
     @NotNull @Positive
     private Double valorDoacao;

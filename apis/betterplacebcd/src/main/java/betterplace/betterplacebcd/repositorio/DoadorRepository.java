@@ -7,9 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DoadorRepository extends JpaRepository<Doador, Integer> {
-    List<Doador> findByCod(Integer idDoador);
+    Optional<Doador> findByCod(Integer idDoador);
     List<Doador> findByEmail(String email);
     String findEmailByCod(Integer idDoador);
     @Transactional

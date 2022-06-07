@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
+
+import static org.springframework.http.ResponseEntity.status;
 
 @RestController
 @RequestMapping("/bp")
@@ -24,7 +27,7 @@ public class DoadorController {
         Doador doador;
 
         if(repository.findByEmail(email).isEmpty()){
-            return ResponseEntity.status(404).build();
+            return status(404).build();
         }else{
            doador = repository.findByEmail(email).get(0);
         }
@@ -32,9 +35,9 @@ public class DoadorController {
         if (doador.getSenha().equals(senha) && doador.getEmail().equals(email)) {
             doador.setAutenticado(true);
             repository.Logar(email, true);
-            return ResponseEntity.status(200).body(doador);
+            return status(200).body(doador);
         } else {
-            return ResponseEntity.status(403).build();
+            return status(403).build();
         }
     }
 
@@ -42,23 +45,26 @@ public class DoadorController {
     public ResponseEntity cadastro(@RequestBody @Valid Doador doador) {
         doador.setAutenticado(false);
         repository.save(doador);
-        return ResponseEntity.status(201).build();
+        return status(201).build();
     }
 
     @PatchMapping("/logoff/{idUsuario}")
     public ResponseEntity logoff(@PathVariable Integer idUsuario){
-        List<Doador> doador = repository.findByCod(idUsuario);
+        Optional<Doador> doador = repository.findByCod(idUsuario);
         if(doador.isEmpty()){
-            return ResponseEntity.status(204).build();
+            return status(204).build();
         }
-        doador.get(0).setAutenticado(false);
-        repository.save(doador.get(0));
-        return ResponseEntity.status(201).build();
+        doador.get().setAutenticado(false);
+        repository.save(doador.get());
+        return status(201).build();
     }
 
     @DeleteMapping("/deletarConta/{idUsuario}")
     public ResponseEntity deletarConta(@PathVariable Integer idUsuario){
-        repository.delete(repository.getById(idUsuario));
-        return ResponseEntity.status(201).build();
+        Optional<Doador> doador = repository.findByCod(idUsuario);
+        if (doador.isEmpty())
+            return status(404).build();
+        repository.delete(doador.get());
+        return status(200).build();
     }
 }

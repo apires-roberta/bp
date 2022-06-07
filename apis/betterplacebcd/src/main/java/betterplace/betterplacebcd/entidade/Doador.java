@@ -4,15 +4,15 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Doador extends Usuario {
     @CPF @NotNull
     private String cpf;
-    @ManyToOne
-    private Inscricao inscricao;
-    @ManyToOne
-    private  NotificacaoFeed notificacoes;
+//    @OneToMany
+//    private List<Inscricao> inscricao;
+
     public String getCpf() {
         return cpf;
     }
@@ -21,19 +21,11 @@ public class Doador extends Usuario {
         this.cpf = cpf;
     }
 
-    public Inscricao getinscricao() {
-        return inscricao;
-    }
-
-    public void setinscricao(Inscricao inscricao) {
-        this.inscricao = inscricao;
-    }
-
-    public NotificacaoFeed getNotificacoes() {
-        return notificacoes;
-    }
-
-    public void setNotificacoes(NotificacaoFeed notificacoes) {
-        this.notificacoes = notificacoes;
-    }
+//    public List<Inscricao> getInscricao() {
+//        return inscricao;
+//    }
+//
+//    public void setInscricao(List<Inscricao> inscricao) {
+//        this.inscricao = inscricao;
+//    }
 }

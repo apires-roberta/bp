@@ -1,6 +1,6 @@
 package betterplace.betterplacebcd.data.dto.ong;
 
-public class OngNewFeedDto {
+public class OngOnlyCodDto {
     private Integer cod;
 
     public Integer getCod() {

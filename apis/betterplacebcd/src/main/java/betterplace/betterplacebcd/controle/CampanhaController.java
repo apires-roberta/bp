@@ -10,6 +10,8 @@ import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static org.springframework.http.ResponseEntity.*;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/campanha")
@@ -21,32 +23,36 @@ public class CampanhaController{
     public ResponseEntity postCampanha(@RequestBody @Valid Campanha novaCampanha) {
         novaCampanha.setDataCriacao(LocalDateTime.now());
         repository.save(novaCampanha);
-        return ResponseEntity.status(201).build();
+        return status(201).build();
     }
     @GetMapping
     public ResponseEntity getTudo(){
         List<Campanha> novaCampanha = repository.findAll();
         if (novaCampanha.isEmpty()) {
-            return ResponseEntity.status(204).build();
+            return status(204).build();
         }
-        return ResponseEntity.status(200).body(novaCampanha);
+        return status(200).body(novaCampanha);
     }
 
     @PatchMapping("/alterarValor/{cod}/{valorNovo}")
     public ResponseEntity alterarValor(@PathVariable Integer cod, @PathVariable Double valorNovo){
         List<Campanha> campanha = repository.findByIdCampanha(cod);
         if(campanha.isEmpty()){
-            return ResponseEntity.status(204).build();
+            return status(404).build();
         }
         campanha.get(0).setValorNecessario(valorNovo);
         repository.save(campanha.get(0));
-        return ResponseEntity.status(201).build();
+        return status(200).build();
     }
 
     @DeleteMapping("/{cod}")
-    public ResponseEntity apagarVakinha(@PathVariable Integer cod){
-        repository.delete(repository.getById(cod));
-        return ResponseEntity.status(201).build();
+    public ResponseEntity apagarCampanha(@PathVariable Integer cod){
+        List<Campanha> campanha = repository.findByIdCampanha(cod);
+        if (campanha.isEmpty())
+            return status(404).build();
+
+        repository.delete(campanha.get(0));
+        return status(200).build();
     }
 
 }

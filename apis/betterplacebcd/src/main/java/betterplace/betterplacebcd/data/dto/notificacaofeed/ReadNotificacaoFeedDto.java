@@ -4,7 +4,6 @@ import javax.validation.constraints.NotNull;
 
 public class ReadNotificacaoFeedDto {
     private Integer id;
-    @NotNull
     private String nomeOng;
 
     public ReadNotificacaoFeedDto(Integer id, String nomeOng) {

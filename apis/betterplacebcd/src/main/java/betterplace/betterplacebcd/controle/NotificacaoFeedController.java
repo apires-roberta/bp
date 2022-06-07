@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.http.ResponseEntity.*;
 
@@ -46,7 +47,7 @@ public class NotificacaoFeedController {
 
     @GetMapping("/{idDoador}")
     public ResponseEntity get10Notificacoes(@PathVariable Integer idDoador) {
-        List<ReadNotificacaoFeedDto> nomesOngNotificacoes = notificacaoRepository.findTop10ByFkDoadorOrderByDataNotificacao(idDoador);
+        List<ReadNotificacaoFeedDto> nomesOngNotificacoes = notificacaoRepository.findTop10ByInscricaoDoadorCodOrderByDataNotificacao(idDoador);
         if (nomesOngNotificacoes.isEmpty())
             return status(204).build();
 
@@ -59,9 +60,12 @@ public class NotificacaoFeedController {
     @DeleteMapping()
     public ResponseEntity deleteNotificacao() {
         try {
-            NotificacaoFeed notificacao = notificacaoRepository.getById(pilhaNotificacoes.pop().getId());
-            pilhaNotificacoesDesfeitas.push(notificacao);
-            notificacaoRepository.delete(notificacao);
+            Optional<NotificacaoFeed> notificacao = notificacaoRepository.findById(pilhaNotificacoes.pop().getId());
+            if (notificacao.isEmpty())
+                return status(404).build();
+
+            pilhaNotificacoesDesfeitas.push(notificacao.get());
+            notificacaoRepository.delete(notificacao.get());
             qtdNotificacoesDeletadas++;
             return status(200).build();
         } catch (IllegalStateException ex) {
@@ -75,14 +79,14 @@ public class NotificacaoFeedController {
             return status(400).body("Nenhuma notificação deletada");
 
         NotificacaoFeed notificacaoFeed = pilhaNotificacoesDesfeitas.pop();
-        ReadNotificacaoFeedDto readNotificacao = new ReadNotificacaoFeedDto(notificacaoFeed.getId(), ongRepository.findNomeByCod(notificacaoFeed.getFkOng()));
+        ReadNotificacaoFeedDto readNotificacao = new ReadNotificacaoFeedDto(notificacaoFeed.getId(), ongRepository.findNomeByCod(notificacaoFeed.getInscricao().getOng().getCod()));
         pilhaNotificacoes.push(readNotificacao);
         notificacaoRepository.save(notificacaoFeed);
         qtdNotificacoesDeletadas--;
         return status(201).body(notificacaoFeed);
     }
     public void enfileirarDoadores(Integer idOng) {
-        List<ReadInscricaoDto> inscritosOng = inscricaoRepository.findByFkOng(idOng);
+        List<ReadInscricaoDto> inscritosOng = inscricaoRepository.findByOngCod(idOng);
         if (inscritosOng.size() == 0)
             return;
 

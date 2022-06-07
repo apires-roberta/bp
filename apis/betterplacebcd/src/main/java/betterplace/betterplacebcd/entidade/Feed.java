@@ -10,8 +10,8 @@ import java.util.Date;
 public class Feed {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
-    //@ManyToOne
-    private Integer fkOng;
+    @ManyToOne
+    private Ong ong;
     private LocalDateTime dataPublicacao;
     private String descricao;
     @Column(length = 50_000_000)
@@ -19,8 +19,8 @@ public class Feed {
     @Column(length = 50_000_000)
     private byte[] fotoPerfilOng;
 
-    public Feed(Integer fkOng, LocalDateTime dataPublicacao, String descricao) {
-        this.fkOng = fkOng;
+    public Feed(Ong ong, LocalDateTime dataPublicacao, String descricao) {
+        this.ong = ong;
         this.dataPublicacao = dataPublicacao;
         this.descricao = descricao;
     }
@@ -58,12 +58,12 @@ public class Feed {
         this.descricao = descricao;
     }
 
-    public Integer getFkOng() {
-        return fkOng;
+    public Ong getOng() {
+        return ong;
     }
 
-    public void setFkOng(Integer fkOng) {
-        this.fkOng = fkOng;
+    public void setFkOng(Ong ong) {
+        this.ong = ong;
     }
 
     public byte[] getFotoPerfilOng() {

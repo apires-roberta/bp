@@ -7,10 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OngRepository extends JpaRepository<Ong, Integer> {
-    List<Ong> findByCod(Integer idOng);
-    List<Ong> findByEmail(String email);
+    Optional<Ong> findByCod(Integer idOng);
+    Optional<Ong> findByEmail(String email);
     String findNomeByCod(Integer idOng);
     @Transactional
     @Modifying

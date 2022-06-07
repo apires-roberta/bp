@@ -24,8 +24,8 @@ function BpHome() {
                 <div class="div-botoes-menu">
                     <button class="botao-nav">Campanhas | </button>
                     <button class="botao-nav">Sobre nós | </button>
-                    <button class="botao-nav">Entrar | </button>
-                    <button class="botao-nav">Cadastra-se</button>
+                    <button onClick={()=>redirecionar("login")} class="botao-nav">Entrar | </button>
+                    <button onClick={()=>redirecionar("cadastro-doador")} class="botao-nav">Cadastra-se</button>
                 </div>
             </div>
 
@@ -155,3 +155,7 @@ function BpHome() {
 }
 
 export default BpHome;
+
+function redirecionar(pagina) {
+    window.location.href = "http://localhost:3000/" + pagina;
+}

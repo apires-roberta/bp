@@ -3,9 +3,13 @@ package betterplace.betterplacebcd.entidade;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.br.CNPJ;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Ong extends Usuario {
@@ -13,8 +17,8 @@ public class Ong extends Usuario {
     private String cnpj;
     @Column(length = 50_000_000)
     private byte[] fotoPerfil;
-    @ManyToOne
-    private Inscricao inscricao;
+//    @OneToMany
+//    private List<Inscricao> inscricao;
 
     public String getCnpj() {
         return cnpj;
@@ -24,13 +28,13 @@ public class Ong extends Usuario {
         this.cnpj = cnpj;
     }
 
-    public Inscricao getInscricao() {
-        return inscricao;
-    }
-
-    public void setInscricao(Inscricao inscricao) {
-        this.inscricao = inscricao;
-    }
+//    public List<Inscricao> getInscricao() {
+//        return inscricao;
+//    }
+//
+//    public void setInscricao(List<Inscricao> inscricao) {
+//        this.inscricao = inscricao;
+//    }
 
     public byte[] getFotoPerfil() {
         return fotoPerfil;

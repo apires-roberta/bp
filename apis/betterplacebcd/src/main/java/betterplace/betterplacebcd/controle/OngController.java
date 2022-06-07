@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
+
+import static org.springframework.http.ResponseEntity.status;
 
 @RestController
 @RequestMapping("/bp/ong")
@@ -24,17 +27,17 @@ public class OngController {
         Ong ong;
 
         if(repository.findByEmail(email).isEmpty()){
-            return ResponseEntity.status(404).build();
+            return status(404).build();
         }else{
-            ong = repository.findByEmail(email).get(0);
+            ong = repository.findByEmail(email).get();
         }
 
         if (ong.getSenha().equals(senha) && ong.getEmail().equals(email)) {
             ong.setAutenticado(true);
             repository.Logar(email, true);
-            return ResponseEntity.status(200).body(ong);
+            return status(200).body(ong);
         } else {
-            return ResponseEntity.status(403).build();
+            return status(403).build();
         }
     }
 
@@ -42,24 +45,28 @@ public class OngController {
     public ResponseEntity cadastro(@RequestBody @Valid Ong ong) {
         ong.setAutenticado(false);
         repository.save(ong);
-        return ResponseEntity.status(201).build();
+        return status(201).build();
     }
 
     @PatchMapping("/logoff/{idUsuario}")
     public ResponseEntity logoff(@PathVariable Integer idUsuario) {
-        List<Ong> ong = repository.findByCod(idUsuario);
+        Optional<Ong> ong = repository.findByCod(idUsuario);
         if (ong.isEmpty()) {
-            return ResponseEntity.status(204).build();
+            return status(404).build();
         }
-        ong.get(0).setAutenticado(false);
-        repository.save(ong.get(0));
-        return ResponseEntity.status(201).build();
+        ong.get().setAutenticado(false);
+        repository.save(ong.get());
+        return status(200).build();
     }
 
     @DeleteMapping("/deletarConta/{idUsuario}")
     public ResponseEntity deletarConta(@PathVariable Integer idUsuario) {
-        repository.delete(repository.getById(idUsuario));
-        return ResponseEntity.status(201).build();
+        Optional<Ong> ong = repository.findByCod(idUsuario);
+        if (ong.isEmpty())
+            return status(404).build();
+
+        repository.delete(ong.get());
+        return status(200).build();
     }
 
 }
