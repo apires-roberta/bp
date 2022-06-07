@@ -12,6 +12,7 @@ public interface DoadorRepository extends JpaRepository<Doador, Integer> {
     List<Doador> findByCod(Integer idDoador);
     List<Doador> findByEmail(String email);
     String findEmailByCod(Integer idDoador);
+    boolean findByExist(Integer idDoador);
     @Transactional
     @Modifying
     @Query("update Doador d set d.autenticado = ?2 where d.email =?1")

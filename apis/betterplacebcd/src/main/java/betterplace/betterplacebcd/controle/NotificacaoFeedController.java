@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.ResponseEntity.*;
@@ -37,7 +38,7 @@ public class NotificacaoFeedController {
     private int qtdNotificacoesDeletadas = 0;
 
     @PostMapping("/ong/{idOng}")
-    public ResponseEntity<Integer> createNotificacao(@PathVariable Integer idOng) {
+    public ResponseEntity<Integer> createNotificacao(@PathVariable  Integer idOng) {
         NotificacaoFeed notificacaoFeed = new NotificacaoFeed();
         notificacaoRepository.save(notificacaoFeed);
         enfileirarDoadores(idOng);
@@ -45,9 +46,9 @@ public class NotificacaoFeedController {
     }
 
     @GetMapping("/{idDoador}")
-    public ResponseEntity get10Notificacoes(@PathVariable Integer idDoador) {
+    public ResponseEntity get10Notificacoes(@Valid @PathVariable Integer idDoador) {
         List<ReadNotificacaoFeedDto> nomesOngNotificacoes = notificacaoRepository.findTop10ByFkDoadorOrderByDataNotificacao(idDoador);
-        if (nomesOngNotificacoes.isEmpty())
+        if (nomesOngNotificacoes.isEmpty() || nomesOngNotificacoes == null)
             return status(204).build();
 
         for (ReadNotificacaoFeedDto nomeOng : nomesOngNotificacoes)

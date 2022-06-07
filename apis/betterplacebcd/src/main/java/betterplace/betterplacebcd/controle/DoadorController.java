@@ -40,6 +40,8 @@ public class DoadorController {
 
     @PostMapping("/cadastroDoador")
     public ResponseEntity cadastro(@RequestBody @Valid Doador doador) {
+        if (doador.getEmail() == null || doador.getSenha() == null || doador.getCpf() == null)
+            return ResponseEntity.status(400).build();
         doador.setAutenticado(false);
         repository.save(doador);
         return ResponseEntity.status(201).build();
@@ -58,6 +60,9 @@ public class DoadorController {
 
     @DeleteMapping("/deletarConta/{idUsuario}")
     public ResponseEntity deletarConta(@PathVariable Integer idUsuario){
+        if (!repository.findByExist(idUsuario)) {
+            return ResponseEntity.status(404).build();
+        }
         repository.delete(repository.getById(idUsuario));
         return ResponseEntity.status(201).build();
     }

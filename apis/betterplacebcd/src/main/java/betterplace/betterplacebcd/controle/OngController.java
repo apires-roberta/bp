@@ -40,6 +40,8 @@ public class OngController {
 
     @PostMapping("/cadastroOng")
     public ResponseEntity cadastro(@RequestBody @Valid Ong ong) {
+        if (ong.getEmail() == null || ong.getSenha() == null || ong.getCnpj() == null)
+            return ResponseEntity.status(400).build();
         ong.setAutenticado(false);
         repository.save(ong);
         return ResponseEntity.status(201).build();
@@ -58,6 +60,9 @@ public class OngController {
 
     @DeleteMapping("/deletarConta/{idUsuario}")
     public ResponseEntity deletarConta(@PathVariable Integer idUsuario) {
+        if (!repository.findByExist(idUsuario)) {
+            return ResponseEntity.status(404).build();
+        }
         repository.delete(repository.getById(idUsuario));
         return ResponseEntity.status(201).build();
     }

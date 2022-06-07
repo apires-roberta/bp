@@ -38,6 +38,9 @@ public class FeedController {
     @PostMapping()
     public ResponseEntity<Long> createFeed(@RequestBody @Valid CreateFeedDto novoFeed) {
         Feed feed = new Feed(novoFeed.getFkOng(), novoFeed.getDataPublicacao(), novoFeed.getDescricao());
+        if(feed.getFkOng() == null || feed.getDataPublicacao() == null || feed.getDescricao() == null)
+            return status(400).build();
+
         repository.save(feed);
         return status(201).body(feed.getCodigo());
     }
