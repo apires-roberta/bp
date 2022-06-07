@@ -43,6 +43,8 @@ public class OngController {
 
     @PostMapping("/cadastroOng")
     public ResponseEntity cadastro(@RequestBody @Valid Ong ong) {
+        if (ong.getEmail() == null || ong.getSenha() == null || ong.getCnpj() == null)
+            return ResponseEntity.status(400).build();
         ong.setAutenticado(false);
         repository.save(ong);
         return status(201).build();

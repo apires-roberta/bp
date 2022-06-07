@@ -20,8 +20,10 @@ public class CampanhaController{
     private CampanhaRepository repository;
 
     @PostMapping
-    public ResponseEntity postCampanha(@RequestBody @Valid Campanha novaCampanha) {
+    public  ResponseEntity postCampanha(@RequestBody @Valid Campanha novaCampanha) {
         novaCampanha.setDataCriacao(LocalDateTime.now());
+        if (novaCampanha.getNomeCampanha() == null || novaCampanha.getDescCampanha() == null || novaCampanha.getValorNecessario() == null)
+            return ResponseEntity.status(400).build();
         repository.save(novaCampanha);
         return status(201).build();
     }

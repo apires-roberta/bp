@@ -21,4 +21,16 @@ public class CreateFeedDto {
     public Integer getFkOng() {
         return fkOng;
     }
+
+    public void setFkOng(Integer fkOng) {
+        this.fkOng = fkOng;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setDataPublicacao(LocalDateTime dataPublicacao) {
+        this.dataPublicacao = dataPublicacao;
+    }
 }

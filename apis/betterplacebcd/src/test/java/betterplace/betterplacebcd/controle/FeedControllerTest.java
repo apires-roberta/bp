@@ -1,9 +1,9 @@
-package api.feed.apifeed.controle;
+package betterplace.betterplacebcd.controle;
 
-import api.feed.apifeed.dto.feed.CreateFeedDto;
-import api.feed.apifeed.entidade.Feed;
-import api.feed.apifeed.repositorio.FeedRepository;
-import api.feed.apifeed.services.OngService;
+import betterplace.betterplacebcd.data.dto.feed.CreateFeedDto;
+import betterplace.betterplacebcd.entidade.Feed;
+import betterplace.betterplacebcd.repositorio.FeedRepository;
+import betterplace.betterplacebcd.repositorio.OngRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = {FeedController.class})
@@ -29,7 +28,7 @@ class FeedControllerTest {
     private FeedRepository repository;
 
     @MockBean
-    private OngService ongService;
+    private OngRepository ongRepository;
 
     LocalDateTime dateTime = LocalDateTime.now();
 

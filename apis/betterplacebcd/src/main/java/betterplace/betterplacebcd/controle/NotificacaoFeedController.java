@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +39,7 @@ public class NotificacaoFeedController {
     private int qtdNotificacoesDeletadas = 0;
 
     @PostMapping("/ong/{idOng}")
-    public ResponseEntity<Integer> createNotificacao(@PathVariable Integer idOng) {
+    public ResponseEntity<Integer> createNotificacao(@PathVariable  Integer idOng) {
         NotificacaoFeed notificacaoFeed = new NotificacaoFeed();
         notificacaoRepository.save(notificacaoFeed);
         enfileirarDoadores(idOng);

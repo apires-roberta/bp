@@ -43,6 +43,8 @@ public class DoadorController {
 
     @PostMapping("/cadastroDoador")
     public ResponseEntity cadastro(@RequestBody @Valid Doador doador) {
+        if (doador.getEmail() == null || doador.getSenha() == null || doador.getCpf() == null)
+            return ResponseEntity.status(400).build();
         doador.setAutenticado(false);
         repository.save(doador);
         return status(201).build();
