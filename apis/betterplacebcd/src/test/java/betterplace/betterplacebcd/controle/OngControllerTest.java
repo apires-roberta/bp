@@ -7,12 +7,10 @@ import betterplace.betterplacebcd.repositorio.OngRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.*;
-@SpringBootTest(classes = {OngController.class})
+
 class OngControllerTest {
 
     @MockBean
@@ -24,10 +22,7 @@ class OngControllerTest {
     @Test
     @DisplayName("Deve retornar 404 login inválido")
     void login() {
-        String email = "teste@teste.com";
-        String senha = "12345";
-        ResponseEntity response = ongController.login(email,senha);
-        assertEquals(404, response.getStatusCodeValue());
+        assertEquals(404, ongController.login("teste@teste.com","12345").getStatusCodeValue());
     }
 
     @Test
@@ -38,13 +33,13 @@ class OngControllerTest {
     }
 
     @Test
-    @DisplayName("Deve retornar 404 id logoff não existe")
+    @DisplayName("Deve retornar 204 id não existe")
     void logoff() {
-        assertEquals(404, ongController.logoff(0).getStatusCodeValue());
+        assertEquals(204, ongController.logoff(0).getStatusCodeValue());
     }
 
     @Test
-    @DisplayName("Deve retornar 404 id deletarConta não existe")
+    @DisplayName("Deve retornar 404 id não existe")
     void deletarConta() {
         assertEquals(404, ongController.deletarConta(0).getStatusCodeValue());
     }

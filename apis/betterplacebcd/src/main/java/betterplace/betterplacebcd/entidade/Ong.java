@@ -3,6 +3,7 @@ package betterplace.betterplacebcd.entidade;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class Ong extends Usuario {
     private String cnpj;
     @Column(length = 50_000_000)
     private byte[] fotoPerfil;
+    @JsonIgnore
     @ManyToMany(mappedBy = "ongs")
     private List<Doador> doadores;
 

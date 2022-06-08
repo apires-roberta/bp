@@ -2,6 +2,7 @@ package betterplace.betterplacebcd.repositorio;
 
 import betterplace.betterplacebcd.data.dto.inscricao.InscricaoId;
 import betterplace.betterplacebcd.data.dto.inscricao.ReadInscricaoDto;
+import betterplace.betterplacebcd.entidade.Doador;
 import betterplace.betterplacebcd.entidade.Inscricao;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,9 +1,11 @@
 package betterplace.betterplacebcd.data.dto.inscricao;
 
-public class ReadInscricaoDto {
-    private Integer fkDoador;
+import betterplace.betterplacebcd.data.dto.usuario.ReadUsuarioDto;
 
-    public Integer getFkDoador() {
-        return fkDoador;
+public class ReadInscricaoDto {
+    private ReadUsuarioDto doador;
+
+    public ReadUsuarioDto getDoador() {
+        return doador;
     }
 }

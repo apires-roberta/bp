@@ -3,7 +3,6 @@ package betterplace.betterplacebcd.controle;
 import betterplace.betterplacebcd.data.dto.feed.CreateFeedDto;
 import betterplace.betterplacebcd.entidade.Campanha;
 import betterplace.betterplacebcd.entidade.Feed;
-import betterplace.betterplacebcd.entidade.Ong;
 import betterplace.betterplacebcd.repositorio.CampanhaRepository;
 import betterplace.betterplacebcd.repositorio.FeedRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -34,16 +33,12 @@ class CampanhaControllerTest {
     @Test
     @DisplayName("Deve retornar 201")
     void postCampanha() {
-        Ong ong = new Ong();
-        ong.setCnpj("123544564");
+
         Campanha campanha = new Campanha();
         campanha.setIdCampanha(1);
         campanha.setDescCampanha("teste");
         campanha.setNomeCampanha("Nome");
         campanha.setDataCriacao(dateTime);
-        campanha.setValorNecessario(22.2);
-        campanha.setNomeItem("nomeTeste");
-        campanha.setOng(ong);
 
         assertEquals(201, campanhaController.postCampanha(campanha).getStatusCodeValue());
     }
@@ -73,7 +68,7 @@ class CampanhaControllerTest {
     @Test
     @DisplayName("Quando o id da Campanha é um valor iválido")
     void alterarValorInvalido() {
-        assertEquals(404, campanhaController.alterarValor(1,22.2).getStatusCodeValue());
+        assertEquals(204, campanhaController.alterarValor(1,22.2).getStatusCodeValue());
     }
 
     @Test
