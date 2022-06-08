@@ -13,7 +13,6 @@ public interface OngRepository extends JpaRepository<Ong, Integer> {
     Optional<Ong> findByCod(Integer idOng);
     Optional<Ong> findByEmail(String email);
     String findNomeByCod(Integer idOng);
-    boolean findByExist(Integer idUsuario);
     @Transactional
     @Modifying
     @Query("update Ong o set o.autenticado = ?2 where o.email =?1")

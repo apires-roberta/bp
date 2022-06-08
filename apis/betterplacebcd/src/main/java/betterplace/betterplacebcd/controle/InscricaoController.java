@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,8 +38,12 @@ public class InscricaoController {
         if (!inscricaoRepository.existsByOngCod(idOng))
             return status(204).build();
 
-        List<ReadInscricaoDto> inscritos = inscricaoRepository.findByOngCod(idOng);
-        return status(200).body(inscritos);
+        List<Inscricao> inscritos = inscricaoRepository.findByOngCod(idOng);
+        List<ReadInscricaoDto> inscritosDto = new ArrayList<>();
+        for (Inscricao inscrito : inscritos) {
+            ReadInscricaoDto inscricaoDto = new ReadInscricaoDto();
+        }
+        return status(200).body(inscritosDto);
     }
     @PostMapping()
     public ResponseEntity createInscricao (@RequestBody CreateInscricaoDto novaInscricao){
@@ -50,7 +55,7 @@ public class InscricaoController {
         if (ong.isEmpty() || doador.isEmpty())
             return status(404).build();
 
-        InscricaoId inscricao = new InscricaoId(ong.get(), doador.get());
+        Inscricao inscricao = new Inscricao(ong.get(), doador.get());
         inscricaoRepository.save(inscricao);
         return status(201).build();
     }

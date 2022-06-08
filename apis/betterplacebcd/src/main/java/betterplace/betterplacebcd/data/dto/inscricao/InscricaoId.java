@@ -8,13 +8,13 @@ import java.util.Objects;
 
 public class InscricaoId implements Serializable {
     //Classe que vai ser de ID no inscricaoRepository pq ela tem as chaves compostas
-    private Ong ong;
-    private Doador doador;
+    private Integer ong;
+    private Integer doador;
 
     public InscricaoId() {
     }
 
-    public InscricaoId(Ong ong, Doador doador) {
+    public InscricaoId(Integer ong, Integer doador) {
         this.ong = ong;
         this.doador = doador;
     }

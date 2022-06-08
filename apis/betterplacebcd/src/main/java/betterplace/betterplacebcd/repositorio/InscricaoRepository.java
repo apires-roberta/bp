@@ -6,13 +6,13 @@ import betterplace.betterplacebcd.entidade.Inscricao;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-
-public interface InscricaoRepository extends JpaRepository<Inscricao, InscricaoId> {
-    List<ReadInscricaoDto> findByOngCod(Integer idOng);
+                                                                    //InscricaoId
+public interface InscricaoRepository extends JpaRepository<Inscricao,Integer> {
+    List<Inscricao> findByOngCod(Integer idOng);
 
     boolean existsByOngCod(Integer idOng);
 
     boolean existsByOngCodAndDoadorCod(Integer fkOng, Integer fkDoador);
 
-    <InscricaoId extends betterplace.betterplacebcd.data.dto.inscricao.InscricaoId> betterplace.betterplacebcd.data.dto.inscricao.InscricaoId save(betterplace.betterplacebcd.data.dto.inscricao.InscricaoId entity);
+    //<S extends Inscricao> S save(InscricaoId entity);
 }

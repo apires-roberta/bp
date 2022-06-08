@@ -5,6 +5,7 @@ import betterplace.betterplacebcd.classes.FilaObj;
 import betterplace.betterplacebcd.classes.PilhaObj;
 import betterplace.betterplacebcd.data.dto.inscricao.ReadInscricaoDto;
 import betterplace.betterplacebcd.data.dto.notificacaofeed.ReadNotificacaoFeedDto;
+import betterplace.betterplacebcd.entidade.Inscricao;
 import betterplace.betterplacebcd.entidade.NotificacaoFeed;
 import betterplace.betterplacebcd.repositorio.DoadorRepository;
 import betterplace.betterplacebcd.repositorio.NotificacaoFeedRepository;
@@ -33,7 +34,7 @@ public class NotificacaoFeedController {
     @Autowired
     private DoadorRepository doadorRepository;
 
-    private FilaObj<ReadInscricaoDto> filaInscritos;
+    private FilaObj<Inscricao> filaInscritos;
     PilhaObj<ReadNotificacaoFeedDto> pilhaNotificacoes = new PilhaObj<>(10); //O máximo de notificações é 10
     PilhaObj<NotificacaoFeed> pilhaNotificacoesDesfeitas = new PilhaObj<>(10);
     private int qtdNotificacoesDeletadas = 0;
@@ -87,22 +88,22 @@ public class NotificacaoFeedController {
         return status(201).body(notificacaoFeed);
     }
     public void enfileirarDoadores(Integer idOng) {
-        List<ReadInscricaoDto> inscritosOng = inscricaoRepository.findByOngCod(idOng);
+        List<Inscricao> inscritosOng = inscricaoRepository.findByOngCod(idOng);
         if (inscritosOng.size() == 0)
             return;
 
         filaInscritos = new FilaObj<>(inscritosOng.size());
-        for (ReadInscricaoDto inscricao : inscritosOng)
+        for (Inscricao inscricao : inscritosOng)
             filaInscritos.insert(inscricao);
 
         while (!filaInscritos.isEmpty())
             notificar(filaInscritos.poll(), idOng);
     }
-    public void notificar(ReadInscricaoDto inscricao, Integer idOng) {
+    public void notificar(Inscricao inscricao, Integer idOng) {
         String mensagem = String.format("A ONG %s fez um novo post!", ongRepository.findNomeByCod(idOng));
         Email email = new Email();
         try {
-            email.enviarEmail(mensagem, doadorRepository.findEmailByCod(inscricao.getFkDoador()));
+            email.enviarEmail(mensagem, doadorRepository.findEmailByCod(inscricao.ong.getCod()));
         }catch (Exception ex){
             throw ex;
         }

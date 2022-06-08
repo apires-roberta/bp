@@ -1,9 +1,6 @@
 package betterplace.betterplacebcd.entidade;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.br.CNPJ;
@@ -17,8 +14,8 @@ public class Ong extends Usuario {
     private String cnpj;
     @Column(length = 50_000_000)
     private byte[] fotoPerfil;
-//    @OneToMany
-//    private List<Inscricao> inscricao;
+    @ManyToMany(mappedBy = "ongs")
+    private List<Doador> doadores;
 
     public String getCnpj() {
         return cnpj;
@@ -35,6 +32,15 @@ public class Ong extends Usuario {
 //    public void setInscricao(List<Inscricao> inscricao) {
 //        this.inscricao = inscricao;
 //    }
+
+
+    public List<Doador> getDoadores() {
+        return doadores;
+    }
+
+    public void setDoadores(List<Doador> doadores) {
+        this.doadores = doadores;
+    }
 
     public byte[] getFotoPerfil() {
         return fotoPerfil;

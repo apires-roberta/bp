@@ -15,7 +15,7 @@ public class NotificacaoFeed {
 //    private Integer fkDoador;
     @ManyToOne
     private Inscricao inscricao;
-    @NotNull
+
     private LocalDateTime dataNotificacao;
 
     public Integer getId() {
@@ -26,7 +26,10 @@ public class NotificacaoFeed {
         this.id = id;
     }
 
-//    public void setFkOng(Integer fkOng) {
+    public NotificacaoFeed() {
+        dataNotificacao = LocalDateTime.now();
+    }
+    //    public void setFkOng(Integer fkOng) {
 //        this.fkOng = fkOng;
 //    }
 //

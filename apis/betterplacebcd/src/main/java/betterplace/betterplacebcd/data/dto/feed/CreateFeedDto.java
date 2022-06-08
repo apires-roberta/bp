@@ -24,8 +24,8 @@ public class CreateFeedDto {
         return Ong;
     }
 
-    public void setFkOng(Integer fkOng) {
-        this.fkOng = fkOng;
+    public void setOng(OngOnlyCodDto ong) {
+        Ong = ong;
     }
 
     public void setDescricao(String descricao) {

@@ -1,6 +1,7 @@
 package betterplace.betterplacebcd.controle;
 
 import betterplace.betterplacebcd.data.dto.feed.CreateFeedDto;
+import betterplace.betterplacebcd.data.dto.ong.OngOnlyCodDto;
 import betterplace.betterplacebcd.entidade.Feed;
 import betterplace.betterplacebcd.repositorio.FeedRepository;
 import betterplace.betterplacebcd.repositorio.OngRepository;
@@ -50,7 +51,8 @@ class FeedControllerTest {
     void createFeed() {
 
         CreateFeedDto feed1 = new CreateFeedDto();
-        feed1.setFkOng(1);
+        OngOnlyCodDto ong = new OngOnlyCodDto();
+        //feed1.setOng(ong.setCod(1));
         feed1.setDescricao("teste");
         feed1.setDataPublicacao(dateTime);
 

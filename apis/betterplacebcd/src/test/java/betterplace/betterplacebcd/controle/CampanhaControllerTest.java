@@ -72,8 +72,8 @@ class CampanhaControllerTest {
     }
 
     @Test
-    @DisplayName("Quando o id da Campanha é um valor iválido")
+    @DisplayName("Quando o id da Campanha é um valor inválido")
     void apagarVakinhaInvalido() {
-        assertEquals(404, campanhaController.apagarVakinha(1).getStatusCodeValue());
+        assertEquals(404, campanhaController.apagarCampanha(1).getStatusCodeValue());
     }
 }

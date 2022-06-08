@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@Embeddable
 @IdClass(InscricaoId.class)
 public class Inscricao implements Serializable {
     @Id
