@@ -11,4 +11,12 @@ public class CreateInscricaoDto {
     public Integer getFkDoador() {
         return fkDoador;
     }
+
+    public void setFkOng(Integer fkOng) {
+        this.fkOng = fkOng;
+    }
+
+    public void setFkDoador(Integer fkDoador) {
+        this.fkDoador = fkDoador;
+    }
 }

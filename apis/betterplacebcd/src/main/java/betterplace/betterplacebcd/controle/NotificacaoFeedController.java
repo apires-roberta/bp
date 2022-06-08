@@ -41,6 +41,8 @@ public class NotificacaoFeedController {
 
     @PostMapping("/ong/{idOng}")
     public ResponseEntity<Integer> createNotificacao(@PathVariable  Integer idOng) {
+        if (idOng <= 0 || idOng == null)
+            return status(204).build();
         NotificacaoFeed notificacaoFeed = new NotificacaoFeed();
         notificacaoRepository.save(notificacaoFeed);
         enfileirarDoadores(idOng);
