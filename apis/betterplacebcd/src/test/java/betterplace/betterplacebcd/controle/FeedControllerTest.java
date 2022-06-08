@@ -3,6 +3,7 @@ package betterplace.betterplacebcd.controle;
 import betterplace.betterplacebcd.data.dto.feed.CreateFeedDto;
 import betterplace.betterplacebcd.data.dto.ong.OngOnlyCodDto;
 import betterplace.betterplacebcd.entidade.Feed;
+import betterplace.betterplacebcd.entidade.Ong;
 import betterplace.betterplacebcd.repositorio.FeedRepository;
 import betterplace.betterplacebcd.repositorio.OngRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -31,6 +32,7 @@ class FeedControllerTest {
     @MockBean
     private OngRepository ongRepository;
 
+
     LocalDateTime dateTime = LocalDateTime.now();
 
     @Test
@@ -49,14 +51,23 @@ class FeedControllerTest {
     @Test
     @DisplayName("Deve retornar 201")
     void createFeed() {
-
+        Ong ong = new Ong();
+        ong.setCnpj("1234546577");
+        ong.setCod(1);
+        ong.setEmail("teste@teste.com");
+        ong.setNome("teste");
+        ong.setSenha("12345");
+        ong.setTelefone("1234556789");
+        ong.setUsuario("tttttt");
         CreateFeedDto feed1 = new CreateFeedDto();
-        OngOnlyCodDto ong = new OngOnlyCodDto();
-        //feed1.setOng(ong.setCod(1));
+        OngOnlyCodDto ongOnlyCodDto = new OngOnlyCodDto();
+        ongOnlyCodDto.setCod(1);
+        feed1.setOng(ongOnlyCodDto);
         feed1.setDescricao("teste");
         feed1.setDataPublicacao(dateTime);
+        ResponseEntity response = feedController.createFeed(feed1);
 
-        assertEquals(201, feedController.createFeed(feed1).getStatusCodeValue());
+        assertEquals(201, response.getStatusCodeValue());
     }
 
     @Test
@@ -64,8 +75,14 @@ class FeedControllerTest {
     void createFeedVazio() {
 
         CreateFeedDto feedDto = new CreateFeedDto();
+        OngOnlyCodDto ongOnlyCodDto = new OngOnlyCodDto();
+        ongOnlyCodDto.setCod(1);
+        feedDto.setOng(ongOnlyCodDto);
+        feedDto.setDescricao("teste");
+        feedDto.setDataPublicacao(dateTime);
+        ResponseEntity response = feedController.createFeed(feedDto);
 
-        assertEquals(400, feedController.createFeed(feedDto).getStatusCodeValue());
+        assertEquals(404, response.getStatusCodeValue());
     }
 
     @Test
