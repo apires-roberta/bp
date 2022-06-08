@@ -67,8 +67,6 @@ public class InscricaoController {
         for (Inscricao inscricao : inscricoesOng) {
             doadores.add(mapper.map(inscricao.getDoador(), ReadUsuarioDto.class));
         }
-
         return status(200).body(doadores);
     }
-
 }

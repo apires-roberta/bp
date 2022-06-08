@@ -20,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,20 +54,27 @@ public class NotificacaoFeedController {
         pilhaNotificacoes.push(mapper.map(notificacaoFeed, ReadNotificacaoFeedDto.class));
         return status(201).build();
     }
+
     @GetMapping("")
     public ResponseEntity getNotificacoes(){
         return status(200).body(notificacaoRepository.findAll());
     }
+
     @GetMapping("/{idDoador}")
     public ResponseEntity get10Notificacoes(@PathVariable Integer idDoador) {
-        List<ReadNotificacaoFeedDto> nomesOngNotificacoes = notificacaoRepository.findTop10ByInscricaoDoadorCodOrderByDataNotificacao(idDoador);
-        if (nomesOngNotificacoes.isEmpty())
+        List<NotificacaoFeed> listaNotificacoes = notificacaoRepository.findTop10ByInscricaoDoadorCodOrderByDataNotificacao(idDoador);
+        if (listaNotificacoes.isEmpty())
             return status(204).build();
+
+        List<ReadNotificacaoFeedDto> nomesOngNotificacoes = new ArrayList<>();
+        for (NotificacaoFeed notifacao : listaNotificacoes) {
+            nomesOngNotificacoes.add(mapper.map(notifacao, ReadNotificacaoFeedDto.class));
+        }
 
         for (ReadNotificacaoFeedDto nomeOng : nomesOngNotificacoes)
             pilhaNotificacoes.push(nomeOng);
 
-        return status(200).body(pilhaNotificacoes);
+        return status(200).body(nomesOngNotificacoes);
     }
 
     @DeleteMapping()

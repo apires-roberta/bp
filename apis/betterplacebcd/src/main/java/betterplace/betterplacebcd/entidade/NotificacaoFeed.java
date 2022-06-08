@@ -9,10 +9,7 @@ public class NotificacaoFeed {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-//    @NotNull
-//    private Integer fkOng;
-//    @NotNull
-//    private Integer fkDoador;
+
     @ManyToOne
     private Inscricao inscricao;
 
@@ -29,25 +26,10 @@ public class NotificacaoFeed {
     public NotificacaoFeed() {
         dataNotificacao = LocalDateTime.now();
     }
-    //    public void setFkOng(Integer fkOng) {
-//        this.fkOng = fkOng;
-//    }
-//
-//    public void setFkDoador(Integer fkDoador) {
-//        this.fkDoador = fkDoador;
-//    }
 
     public void setDataNotificacao(LocalDateTime dataNotificacao) {
         this.dataNotificacao = dataNotificacao;
     }
-
-//    public Integer getFkDoador() {
-//        return fkDoador;
-//    }
-//
-//    public Integer getFkOng() {
-//        return fkOng;
-//    }
 
     public Inscricao getInscricao() {
         return inscricao;

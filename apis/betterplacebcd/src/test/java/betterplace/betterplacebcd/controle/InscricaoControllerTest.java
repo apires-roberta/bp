@@ -36,8 +36,8 @@ class InscricaoControllerTest {
     @DisplayName("Retorna 404 criando inscrição com id invalido")
     void createInscricaoIdInvalido() {
         CreateInscricaoDto createInscricaoDto = new CreateInscricaoDto();
-        createInscricaoDto.setFkDoador(0);
-        createInscricaoDto.setFkOng(0);
+        //createInscricaoDto.setFkDoador(0);
+        //createInscricaoDto.setFkOng(0);
         assertEquals(404, inscricaoController.createInscricao(createInscricaoDto).getStatusCodeValue());
     }
 }

@@ -51,4 +51,8 @@ public class Ong extends Usuario {
     public void setFotoPerfil(byte[] fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
     }
+
+    public String getNomeOng() {
+        return super.getNome();
+    }
 }
