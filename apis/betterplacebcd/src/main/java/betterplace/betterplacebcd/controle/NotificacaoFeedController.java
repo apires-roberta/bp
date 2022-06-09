@@ -48,33 +48,25 @@ public class NotificacaoFeedController {
 
     @PostMapping("/ong/{idOng}")
     public ResponseEntity<Integer> createNotificacao(@PathVariable  Integer idOng) {
-        NotificacaoFeed notificacaoFeed = new NotificacaoFeed();
-        notificacaoRepository.save(notificacaoFeed);
-        enfileirarDoadores(idOng);
-        pilhaNotificacoes.push(mapper.map(notificacaoFeed, ReadNotificacaoFeedDto.class));
-        return status(201).build();
-    }
+        if (!ongRepository.existsById(idOng))
+            return status(404).build();
 
-    @GetMapping("")
-    public ResponseEntity getNotificacoes(){
-        return status(200).body(notificacaoRepository.findAll());
+        enfileirarDoadores(idOng);
+        return status(201).build();
     }
 
     @GetMapping("/{idDoador}")
     public ResponseEntity get10Notificacoes(@PathVariable Integer idDoador) {
         List<NotificacaoFeed> listaNotificacoes = notificacaoRepository.findTop10ByInscricaoDoadorCodOrderByDataNotificacao(idDoador);
+        pilhaNotificacoes.clear();
         if (listaNotificacoes.isEmpty())
             return status(204).build();
 
-        List<ReadNotificacaoFeedDto> nomesOngNotificacoes = new ArrayList<>();
         for (NotificacaoFeed notifacao : listaNotificacoes) {
-            nomesOngNotificacoes.add(mapper.map(notifacao, ReadNotificacaoFeedDto.class));
+            pilhaNotificacoes.push(mapper.map(notifacao, ReadNotificacaoFeedDto.class));
         }
 
-        for (ReadNotificacaoFeedDto nomeOng : nomesOngNotificacoes)
-            pilhaNotificacoes.push(nomeOng);
-
-        return status(200).body(nomesOngNotificacoes);
+        return status(200).body(pilhaNotificacoes.toList());
     }
 
     @DeleteMapping()
@@ -104,7 +96,7 @@ public class NotificacaoFeedController {
             return status(404).build();
 
         ReadNotificacaoFeedDto readNotificacao = new ReadNotificacaoFeedDto(notificacaoFeed.getId(), ong.get().getNome());
-        pilhaNotificacoes.push(readNotificacao);
+        pilhaNotificacoes.push(mapper.map(notificacaoFeed, ReadNotificacaoFeedDto.class));
         notificacaoRepository.save(notificacaoFeed);
         qtdNotificacoesDeletadas--;
         return status(201).body(notificacaoFeed);
@@ -115,8 +107,11 @@ public class NotificacaoFeedController {
             return;
 
         filaInscritos = new FilaObj<>(inscritosOng.size());
-        for (Inscricao inscricao : inscritosOng)
+        for (Inscricao inscricao : inscritosOng) {
             filaInscritos.insert(inscricao.getDoador());
+            NotificacaoFeed notificacaoFeed = new NotificacaoFeed(inscricao);
+            notificacaoRepository.save(notificacaoFeed);
+        }
 
         while (!filaInscritos.isEmpty())
             notificar(filaInscritos.poll(), idOng);

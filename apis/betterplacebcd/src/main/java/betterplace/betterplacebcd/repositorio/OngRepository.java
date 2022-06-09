@@ -13,7 +13,9 @@ import java.util.Optional;
 public interface OngRepository extends JpaRepository<Ong, Integer> {
     Optional<Ong> findByCod(Integer idOng);
     Optional<Ong> findByEmail(String email);
-//    String findNomeByCod(Integer idOng);
+    boolean existsByCod(Integer idOng);
+
+    //    String findNomeByCod(Integer idOng);
 //    List<Object> findDoadoresByCod(Integer idOng);
     @Transactional
     @Modifying

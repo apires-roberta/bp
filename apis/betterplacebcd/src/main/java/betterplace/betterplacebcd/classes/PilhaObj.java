@@ -1,6 +1,9 @@
 package betterplace.betterplacebcd.classes;
 
 import javax.naming.event.ObjectChangeListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class PilhaObj<T> {
 
@@ -42,4 +45,19 @@ public class PilhaObj<T> {
 
     }
 
+    public List<Object> toList(){
+        if (isEmpty())
+            return null;
+
+        List<Object> lista = new ArrayList<>();
+
+        for (int i = topo; i >= 0; i--) {
+            lista.add(pilha[i]);
+        }
+        return lista;
+    }
+
+    public void clear(){
+        topo=-1;
+    }
 }

@@ -56,7 +56,7 @@ public class InscricaoController {
 
     @GetMapping("/{idOng}")
     public ResponseEntity<List<ReadUsuarioDto>> getInscritosOng(@PathVariable Integer idOng) {
-        if (!inscricaoRepository.existsByOngCod(idOng) || idOng <=0)
+        if (!ongRepository.existsByCod(idOng))
             return status(404).build();
 
         List<Inscricao> inscricoesOng = inscricaoRepository.findByOngCod(idOng);

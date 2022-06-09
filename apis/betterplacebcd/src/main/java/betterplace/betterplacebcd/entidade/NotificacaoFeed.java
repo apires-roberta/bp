@@ -27,6 +27,11 @@ public class NotificacaoFeed {
         dataNotificacao = LocalDateTime.now();
     }
 
+    public NotificacaoFeed(Inscricao inscricao) {
+        this.inscricao = inscricao;
+        dataNotificacao = LocalDateTime.now();
+    }
+
     public void setDataNotificacao(LocalDateTime dataNotificacao) {
         this.dataNotificacao = dataNotificacao;
     }
