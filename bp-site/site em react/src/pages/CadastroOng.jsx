@@ -5,7 +5,8 @@ import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
 import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
-import api from "../api"
+import apiLogin from "../apiLogin"
+import apiCep from "../apiCep";
 
 function CadastroOng() {
     const [funcData, setFuncData] = useState({
@@ -28,7 +29,7 @@ function CadastroOng() {
             funcData.usuario = document.getElementById("idUsuario").value;
             funcData.telefone = document.getElementById("idTelefone").value;
             console.log(funcData);
-            api.post("/bp/ong/cadastroOng", {
+            apiLogin.post("/bp/ong/cadastroOng", {
                 nome: funcData.nome,
                 email: funcData.email,
                 senha: funcData.senha,
@@ -63,6 +64,17 @@ function CadastroOng() {
         localTheme && setTheme(localTheme);
     }, []);
 
+    const InputStyle = styled.input`
+        border-radius: 30px;
+        height: 5vh;
+        width: 60%;
+        margin-left: 20%;
+        text-align: center;
+        background-color: transparent;
+        border: ${({ theme }) => theme.bordaInput} 2px solid;
+        color: ${({ theme }) => theme.letraInput};
+    `;
+
     const DivCadastro = styled.div`
         float: left;
         width: 80%;
@@ -72,7 +84,7 @@ function CadastroOng() {
         box-shadow: ${({ theme }) => theme.borda};
         color: ${({ theme }) => theme.azulClaro};
     `;
-
+        
     const Botao = styled.button`
         text-align: center;
         background-color: ${({ theme }) => theme.azulClaro};
@@ -118,7 +130,11 @@ function CadastroOng() {
                                 <Input nome="Usuário:" id="idUsuario" tipo="text" />
                                 <Input nome="Telefone:" id="idTelefone" tipo="text" />
                                 <Input nome="Confirmar senha:" id="idConfirmarSenha" tipo="password" />
-                                <Input nome="CEP:" id="idCep" tipo="text" />
+                                <div className="inputDiv">
+                                    <span className="nomeInput">CEP:</span><br/>
+                                    <InputStyle type="text" onBlur={teste}
+                                     id="idCep"/>
+                                </div>
                                 <Input nome="Numero:" id="idNumero" tipo="text" />
                                 <Input nome="Cidade:" id="idCidade" tipo="text" />
                             </div>
@@ -139,4 +155,14 @@ export default CadastroOng;
 
 function redirecionar(pagina) {
     window.location.href = "http://localhost:3000/" + pagina;
+}
+
+function teste(){
+    var cep = document.getElementById("idCep").value;
+    apiCep.get(`/${cep}/json`).then((resposta) => {
+        console.log(resposta)
+        document.getElementById("idCidade").value=resposta.data.localidade;
+        document.getElementById("idRua").value=resposta.data.logradouro;
+        document.getElementById("idBairro").value=resposta.data.bairro;
+    })
 }

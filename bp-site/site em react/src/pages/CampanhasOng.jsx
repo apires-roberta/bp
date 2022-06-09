@@ -6,10 +6,12 @@ import GlobalTheme from "../globals";
 import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
 import BasicModal from "../components/Modal";
-import api from "../api";
+import apiCampanha from "../apiCampanha";
+import apiLogin from "../apiLogin";
 
 function CampanhasOng() {
   const [theme, setTheme] = useState("light");
+  const [nomeOng, setNomeOng] = useState("");
 
     const toggleTheme = () => {
         if (theme === "light") {
@@ -35,11 +37,18 @@ function CampanhasOng() {
     const [campanha, setcampanha] = useState([]);
 
   useEffect(() => {
-    api.get("/").then((resposta) => {
-      console.log(resposta.data)
+    apiCampanha.get(`/${sessionStorage.getItem("idOng")}`).then((resposta) => {
+      console.log(resposta)
       setcampanha(resposta.data)
     })
   }, [])
+
+  useEffect(() => {
+    apiLogin.get(`/bp/ong/${sessionStorage.getItem("idOng")}`).then((resposta) => {
+      setNomeOng(resposta.data.nome)
+    })
+  }, [])
+  console.log(nomeOng)
 
   return (
     <>
@@ -47,14 +56,16 @@ function CampanhasOng() {
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <Fragment>
           <GlobalTheme />
-          <DivInfo>
-          {
-              campanha.map((item) => (
-                <CardCampanhaOng nome={item.ong.nome}
-                descCampanha={item.descCampanha}
-                valorCampanha={item.valorNecessario} />
-              ))
+          <DivInfo>{
+            campanha.map((item) => (
+              <CardCampanhaOng nome={nomeOng}
+              descCampanha={item.descCampanha}
+              valorCampanha={item.valorNecessario} 
+              id={item.idCampanha}/>
+              
+            ))
             }
+          
             <BasicModal/>
           </DivInfo>
         </Fragment>

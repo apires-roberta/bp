@@ -1,6 +1,17 @@
 import estrela from '../img/estrela.png';
 import styled from "styled-components";
+import apiLogin from "../apiLogin";
+import { useEffect, useState } from 'react';
+
 function CardCampanhaDoador(props){
+    const [nome, setNome] = useState([]);
+    useEffect(() => {
+        apiLogin.get(`/bp/ong/${props.id}`).then((resposta) => {
+          setNome(resposta.data.nome)
+          
+        })
+      }, [])
+    
     const DivInfo = styled.div`
     width: 20%;
     margin-left: 8%;
@@ -45,7 +56,7 @@ const estiloH3 = {
 return (
     <>
         <DivInfo onClick={redirecionar} style={estiloDiv}>
-            <h2 style={estiloH2}>{props.nome}</h2>
+            <h2 style={estiloH2}>{nome}</h2>
             <P>{props.descCampanha}</P><br />
             <img style={estiloImg} class="img-estrela" src={estrela} alt="" />
             <h3 style={estiloH3}>R${props.valorCampanha}</h3>

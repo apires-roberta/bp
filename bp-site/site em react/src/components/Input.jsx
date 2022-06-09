@@ -15,7 +15,7 @@ function Input(props) {
         <>
             <div className="inputDiv">
                 <span className="nomeInput">{props.nome}</span><br/>
-                <InputStyle type={props.tipo} id={props.id}/>
+                <InputStyle type={props.tipo} id={props.id} value={props.valor}/>
             </div>
         </>
     );

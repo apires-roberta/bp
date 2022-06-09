@@ -5,7 +5,7 @@ import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
 import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
-import api from "../api"
+import apiLogin from "../apiLogin"
 
 function Login() {
     const [funcData, setFuncData] = useState({
@@ -17,14 +17,14 @@ function Login() {
         funcData.email = document.getElementById("idEmail").value;
         funcData.senha = document.getElementById("idSenha").value;
         console.log(funcData);
-        api.post("/bp/doador/login", {
+        apiLogin.post("/bp/doador/login", {
             email: funcData.email,
             senha: funcData.senha
         }).then((resposta) => {
             console.log("post ok", resposta);
             redirecionar("campanhas-doador");
         })
-        api.post("/bp/ong/login", {
+        apiLogin.post("/bp/ong/login", {
             email: funcData.email,
             senha: funcData.senha
         }).then((resposta) => {
@@ -131,9 +131,4 @@ function Login() {
 
   function redirecionar(pagina) {
     window.location.href = "http://localhost:3000/"+pagina;
-  }
-
-  function logar(){
-      var usuario = "ong";
-      usuario === "ong" ? redirecionar("campanhas-ong") : redirecionar("campanhas-doador")
   }

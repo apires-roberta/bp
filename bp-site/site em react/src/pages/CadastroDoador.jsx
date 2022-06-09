@@ -5,7 +5,7 @@ import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
 import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
-import api from "../api"
+import apiLogin from "../apiLogin"
 
 function CadastroDoador() {
     const [funcData, setFuncData] = useState({
@@ -27,7 +27,7 @@ function CadastroDoador() {
         funcData.usuario = document.getElementById("idUsuario").value;
         funcData.telefone = document.getElementById("idTelefone").value;
         console.log(funcData);
-        api.post("/bp/doador/cadastroDoador", {
+        apiLogin.post("/bp/doador/cadastroDoador", {
             nome: funcData.nome,
             email: funcData.email,
             senha: funcData.senha,

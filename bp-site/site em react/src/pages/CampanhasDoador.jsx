@@ -5,11 +5,11 @@ import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
 import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
-import api from "../api";
+import apiCampanha from "../apiCampanha";
 
 function CampanhasDoador() {
 
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   const toggleTheme = () => {
     if (theme === "light") {
@@ -35,12 +35,12 @@ function CampanhasDoador() {
   const [campanha, setcampanha] = useState([]);
 
   useEffect(() => {
-    api.get("/campanha/").then((resposta) => {
+    apiCampanha.get("/disponiveis/").then((resposta) => {
       console.log(resposta.data)
       setcampanha(resposta.data)
     })
   }, [])
-
+  
   return (
     <>
       <Menu funcaoDark={toggleTheme} funcao="campanha" />
@@ -50,7 +50,7 @@ function CampanhasDoador() {
           <DivInfo>
             {
               campanha.map((item) => (
-                <CardCampanhaDoador nome={item.ong.nome}
+                <CardCampanhaDoador id={item.fkOng}
                 descCampanha={item.descCampanha}
                 valorCampanha={item.valorNecessario} />
               ))
