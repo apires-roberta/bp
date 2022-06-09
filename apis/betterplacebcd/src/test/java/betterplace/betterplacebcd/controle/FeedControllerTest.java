@@ -47,30 +47,16 @@ class FeedControllerTest {
     }
 
     @Test
-    @DisplayName("Deve retornar 201")
-    void createFeed() {
-
-        CreateFeedDto feed1 = new CreateFeedDto();
-        OngOnlyCodDto ong = new OngOnlyCodDto();
-        //feed1.setOng(ong.setCod(1));
-        feed1.setDescricao("teste");
-        feed1.setDataPublicacao(dateTime);
-
-        assertEquals(201, feedController.createFeed(feed1).getStatusCodeValue());
-    }
-
-    @Test
-    @DisplayName("Inserir feed vazio deve retornar 400")
-    void createFeedVazio() {
-
-        CreateFeedDto feedDto = new CreateFeedDto();
-
-        assertEquals(400, feedController.createFeed(feedDto).getStatusCodeValue());
-    }
-
-    @Test
     @DisplayName("Retornar 404 ao colocar um id inválido")
     void deleteFeedInvalido() {
         assertEquals(404, feedController.deleteFeed(0).getStatusCodeValue());
     }
+
+    @Test
+    @DisplayName("Retornar 404 ao colocar um id inválido no atualizar foto")
+    void atualizarFotosFeed() {
+        byte[] foto = new byte[10];
+        assertEquals(404, feedController.atualizarFotosFeed(foto, 0).getStatusCodeValue());
+    }
+
 }

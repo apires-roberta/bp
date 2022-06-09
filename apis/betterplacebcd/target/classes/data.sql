@@ -8,7 +8,7 @@ insert into doador (autenticado, email, nome, senha, telefone, usuario, cpf) val
 (false, 'JuanSilva@gmail.com', 'Juan da Silva', 'Senha456', '(11) 96676-8265', 'JuanSilva', '40238315061');
 
 insert into doador (autenticado, email, nome, senha, telefone, usuario, cpf) values
-(false, 'phls2212@gmail.com', 'Juan da Silva', 'Senha456', '(11) 96676-8265', 'JuanSilva', '40238315061');
+(false, 'luizdi@protonmail.com', 'Luiz Dinani', 'Senha456', '(11) 96676-8265', 'LUIZDIN', '40238315061');
 
 insert into campanha (nome_item, desc_campanha, data_criacao, ong_cod, nome_campanha, valor_necessario)
 values ('Cadeira de rodas','Conseguir uma cadeira de rodas', '2022-04-20', 1, 'Cadeira de Rodas', 100.00),
@@ -21,3 +21,8 @@ values ('2022-04-23', 1, 1, 1, 55.23),
 ('2022-04-22 12:23:43', 1, 1, 2, 5.50),
 ('2022-04-22 14:43:57', 1, 1, 2, 23.10);
 
+insert into inscricao values(1,1),
+                            (2,1);
+
+insert into notificacao_Feed(data_notificacao, inscricao_doador_cod, inscricao_ong_cod) values ('2019-01-21 15:30:00', 1, 1),
+                                    ('2019-01-21 05:30:00', 2, 1);

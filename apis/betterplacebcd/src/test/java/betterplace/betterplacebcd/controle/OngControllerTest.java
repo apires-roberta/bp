@@ -7,10 +7,11 @@ import betterplace.betterplacebcd.repositorio.OngRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@SpringBootTest(classes = {OngController.class})
 class OngControllerTest {
 
     @MockBean
@@ -33,9 +34,9 @@ class OngControllerTest {
     }
 
     @Test
-    @DisplayName("Deve retornar 204 id não existe")
+    @DisplayName("Deve retornar 404 id não existe")
     void logoff() {
-        assertEquals(204, ongController.logoff(0).getStatusCodeValue());
+        assertEquals(404, ongController.logoff(0).getStatusCodeValue());
     }
 
     @Test

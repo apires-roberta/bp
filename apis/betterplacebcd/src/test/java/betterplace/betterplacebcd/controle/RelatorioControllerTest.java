@@ -45,6 +45,6 @@ class RelatorioControllerTest {
     @DisplayName("Foto vazia retornar 400")
     void patchFotoVazia() {
         byte[] foto = null;
-        assertEquals(400, relatorioController.patchFoto(1,foto).getStatusCodeValue());
+        assertEquals(400, relatorioController.patchFoto(0,foto).getStatusCodeValue());
     }
 }

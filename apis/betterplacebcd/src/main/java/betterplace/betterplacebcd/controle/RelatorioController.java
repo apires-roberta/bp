@@ -178,6 +178,8 @@ public class RelatorioController {
 
     @PatchMapping(value = "/foto/{codigo}", consumes="image/jpeg")
     public ResponseEntity patchFoto(@PathVariable long codigo, @RequestBody byte[] novaFoto){
+        if(codigo == 0 || novaFoto == null)
+            return status(400).build();
         return status(200).body(novaFoto);
     }
 }

@@ -31,19 +31,6 @@ class CampanhaControllerTest {
     LocalDateTime dateTime = LocalDateTime.now();
 
     @Test
-    @DisplayName("Deve retornar 201")
-    void postCampanha() {
-
-        Campanha campanha = new Campanha();
-        campanha.setIdCampanha(1);
-        campanha.setDescCampanha("teste");
-        campanha.setNomeCampanha("Nome");
-        campanha.setDataCriacao(dateTime);
-
-        assertEquals(201, campanhaController.postCampanha(campanha).getStatusCodeValue());
-    }
-
-    @Test
     @DisplayName("Inserir Campanha vazio deve retornar 400")
     void postCampanhaVazia() {
 
@@ -68,7 +55,7 @@ class CampanhaControllerTest {
     @Test
     @DisplayName("Quando o id da Campanha é um valor iválido")
     void alterarValorInvalido() {
-        assertEquals(204, campanhaController.alterarValor(1,22.2).getStatusCodeValue());
+        assertEquals(404, campanhaController.alterarValor(1,22.2).getStatusCodeValue());
     }
 
     @Test

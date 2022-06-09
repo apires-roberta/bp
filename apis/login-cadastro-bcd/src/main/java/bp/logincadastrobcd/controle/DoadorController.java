@@ -36,6 +36,9 @@ public class DoadorController {
         if (repository.existsByEmail(novoDoador.getEmail()))
             return status(409).build(); //409 - Conflict
 
+        if (novoDoador.getCpf() == null || novoDoador.getEmail() == null || novoDoador.getSenha() == null)
+            return status(400).build();
+
         Doador doador = new Doador(novoDoador.getNome(), novoDoador.getEmail(), novoDoador.getSenha(),
                 novoDoador.getUsuario(), novoDoador.getTelefone(), novoDoador.getCpf());
         repository.save(doador);

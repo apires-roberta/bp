@@ -34,6 +34,9 @@ public class OngController {
         if (repository.existsByEmail(novaOng.getEmail()))
             return status(409).build(); //409 - Conflict
 
+        if (novaOng.getCnpj() == null || novaOng.getEmail() == null || novaOng.getSenha() == null)
+            return status(400).build();
+
         Ong ong = new Ong(novaOng.getNome(), novaOng.getEmail(), novaOng.getSenha(),
                 novaOng.getUsuario(), novaOng.getTelefone(), novaOng.getCnpj());
         repository.save(ong);
