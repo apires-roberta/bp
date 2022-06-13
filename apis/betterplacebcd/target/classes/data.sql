@@ -2,7 +2,7 @@ insert into ong (autenticado, email, nome, senha, telefone, usuario, cnpj) value
 (false, 'roberta2003p@gmail.com', 'Amigos do Bem', 'Senha123', '(11) 95393-8243', 'AmigosBem', '32357241000189');
 
 insert into ong (autenticado, email, nome, senha, telefone, usuario, cnpj) values
-(false, 'luizc.dinani@gmail.com', 'Amigos aaaaaaem', 'Senha123', '(11) 95393-8243', 'AmigosBem', '32357241000189');
+(false, 'luizc.dinani@gmail.com', 'AACD', 'Senha123', '(11) 95393-8243', 'AmigosBem', '32357241000189');
 
 insert into doador (autenticado, email, nome, senha, telefone, usuario, cpf) values
 (false, 'JuanSilva@gmail.com', 'Juan da Silva', 'Senha456', '(11) 96676-8265', 'JuanSilva', '40238315061');
