@@ -3,6 +3,7 @@ package bp.logincadastrobcd.controle;
 import bp.logincadastrobcd.dto.doador.CreateDoador;
 import bp.logincadastrobcd.dto.ong.CreateOng;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
+import bp.logincadastrobcd.entidade.Usuario;
 import bp.logincadastrobcd.repositorio.DoadorRepository;
 import bp.logincadastrobcd.repositorio.OngRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -18,6 +19,9 @@ class OngControllerTest {
     @MockBean
     private OngRepository repository;
 
+    @MockBean
+    private Usuario usuario;
+
     @Autowired
     OngController ongController;
 
@@ -26,6 +30,20 @@ class OngControllerTest {
     void loginInvalido() {
         LoginUsuarioDto loginUsuarioDto = new LoginUsuarioDto();
         assertEquals(404, ongController.login(loginUsuarioDto).getStatusCodeValue());
+    }
+
+    @Test
+    @DisplayName("cadastro Válido Deve retornar 201 cadastro inválido")
+    void cadastroValido() {
+        CreateOng ong = new CreateOng();
+        ong.setUsuario(usuario.getUsuario());
+        ong.setCnpj("12345678");
+        ong.setEmail("teste@teste.com");
+        ong.setNome("Teste");
+        ong.setTelefone("1192005-7526");
+        ong.setSenha("12345");
+
+        assertEquals(201, ongController.cadastro(ong).getStatusCodeValue());
     }
 
     @Test

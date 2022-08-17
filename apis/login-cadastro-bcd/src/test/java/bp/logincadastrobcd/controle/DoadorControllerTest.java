@@ -3,6 +3,7 @@ package bp.logincadastrobcd.controle;
 import bp.logincadastrobcd.dto.doador.CreateDoador;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
 import bp.logincadastrobcd.entidade.Doador;
+import bp.logincadastrobcd.entidade.Usuario;
 import bp.logincadastrobcd.repositorio.DoadorRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,9 @@ class DoadorControllerTest {
 
     @MockBean
     private DoadorRepository repository;
+
+    @MockBean
+    private Usuario usuario;
 
     @Autowired
     DoadorController doadorController;
@@ -34,6 +38,36 @@ class DoadorControllerTest {
 
         assertEquals(400, doadorController.cadastro(doador).getStatusCodeValue());
     }
+
+    @Test
+    @DisplayName("cadastro Válido Deve retornar 201 cadastro inválido")
+    void cadastroValido() {
+        CreateDoador doador = new CreateDoador();
+        doador.setUsuario(usuario.getUsuario());
+        doador.setCpf("12345678");
+        doador.setEmail("teste@teste.com");
+        doador.setNome("Teste");
+        doador.setTelefone("1192005-7526");
+        doador.setSenha("12345");
+
+        assertEquals(201, doadorController.cadastro(doador).getStatusCodeValue());
+    }
+
+    /*@Test
+    @DisplayName("atualizar foto válida Deve retornar 200")
+    void atualizarFotoDoadorValida() {
+        CreateDoador doador = new CreateDoador();
+        doador.setUsuario(usuario.getUsuario());
+        doador.setCpf("12345678");
+        doador.setEmail("teste@teste.com");
+        doador.setNome("Teste");
+        doador.setTelefone("1192005-7526");
+        doador.setSenha("12345");
+
+        doadorController.cadastro(doador);
+        byte[] lista = new byte[10];
+        assertEquals(200, doadorController.atualizarFotoDoador(usuario.getCod(), lista).getStatusCodeValue());
+    }*/
 
     @Test
     @DisplayName("atualizar foto inválida Deve retornar 404 id inválido")
