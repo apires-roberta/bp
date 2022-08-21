@@ -1,10 +1,5 @@
 package betterplace.betterplacebcd.controle;
 
-//import api.feed.apifeed.dto.feed.CreateFeedDto;
-//import api.feed.apifeed.entidade.Feed;
-//import api.feed.apifeed.entidade.Ong;
-//import api.feed.apifeed.repositorio.FeedRepository;
-//import api.feed.apifeed.services.OngService;
 import betterplace.betterplacebcd.data.dto.feed.CreateFeedDto;
 import betterplace.betterplacebcd.entidade.Feed;
 import betterplace.betterplacebcd.entidade.Ong;

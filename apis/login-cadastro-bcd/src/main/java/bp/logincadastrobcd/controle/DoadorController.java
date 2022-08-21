@@ -4,83 +4,84 @@ import bp.logincadastrobcd.dto.doador.CreateDoador;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
 import bp.logincadastrobcd.entidade.Doador;
 import bp.logincadastrobcd.repositorio.DoadorRepository;
+import bp.logincadastrobcd.service.IDoadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Optional;
 
+import static org.springframework.http.ResponseEntity.*;
 import static org.springframework.http.ResponseEntity.status;
 
+@Service
 @RestController
 @CrossOrigin
 @RequestMapping("/bp/doador")
 public class DoadorController {
-
     @Autowired
-    private DoadorRepository repository;
+    private IDoadorService _doadorService;
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid LoginUsuarioDto usuarioLogin) {
-        if (!repository.existsByEmailAndSenha(usuarioLogin.getEmail(), usuarioLogin.getSenha()))
-            return status(404).build();
+        if (usuarioLogin == null)
+            return status(400).build();
+        Integer codUsuario = _doadorService.login(usuarioLogin);
 
-        Doador doador = repository.findByEmail(usuarioLogin.getEmail());
-        doador.setAutenticado(true);
-        repository.save(doador);
-        return status(200).body(doador.getCod());
+        return codUsuario != null ? status(200).body(codUsuario) : status(404).build();
     }
 
     @PostMapping("/cadastroDoador")
-    public ResponseEntity cadastro(@RequestBody @Valid CreateDoador novoDoador) {
-        if (repository.existsByEmail(novoDoador.getEmail()))
-            return status(409).build(); //409 - Conflict
-
-        if (novoDoador.getCpf() == null || novoDoador.getEmail() == null || novoDoador.getSenha() == null)
+    public ResponseEntity cadastro(@RequestBody @Valid CreateDoador novoUsuario) {
+        if (novoUsuario == null)
             return status(400).build();
 
-        Doador doador = new Doador(novoDoador.getNome(), novoDoador.getEmail(), novoDoador.getSenha(),
-                novoDoador.getUsuario(), novoDoador.getTelefone(), novoDoador.getCpf());
-        repository.save(doador);
-        return ResponseEntity.status(201).body(doador.getCod());
+        String resultado = _doadorService.cadastro(novoUsuario);
+
+        if (resultado.equalsIgnoreCase("Existente"))
+            return status(409).build();
+
+        if (resultado.equalsIgnoreCase("Bad Request"))
+            return status(400).build();
+
+        return status(201).body(resultado);
     }
 
     @PatchMapping(value = "/{idDoador}", consumes = "image/jpeg")
-    public ResponseEntity atualizarFotoDoador(@PathVariable Integer idDoador, @RequestBody byte[] fotoPerfil){
-        if (!repository.existsById(idDoador))
-            return status(404).build();
+    public ResponseEntity atualizarFotoDoador(@PathVariable Integer idUsuario, @RequestBody byte[] fotoPerfil){
+        if (idUsuario == null || fotoPerfil == null)
+            return status(400).build();
 
-        Optional<Doador> doador = repository.findByCod(idDoador);
-        doador.get().setFotoPerfil(fotoPerfil);
-        repository.save(doador.get());
-        return status(200).build();
+        boolean atualizado = _doadorService.atualizarFotoDoador(idUsuario, fotoPerfil);
+
+        return atualizado ? status(200).build() : status(404).build();
     }
 
     @DeleteMapping("/logoff/{idUsuario}")
     public ResponseEntity logoff(@PathVariable Integer idUsuario){
-        if (!repository.existsByCodAndAutenticadoTrue(idUsuario))
+        if (idUsuario == null)
             return status(404).build();
 
-        Optional<Doador> doador = repository.findByCod(idUsuario);
-        doador.get().setAutenticado(false);
-        repository.save(doador.get());
-        return status(200).build();
+        boolean deslogado = _doadorService.logoff(idUsuario);
+        return deslogado ? status(200).build() : status(404).build();
     }
     @DeleteMapping("/deletarConta/{idUsuario}")
     public ResponseEntity deletarConta(@PathVariable Integer idUsuario){
-        Optional<Doador> doador = repository.findByCod(idUsuario);
-        if (doador.isEmpty())
+        if (idUsuario == null)
             return status(404).build();
 
-        repository.delete(doador.get());
-        return status(200).build();
+        boolean deletado = _doadorService.deletarConta(idUsuario);
+
+        return deletado ? status(200).build() : status(404).build();
     }
-    @GetMapping("/{idDoador}")
-    public ResponseEntity getDoador(@PathVariable Integer idDoador) {
-        Optional<Doador> doador = repository.findByCod(idDoador);
-        if (doador.isEmpty())
+    @GetMapping("/{idUsuario}")
+    public ResponseEntity getDoador(@PathVariable Integer idUsuario) {
+        if (idUsuario == null)
             return status(404).build();
 
-        return status(200).body(doador);
+        Doador doador = _doadorService.getDoador(idUsuario);
+
+        return doador != null ? status(200).body(doador) : status(404).build();
     }
 }
