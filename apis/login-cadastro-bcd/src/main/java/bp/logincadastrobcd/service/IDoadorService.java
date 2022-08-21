@@ -2,6 +2,7 @@ package bp.logincadastrobcd.service;
 
 import bp.logincadastrobcd.dto.doador.CreateDoador;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
+import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
 import bp.logincadastrobcd.entidade.Doador;
 
 public interface IDoadorService {
@@ -15,5 +16,5 @@ public interface IDoadorService {
 
     boolean deletarConta(Integer idUsuario);
 
-    Doador getDoador(Integer idUsuario);
+    ReadUsuarioDto getDoador(Integer idUsuario);
 }

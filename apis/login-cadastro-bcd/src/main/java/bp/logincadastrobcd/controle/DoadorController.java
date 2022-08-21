@@ -2,8 +2,8 @@ package bp.logincadastrobcd.controle;
 
 import bp.logincadastrobcd.dto.doador.CreateDoador;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
+import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
 import bp.logincadastrobcd.entidade.Doador;
-import bp.logincadastrobcd.repositorio.DoadorRepository;
 import bp.logincadastrobcd.service.IDoadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
-import static org.springframework.http.ResponseEntity.*;
 import static org.springframework.http.ResponseEntity.status;
 
 @Service
@@ -24,16 +22,15 @@ public class DoadorController {
     @Autowired
     private IDoadorService _doadorService;
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid LoginUsuarioDto usuarioLogin) {
+    public ResponseEntity<Integer> login(@RequestBody @Valid LoginUsuarioDto usuarioLogin) {
         if (usuarioLogin == null)
             return status(400).build();
-        Integer codUsuario = _doadorService.login(usuarioLogin);
 
+        Integer codUsuario = _doadorService.login(usuarioLogin);
         return codUsuario != null ? status(200).body(codUsuario) : status(404).build();
     }
-
     @PostMapping("/cadastroDoador")
-    public ResponseEntity cadastro(@RequestBody @Valid CreateDoador novoUsuario) {
+    public ResponseEntity<String> cadastro(@RequestBody @Valid CreateDoador novoUsuario) {
         if (novoUsuario == null)
             return status(400).build();
 
@@ -47,8 +44,7 @@ public class DoadorController {
 
         return status(201).body(resultado);
     }
-
-    @PatchMapping(value = "/{idDoador}", consumes = "image/jpeg")
+    @PatchMapping(value = "/{idUsuario}", consumes = "image/jpeg")
     public ResponseEntity atualizarFotoDoador(@PathVariable Integer idUsuario, @RequestBody byte[] fotoPerfil){
         if (idUsuario == null || fotoPerfil == null)
             return status(400).build();
@@ -57,7 +53,6 @@ public class DoadorController {
 
         return atualizado ? status(200).build() : status(404).build();
     }
-
     @DeleteMapping("/logoff/{idUsuario}")
     public ResponseEntity logoff(@PathVariable Integer idUsuario){
         if (idUsuario == null)
@@ -72,16 +67,14 @@ public class DoadorController {
             return status(404).build();
 
         boolean deletado = _doadorService.deletarConta(idUsuario);
-
         return deletado ? status(200).build() : status(404).build();
     }
     @GetMapping("/{idUsuario}")
-    public ResponseEntity getDoador(@PathVariable Integer idUsuario) {
+    public ResponseEntity<ReadUsuarioDto> getDoador(@PathVariable Integer idUsuario) {
         if (idUsuario == null)
             return status(404).build();
 
-        Doador doador = _doadorService.getDoador(idUsuario);
-
+        ReadUsuarioDto doador = _doadorService.getDoador(idUsuario);
         return doador != null ? status(200).body(doador) : status(404).build();
     }
 }

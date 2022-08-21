@@ -2,19 +2,23 @@ package bp.logincadastrobcd.service;
 
 import bp.logincadastrobcd.dto.doador.CreateDoador;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
+import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
 import bp.logincadastrobcd.entidade.Doador;
 import bp.logincadastrobcd.repositorio.DoadorRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.Optional;
 
-import static org.springframework.http.ResponseEntity.status;
-
 @Service
+@CrossOrigin
 public class DoadorService implements IDoadorService{
     @Autowired
     private DoadorRepository repository;
+    @Autowired
+    private ModelMapper _mapper;
     @Override
     public Integer login(LoginUsuarioDto usuarioLogin) {
         if (!repository.existsByEmailAndSenha(usuarioLogin.getEmail(), usuarioLogin.getSenha()))
@@ -23,7 +27,7 @@ public class DoadorService implements IDoadorService{
         Doador doador = repository.findByEmail(usuarioLogin.getEmail());
         doador.setAutenticado(true);
         repository.save(doador);
-        return doador.getCod().toString();
+        return doador.getCod();
     }
     @Override
     public String cadastro(CreateDoador novoDoador) {
@@ -34,11 +38,10 @@ public class DoadorService implements IDoadorService{
         if (novoDoador.getCpf() == null || novoDoador.getEmail() == null || novoDoador.getSenha() == null)
             return "Bad Request";
 
-        Doador doador = new Doador(novoDoador.getNome(), novoDoador.getEmail(), novoDoador.getSenha(),
-                novoDoador.getUsuario(), novoDoador.getTelefone(), novoDoador.getCpf());
-        repository.save(doador);
+        Doador doadorMap = _mapper.map(novoDoador, Doador.class);
+        repository.save(doadorMap);
 
-        return doador.getCod().toString();
+        return doadorMap.getCod().toString();
     }
     @Override
     public boolean atualizarFotoDoador(Integer idDoador, byte[] fotoPerfil) {
@@ -46,6 +49,9 @@ public class DoadorService implements IDoadorService{
             return false;
 
         Optional<Doador> doador = repository.findByCod(idDoador);
+        if (doador.isEmpty())
+            return false;
+
         doador.get().setFotoPerfil(fotoPerfil);
         repository.save(doador.get());
         return true;
@@ -56,6 +62,9 @@ public class DoadorService implements IDoadorService{
             return false;
 
         Optional<Doador> doador = repository.findByCod(idUsuario);
+        if (doador.isEmpty())
+            return false;
+
         doador.get().setAutenticado(false);
         repository.save(doador.get());
         return true;
@@ -70,11 +79,12 @@ public class DoadorService implements IDoadorService{
         return true;
     }
     @Override
-    public Doador getDoador(Integer idUsuario) {
+    public ReadUsuarioDto getDoador(Integer idUsuario) {
         Optional<Doador> doador = repository.findByCod(idUsuario);
         if (doador.isEmpty())
             return null;
 
-        return doador.get();
+        ReadUsuarioDto doadorDto = _mapper.map(doador.get(), ReadUsuarioDto.class);
+        return doadorDto;
     }
 }
