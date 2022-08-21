@@ -31,7 +31,6 @@ public class DoadorService implements IDoadorService{
     }
     @Override
     public String cadastro(CreateDoador novoDoador) {
-
         if (repository.existsByEmail(novoDoador.getEmail()))
             return "Existente"; //409 - Conflict
 

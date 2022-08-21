@@ -2,10 +2,13 @@ package bp.logincadastrobcd.controle;
 
 import bp.logincadastrobcd.dto.ong.CreateOng;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
+import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
 import bp.logincadastrobcd.entidade.Ong;
 import bp.logincadastrobcd.repositorio.OngRepository;
+import bp.logincadastrobcd.service.IOngService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -13,71 +16,69 @@ import java.util.Optional;
 
 import static org.springframework.http.ResponseEntity.*;
 
+@Service
 @RestController
 @CrossOrigin
 @RequestMapping("/bp/ong")
 public class OngController {
     @Autowired
-    private OngRepository repository;
+    private IOngService _ongService;
+
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid LoginUsuarioDto usuarioLogin) {
-        if (!repository.existsByEmailAndSenha(usuarioLogin.getEmail(), usuarioLogin.getSenha()))
-            return status(404).build();
-
-        Ong ong = repository.findByEmail(usuarioLogin.getEmail());
-        ong.setAutenticado(true);
-        repository.save(ong);
-        return status(200).body(ong.getCod());
-    }
-    @PostMapping("/cadastroOng")
-    public ResponseEntity cadastro(@RequestBody @Valid CreateOng novaOng) {
-        if (repository.existsByEmail(novaOng.getEmail()))
-            return status(409).build(); //409 - Conflict
-
-        if (novaOng.getCnpj() == null || novaOng.getEmail() == null || novaOng.getSenha() == null)
+    public ResponseEntity<Integer> login(@RequestBody @Valid LoginUsuarioDto usuarioLogin) {
+        if (usuarioLogin == null)
             return status(400).build();
 
-        Ong ong = new Ong(novaOng.getNome(), novaOng.getEmail(), novaOng.getSenha(),
-                novaOng.getUsuario(), novaOng.getTelefone(), novaOng.getCnpj());
-        repository.save(ong);
-        return ResponseEntity.status(201).body(ong.getCod());
+        Integer codUsuario = _ongService.login(usuarioLogin);
+        return codUsuario != null ? status(200).body(codUsuario) : status(404).build();
     }
-    @PatchMapping(value = "/{idOng}", consumes = "image/jpeg")
-    public ResponseEntity atualizarFotoOng(@PathVariable Integer idOng, @RequestBody byte[] fotoPerfil){
-        if (!repository.existsById(idOng))
-            return status(404).build();
+    @PostMapping("/cadastroOng")
+    public ResponseEntity<String> cadastro(@RequestBody @Valid CreateOng novoUsuario) {
+        if (novoUsuario == null)
+            return status(400).build();
 
-        Optional<Ong> ong = repository.findByCod(idOng);
-        ong.get().setFotoPerfil(fotoPerfil);
-        repository.save(ong.get());
-        return status(200).build();
+        String resultado = _ongService.cadastro(novoUsuario);
+
+        if (resultado.equalsIgnoreCase("Existente"))
+            return status(409).build();
+
+        if (resultado.equalsIgnoreCase("Bad Request"))
+            return status(400).build();
+
+        return status(201).body(resultado);
+    }
+    @PatchMapping(value = "/{idUsuario}", consumes = "image/jpeg")
+    public ResponseEntity atualizarFotoOng(@PathVariable Integer idUsuario, @RequestBody byte[] fotoPerfil){
+        if (idUsuario == null || fotoPerfil == null)
+            return status(400).build();
+
+        boolean atualizado = _ongService.atualizarFotoOng(idUsuario, fotoPerfil);
+
+        return atualizado ? status(200).build() : status(404).build();
     }
 
     @DeleteMapping("/logoff/{idUsuario}")
     public ResponseEntity logoff(@PathVariable Integer idUsuario) {
-        if (!repository.existsByCodAndAutenticadoTrue(idUsuario))
+        if (idUsuario == null)
             return status(404).build();
 
-        Optional<Ong> ong = repository.findByCod(idUsuario);
-        ong.get().setAutenticado(false);
-        repository.save(ong.get());
-        return status(200).build();
+        boolean deslogado = _ongService.logoff(idUsuario);
+        return deslogado ? status(200).build() : status(404).build();
     }
     @DeleteMapping("/deletarConta/{idUsuario}")
     public ResponseEntity deletarConta(@PathVariable Integer idUsuario) {
-        Optional<Ong> ong = repository.findByCod(idUsuario);
-        if (ong.isEmpty())
+        if (idUsuario == null)
             return status(404).build();
 
-        repository.delete(ong.get());
-        return status(200).build();
+        boolean deletado = _ongService.deletarConta(idUsuario);
+        return deletado ? status(200).build() : status(404).build();
     }
-    @GetMapping("/{idOng}")
-    public ResponseEntity getOng(@PathVariable Integer idOng) {
-        Optional<Ong> ong = repository.findByCod(idOng);
-        if (ong.isEmpty())
+    @GetMapping("/{idUsuario}")
+    public ResponseEntity<ReadUsuarioDto> getOng(@PathVariable Integer idUsuario) {
+        if (idUsuario == null)
             return status(404).build();
 
-        return status(200).body(ong);
+        ReadUsuarioDto doador = _ongService.getOng(idUsuario);
+        return doador != null ? status(200).body(doador) : status(404).build();
     }
 }
