@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class Feed {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     private Ong ong;
     private LocalDateTime dataPublicacao;
     @NotNull @NotBlank
@@ -19,9 +19,9 @@ public class Feed {
     @Column(length = 50_000_000)
     private byte[] fotoPerfilOng;
 
-    public Feed(Ong ong, LocalDateTime dataPublicacao, String descricao) {
+    public Feed(Ong ong, String descricao) {
         this.ong = ong;
-        this.dataPublicacao = dataPublicacao;
+        this.dataPublicacao = LocalDateTime.now();
         this.descricao = descricao;
     }
 

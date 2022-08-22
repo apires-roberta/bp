@@ -1,7 +1,7 @@
-package bp.logincadastrobcd.dto.usuario;
+package com.bp.feedbcd.data.dto.usuario;
 
 public class ReadUsuarioDto {
-    private Integer cod;
+    //private Integer cod;
     private String nome, email, usuario, telefone;
     private byte[] fotoPerfil;
 
@@ -20,8 +20,11 @@ public class ReadUsuarioDto {
     public String getTelefone() {
         return telefone;
     }
+    public byte[] getFotoPerfil() {
+        return fotoPerfil;
+    }
 
-    public byte[] getFotoPerfil() { return fotoPerfil; }
-
-    public Integer getCod() { return cod; }
+//    public Integer getCod() {
+//        return cod;
+//    }
 }

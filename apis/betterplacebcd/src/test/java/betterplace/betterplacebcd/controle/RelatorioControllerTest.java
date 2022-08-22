@@ -2,8 +2,6 @@ package betterplace.betterplacebcd.controle;
 
 import betterplace.betterplacebcd.repositorio.CampanhaRepository;
 import betterplace.betterplacebcd.repositorio.DoacoesRepository;
-import betterplace.betterplacebcd.repositorio.DoadorRepository;
-import betterplace.betterplacebcd.repositorio.OngRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

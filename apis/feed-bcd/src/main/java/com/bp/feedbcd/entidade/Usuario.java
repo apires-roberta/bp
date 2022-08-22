@@ -16,18 +16,11 @@ public abstract class Usuario {
 
     @Email @NotNull @NotBlank
     private String email;
-
-    @NotNull @NotBlank @Size(min = 8, max = 16)
-    private String senha;
-
     @NotNull @NotBlank @Size(min = 2, max = 20)
     private String usuario;
 
     @NotNull @Pattern(regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})")
     private String telefone;
-
-    @NotNull
-    private boolean autenticado;
 
     public Integer getCod() {
         return cod;
@@ -53,14 +46,6 @@ public abstract class Usuario {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
     public String getUsuario() {
         return usuario;
     }
@@ -72,16 +57,7 @@ public abstract class Usuario {
     public String getTelefone() {
         return telefone;
     }
-
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public boolean isAutenticado() {
-        return autenticado;
-    }
-
-    public void setAutenticado(boolean autenticado) {
-        this.autenticado = autenticado;
     }
 }

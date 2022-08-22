@@ -4,7 +4,6 @@ import betterplace.betterplacebcd.data.dto.feed.CreateFeedDto;
 import betterplace.betterplacebcd.entidade.Feed;
 import betterplace.betterplacebcd.entidade.Ong;
 import betterplace.betterplacebcd.repositorio.FeedRepository;
-import betterplace.betterplacebcd.repositorio.OngRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

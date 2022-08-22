@@ -11,21 +11,11 @@ import java.util.List;
 
 @Entity
 public class Ong extends Usuario {
-    @CNPJ @NotNull
-    private String cnpj;
     @Column(length = 50_000_000)
     private byte[] fotoPerfil;
     @JsonIgnore
     @ManyToMany(mappedBy = "ongs")
     private List<Doador> doadores;
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
 
 //    public List<Inscricao> getInscricao() {
 //        return inscricao;

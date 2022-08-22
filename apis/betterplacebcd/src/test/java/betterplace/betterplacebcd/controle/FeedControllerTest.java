@@ -1,10 +1,7 @@
 package betterplace.betterplacebcd.controle;
 
-import betterplace.betterplacebcd.data.dto.feed.CreateFeedDto;
-import betterplace.betterplacebcd.data.dto.ong.OngOnlyCodDto;
 import betterplace.betterplacebcd.entidade.Feed;
 import betterplace.betterplacebcd.repositorio.FeedRepository;
-import betterplace.betterplacebcd.repositorio.OngRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

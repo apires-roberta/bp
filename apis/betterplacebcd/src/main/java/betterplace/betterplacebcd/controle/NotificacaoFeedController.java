@@ -3,24 +3,18 @@ package betterplace.betterplacebcd.controle;
 import betterplace.betterplacebcd.classes.Email;
 import betterplace.betterplacebcd.classes.FilaObj;
 import betterplace.betterplacebcd.classes.PilhaObj;
-import betterplace.betterplacebcd.data.dto.inscricao.ReadInscricaoDto;
 import betterplace.betterplacebcd.data.dto.notificacaofeed.ReadNotificacaoFeedDto;
 import betterplace.betterplacebcd.entidade.Doador;
 import betterplace.betterplacebcd.entidade.Inscricao;
 import betterplace.betterplacebcd.entidade.NotificacaoFeed;
 import betterplace.betterplacebcd.entidade.Ong;
-import betterplace.betterplacebcd.repositorio.DoadorRepository;
 import betterplace.betterplacebcd.repositorio.NotificacaoFeedRepository;
-import betterplace.betterplacebcd.repositorio.OngRepository;
 import betterplace.betterplacebcd.repositorio.InscricaoRepository;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.config.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
