@@ -1,4 +1,4 @@
-package bp.logincadastrobcd.dto.ong;
+package bp.logincadastrobcd.controle.dto.ong;
 
 import org.hibernate.validator.constraints.br.CNPJ;
 
@@ -25,6 +25,28 @@ public class CreateOng {
     @CNPJ
     @NotNull
     private String cnpj;
+
+    @NotNull
+    private String cep;
+
+    @NotNull
+    private Integer numero;
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
 
     public String getNome() {
         return nome;

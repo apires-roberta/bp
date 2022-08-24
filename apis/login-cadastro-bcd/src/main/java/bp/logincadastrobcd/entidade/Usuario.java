@@ -29,6 +29,28 @@ public abstract class Usuario {
     @Column(length = 50_000_000)
     private byte[] fotoPerfil;
 
+    @NotNull
+    private String cep;
+
+    @NotNull
+    private Integer numero;
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
     public Usuario() {
     }
 

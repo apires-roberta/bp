@@ -1,10 +1,8 @@
 package bp.logincadastrobcd.controle;
 
-import bp.logincadastrobcd.dto.doador.CreateDoador;
-import bp.logincadastrobcd.dto.ong.CreateOng;
-import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
+import bp.logincadastrobcd.controle.dto.ong.CreateOng;
+import bp.logincadastrobcd.controle.dto.usuario.LoginUsuarioDto;
 import bp.logincadastrobcd.entidade.Usuario;
-import bp.logincadastrobcd.repositorio.DoadorRepository;
 import bp.logincadastrobcd.repositorio.OngRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
