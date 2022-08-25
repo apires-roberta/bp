@@ -40,6 +40,13 @@ function Menu(props) {
         position: fixed;
         top: 0;
     `;
+    const EstiloMenu2 = styled.div`
+        width: 100%;
+        height: 10vh;
+        box-shadow: ${({ theme }) => theme.borda};
+        background-color:${({ theme }) => theme.menu};
+        top: 0;
+    `;
 
     const Title = styled.span`
         color:${({ theme }) => theme.logo};
@@ -128,6 +135,32 @@ function Menu(props) {
                                 <img style={estilo} onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
                             </div>
                         </EstiloMenu>
+                        <MenuLateral id="mySidenav" className="sidenav">
+                            <A href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</A>
+                            <A href="">Configurações</A>
+                        </MenuLateral>
+                        <MenuLateralBotao onClick={openNav}>&#9776;</MenuLateralBotao>
+                    </Fragment>
+                </ThemeProvider>
+            </>
+        );
+    }
+    else if(props.funcao=="menunota"){
+        return (
+            <>
+                <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+                    <Fragment>
+                        <GlobalTheme />
+                        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap" rel="stylesheet"></link>
+                        <EstiloMenu2>
+                            <img className="logo" src={logo} />
+                            <Title>bp</Title>
+                            <div className="divDireita">
+                                <img src={theme === "light" ? notificacaoPreto : notificacaoBranco} alt="" />
+                                <img src={theme === "light" ? contaPreto : contaBranco} alt="" />
+                                <img style={estilo} onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
+                            </div>
+                        </EstiloMenu2>
                         <MenuLateral id="mySidenav" className="sidenav">
                             <A href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</A>
                             <A href="">Configurações</A>
