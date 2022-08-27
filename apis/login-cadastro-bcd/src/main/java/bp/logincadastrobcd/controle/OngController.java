@@ -1,8 +1,8 @@
 package bp.logincadastrobcd.controle;
 
-import bp.logincadastrobcd.controle.dto.ong.CreateOng;
-import bp.logincadastrobcd.controle.dto.usuario.LoginUsuarioDto;
-import bp.logincadastrobcd.controle.dto.usuario.ReadUsuarioDto;
+import bp.logincadastrobcd.dto.ong.CreateOng;
+import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
+import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
 import bp.logincadastrobcd.service.IOngService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

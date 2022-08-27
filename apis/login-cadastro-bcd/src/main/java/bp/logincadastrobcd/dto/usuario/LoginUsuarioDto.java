@@ -1,4 +1,4 @@
-package bp.logincadastrobcd.controle.dto.usuario;
+package bp.logincadastrobcd.dto.usuario;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

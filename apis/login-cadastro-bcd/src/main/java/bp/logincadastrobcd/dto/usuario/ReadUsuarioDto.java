@@ -1,4 +1,4 @@
-package bp.logincadastrobcd.controle.dto.usuario;
+package bp.logincadastrobcd.dto.usuario;
 
 public class ReadUsuarioDto {
     private Integer cod;

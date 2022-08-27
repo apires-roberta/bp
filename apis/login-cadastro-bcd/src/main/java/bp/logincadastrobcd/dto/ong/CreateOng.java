@@ -1,10 +1,10 @@
-package bp.logincadastrobcd.controle.dto.doador;
+package bp.logincadastrobcd.dto.ong;
 
-import org.hibernate.validator.constraints.br.CPF;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.validation.constraints.*;
 
-public class CreateDoador {
+public class CreateOng {
     @NotNull @NotBlank
     @Size(min = 2, max = 45)
     private String nome;
@@ -22,9 +22,9 @@ public class CreateDoador {
     @NotNull @Pattern(regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})") //Exemplo: (11) 92005-7526
     private String telefone;
 
-    @CPF
+    @CNPJ
     @NotNull
-    private String cpf;
+    private String cnpj;
 
     @NotNull
     private String cep;
@@ -88,11 +88,11 @@ public class CreateDoador {
         this.telefone = telefone;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 }

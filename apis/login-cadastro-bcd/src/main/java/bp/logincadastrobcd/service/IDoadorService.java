@@ -1,8 +1,8 @@
 package bp.logincadastrobcd.service;
 
-import bp.logincadastrobcd.controle.dto.doador.CreateDoador;
-import bp.logincadastrobcd.controle.dto.usuario.LoginUsuarioDto;
-import bp.logincadastrobcd.controle.dto.usuario.ReadUsuarioDto;
+import bp.logincadastrobcd.dto.doador.CreateDoador;
+import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
+import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
 
 public interface IDoadorService {
 
