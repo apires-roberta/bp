@@ -8,7 +8,8 @@ export const lightTheme = {
   letraInput: "black",
   bordaBotao: "transparent",
   letraInfo: "#6D6D6D",
-  bordaInfo: "transparent"
+  bordaInfo: "transparent",
+  bordaFeed: "10px 10px 50px 5px rgba(0, 0, 0, 0.2)"
 };
 
 export const darkTheme = {
@@ -21,5 +22,6 @@ export const darkTheme = {
   letraInput: "white",
   bordaBotao: "#0070DC",
   letraInfo: "#CCCCCC",
-  bordaInfo: "#AAAAAA"
+  bordaInfo: "#AAAAAA",
+  bordaFeed: "10px 10px 50px 5px rgba(255, 255, 255, 0.1)"
 };

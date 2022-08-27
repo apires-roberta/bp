@@ -23,7 +23,7 @@ function Feed(){
     }, []);
     return(
         <>
-        <Menu>
+        <Menu funcaoDark={toggleTheme}/>
             <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
                 <Fragment>
                     <GlobalTheme />
@@ -32,7 +32,6 @@ function Feed(){
                     </CartaoFeed>
                 </Fragment>
             </ThemeProvider>
-        </Menu>
         </>
     );
 }
