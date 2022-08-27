@@ -1,7 +1,7 @@
 package com.bp.feedbcd.data.dto.usuario;
 
 public class ReadUsuarioDto {
-    //private Integer cod;
+    private Integer cod;
     private String nome, email, usuario, telefone;
     private byte[] fotoPerfil;
 
@@ -24,7 +24,7 @@ public class ReadUsuarioDto {
         return fotoPerfil;
     }
 
-//    public Integer getCod() {
-//        return cod;
-//    }
+    public Integer getCod() {
+        return cod;
+    }
 }

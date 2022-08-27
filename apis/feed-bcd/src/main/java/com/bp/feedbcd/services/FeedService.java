@@ -6,6 +6,7 @@ import com.bp.feedbcd.entidade.Feed;
 import com.bp.feedbcd.entidade.Ong;
 import com.bp.feedbcd.repository.FeedRepository;
 import com.bp.feedbcd.servicesreferences.IOngService;
+import feign.FeignException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,14 +33,18 @@ public class FeedService implements IFeedService{
 
     @Override
     public Long createFeed(CreateFeedDto novoFeed) {
-        ReadUsuarioDto usuarioDto = _ongService.getOngById(novoFeed.getIdOng());
+        try {
+            ReadUsuarioDto usuarioDto = _ongService.getOngById(novoFeed.getIdOng());
 
-        if (usuarioDto == null)
+            if (usuarioDto == null)
+                return null;
+
+            Feed feed = new Feed(_mapper.map(usuarioDto, Ong.class), novoFeed.getDescricao());
+            repository.save(feed);
+            return feed.getCodigo();
+        }catch (FeignException.NotFound notFound){
             return null;
-
-        Feed feed = new Feed(_mapper.map(usuarioDto, Ong.class), novoFeed.getDescricao());
-        repository.save(feed);
-        return feed.getCodigo();
+        }
     }
 
     @Override

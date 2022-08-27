@@ -1,5 +1,7 @@
 package bp.logincadastrobcd.entidade;
 
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -24,7 +26,7 @@ public abstract class Usuario {
     private String telefone;
 
     @NotNull
-    private boolean autenticado;
+    private boolean autenticado = false;
 
     @Column(length = 50_000_000)
     private byte[] fotoPerfil;

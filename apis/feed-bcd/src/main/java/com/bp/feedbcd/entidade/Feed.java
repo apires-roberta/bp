@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class Feed {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.MERGE})
     private Ong ong;
     private LocalDateTime dataPublicacao;
     @NotNull @NotBlank

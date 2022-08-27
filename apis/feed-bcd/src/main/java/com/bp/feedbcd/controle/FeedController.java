@@ -38,13 +38,13 @@ public class FeedController {
             return status(400).build();
 
         boolean atualizado = _feedService.atualizarFotosFeed(fotoFeed, idFeed);
-        return atualizado ? status(200).build() : status(404).build();
+        return atualizado ? status(204).build() : status(404).build();
     }
 
     @DeleteMapping("/{idFeed}")
     public ResponseEntity<Void> deleteFeed(@PathVariable long idFeed){
         boolean deletado = _feedService.deleteFeed(idFeed);
 
-        return deletado ? status(200).build() : status(404).build();
+        return deletado ? status(204).build() : status(404).build();
     }
 }
