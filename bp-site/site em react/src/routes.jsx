@@ -7,6 +7,7 @@ import CadastroDoador from "./pages/CadastroDoador";
 import CampanhasDoador from "./pages/CampanhasDoador";
 import CampanhasOng from "./pages/CampanhasOng";
 import Feed from "./pages/Feed";
+import PerfilOng from "./pages/PerfilOng";
 
 
 function Rotas() {
@@ -21,6 +22,7 @@ function Rotas() {
                 <Route path="/campanhas-doador" element={<CampanhasDoador />} />
                 <Route path="/campanhas-ong" element={<CampanhasOng />} />
                 <Route path="/feed" element={<Feed/>} />
+                <Route path="/PerfilOng" element={<PerfilOng/>} />
             </Routes>
         </BrowserRouter>
     );
