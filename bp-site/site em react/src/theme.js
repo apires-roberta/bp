@@ -23,5 +23,6 @@ export const darkTheme = {
   bordaBotao: "#0070DC",
   letraInfo: "#CCCCCC",
   bordaInfo: "#AAAAAA",
-  bordaFeed: "10px 10px 50px 5px rgba(255, 255, 255, 0.1)"
+  bordaFeed: "10px 10px 50px 5px rgba(255, 255, 255, 0.1)",
+  btnFundo:"#01396F"
 };
