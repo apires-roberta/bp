@@ -2,7 +2,7 @@ package com.bp.feedbcd.controle;
 
 import com.bp.feedbcd.data.dto.feed.CreateFeedDto;
 import com.bp.feedbcd.entidade.Feed;
-import com.bp.feedbcd.services.IFeedService;
+import com.bp.feedbcd.services.feed.IFeedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
