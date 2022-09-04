@@ -24,14 +24,14 @@ public class Email {
         return session;
     }
 
-    public void enviarEmail(String mensagem, String email){
-        System.out.println(email);
+    public void enviarEmail(String assunto, String mensagem, String destinatario){
+        System.out.println(destinatario);
         try {
             Message message = new MimeMessage(propriedades());
             message.setFrom(new InternetAddress("bpGrupo06@outlook.com"));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(email));
-            message.setSubject("BP informa: Nova doação!");
+                    InternetAddress.parse(destinatario));
+            message.setSubject(assunto);
             message.setText(mensagem);
             Transport.send(message);
 

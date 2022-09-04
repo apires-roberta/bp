@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NotificacaoService implements INotificacaoService {
@@ -29,19 +30,17 @@ public class NotificacaoService implements INotificacaoService {
     @Autowired
     ModelMapper mapper;
 
-    private FilaObj<Doador> filaInscritos;
     PilhaObj<ReadNotificacaoFeedDto> pilhaNotificacoes = new PilhaObj<>(10); //O máximo de notificações é 10
     PilhaObj<NotificacaoFeed> pilhaNotificacoesDesfeitas = new PilhaObj<>(10);
     private int qtdNotificacoesDeletadas = 0;
-
 
     public void createNotificacao(Integer idOng) {
         if (idOng == null)
             throw new IllegalArgumentException("IdOng não pode ser nulo");
 
         try {
-            _ongService.getOngById(idOng); //Verifica se ONG existe
-            enfileirarDoadores(idOng);
+            ReadUsuarioDto ong = _ongService.getOngById(idOng); //Verifica se ONG existe
+            enfileirarDoadores(ong);
         } catch (FeignException.NotFound ex) {
             throw ex;
         } catch (Exception ex) {
@@ -49,12 +48,12 @@ public class NotificacaoService implements INotificacaoService {
         }
     }
 
-    private void enfileirarDoadores(Integer idOng) {
-        List<Inscricao> inscritosOng = inscricaoRepository.findByOngCod(idOng);
+    private void enfileirarDoadores(ReadUsuarioDto ong) {
+        List<Inscricao> inscritosOng = inscricaoRepository.findByOngCod(ong.getCod());
         if (inscritosOng.size() == 0)
             return;
 
-        filaInscritos = new FilaObj<>(inscritosOng.size());
+        FilaObj<Doador> filaInscritos = new FilaObj<>(inscritosOng.size());
         for (Inscricao inscricao : inscritosOng) {
             filaInscritos.insert(inscricao.getDoador());
             NotificacaoFeed notificacaoFeed = new NotificacaoFeed(inscricao);
@@ -63,22 +62,60 @@ public class NotificacaoService implements INotificacaoService {
 
         while (!filaInscritos.isEmpty())
             try {
-                notificar(filaInscritos.poll(), idOng);
-            }catch (FeignException.NotFound ex){
+                notificar("Novo post da ong " + ong.getNome()+"!", "Venha Conferir as novidades", filaInscritos.poll());
+            } catch (FeignException.NotFound ex) {
                 throw ex;
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 continue;
             }
     }
 
-    private void notificar(Doador doador, Integer idOng) {
-        ReadUsuarioDto ong = _ongService.getOngById(idOng);
-
-        String mensagem = String.format("A ONG %s fez um novo post!", ong.getNome());
+    private void notificar(String assunto, String mensagem, Doador doador) {
         Email email = new Email();
+
         try {
-            email.enviarEmail(mensagem, doador.getEmail());
-        }catch (Exception ex){
+            email.enviarEmail(assunto, mensagem, doador.getEmail());
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
+
+    public List<Object> get10Notificacoes(Integer idDoador) {
+        List<NotificacaoFeed> listaNotificacoes = notificacaoRepository.findTop10ByInscricaoDoadorCodOrderByDataNotificacao(idDoador);
+        pilhaNotificacoes.clear();
+        if (listaNotificacoes.isEmpty())
+            return null;
+
+        for (NotificacaoFeed notifacao : listaNotificacoes) {
+            pilhaNotificacoes.push(mapper.map(notifacao, ReadNotificacaoFeedDto.class));
+        }
+
+        return pilhaNotificacoes.toList();
+    }
+
+    public void deleteNotificacao() {
+        try {
+            Optional<NotificacaoFeed> notificacao = notificacaoRepository.findById(pilhaNotificacoes.pop().getId());
+            if(notificacao.isEmpty()) throw new IllegalStateException();
+
+            pilhaNotificacoesDesfeitas.push(notificacao.get());
+            notificacaoRepository.delete(notificacao.get());
+            qtdNotificacoesDeletadas++;
+        } catch (IllegalStateException ex) {
+            throw ex;
+        }
+    }
+
+    public void redoNotificacao() {
+        try {
+            NotificacaoFeed notificacaoFeed = pilhaNotificacoesDesfeitas.pop();
+            ReadUsuarioDto ong = _ongService.getOngById(notificacaoFeed.getInscricao().getOng().getCod());
+
+            ReadNotificacaoFeedDto readNotificacao = new ReadNotificacaoFeedDto(notificacaoFeed.getId(), ong.getNome());
+            pilhaNotificacoes.push(mapper.map(notificacaoFeed, ReadNotificacaoFeedDto.class));
+            notificacaoRepository.save(notificacaoFeed);
+            qtdNotificacoesDeletadas--;
+        } catch (FeignException.NotFound ex) {
             throw ex;
         }
     }

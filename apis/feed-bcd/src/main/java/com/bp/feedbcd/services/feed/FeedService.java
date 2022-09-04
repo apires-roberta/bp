@@ -5,6 +5,7 @@ import com.bp.feedbcd.data.dto.usuario.ReadUsuarioDto;
 import com.bp.feedbcd.entidade.Feed;
 import com.bp.feedbcd.entidade.Ong;
 import com.bp.feedbcd.repository.FeedRepository;
+import com.bp.feedbcd.services.notificacao.INotificacaoService;
 import com.bp.feedbcd.servicesreferences.IOngService;
 import feign.FeignException;
 import org.modelmapper.ModelMapper;
@@ -19,6 +20,8 @@ public class FeedService implements IFeedService{
     private FeedRepository repository;
     @Autowired
     private IOngService _ongService;
+    @Autowired
+    private INotificacaoService _notificacaoService;
     @Autowired
     private ModelMapper _mapper;
 
@@ -41,6 +44,7 @@ public class FeedService implements IFeedService{
 
             Feed feed = new Feed(_mapper.map(usuarioDto, Ong.class), novoFeed.getDescricao());
             repository.save(feed);
+            _notificacaoService.createNotificacao(usuarioDto.getCod());
             return feed.getCodigo();
         }catch (FeignException.NotFound notFound){
             return null;
