@@ -4,6 +4,7 @@ import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public abstract class Usuario {
@@ -35,23 +36,9 @@ public abstract class Usuario {
     private String cep;
 
     @NotNull
-    private Integer numero;
+    private Integer numeroResidencia;
 
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public Integer getNumero() {
-        return numero;
-    }
-
-    public void setNumero(Integer numero) {
-        this.numero = numero;
-    }
+    private LocalDateTime dataCriacaoConta;
 
     public Usuario() {
     }
@@ -62,6 +49,23 @@ public abstract class Usuario {
         this.senha = senha;
         this.usuario = usuario;
         this.telefone = telefone;
+        this.dataCriacaoConta = LocalDateTime.now();
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public Integer getNumeroResidencia() {
+        return numeroResidencia;
+    }
+
+    public void setNumeroResidencia(Integer numeroResidencia) {
+        this.numeroResidencia = numeroResidencia;
     }
 
     public Integer getCod() {
@@ -126,5 +130,13 @@ public abstract class Usuario {
 
     public void setFotoPerfil(byte[] fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
+    }
+
+    public LocalDateTime getDataCriacaoConta() {
+        return dataCriacaoConta;
+    }
+
+    public void setDataCriacaoConta(LocalDateTime dataCriacaoConta) {
+        this.dataCriacaoConta = dataCriacaoConta;
     }
 }

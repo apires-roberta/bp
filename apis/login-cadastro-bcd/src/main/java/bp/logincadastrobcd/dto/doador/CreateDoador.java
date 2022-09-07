@@ -3,6 +3,7 @@ package bp.logincadastrobcd.dto.doador;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 
 public class CreateDoador {
     @NotNull @NotBlank
@@ -30,7 +31,10 @@ public class CreateDoador {
     private String cep;
 
     @NotNull
-    private Integer numero;
+    private Integer numeroResidencia;
+
+    @PastOrPresent
+    private LocalDate dataNascimento;
 
     public String getCep() {
         return cep;
@@ -40,12 +44,12 @@ public class CreateDoador {
         this.cep = cep;
     }
 
-    public Integer getNumero() {
-        return numero;
+    public Integer getNumeroResidencia() {
+        return numeroResidencia;
     }
 
-    public void setNumero(Integer numero) {
-        this.numero = numero;
+    public void setNumeroResidencia(Integer numeroResidencia) {
+        this.numeroResidencia = numeroResidencia;
     }
 
     public String getNome() {
@@ -94,5 +98,13 @@ public class CreateDoador {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 }
