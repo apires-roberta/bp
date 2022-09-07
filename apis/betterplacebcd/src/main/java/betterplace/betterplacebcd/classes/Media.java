@@ -12,6 +12,9 @@ public class Media {
     }
 
     public Double calcularMedia(Double valorArrecadado){
+        if (dias == 0)
+            return valorArrecadado;
+
         return valorArrecadado / dias;
     }
 

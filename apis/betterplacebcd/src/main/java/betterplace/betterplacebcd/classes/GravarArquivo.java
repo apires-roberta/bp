@@ -23,6 +23,8 @@ public class GravarArquivo {
         }
 
         try {
+            formatado += "Nome Campanha; Descricao; Item ; Data Criacao; Valor Necessario; Valor Atual; " +
+                         "Quantidade Doacoes; Doador; Data Doacao; Valor Doacao; Media Doacoes; Data prevista\n";
             for (int i= 0; i< lista.getTamanho(); i++) {
                 DadosCsv dados = lista.getElemento(i);
                 formatado += String.format("%s;%s;%s;%s;%.2f;%.2f;%d;%s;%s;%.2f;%.2f;%s\n",
