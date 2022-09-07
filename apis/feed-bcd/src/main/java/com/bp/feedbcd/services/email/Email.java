@@ -28,7 +28,7 @@ public class Email {
         System.out.println(destinatario);
         try {
             Message message = new MimeMessage(propriedades());
-            message.setFrom(new InternetAddress("bpGrupo06@outlook.com"));
+            message.setFrom(new InternetAddress("jeoveva@outlook.com"));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(destinatario));
             message.setSubject(assunto);
