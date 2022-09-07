@@ -21,11 +21,11 @@ class RelatorioControllerTest {
     @MockBean
     private DoacoesRepository doacoesRepository;
 
-    @MockBean
-    private DoadorRepository doadorRepository;
-
-    @MockBean
-    private OngRepository ongRepository;
+//    @MockBean
+//    private DoadorRepository doadorRepository;
+//
+//    @MockBean
+//    private OngRepository ongRepository;
 
     @Test
     @DisplayName("Retorna 404 montar dados id inválido")

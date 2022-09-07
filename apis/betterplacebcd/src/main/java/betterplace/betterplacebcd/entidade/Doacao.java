@@ -10,10 +10,10 @@ public class Doacao {
     private Integer idDoacao;
 
     @ManyToOne
-    private Doador doador;
+    private Campanha campanha;
 
     @ManyToOne
-    private Ong ong;
+    private Doador doador;
 
     @NotNull @Positive
     private Double valorDoacao;
@@ -21,8 +21,16 @@ public class Doacao {
     @PastOrPresent @NotNull
     private LocalDateTime dataDoacao;
 
-    @ManyToOne
-    private Campanha campanha;
+    public Doacao() {
+        this.dataDoacao = LocalDateTime.now();
+    }
+
+    public Doacao(Campanha campanha, Doador doador, Double valorDoacao) {
+        this.campanha = campanha;
+        this.doador = doador;
+        this.valorDoacao = valorDoacao;
+        this.dataDoacao = LocalDateTime.now();
+    }
 
     public Doador getDoador() {
         return doador;
@@ -30,14 +38,6 @@ public class Doacao {
 
     public void setDoador(Doador doador) {
         this.doador = doador;
-    }
-
-    public Ong getOng() {
-        return ong;
-    }
-
-    public void setOng(Ong ong) {
-        this.ong = ong;
     }
 
     public Campanha getCampanha() {

@@ -1,23 +1,24 @@
 package betterplace.betterplacebcd.controle;
 
 import betterplace.betterplacebcd.classes.*;
+import betterplace.betterplacebcd.data.dto.usuario.ReadUsuarioDto;
 import betterplace.betterplacebcd.entidade.Doacao;
 import betterplace.betterplacebcd.entidade.Campanha;
-import betterplace.betterplacebcd.entidade.Doador;
-import betterplace.betterplacebcd.entidade.Ong;
 import betterplace.betterplacebcd.repositorio.*;
+import betterplace.betterplacebcd.servicesreferences.IDoadorService;
+import betterplace.betterplacebcd.servicesreferences.IOngService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import static org.springframework.http.ResponseEntity.*;
 
+@Service
 @RestController
 @RequestMapping("/relatorio")
 public class RelatorioController {
@@ -26,24 +27,24 @@ public class RelatorioController {
     @Autowired
     private DoacoesRepository doacoesRepository;
     @Autowired
-    private DoadorRepository doadorRepository;
+    private IDoadorService _doadorService;
     @Autowired
-    private OngRepository ongRepository;
+    private IOngService _ongService;
     private Forecast previsao = new Forecast();
     private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private GravarArquivo gravarArquivo = new GravarArquivo();
     private ExportarDados exportarDados = new ExportarDados();
 
-    @GetMapping("/csv/{cod}")
-    public ResponseEntity montarDados(@PathVariable Integer cod){
-        if(ongRepository.findByCod(cod).isEmpty()){
+    @GetMapping("/csv/{idOng}")
+    public ResponseEntity montarDados(@PathVariable Integer idOng){
+        if(_ongService.getOngById(idOng) == null){
             return status(404).build();
         }
-        if(campanhaRepository.findByOngCod(cod).isEmpty()){
+        if(campanhaRepository.findByOngCod(idOng).isEmpty()){
             return status(204).build();
         }
-        ListaObj<DadosCsv> dados = new ListaObj(campanhaRepository.countByOngCod(cod));
-        for (Campanha campanha: campanhaRepository.findByOngCod(cod)){
+        ListaObj<DadosCsv> dados = new ListaObj(campanhaRepository.countByOngCod(idOng));
+        for (Campanha campanha : campanhaRepository.findByOngCod(idOng)){
             Object[] listaObj = new Object[12];
             listaObj[0] = campanha.getNomeCampanha();
             listaObj[1] = campanha.getNomeItem();
@@ -66,12 +67,12 @@ public class RelatorioController {
                 listaObj[6] = valorAtual;
                 listaObj[7] = listaDoacao.get(0).getDataDoacao().format(formato);
                 listaObj[8] = listaDoacao.get(0).getValorDoacao();
-                Optional<Doador> doador = doadorRepository.findByCod(listaDoacao.get(0).getDoador().getCod());
-                if(doador.isEmpty()){
+                ReadUsuarioDto doador = _doadorService.getUsuarioById(listaDoacao.get(0).getDoador().getCod());
+                if(doador == null){
                     listaObj[9] = "Usuario nao esta mais no site";
                 }
                 else{
-                    listaObj[9] = doador.get().getNome();
+                    listaObj[9] = doador.getNome();
                 }
                 Media media = new Media(campanha.getDataCriacao().toLocalDate());
                 listaObj[10] = media.calcularMedia(valorAtual);
@@ -108,29 +109,29 @@ public class RelatorioController {
                 }
             }
         }
-        String nome = "Relatorio_" + ongRepository.findByCod(cod).get().getNome()+"_"+ LocalDate.now();
+        String nome = "Relatorio_" + _ongService.getOngById(idOng).getNome()+"_"+ LocalDate.now();
         String csv = gravarArquivo.gravaArquivoCsv(dados, nome);
         return status(200).header("content-type", "text/csv")
                 .header("content-disposition", "filename=\""+nome+".csv\"")
                 .body(csv);
     }
 
-    @GetMapping("/Exportacao/{cod}")
-    public ResponseEntity exportarDados(@PathVariable Integer cod){
+    @GetMapping("/Exportacao/{idOng}")
+    public ResponseEntity exportarDados(@PathVariable Integer idOng){
         String nomeOng;
         String nomeCampanha, itemCampanha, descCampanha, nomeDoador="";
         Double valorNecessario, valorAtual, valorDoacao=0.0, media=0.0;
         Integer qtdDoacoes;
         LocalDate dataCriacao, dataDoacao=null, dataPrevisao=null;
         List<Dados> dados = new ArrayList();
-        Optional<Ong> Ong = ongRepository.findByCod(cod);
-        if(Ong.isEmpty()){
+        ReadUsuarioDto ong = _ongService.getOngById(idOng);
+        if(ong == null){
             return status(404).build();
         }
         else{
-            nomeOng = Ong.get().getNome();
+            nomeOng = ong.getNome();
         }
-        for (Campanha campanha: campanhaRepository.findByOngCod(cod)){
+        for (Campanha campanha: campanhaRepository.findByOngCod(idOng)){
             nomeCampanha = campanha.getNomeCampanha();
             itemCampanha = campanha.getNomeItem();
             descCampanha = campanha.getDescCampanha();
@@ -151,12 +152,12 @@ public class RelatorioController {
                 }
                 dataDoacao = listaDoacao.get(0).getDataDoacao().toLocalDate();
                 valorDoacao = listaDoacao.get(0).getValorDoacao();
-                Optional<Doador> doador = doadorRepository.findByCod(listaDoacao.get(0).getDoador().getCod());
-                if(doador.isEmpty()){
+                ReadUsuarioDto doador = _doadorService.getUsuarioById(listaDoacao.get(0).getDoador().getCod());
+                if(doador == null){
                     nomeDoador = "Usuario nao esta mais no site";
                 }
                 else{
-                    nomeDoador = doador.get().getNome();
+                    nomeDoador = doador.getNome();
                 }
                 Media m = new Media(campanha.getDataCriacao().toLocalDate());
                 media = m.calcularMedia(valorAtual);

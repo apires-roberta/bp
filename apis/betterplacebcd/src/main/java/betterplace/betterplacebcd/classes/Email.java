@@ -31,7 +31,7 @@ public class Email {
         System.out.println(email);
         try {
             Message message = new MimeMessage(propriedades());
-            message.setFrom(new InternetAddress("bpGrupo06@outlook.com"));
+            message.setFrom(new InternetAddress("jeoveva@outlook.com"));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(email));
             message.setSubject("BP informa: Nova doação!");
@@ -43,21 +43,3 @@ public class Email {
         }
     }
 }
-/*
-            try {
-
-                Message message = new MimeMessage(session);
-                message.setFrom(new InternetAddress("bpGrupo06@outlook.com"));
-                message.setRecipients(Message.RecipientType.TO,
-                        InternetAddress.parse("juansaopaulo17@gmail.com"));
-                message.setSubject("Test");
-                message.setText("HI");
-
-                Transport.send(message);
-
-                System.out.println("Done");
-
-            } catch (MessagingException e) {
-                throw new RuntimeException(e);
-            }
- */

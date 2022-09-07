@@ -1,5 +1,6 @@
 package betterplace.betterplacebcd.controle;
 
+import betterplace.betterplacebcd.data.dto.doacao.CreateDoacaoDto;
 import betterplace.betterplacebcd.entidade.Doacao;
 import betterplace.betterplacebcd.repositorio.CampanhaRepository;
 import betterplace.betterplacebcd.repositorio.DoacoesRepository;
@@ -27,7 +28,7 @@ class DoacaoControllerTest {
     @Test
     @DisplayName("Doar valor nulo deve retornar 400")
     void doarNull() {
-        Doacao doacao = new Doacao();
+        CreateDoacaoDto doacao = new CreateDoacaoDto();
 
         assertEquals(400, doacaoController.doar(doacao).getStatusCodeValue());
     }

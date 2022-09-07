@@ -1,10 +1,8 @@
 package betterplace.betterplacebcd.controle;
 
-import betterplace.betterplacebcd.data.dto.feed.CreateFeedDto;
+import betterplace.betterplacebcd.data.dto.campanha.CreateCampanhaDto;
 import betterplace.betterplacebcd.entidade.Campanha;
-import betterplace.betterplacebcd.entidade.Feed;
 import betterplace.betterplacebcd.repositorio.CampanhaRepository;
-import betterplace.betterplacebcd.repositorio.FeedRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +32,7 @@ class CampanhaControllerTest {
     @DisplayName("Inserir Campanha vazio deve retornar 400")
     void postCampanhaVazia() {
 
-        Campanha campanha = new Campanha();
+        CreateCampanhaDto campanha = new CreateCampanhaDto();
 
         assertEquals(400, campanhaController.postCampanha(campanha).getStatusCodeValue());
     }
@@ -45,7 +43,7 @@ class CampanhaControllerTest {
 
         when(repository.findAll()).thenReturn(new ArrayList<>());
 
-        ResponseEntity<List<Campanha>> resposta = campanhaController.getTudo();
+        ResponseEntity<List<Campanha>> resposta = campanhaController.getAllCampanhas();
 
         assertEquals(204, resposta.getStatusCodeValue());
 

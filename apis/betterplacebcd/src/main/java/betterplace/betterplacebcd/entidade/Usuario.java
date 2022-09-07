@@ -1,10 +1,10 @@
 package betterplace.betterplacebcd.entidade;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.annotation.CreatedDate;
+
+import javax.persistence.*;
 import javax.validation.constraints.*;
-import javax.persistence.MappedSuperclass;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public abstract class Usuario {
@@ -17,7 +17,7 @@ public abstract class Usuario {
     @Email @NotNull @NotBlank
     private String email;
 
-    @NotNull @NotBlank @Size(min = 8, max = 16)
+    //@NotNull @NotBlank @Size(min = 8, max = 16)
     private String senha;
 
     @NotNull @NotBlank @Size(min = 2, max = 20)
@@ -25,6 +25,9 @@ public abstract class Usuario {
 
     @NotNull @Pattern(regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})")
     private String telefone;
+
+    @Column(length = 50_000_000)
+    private byte[] fotoPerfil;
 
     @NotNull
     private boolean autenticado;

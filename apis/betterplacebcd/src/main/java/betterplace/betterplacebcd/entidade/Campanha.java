@@ -1,7 +1,10 @@
 package betterplace.betterplacebcd.entidade;
 
+import betterplace.betterplacebcd.data.dto.campanha.CreateCampanhaDto;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -9,11 +12,17 @@ public class Campanha {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCampanha;
 
+    @ManyToOne
+    private Ong ong;
+
     @NotNull @NotBlank @Size(min = 2, max = 45)
     private String nomeCampanha;
 
     @NotNull @NotBlank @Size(min = 2, max = 25)
     private String nomeItem;
+
+    @NotNull @NotBlank
+    private String tipoCampanha;
 
     @NotNull @NotBlank @Size(min = 2, max = 100)
     private String descCampanha;
@@ -24,8 +33,19 @@ public class Campanha {
     @PastOrPresent @NotNull
     private LocalDateTime dataCriacao;
 
-    @ManyToOne
-    private Ong ong;
+    public Campanha() {
+        this.dataCriacao = LocalDateTime.now();
+    }
+
+    public Campanha(CreateCampanhaDto novaCampanha, Ong ong) {
+        this.nomeCampanha = novaCampanha.getNomeCampanha();
+        this.nomeItem = novaCampanha.getNomeItem();
+        this.tipoCampanha = novaCampanha.getTipoCampanha();
+        this.descCampanha = novaCampanha.getDescCampanha();
+        this.valorNecessario = novaCampanha.getValorNecessario();
+        this.dataCriacao = LocalDateTime.now();
+        this.ong = ong;
+    }
 
     public Ong getOng() {
         return ong;
@@ -79,4 +99,11 @@ public class Campanha {
         this.dataCriacao = dataCriacao;
     }
 
+    public String getTipoCampanha() {
+        return tipoCampanha;
+    }
+
+    public void setTipoCampanha(String tipoCampanha) {
+        this.tipoCampanha = tipoCampanha;
+    }
 }
