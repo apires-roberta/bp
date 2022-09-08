@@ -28,7 +28,6 @@ function PerfilOng(){
                 <Fragment>
                     <GlobalTheme />
                     <CartaoPerfilOng>
-                        lopes
                     </CartaoPerfilOng>
                 </Fragment>
             </ThemeProvider>
