@@ -30,7 +30,7 @@ function CartaoPerfilOng(){
     const Divtext = styled.div`
     width: 80%;
     height: 10vh;
-    margin-top:30%;
+    margin-top:13%;
         float: left;
         margin-left: 15%;
         font-size:25px;
@@ -106,13 +106,13 @@ function CartaoPerfilOng(){
         <>
         <Cartao>
             <DivImagem>
-         <img style={fotoFundo} src="https://www.handsoflove.org.za/wp-content/uploads/slider/cache/d9b7d38169833bba112a47b25d718e46/home-header.jpg" alt=""/>
+         <img style={fotoFundo} src="http://guiadefontes.msf.org.br/wp-content/uploads/2017/01/org-actionaid-1024x443.jpg   " alt=""/>
             </DivImagem>
-         <span style={nomeOng}> Amigos da Rua<br /></span>
-         <span style={slogan}> Foco na ajuda de pessoas em situação de rua</span>
+         <span style={nomeOng}> Action Aid<br /></span>
+         <span style={slogan}>Você pode construir um mundo melhor!</span>
          <div style={fundoFotoPerfil} >
          <DivLogin>
-          <img style={fotoPerfil} src="https://storage.googleapis.com/atados-v3/user-uploaded/images/3ab557e4-bf6f-433a-9e00-3992580b416a.jpg" width="170" height="170"/>
+          <img style={fotoPerfil} src="https://captadores.org.br/wp-content/uploads/2021/04/actionaid-logo-vector.png" width="170" height="170"/>
           <Divtext>
             <span style={campanhaTexto}> Campanhas:<br></br></span><span style={campanhaNumero}>5</span><br /><br />
            <span>Total arrecadado:</span> <span style={arrecadadoTotal}>   R$1500,00</span>
