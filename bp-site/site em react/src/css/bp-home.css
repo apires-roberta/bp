@@ -284,6 +284,13 @@ button:hover {
     width: auto;
     box-shadow: 0px 0px 10px rgb(136, 136, 136);
 }
+.box99 {
+    display: block;
+    margin-top: 900px;
+    height: 300px;
+    width: auto;
+    box-shadow: 0px 0px 10px rgb(136, 136, 136);
+}
 
 .div-logo {
     margin-left: -10px;
