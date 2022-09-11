@@ -6,6 +6,7 @@ import GlobalTheme from "../globals";
 import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
 import apiLogin from "../apiLogin"
+import apiCep from "../apiCep";
 
 function CadastroDoador() {
     const [funcData, setFuncData] = useState({
@@ -26,6 +27,9 @@ function CadastroDoador() {
         funcData.cpf = document.getElementById("idCpf").value;
         funcData.usuario = document.getElementById("idUsuario").value;
         funcData.telefone = document.getElementById("idTelefone").value;
+        funcData.cep = document.getElementById("idCep").value;
+        funcData.numeroResidencia = document.getElementById("idNumero").value;
+        funcData.dataNascimento = document.getElementById("idData").value;
         console.log(funcData);
         apiLogin.post("/bp/doador/cadastroDoador", {
             nome: funcData.nome,
@@ -33,11 +37,15 @@ function CadastroDoador() {
             senha: funcData.senha,
             cpf: funcData.cpf,
             usuario: funcData.usuario,
-            telefone: funcData.telefone
+            telefone: funcData.telefone,
+            cep: funcData.cep,
+            numeroResidencia: funcData.numeroResidencia,
+            dataNascimento: funcData.dataNascimento
 
 
         }).then((resposta) => {
             console.log("post ok", resposta);
+            redirecionar("login")
         })
     }
     const [theme, setTheme] = useState("light");
@@ -60,7 +68,7 @@ function CadastroDoador() {
         width: 80%;
         margin-left: 10%;
         margin-top: 10%;
-        height: 55vh;
+        height: 90vh;
         box-shadow: ${({ theme }) => theme.borda};
         color: ${({ theme }) => theme.azulClaro};
     `;
@@ -121,9 +129,15 @@ function CadastroDoador() {
                                     <span className="nomeInput">CPF:</span><br/>
                                     <InputStyle type="text" id="idCpf"/>
                                 </div>
+                                <div className="inputDiv">
+                                    <span className="nomeInput">CEP:</span><br/>
+                                    <InputStyle type="text" onBlur={teste} id="idCep"/>
+                                </div>
+                                <Input nome="Numero:" id="idNumero" tipo="text" />
+                                <Input nome="Cidade:" id="idCidade" tipo="text" />
                             </div>
                             <div class="direita">
-                            <div className="inputDiv">
+                                <div className="inputDiv">
                                     <span className="nomeInput">Usuário:</span><br/>
                                     <InputStyle type="text" id="idUsuario"/>
                                 </div>
@@ -139,6 +153,9 @@ function CadastroDoador() {
                                     <span className="nomeInput">Data Nascimento:</span><br/>
                                     <InputStyle type="date" id="idData"/>
                                 </div>
+                                <Input nome="Rua:" id="idRua" tipo="text" />
+                                <Input nome="Bairro:" id="idBairro" tipo="text" />
+                                <Input nome="Estado:" id="idEstado" tipo="text" />
                             </div>
                         </DivCadastro>
                         <div class="botao">
@@ -157,4 +174,15 @@ export default CadastroDoador;
 
 function redirecionar(pagina) {
     window.location.href = "http://localhost:3000/" + pagina;
+}
+
+function teste(){
+    var cep = document.getElementById("idCep").value;
+    apiCep.get(`/${cep}/json`).then((resposta) => {
+        console.log(resposta)
+        document.getElementById("idCidade").value=resposta.data.localidade;
+        document.getElementById("idRua").value=resposta.data.logradouro;
+        document.getElementById("idBairro").value=resposta.data.bairro;
+        document.getElementById("idEstado").value=resposta.data.uf;
+    })
 }

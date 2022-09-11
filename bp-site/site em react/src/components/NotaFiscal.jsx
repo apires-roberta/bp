@@ -11,7 +11,7 @@ import GlobalTheme from "../globals";
 import React, { Fragment, useState, useEffect } from "react";
 
 
-function NotaFiscal(){
+function NotaFiscal() {
     const DivLogin = styled.div`
         width: 40%;
         float: left;
@@ -26,55 +26,49 @@ function NotaFiscal(){
         
     `;
     const Divtext = styled.div`
-    width: 80%;
-    height: 10vh;
-    margin-top:10%;
+        width: 100%;
+        height: 10vh;
+        margin-top:10%;
         float: left;
-        margin-left: 15%;
         font-size:25px;
+        text-align: center;
     `;
-    const imgPonto={
-        width:"30%",
+    const imgPonto = {
+        width: "30%",
         position: "relative",
-        marginTop:"-4vh",
-        marginLeft:"28%",
+        marginTop: "-4vh",
     }
-    const footerNota ={
-        marginTop:"900px",
-    } 
-    const nomeOng ={
-        fontSize:"50px",
-        marginTop:"10px",
-        color:"black",
-        marginLeft:"22%"
-    } 
-    const tituloNotaFiscal ={
-        color:"black",
-        marginLeft:"21%"
-        
-    } 
-    const valorNota ={
-        color:"red",
-        marginLeft:"33%",
-        fontSize:"30px"
-    } 
-    const tituloValor ={
-        color:"black",
-        marginLeft:"29%"
-    } 
-    const descNota ={
-        color:"black",
-        marginTop:"10px",
-        
-    } 
-    const textComp ={
-        marginTop:"30px",
-        float:"left",
-        color:"black",
-        fontSize:"13px",
-        marginLeft:"19%"
-    } 
-    
+    const nomeOng = {
+        fontSize: "50px",
+        marginTop: "10px",
+        color: "black",
+    }
+    const tituloNotaFiscal = {
+        color: "black",
+    }
+    const valorNota = {
+        color: "red",
+        fontSize: "30px"
+    }
+    const tituloValor = {
+        color: "black",
+    }
+    const textComp = {
+        marginTop: "30px",
+        float: "left",
+        color: "black",
+        fontSize: "13px",
+        marginLeft: "26%"
+    }
+
+    const caixa = {
+        display: "block",
+        marginTop: "90vh",
+        height: "300px",
+        width: "auto",
+        boxShadow: "0px 0px 10px rgb(136, 136, 136)",
+    }
+
     const [theme, setTheme] = useState("light");
 
     const toggleTheme = () => {
@@ -90,45 +84,45 @@ function NotaFiscal(){
         const localTheme = window.localStorage.getItem("theme");
         localTheme && setTheme(localTheme);
     }, []);
-return<>
+    return <>
 
-<Menu funcaoDark="toogleTheme">
-</Menu>
-<ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-                <Fragment>
-                    <GlobalTheme />
-<DivLogin>
-    <Divtext>
-    <span style={nomeOng}>ActionAId</span><br></br><br></br>
-    <span style={tituloNotaFiscal}>Comprovante Fiscal </span><br></br><br></br>
-    <span style={tituloValor}>Valor doado:</span><br></br>
-    <span style={valorNota}>R$500,00</span><br></br><br></br><br></br>
-    <img style={imgPonto} src={picturePoint}/>
-    <span style={textComp}>Nota emitida pela ONG ActionAid Ltda</span>
-    </Divtext>
-</DivLogin>
-</Fragment>
-</ThemeProvider>
-<footer>
-                <div class="box99">
-                    <div class="div-logo">
-                        <img src={logo} alt="logo" />
-                        <h1>Better Place</h1>
-                    </div>
-                    <div class="div-info">
-                        <p>E-mail: better.place@gmail.com<br />Tel: 4444-333</p>
-                        <div class="img-redes-sociais">
-                            <img src={facebook} alt="logo-facebook" />
-                            <img src={linkedin} alt="logo-linkedin" />
-                            <img src={telegram} alt="logo-telegram" />
-                        </div>
-                    </div>
-
+        <Menu>
+        </Menu>
+        <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+            <Fragment>
+                <GlobalTheme />
+                <DivLogin>
+                    <Divtext>
+                        <span style={nomeOng}>ActionAId</span><br></br><br></br>
+                        <span style={tituloNotaFiscal}>Comprovante Fiscal </span><br></br><br></br>
+                        <span style={tituloValor}>Valor doado:</span><br></br>
+                        <span style={valorNota}>R$500,00</span><br></br><br></br><br></br>
+                        <img style={imgPonto} src={picturePoint} />
+                        <span style={textComp}>Nota emitida pela ONG ActionAid Ltda</span>
+                    </Divtext>
+                </DivLogin>
+            </Fragment>
+        </ThemeProvider>
+        <footer>
+            <div style={caixa}>
+                <div class="div-logo">
+                    <img src={logo} alt="logo" />
+                    <h1>Better Place</h1>
                 </div>
-            </footer>
+                <div class="div-info">
+                    <p>E-mail: better.place@gmail.com<br />Tel: 4444-333</p>
+                    <div class="img-redes-sociais">
+                        <img src={facebook} alt="logo-facebook" />
+                        <img src={linkedin} alt="logo-linkedin" />
+                        <img src={telegram} alt="logo-telegram" />
+                    </div>
+                </div>
+
+            </div>
+        </footer>
 
 
-</>
+    </>
 }
 
 export default NotaFiscal;

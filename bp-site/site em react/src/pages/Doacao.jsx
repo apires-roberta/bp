@@ -1,6 +1,5 @@
 import { Grafico } from "../components/Grafico";
 import Menu from "../components/Menu";
-import CardDados from "../components/CardDados";
 import BotaoDoacao from "../components/BotaoDoacao";
 import send from "../img/send.png"
 import { ThemeProvider } from "styled-components";
@@ -8,6 +7,8 @@ import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
 import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
+import CardDados from "../components/CardDados";
+import CardCampanhaDash from "../components/CardCampanhaDash";
 function Doacao() {
   const [theme, setTheme] = useState("light");
 
@@ -39,16 +40,22 @@ function Doacao() {
       background-color: ${({ theme }) => theme.body};
       color:  ${({ theme }) => theme.logo};
     `;
+    const estiloDiv = {
+      marginLeft: "10%"
+    }
   return (
     <>
       <Menu funcaoDark={toggleTheme} />
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <Fragment>
           <GlobalTheme />
-          <CardDados nome="Juan" descricao="123456789 123456789 123456789 123456789 123456789 123456789 " valorCampanha="1000,00" />
-          <div className="grafico">
-            <Grafico valorDesejado={100} valorAtual={20} />
+          <div className="teste">
+            <CardDados style={estiloDiv} nome="Campanha" descricao="Precisamos da cadeira de rodas" valorCampanha="100,00" />
+            <div className="grafico">
+              <Grafico valorDesejado={100} valorAtual={20} />
+            </div>
           </div>
+          
           <div className="botoesDoacoes">
             <BotaoDoacao valor={10} />
             <BotaoDoacao valor={20} />

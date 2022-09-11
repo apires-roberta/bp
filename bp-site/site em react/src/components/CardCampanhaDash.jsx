@@ -3,14 +3,7 @@ import styled from "styled-components";
 import apiLogin from "../apiLogin";
 import { useEffect, useState } from 'react';
 
-function CardCampanhaDoador(props){
-    const [nome, setNome] = useState([]);
-    useEffect(() => {
-        apiLogin.get(`/bp/ong/${props.id}`).then((resposta) => {
-          setNome(resposta.data.nome)
-          
-        })
-      }, [])
+function CardCampanhaDash(props){
     
     const DivInfo = styled.div`
     width: 20%;
@@ -28,12 +21,13 @@ function CardCampanhaDoador(props){
 `;
 
 const P = styled.p`
-    padding-top: 10%;
+    padding-top: 20%;
     color: ${({ theme }) => theme.letraInfo};
     height: 15vh;
 `;
 
-const estiloH2={
+const estiloH2Nome={
+    float: "left",
     height: "4vh"
 }
 
@@ -53,10 +47,12 @@ const estiloH3 = {
     marginLeft: "2%",
     fontWeight: "normal"
 }
+
+
 return (
     <>
         <DivInfo onClick={redirecionar} style={estiloDiv}>
-            <h2 style={estiloH2}>{props.nome}</h2>
+            <h2 style={estiloH2Nome}>{props.nome}</h2>
             <P>{props.descCampanha}</P><br />
             <img style={estiloImg} class="img-estrela" src={estrela} alt="" />
             <h3 style={estiloH3}>R${props.valorCampanha}</h3>
@@ -65,7 +61,7 @@ return (
 );
   }
   
-  export default CardCampanhaDoador;
+  export default CardCampanhaDash;
 
   function redirecionar() {
     window.location.href = "http://localhost:3000/doacao";

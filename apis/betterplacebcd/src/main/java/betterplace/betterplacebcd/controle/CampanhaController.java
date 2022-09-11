@@ -35,9 +35,21 @@ public class CampanhaController {
         try {
             _campanhaService.postCampanha(novaCampanha);
             return status(201).build();
-        }catch (FeignException.NotFound ex){
+        } catch (FeignException.NotFound ex) {
             return status(404).build();
         }
+    }
+
+    @GetMapping("/Ong/{fkOng}")
+    public ResponseEntity<List<ReadCampanhaDto>> getCampanhasByFkOng(@PathVariable Integer fkOng) {
+        if(fkOng == null)
+            return status(404).build();
+        List<ReadCampanhaDto> campanhas = _campanhaService.getCampanhaByFkOng(fkOng);
+
+        if (campanhas == null || campanhas.isEmpty())
+            return status(204).build();
+
+        return status(200).body(campanhas);
     }
 
     @GetMapping
@@ -54,7 +66,7 @@ public class CampanhaController {
         try {
             _campanhaService.alterarValor(cod, valorNovo);
             return status(204).build();
-        }catch (IllegalArgumentException ex){
+        } catch (IllegalArgumentException ex) {
             return status(404).build();
         }
     }
@@ -64,7 +76,7 @@ public class CampanhaController {
         try {
             _campanhaService.apagarCampanha(cod);
             return status(204).build();
-        }catch (IllegalArgumentException ex){
+        } catch (IllegalArgumentException ex) {
             return status(404).build();
         }
     }

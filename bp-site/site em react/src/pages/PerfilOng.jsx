@@ -23,7 +23,7 @@ function PerfilOng(){
     }, []);
     return(
         <>
-        <Menu funcaoDark={toggleTheme}/>
+        <Menu funcaoDark={toggleTheme} funcao="cadastro"/>
             <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
                 <Fragment>
                     <GlobalTheme />

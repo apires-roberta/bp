@@ -6,14 +6,14 @@ import styled from "styled-components";
 import apiCampanha from '../apiCampanha';
 function CardCampanhaOng(props) {
     function guardarCampanha(id){
-        apiCampanha.patch(`/${id}`).then((resposta) => {
+        apiCampanha.delete(`/campanha/${id}`).then((resposta) => {
           console.log("post ok", resposta);
           redirecionar("campanhas-ong");
       })
       }
     function alterarValorBanco(id){
         var valor = parseFloat(document.getElementById("mudarValor").value)
-        apiCampanha.patch(`/alterarValor/${id}/${valor}`).then((resposta) => {
+        apiCampanha.patch(`/campanha/alterarValor/${id}/${valor}`).then((resposta) => {
           console.log("post ok", resposta);
           redirecionar("campanhas-ong");
       })

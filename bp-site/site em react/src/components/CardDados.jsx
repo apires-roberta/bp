@@ -4,8 +4,6 @@ import styled from "styled-components";
 function CardDados(props) {
     const DivInfo = styled.div`
       width: 19%;
-      margin-left: 10%;
-      margin-bottom: 5%;
       padding-top: 3%;
       padding-left: 2%;
       padding-right: 2%;
@@ -18,19 +16,19 @@ function CardDados(props) {
     `;
 
     const P=styled.p`
-        padding-top: 10%;
+        padding-top: 20%;
         color: ${({ theme }) => theme.letraInfo};
         height: 15vh;
     `;
 
+    const H2 = styled.h2`
+    color: ${({ theme }) => theme.azulClaro};
+`;
+
     const estiloH2={
+        float: "left",
         height: "4vh"
     }
-
-    const estiloDiv = {
-        marginTop: "6%",
-        marginBottom: "0%"
-    };
     
     const estiloImg={
         float: "left",
@@ -43,10 +41,16 @@ function CardDados(props) {
         marginLeft: "2%",
         fontWeight: "normal"
     }
+
+    const estiloH2Mes = {
+        float: "right",
+        fontWeight: "normal"
+    }
     return (
         <>
-            <DivInfo style={estiloDiv}>
+            <DivInfo style={props.style}>
                 <h2 style={estiloH2}>{props.nome}</h2>
+                <H2 style={estiloH2Mes}>{props.mes}</H2>
                 <P>{props.descricao}</P><br />
                 <img style={estiloImg} class="img-estrela" src={estrela} alt="" />
                 <h3 style={estiloH3}>R${props.valorCampanha}</h3>

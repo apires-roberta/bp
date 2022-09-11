@@ -35,7 +35,7 @@ function CampanhasDoador() {
   const [campanha, setcampanha] = useState([]);
 
   useEffect(() => {
-    apiCampanha.get("/disponiveis/").then((resposta) => {
+    apiCampanha.get("/campanha/").then((resposta) => {
       console.log(resposta.data)
       setcampanha(resposta.data)
     })
@@ -52,7 +52,8 @@ function CampanhasDoador() {
               campanha.map((item) => (
                 <CardCampanhaDoador id={item.fkOng}
                 descCampanha={item.descCampanha}
-                valorCampanha={item.valorNecessario} />
+                valorCampanha={item.valorNecessario}
+                nome={item.nomeCampanha} />
               ))
             }
           </DivInfo>

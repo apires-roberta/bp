@@ -10,6 +10,8 @@ import Feed from "./pages/Feed";
 import PerfilOng from "./pages/PerfilOng";
 import PerfilDoador from "./pages/PerfilDoador"
 import NotaFiscal from "./components/NotaFiscal";
+import DashMensal from "./pages/DashMensal";
+import DashDetalhado from "./pages/DashDetalhado";
 
 function Rotas() {
     return (
@@ -26,6 +28,8 @@ function Rotas() {
                 <Route path="/PerfilOng" element={<PerfilOng/>} />
                 <Route path="/PerfilDoador" element={<PerfilDoador/>} />
                 <Route path="/NotaFiscal" element={<NotaFiscal/>} />
+                <Route path="/Dashboard" element={<DashMensal/>} />
+                <Route path="/DashboardDetalhado" element={<DashDetalhado/>} />
             </Routes>
         </BrowserRouter>
     );

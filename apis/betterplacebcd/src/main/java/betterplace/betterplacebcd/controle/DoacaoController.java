@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import static org.springframework.http.ResponseEntity.status;
 
 @Service
+@CrossOrigin
 @RestController
 @RequestMapping("/doacao")
 public class DoacaoController {

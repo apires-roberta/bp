@@ -105,7 +105,7 @@ function Menu(props) {
                         <GlobalTheme />
                         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap" rel="stylesheet"></link>
                         <EstiloMenu>
-                            <img className="logo" src={logo} />
+                            <img onClick={()=>redirecionar("home")} className="logo" src={logo} />
                             <img onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
                             <Title>bp</Title>
                         </EstiloMenu>
@@ -127,11 +127,11 @@ function Menu(props) {
                         <GlobalTheme />
                         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap" rel="stylesheet"></link>
                         <EstiloMenu>
-                            <img className="logo" src={logo} />
+                            <img onClick={()=>redirecionar("home")} className="logo" src={logo} />
                             <Title>bp</Title>
                             <div className="divDireita">
                                 <img src={theme === "light" ? notificacaoPreto : notificacaoBranco} alt="" />
-                                <img src={theme === "light" ? contaPreto : contaBranco} alt="" />
+                                <img onClick={()=>redirecionar(sessionStorage.getItem("tipo"))} src={theme === "light" ? contaPreto : contaBranco} alt="" />
                                 <img style={estilo} onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
                             </div>
                         </EstiloMenu>
@@ -153,7 +153,7 @@ function Menu(props) {
                         <GlobalTheme />
                         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap" rel="stylesheet"></link>
                         <EstiloMenu2>
-                            <img className="logo" src={logo} />
+                            <img onClick={()=>redirecionar("home")} className="logo" src={logo} />
                             <Title>bp</Title>
                             <div className="divDireita">
                                 <img src={theme === "light" ? notificacaoPreto : notificacaoBranco} alt="" />
@@ -179,11 +179,11 @@ function Menu(props) {
                         <GlobalTheme />
                         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap" rel="stylesheet"></link>
                         <EstiloMenu>
-                            <img className="logo" src={logo} />
+                            <img onClick={()=>redirecionar("home")} className="logo" src={logo} />
                             <Title>bp</Title>
                             <div className="divDireita">
                                 <img onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
-                                <Botao onClick={redirecionar}>Campanhas</Botao>
+                                <Botao onClick={()=>redirecionar("campanhas-doador")}>Campanhas</Botao>
                                 <img src={theme === "light" ? notificacaoPreto : notificacaoBranco} alt="" />
                                 <img src={theme === "light" ? contaPreto : contaBranco} alt="" />
                             </div>
@@ -209,6 +209,6 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
-function redirecionar() {
-    window.location.href = "http://localhost:3000/campanhas-doador";
+function redirecionar(pagina) {
+    window.location.href = "http://localhost:3000/"+pagina;
 }

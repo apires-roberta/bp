@@ -12,34 +12,35 @@ import apiLogin from "../apiLogin";
 function CampanhasOng() {
   const [theme, setTheme] = useState("light");
   const [nomeOng, setNomeOng] = useState("");
+  const [campanha, setcampanha] = useState([]);
 
-    const toggleTheme = () => {
-        if (theme === "light") {
-            window.localStorage.setItem("theme", "dark");
-            setTheme("dark");
-        } else {
-            window.localStorage.setItem("theme", "light");
-            setTheme("light");
-        }
-    };
+  const toggleTheme = () => {
+    if (theme === "light") {
+      window.localStorage.setItem("theme", "dark");
+      setTheme("dark");
+    } else {
+      window.localStorage.setItem("theme", "light");
+      setTheme("light");
+    }
+  };
 
-    useEffect(() => {
-        const localTheme = window.localStorage.getItem("theme");
-        localTheme && setTheme(localTheme);
-    }, []);
+  useEffect(() => {
+    const localTheme = window.localStorage.getItem("theme");
+    localTheme && setTheme(localTheme);
+  }, []);
 
-    const DivInfo = styled.div`
+  const DivInfo = styled.div`
       width: 80%;
       margin-top: 10%;
       margin-left: 8%;
     `;
 
-    const [campanha, setcampanha] = useState([]);
-
   useEffect(() => {
-    apiCampanha.get(`/${sessionStorage.getItem("idOng")}`).then((resposta) => {
+    apiCampanha.get(`/campanha/Ong/${sessionStorage.getItem("idOng")}/`).then((resposta) => {
       console.log(resposta)
-      setcampanha(resposta.data)
+      if (resposta.status == 200) {
+        setcampanha(resposta.data)
+      }
     })
   }, [])
 
@@ -48,29 +49,28 @@ function CampanhasOng() {
       setNomeOng(resposta.data.nome)
     })
   }, [])
-  console.log(nomeOng)
 
   return (
     <>
-      <Menu funcaoDark={toggleTheme} funcao = "campanha"/>
+      <Menu funcaoDark={toggleTheme} funcao="campanha" />
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <Fragment>
           <GlobalTheme />
           <DivInfo>{
             campanha.map((item) => (
               <CardCampanhaOng nome={nomeOng}
-              descCampanha={item.descCampanha}
-              valorCampanha={item.valorNecessario} 
-              id={item.idCampanha}/>
-              
+                descCampanha={item.descCampanha}
+                valorCampanha={item.valorNecessario}
+                id={item.idCampanha} />
+
             ))
-            }
-          
-            <BasicModal/>
+          }
+
+            <BasicModal />
           </DivInfo>
         </Fragment>
       </ThemeProvider>
-      
+
     </>
   );
 }

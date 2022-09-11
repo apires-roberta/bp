@@ -63,4 +63,17 @@ public class CampanhaService implements ICampanhaService{
 
         repository.delete(campanha);
     }
+
+    @Override
+    public List<ReadCampanhaDto> getCampanhaByFkOng(Integer fkOng) {
+        List<Campanha> campanhas = repository.findByOngCod(fkOng);
+        if (campanhas == null || campanhas.isEmpty())
+            return null;
+
+        List<ReadCampanhaDto> readCampanhaDtos = campanhas.stream()
+                                                          .map(campanha -> _mapper.map(campanha, ReadCampanhaDto.class))
+                                                          .collect(Collectors.toList());
+
+        return readCampanhaDtos;
+    }
 }

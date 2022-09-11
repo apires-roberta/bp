@@ -20,14 +20,13 @@ function CadastroCampanha() {
             funcData.valorNecessario = parseFloat(document.getElementById("idValor").value);
             console.log(parseFloat(document.getElementById("idValor").value))
             console.log(funcData);
-            apiCampanha.post("/", {
+            apiCampanha.post("/campanha/", {
                 nomeCampanha: funcData.nomeCampanha,
                 nomeItem: funcData.nomeItem,
                 descCampanha: funcData.descCampanha,
                 valorNecessario: funcData.valorNecessario,
-                fkOng: sessionStorage.getItem("idOng")
-
-
+                fkOng: sessionStorage.getItem("idOng"),
+                tipoCampanha: 1
             }).then((resposta) => {
                 console.log("post ok", resposta);
                 sessionStorage.setItem("idCampanha", resposta.data)
@@ -62,13 +61,13 @@ function CadastroCampanha() {
     `;
     return (
         <>
-                    <DivCadastro>
-                        <Input nome="Nome campanha:" id="idNomeCampanha" tipo="text" />
-                        <Input nome="Nome item:" id="idNomeItem" tipo="text" />
-                        <Input nome="Descrição:" id="idDesc" tipo="text" />
-                        <Input nome="Valor:" id="idValor" tipo="text" />
-                        <Botao onClick={enviar}>Cadastrar</Botao>
-                    </DivCadastro>
+            <DivCadastro>
+                <Input nome="Nome campanha:" id="idNomeCampanha" tipo="text" />
+                <Input nome="Nome item:" id="idNomeItem" tipo="text" />
+                <Input nome="Descrição:" id="idDesc" tipo="text" />
+                <Input nome="Valor:" id="idValor" tipo="text" />
+                <Botao onClick={enviar}>Cadastrar</Botao>
+            </DivCadastro>
         </>
     );
 }

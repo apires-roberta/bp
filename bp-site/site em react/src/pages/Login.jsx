@@ -22,7 +22,8 @@ function Login() {
             senha: funcData.senha
         }).then((resposta) => {
             console.log("post ok", resposta);
-            redirecionar("campanhas-doador");
+            sessionStorage.setItem("tipo", "PerfilDoador");
+            redirecionar("PerfilDoador");
         })
         apiLogin.post("/bp/ong/login", {
             email: funcData.email,
@@ -30,7 +31,8 @@ function Login() {
         }).then((resposta) => {
             console.log("post ok", resposta);
             sessionStorage.setItem("idOng", resposta.data)
-            redirecionar("campanhas-ong");
+            sessionStorage.setItem("tipo", "PerfilOng");
+            redirecionar("PerfilOng");
         })
         document.getElementById("idEmail").style="border: 2px solid red";
         document.getElementById("idSenha").style="border: 2px solid red";

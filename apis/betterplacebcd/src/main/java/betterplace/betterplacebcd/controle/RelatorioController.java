@@ -21,6 +21,7 @@ import java.util.*;
 import static org.springframework.http.ResponseEntity.*;
 
 @Service
+@CrossOrigin
 @RestController
 @RequestMapping("/relatorio")
 public class RelatorioController {

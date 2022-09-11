@@ -28,6 +28,8 @@ function CadastroOng() {
             funcData.cnpj = document.getElementById("idCnpj").value;
             funcData.usuario = document.getElementById("idUsuario").value;
             funcData.telefone = document.getElementById("idTelefone").value;
+            funcData.cep = document.getElementById("idCep").value;
+            funcData.numero = document.getElementById("idNumero").value;
             console.log(funcData);
             apiLogin.post("/bp/ong/cadastroOng", {
                 nome: funcData.nome,
@@ -35,7 +37,9 @@ function CadastroOng() {
                 senha: funcData.senha,
                 cnpj: funcData.cnpj,
                 usuario: funcData.usuario,
-                telefone: funcData.telefone
+                telefone: funcData.telefone,
+                cep: funcData.cep,
+                numero: funcData.numero
 
 
             }).then((resposta) => {
@@ -80,7 +84,7 @@ function CadastroOng() {
         width: 80%;
         margin-left: 10%;
         margin-top: 10%;
-        height: 80vh;
+        height: 90vh;
         box-shadow: ${({ theme }) => theme.borda};
         color: ${({ theme }) => theme.azulClaro};
     `;
@@ -125,6 +129,7 @@ function CadastroOng() {
                                 <Input nome="CNPJ:" id="idCnpj" tipo="text" />
                                 <Input nome="Rua:" id="idRua" tipo="text" />
                                 <Input nome="Bairro:" id="idBairro" tipo="text" />
+                                <Input nome="Estado:" id="idEstado" tipo="text" />
                             </div>
                             <div class="direita">
                                 <Input nome="Usuário:" id="idUsuario" tipo="text" />
@@ -164,5 +169,6 @@ function teste(){
         document.getElementById("idCidade").value=resposta.data.localidade;
         document.getElementById("idRua").value=resposta.data.logradouro;
         document.getElementById("idBairro").value=resposta.data.bairro;
+        document.getElementById("idEstado").value=resposta.data.uf;
     })
 }
