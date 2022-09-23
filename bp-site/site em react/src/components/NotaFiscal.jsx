@@ -4,14 +4,30 @@ import facebook from '../img/logo-facebook.png';
 import linkedin from '../img/logo-linkedin.png';
 import telegram from '../img/logo-telegram.png';
 import picturePoint from '../img/picwish.png';
-import styled from "styled-components";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
+import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
 
 
 function NotaFiscal() {
+    const [theme, setTheme] = useState("light");
+
+    const toggleTheme = () => {
+        if (theme === "light") {
+            window.localStorage.setItem("theme", "dark");
+            setTheme("dark");
+        } else {
+            window.localStorage.setItem("theme", "light");
+            setTheme("light");
+        }
+    };
+    useEffect(() => {
+        const localTheme = window.localStorage.getItem("theme");
+        localTheme && setTheme(localTheme);
+    }, []);
+
     const DivLogin = styled.div`
         width: 40%;
         float: left;
@@ -19,6 +35,7 @@ function NotaFiscal() {
         margin-top: 5%;
         color: #01396F;
         height: 60vh;
+        background-color:${({ theme }) => theme.body};
         box-shadow: ${({ theme }) => theme.borda};
         color: ${({ theme }) => theme.azulClaro};
         top: 10%;
@@ -68,26 +85,9 @@ function NotaFiscal() {
         width: "auto",
         boxShadow: "0px 0px 10px rgb(136, 136, 136)",
     }
-
-    const [theme, setTheme] = useState("light");
-
-    const toggleTheme = () => {
-        if (theme === "light") {
-            window.localStorage.setItem("theme", "dark");
-            setTheme("dark");
-        } else {
-            window.localStorage.setItem("theme", "light");
-            setTheme("light");
-        }
-    };
-    useEffect(() => {
-        const localTheme = window.localStorage.getItem("theme");
-        localTheme && setTheme(localTheme);
-    }, []);
     return <>
 
-        <Menu>
-        </Menu>
+        <Menu funcaoDark={toggleTheme}/>
         <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
             <Fragment>
                 <GlobalTheme />
