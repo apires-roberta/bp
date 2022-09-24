@@ -9,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -83,5 +85,21 @@ public class OngService implements IOngService{
 
         ReadUsuarioDto ongDto = _mapper.map(ong.get(), ReadUsuarioDto.class);
         return ongDto;
+    }
+
+    @Override
+    public List<ReadUsuarioDto> getOngsByNome(String nomeOng) {
+        List<Ong> ongs = repository.findByNomeContains(nomeOng);
+
+        if (ongs.isEmpty())
+            return null;
+
+        List<ReadUsuarioDto> ongsDto = new ArrayList<>();
+
+        for (Ong ong : ongs) {
+            ongsDto.add(_mapper.map(ong,ReadUsuarioDto.class));
+        }
+
+        return ongsDto;
     }
 }

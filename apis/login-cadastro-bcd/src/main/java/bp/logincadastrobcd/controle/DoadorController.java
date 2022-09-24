@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import java.util.List;
+
 import static org.springframework.http.ResponseEntity.status;
 
 @Service
@@ -58,6 +60,7 @@ public class DoadorController {
             return status(404).build();
 
         boolean deslogado = _doadorService.logoff(idUsuario);
+
         return deslogado ? status(200).build() : status(404).build();
     }
     @DeleteMapping("/deletarConta/{idUsuario}")
@@ -68,6 +71,7 @@ public class DoadorController {
         boolean deletado = _doadorService.deletarConta(idUsuario);
         return deletado ? status(200).build() : status(404).build();
     }
+
     @GetMapping("/{idUsuario}")
     public ResponseEntity<ReadUsuarioDto> getDoador(@PathVariable Integer idUsuario) {
         if (idUsuario == null)
@@ -75,5 +79,12 @@ public class DoadorController {
 
         ReadUsuarioDto doador = _doadorService.getDoador(idUsuario);
         return doador != null ? status(200).body(doador) : status(404).build();
+    }
+
+    @GetMapping("/nomeDoador")
+    public ResponseEntity<List<ReadUsuarioDto>> getDoadorsByNome(@RequestParam String nomeDoador){
+        List<ReadUsuarioDto> doadores = _doadorService.getDoadorByNome(nomeDoador);
+
+        return doadores == null ? status(404).build() : status(200).body(doadores);
     }
 }

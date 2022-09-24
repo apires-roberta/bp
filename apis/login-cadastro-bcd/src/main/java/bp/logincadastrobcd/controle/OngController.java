@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import java.util.List;
+
 import static org.springframework.http.ResponseEntity.*;
 
 @Service
@@ -53,7 +55,6 @@ public class OngController {
 
         return atualizado ? status(200).build() : status(404).build();
     }
-
     @DeleteMapping("/logoff/{idUsuario}")
     public ResponseEntity logoff(@PathVariable Integer idUsuario) {
         if (idUsuario == null)
@@ -70,6 +71,7 @@ public class OngController {
         boolean deletado = _ongService.deletarConta(idUsuario);
         return deletado ? status(200).build() : status(404).build();
     }
+
     @GetMapping("/{idUsuario}")
     public ResponseEntity<ReadUsuarioDto> getOng(@PathVariable Integer idUsuario) {
         if (idUsuario == null)
@@ -77,5 +79,12 @@ public class OngController {
 
         ReadUsuarioDto doador = _ongService.getOng(idUsuario);
         return doador != null ? status(200).body(doador) : status(404).build();
+    }
+
+    @GetMapping("/nomeOng")
+    public ResponseEntity<List<ReadUsuarioDto>> getOngsByNome(@RequestParam String nomeOng){
+        List<ReadUsuarioDto> ongs = _ongService.getOngsByNome(nomeOng);
+
+        return ongs == null ? status(404).build() : status(200).body(ongs);
     }
 }

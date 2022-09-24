@@ -4,12 +4,15 @@ import bp.logincadastrobcd.dto.doador.CreateDoador;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
 import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
 import bp.logincadastrobcd.entidade.Doador;
+import bp.logincadastrobcd.entidade.Ong;
 import bp.logincadastrobcd.repositorio.DoadorRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -85,5 +88,21 @@ public class DoadorService implements IDoadorService{
 
         ReadUsuarioDto doadorDto = _mapper.map(doador.get(), ReadUsuarioDto.class);
         return doadorDto;
+    }
+
+    @Override
+    public List<ReadUsuarioDto> getDoadorByNome(String nomeDoador) {
+        List<Doador> doadores = repository.findByNomeContains(nomeDoador);
+
+        if (doadores.isEmpty())
+            return null;
+
+        List<ReadUsuarioDto> doadoresDto = new ArrayList<>();
+
+        for (Doador doador : doadores) {
+            doadoresDto.add(_mapper.map(doador,ReadUsuarioDto.class));
+        }
+
+        return doadoresDto;
     }
 }

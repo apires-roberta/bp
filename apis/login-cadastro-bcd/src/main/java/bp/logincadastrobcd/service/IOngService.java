@@ -4,6 +4,8 @@ import bp.logincadastrobcd.dto.ong.CreateOng;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
 import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
 
+import java.util.List;
+
 public interface IOngService {
 
     Integer login(LoginUsuarioDto usuarioLogin);
@@ -17,4 +19,6 @@ public interface IOngService {
     boolean deletarConta(Integer idUsuario);
 
     ReadUsuarioDto getOng(Integer idUsuario);
+
+    List<ReadUsuarioDto> getOngsByNome(String nomeOng);
 }
