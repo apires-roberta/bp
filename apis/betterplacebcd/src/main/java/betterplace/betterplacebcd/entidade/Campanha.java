@@ -33,6 +33,9 @@ public class Campanha {
     @PastOrPresent @NotNull
     private LocalDateTime dataCriacao;
 
+    private boolean disponivel = true;
+
+
     public Campanha() {
         this.dataCriacao = LocalDateTime.now();
     }
@@ -105,5 +108,13 @@ public class Campanha {
 
     public void setTipoCampanha(TipoCampanha tipoCampanha) {
         this.tipoCampanha = tipoCampanha;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
 }

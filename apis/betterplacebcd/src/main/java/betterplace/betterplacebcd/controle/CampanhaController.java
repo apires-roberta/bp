@@ -70,7 +70,7 @@ public class CampanhaController {
 
     @PatchMapping("/alterarValor/{cod}/{valorNovo}")
     public ResponseEntity<?> alterarValor(@PathVariable Integer cod, @PathVariable Double valorNovo) {
-        if (cod == null || cod == 0)
+        if (cod == null || cod <= 0)
             return status(400).build();
 
         try {
@@ -83,7 +83,7 @@ public class CampanhaController {
 
     @DeleteMapping("/{cod}")
     public ResponseEntity<?> apagarCampanha(@PathVariable Integer cod) {
-        if (cod == null || cod == 0)
+        if (cod == null || cod <= 0)
             return status(400).build();
 
         try {
@@ -96,10 +96,25 @@ public class CampanhaController {
 
     @GetMapping("/{cod}")
     public ResponseEntity<ReadCampanhaDto> getCampanhaById(@PathVariable Integer cod){
-        if (cod == null || cod == 0)
+        if (cod == null || cod <= 0)
             return status(400).build();
 
         ReadCampanhaDto campanha = _campanhaService.getCampanhaById(cod);
+
         return campanha == null ? status(404).build() : status(200).body(campanha);
+    }
+
+    @PatchMapping("/disponivel/{idCampanha}")
+    public ResponseEntity<?> alterarDisponibilidadeCampanha(@PathVariable Integer idCampanha){
+        if (idCampanha == null || idCampanha <= 0)
+            return status(400).build();
+        try {
+            _campanhaService.alterarDisponibilidadeCampanha(idCampanha);
+            return status(204).build();
+        } catch (NullPointerException ex){
+            return status(404).build();
+        }catch (Exception ex){
+            return status(500).body(ex.getMessage());
+        }
     }
 }

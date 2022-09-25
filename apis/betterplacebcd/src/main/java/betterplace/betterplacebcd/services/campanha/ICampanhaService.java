@@ -13,4 +13,6 @@ public interface ICampanhaService {
     List<ReadCampanhaDto> getCampanhaByFkOng(Integer fkOng);
 
     ReadCampanhaDto getCampanhaById(Integer cod);
+
+    void alterarDisponibilidadeCampanha(Integer idCampanha);
 }

@@ -97,4 +97,14 @@ public class CampanhaService implements ICampanhaService{
 
         return campanhaDto;
     }
+
+    @Override
+    public void alterarDisponibilidadeCampanha(Integer idCampanha) {
+        Campanha campanha = _campanhaRepository.findByIdCampanha(idCampanha);
+        if (campanha == null)
+            throw new NullPointerException();
+
+        campanha.setDisponivel(!campanha.isDisponivel());
+        _campanhaRepository.save(campanha);
+    }
 }
