@@ -1,7 +1,6 @@
 package betterplace.betterplacebcd.data.dto.campanha;
 
 import betterplace.betterplacebcd.data.enums.TipoCampanha;
-import betterplace.betterplacebcd.data.enums.TipoCampanhaConverter;
 
 import java.time.LocalDateTime;
 

@@ -5,7 +5,6 @@ import betterplace.betterplacebcd.data.enums.TipoCampanha;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity

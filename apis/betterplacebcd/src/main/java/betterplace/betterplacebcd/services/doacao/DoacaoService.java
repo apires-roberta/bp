@@ -11,6 +11,9 @@ import betterplace.betterplacebcd.servicesreferences.IDoadorService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StopWatch;
+
+import java.util.Timer;
 
 @Service
 public class DoacaoService implements IDoacaoService{
@@ -29,7 +32,15 @@ public class DoacaoService implements IDoacaoService{
 
         Doacao doacao = new Doacao(campanha, doador, doacaoDto.getValorDoacao());
         doacoesRepository.save(doacao);
-        notificar(doacao);
+        StopWatch sw = new StopWatch();
+        //notificar(doacao); //Tempo de Execução: 6261061200ns
+        Thread thread = new Thread(() -> {
+            notificar(doacao);
+        }); //Tempo de Execução: 248600 ns
+        sw.start();
+        thread.start();
+        sw.stop();
+        System.out.println("Doar terminou em " + sw.getTotalTimeNanos() +" s");
     }
 
     private void notificar(Doacao doacao) {
