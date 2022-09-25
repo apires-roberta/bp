@@ -7,11 +7,9 @@ import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
 import BasicModal from "../components/Modal";
 import apiCampanha from "../apiCampanha";
-import apiLogin from "../apiLogin";
 
 function CampanhasOng() {
   const [theme, setTheme] = useState("light");
-  const [nomeOng, setNomeOng] = useState("");
   const [campanha, setcampanha] = useState([]);
 
   const toggleTheme = () => {
@@ -38,15 +36,9 @@ function CampanhasOng() {
   useEffect(() => {
     apiCampanha.get(`/campanha/Ong/${sessionStorage.getItem("idOng")}/`).then((resposta) => {
       console.log(resposta)
-      if (resposta.status == 200) {
+      if (resposta.status === 200) {
         setcampanha(resposta.data)
       }
-    })
-  }, [])
-
-  useEffect(() => {
-    apiLogin.get(`/bp/ong/${sessionStorage.getItem("idOng")}`).then((resposta) => {
-      setNomeOng(resposta.data.nome)
     })
   }, [])
 
@@ -58,7 +50,7 @@ function CampanhasOng() {
           <GlobalTheme />
           <DivInfo>{
             campanha.map((item) => (
-              <CardCampanhaOng nome={nomeOng}
+              <CardCampanhaOng nome={item.nomeCampanha}
                 descCampanha={item.descCampanha}
                 valorCampanha={item.valorNecessario}
                 id={item.idCampanha} />

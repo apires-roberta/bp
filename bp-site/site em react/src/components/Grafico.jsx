@@ -17,7 +17,7 @@ export function Grafico(props) {
   return (
   <>
   <Pie data={data} options={options}/>
-  <H3Grafico>{valores[0]}%</H3Grafico>
+  <H3Grafico>{valores[0].toFixed(2).replace(".",",")}% (R${props.valorAtual.toFixed(2).replace(".",",")})</H3Grafico>
   </>
   );
 }

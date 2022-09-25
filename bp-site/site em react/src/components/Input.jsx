@@ -5,7 +5,7 @@ function Input(props) {
         border-radius: 30px;
         height: 5vh;
         width: 60%;
-        margin-left: 20%;
+        margin-left: 19%;
         text-align: center;
         background-color: transparent;
         border: ${({ theme }) => theme.bordaInput} 2px solid;

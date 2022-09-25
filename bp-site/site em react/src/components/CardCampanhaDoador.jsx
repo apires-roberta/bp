@@ -8,7 +8,6 @@ function CardCampanhaDoador(props){
     useEffect(() => {
         apiLogin.get(`/bp/ong/${props.id}`).then((resposta) => {
           setNome(resposta.data.nome)
-          
         })
       }, [])
     
@@ -55,8 +54,8 @@ const estiloH3 = {
 }
 return (
     <>
-        <DivInfo onClick={redirecionar} style={estiloDiv}>
-            <h2 style={estiloH2}>{props.nome}</h2>
+        <DivInfo onClick={()=>redirecionar(props.campanha)} style={estiloDiv}>
+            <h2 style={estiloH2}>{nome}</h2>
             <P>{props.descCampanha}</P><br />
             <img style={estiloImg} class="img-estrela" src={estrela} alt="" />
             <h3 style={estiloH3}>R${props.valorCampanha}</h3>
@@ -67,6 +66,7 @@ return (
   
   export default CardCampanhaDoador;
 
-  function redirecionar() {
+  function redirecionar(campanhaEscolhida) {
+    sessionStorage.setItem("campanha", campanhaEscolhida)
     window.location.href = "http://localhost:3000/doacao";
   }

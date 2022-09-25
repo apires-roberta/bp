@@ -23,6 +23,7 @@ function Login() {
         }).then((resposta) => {
             console.log("post ok", resposta);
             sessionStorage.setItem("tipo", "PerfilDoador");
+            sessionStorage.setItem("idDoador", resposta.data)
             redirecionar("PerfilDoador");
         })
         apiLogin.post("/bp/ong/login", {

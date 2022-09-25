@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "chart.js": "^3.7.1",
+    "d3-geo": "^3.0.1",
     "faker": "^6.6.6",
     "hooks": "^0.3.2",
     "react": "^18.1.0",
@@ -19,6 +20,7 @@
     "react-hot-toast": "^2.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-simple-maps": "^3.0.0",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },

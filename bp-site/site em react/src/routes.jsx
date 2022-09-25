@@ -12,6 +12,7 @@ import PerfilDoador from "./pages/PerfilDoador"
 import NotaFiscal from "./components/NotaFiscal";
 import DashMensal from "./pages/DashMensal";
 import DashDetalhado from "./pages/DashDetalhado";
+import DashMapa from "./pages/DashMapa";
 
 function Rotas() {
     return (
@@ -30,6 +31,7 @@ function Rotas() {
                 <Route path="/NotaFiscal" element={<NotaFiscal/>} />
                 <Route path="/Dashboard" element={<DashMensal/>} />
                 <Route path="/DashboardDetalhado" element={<DashDetalhado/>} />
+                <Route path="/DashboardMapa" element={<DashMapa/>} />
             </Routes>
         </BrowserRouter>
     );

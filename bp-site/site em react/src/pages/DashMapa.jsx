@@ -1,11 +1,16 @@
+import Input from "../components/Input";
 import Menu from "../components/Menu";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
+import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
-import CartaoPerfilOng from "../components/CartaoPerfilOng";
-import Rodape from "../components/Rodape";
-function PerfilOng(){
+import apiLogin from "../apiLogin"
+import CardDados from "../components/CardDados";
+import { GraficoDash } from "../components/GraficoDash";
+import MapChart from "../components/MapChart";
+
+function DashMapa() {
     const [theme, setTheme] = useState("light");
 
     const toggleTheme = () => {
@@ -21,18 +26,19 @@ function PerfilOng(){
         const localTheme = window.localStorage.getItem("theme");
         localTheme && setTheme(localTheme);
     }, []);
-    return(
+    return (
         <>
-        <Menu funcaoDark={toggleTheme} funcao="cadastro"/>
+            <Menu funcaoDark={toggleTheme} funcao="cadastro" />
             <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
                 <Fragment>
                     <GlobalTheme />
-                    <CartaoPerfilOng/>
-                    <Rodape/>
+                    <MapChart fundo={theme === "light" ? "white" : "#111111"} hover={theme === "light" ? "#0070DC" : "#01396F"} linha={theme === "light" ? "#111111" : "white"} click={theme === "light" ? "#01396F" : "#0070DC"}/>
                 </Fragment>
             </ThemeProvider>
         </>
     );
 }
 
-export default PerfilOng;
+export default DashMapa;
+
+

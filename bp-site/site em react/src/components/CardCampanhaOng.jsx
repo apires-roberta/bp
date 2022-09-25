@@ -10,9 +10,9 @@ function CardCampanhaOng(props) {
           console.log("post ok", resposta);
           redirecionar("campanhas-ong");
       })
-      }
+      } 
     function alterarValorBanco(id){
-        var valor = parseFloat(document.getElementById("mudarValor").value)
+        var valor = parseFloat(document.getElementById(`mudarValor${id}`).value)
         apiCampanha.patch(`/campanha/alterarValor/${id}/${valor}`).then((resposta) => {
           console.log("post ok", resposta);
           redirecionar("campanhas-ong");
@@ -98,11 +98,11 @@ function CardCampanhaOng(props) {
         <>
             <DivInfo style={estiloDiv}>
                 <h2 style={estiloH2}>{props.nome}</h2>
-                <img onClick={()=>guardarCampanha(props.id)} id='imgLixeira' onMouseOver={lixeiraMouse} onMouseLeave={lixeira} src={LixeiraCinza} style={estiloLixeira} alt="" /><br />
+                <img onClick={()=>guardarCampanha(props.id)} id={`imgLixeira${props.id}`} onMouseOver={()=>lixeiraMouse(props.id)} onMouseLeave={()=>lixeira(props.id)} src={LixeiraCinza} style={estiloLixeira} alt="" /><br />
                 <P>{props.descCampanha}</P><br />
-                <img onClick={alterarValor} style={estiloImg} class="img-estrela" src={localTheme === "light" ? AlterarPreto : AlterarBranco} alt="" />
-                <h3 style={estiloH3}>R$</h3><DivValor id={"mudarValor"}/> <button id='botao' onClick={()=>alterarValorBanco(props.id)} style={estiloButton}>enviar</button>
-                <h3 id={"valorFixo"} style={estiloH3Valor}>{props.valorCampanha}</h3>
+                <img onClick={()=>alterarValor(props.id)} style={estiloImg} class="img-estrela" src={localTheme === "light" ? AlterarPreto : AlterarBranco} alt="" />
+                <h3 style={estiloH3}>R$</h3><DivValor id={`mudarValor${props.id}`}/> <button id={`botao${props.id}`} onClick={()=>alterarValorBanco(props.id)} style={estiloButton}>enviar</button>
+                <h3 id={`valorFixo${props.id}`} style={estiloH3Valor}>{props.valorCampanha}</h3>
             </DivInfo>
         </>
     );
@@ -110,13 +110,13 @@ function CardCampanhaOng(props) {
 
 export default CardCampanhaOng;
 
-function lixeiraMouse() {
-    var imgLixeira = document.getElementById("imgLixeira");
+function lixeiraMouse(id) {
+    var imgLixeira = document.getElementById(`imgLixeira${id}`);
     imgLixeira.src = `${LixeiraVermelha}`;
 }
 
-function lixeira() {
-    var imgLixeira = document.getElementById("imgLixeira");
+function lixeira(id) {
+    var imgLixeira = document.getElementById(`imgLixeira${id}`);
     imgLixeira.src = `${LixeiraCinza}`;
 }
 
@@ -124,10 +124,10 @@ function redirecionar(pagina) {
     window.location.href = "http://localhost:3000/"+pagina;
   }
 
-  function alterarValor(){
-    var input = document.getElementById("mudarValor");
-    var valor = document.getElementById("valorFixo");
-    var botao = document.getElementById("botao");
+  function alterarValor(id){
+    var input = document.getElementById(`mudarValor${id}`);
+    var valor = document.getElementById(`valorFixo${id}`);
+    var botao = document.getElementById(`botao${id}`);
 
     input.style = "display: inline;";
     botao.style = "display: inline; width: 30%; font-size: 16px; margin-top: 7%;";

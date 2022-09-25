@@ -95,7 +95,7 @@ public class CampanhaController {
     }
 
     @GetMapping("/{cod}")
-    public ResponseEntity<ReadCampanhaDto> getCampanhaById(Integer cod){
+    public ResponseEntity<ReadCampanhaDto> getCampanhaById(@PathVariable Integer cod){
         if (cod == null || cod == 0)
             return status(400).build();
 

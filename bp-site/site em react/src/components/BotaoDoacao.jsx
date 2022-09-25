@@ -1,6 +1,36 @@
 import styled from "styled-components";
+import React, { Fragment, useState, useEffect } from "react";
+import apiCampanha from "../apiCampanha";
+  
+  function redirecionar(pagina) {
+    window.location.href = "http://localhost:3000/"+pagina;
+  }
 
 function BotaoDoacao(props){
+    const [funcData, setFuncData] = useState({
+        idDoador: "",
+        idCampanha: "",
+        valorDoacao: ""
+    })
+    function doar(valor){
+        var codigo=sessionStorage.getItem("idDoador")
+        if(codigo==null){
+          redirecionar("login")
+        }
+        else{
+            funcData.idDoador = codigo;
+            funcData.idCampanha = sessionStorage.getItem("campanha");
+            funcData.valorDoacao = valor;
+            apiCampanha.post("/doacao", {
+                idDoador: funcData.idDoador,
+                idCampanha: funcData.idCampanha,
+                valorDoacao: funcData.valorDoacao
+            }).then((resposta) => {
+                console.log("post ok", resposta);
+                redirecionar("NotaFiscal")
+            })
+        }
+      }
     const Botao = styled.button`
         text-align: center;
         background-color: ${({ theme }) => theme.body};
@@ -17,7 +47,7 @@ function BotaoDoacao(props){
         margin-left: 5%;
     `;
     return(
-        <Botao>R${props.valor},00</Botao>
+        <Botao onClick={()=>doar(props.valor)}>R${props.valor},00</Botao>
     );
 }
 

@@ -36,8 +36,9 @@ function CampanhasDoador() {
 
   useEffect(() => {
     apiCampanha.get("/campanha/").then((resposta) => {
-      console.log(resposta.data)
-      setcampanha(resposta.data)
+      if (resposta.status == 200) {
+        setcampanha(resposta.data)
+      }
     })
   }, [])
   
@@ -50,10 +51,12 @@ function CampanhasDoador() {
           <DivInfo>
             {
               campanha.map((item) => (
-                <CardCampanhaDoador id={item.fkOng}
+                <CardCampanhaDoador id={item.ongCod}
                 descCampanha={item.descCampanha}
                 valorCampanha={item.valorNecessario}
-                nome={item.nomeCampanha} />
+                nome={item.nomeCampanha}
+                campanha={item.idCampanha}
+                />
               ))
             }
           </DivInfo>
