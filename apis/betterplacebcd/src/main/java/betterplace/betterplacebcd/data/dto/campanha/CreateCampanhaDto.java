@@ -1,12 +1,15 @@
 package betterplace.betterplacebcd.data.dto.campanha;
 
+import betterplace.betterplacebcd.data.enums.TipoCampanha;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 public class CreateCampanhaDto {
-    @NotNull @Positive
+    @NotNull
+    @Positive
     private Integer fkOng;
 
     @NotNull
@@ -14,16 +17,20 @@ public class CreateCampanhaDto {
     @Size(min = 2, max = 45)
     private String nomeCampanha;
 
-    @NotNull @NotBlank @Size(min = 2, max = 25)
+    @NotNull
+    @NotBlank
+    @Size(min = 2, max = 25)
     private String nomeItem;
 
-    @NotNull @NotBlank
     private String tipoCampanha;
 
-    @NotNull @NotBlank @Size(min = 2, max = 100)
+    @NotNull
+    @NotBlank
+    @Size(min = 2, max = 100)
     private String descCampanha;
 
-    @NotNull @Positive
+    @NotNull
+    @Positive
     private Double valorNecessario;
 
     public Integer getFkOng() {

@@ -6,20 +6,21 @@ import betterplace.betterplacebcd.data.dto.usuario.ReadUsuarioDto;
 import betterplace.betterplacebcd.entidade.Campanha;
 import betterplace.betterplacebcd.entidade.Ong;
 import betterplace.betterplacebcd.repositorio.CampanhaRepository;
+import betterplace.betterplacebcd.repositorio.DoacoesRepository;
 import betterplace.betterplacebcd.servicesreferences.IOngService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.springframework.http.ResponseEntity.status;
 
 @Service
 public class CampanhaService implements ICampanhaService{
     @Autowired
-    private CampanhaRepository repository;
+    private CampanhaRepository _campanhaRepository;
+    @Autowired
+    DoacoesRepository _doacoesRepository;
     @Autowired
     private IOngService _ongService;
     @Autowired
@@ -28,52 +29,72 @@ public class CampanhaService implements ICampanhaService{
     public void postCampanha(CreateCampanhaDto novaCampanha) {
         ReadUsuarioDto ong = _ongService.getOngById(novaCampanha.getFkOng());
         Campanha campanha = new Campanha(novaCampanha, _mapper.map(ong, Ong.class));
-        repository.save(campanha);
+        _campanhaRepository.save(campanha);
     }
 
     @Override
     public List<ReadCampanhaDto> getAllCampanhas() {
-        List<Campanha> campanhas = repository.findAll();
-        if (campanhas.isEmpty()) {
+        List<Campanha> campanhas = _campanhaRepository.findAll();
+        if (campanhas.isEmpty())
             return null;
-        }
 
-        List<ReadCampanhaDto> campanhasDto = campanhas.stream()
+ /*       List<ReadCampanhaDto> readCampanhaDtos = campanhas.stream()
                                                       .map(campanha -> _mapper.map(campanha, ReadCampanhaDto.class))
-                                                      .collect(Collectors.toList());
-        return campanhasDto;
+                                                      .collect(Collectors.toList());*/
+        List<ReadCampanhaDto> readCampanhaDtos = new ArrayList<>();
+
+        for (Campanha campanha : campanhas) {
+            ReadCampanhaDto campanhaDto = _mapper.map(campanha, ReadCampanhaDto.class);
+            campanhaDto.setTotalDoado(_doacoesRepository.sumValorDoadoCampanha(campanha.getIdCampanha()));
+            readCampanhaDtos.add(campanhaDto);
+        }
+        return readCampanhaDtos;
     }
 
     @Override
     public void alterarValor(Integer cod, Double valorNovo) {
-        Campanha campanha = repository.findByIdCampanha(cod);
+        Campanha campanha = _campanhaRepository.findByIdCampanha(cod);
 
         if (campanha == null)
             throw new IllegalArgumentException(String.format("Campanha de ID %d não existe!", cod));
 
         campanha.setValorNecessario(valorNovo);
-        repository.save(campanha);
+        _campanhaRepository.save(campanha);
     }
 
     @Override
     public void apagarCampanha(Integer cod) {
-        Campanha campanha = repository.findByIdCampanha(cod);
+        Campanha campanha = _campanhaRepository.findByIdCampanha(cod);
         if (campanha == null)
             throw new IllegalArgumentException(String.format("Campanha de ID %d não existe!", cod));
 
-        repository.delete(campanha);
+        _campanhaRepository.delete(campanha);
     }
 
     @Override
     public List<ReadCampanhaDto> getCampanhaByFkOng(Integer fkOng) {
-        List<Campanha> campanhas = repository.findByOngCod(fkOng);
+        List<Campanha> campanhas = _campanhaRepository.findByOngCod(fkOng);
         if (campanhas == null || campanhas.isEmpty())
             return null;
 
-        List<ReadCampanhaDto> readCampanhaDtos = campanhas.stream()
-                                                          .map(campanha -> _mapper.map(campanha, ReadCampanhaDto.class))
-                                                          .collect(Collectors.toList());
+        List<ReadCampanhaDto> readCampanhaDtos = new ArrayList<>();
+        for (Campanha campanha : campanhas) {
+            ReadCampanhaDto campanhaDto = _mapper.map(campanha, ReadCampanhaDto.class);
+            campanhaDto.setTotalDoado(_doacoesRepository.sumValorDoadoCampanha(campanha.getIdCampanha()));
+            readCampanhaDtos.add(campanhaDto);
+        }
 
         return readCampanhaDtos;
+    }
+
+    @Override
+    public ReadCampanhaDto getCampanhaById(Integer idCampanha) {
+        Campanha campanha = _campanhaRepository.findByIdCampanha(idCampanha);
+        if (campanha == null) return null;
+
+        ReadCampanhaDto campanhaDto = _mapper.map(campanha, ReadCampanhaDto.class);
+        campanhaDto.setTotalDoado(_doacoesRepository.sumValorDoadoCampanha(campanha.getIdCampanha()));
+
+        return campanhaDto;
     }
 }

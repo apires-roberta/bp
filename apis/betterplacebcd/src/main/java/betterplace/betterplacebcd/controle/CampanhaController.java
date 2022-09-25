@@ -29,7 +29,7 @@ public class CampanhaController {
     private ICampanhaService _campanhaService;
 
     @PostMapping
-    public ResponseEntity postCampanha(@RequestBody @Valid CreateCampanhaDto novaCampanha) {
+    public ResponseEntity<?> postCampanha(@RequestBody @Valid CreateCampanhaDto novaCampanha) {
         if (novaCampanha.getNomeCampanha() == null || novaCampanha.getDescCampanha() == null || novaCampanha.getValorNecessario() == null)
             return ResponseEntity.status(400).build();
         try {
@@ -37,13 +37,20 @@ public class CampanhaController {
             return status(201).build();
         } catch (FeignException.NotFound ex) {
             return status(404).build();
+        } catch (FeignException.ServiceUnavailable ex) {
+            return status(503).build();
+        } catch (IllegalArgumentException ex) {
+            return status(400).body("Tipo de Campanha '"+ novaCampanha.getTipoCampanha() +"' não existe");
+        } catch (Exception ex){
+            throw ex;
         }
     }
 
     @GetMapping("/Ong/{fkOng}")
     public ResponseEntity<List<ReadCampanhaDto>> getCampanhasByFkOng(@PathVariable Integer fkOng) {
-        if(fkOng == null)
-            return status(404).build();
+        if (fkOng == null || fkOng == 0)
+            return status(400).build();
+
         List<ReadCampanhaDto> campanhas = _campanhaService.getCampanhaByFkOng(fkOng);
 
         if (campanhas == null || campanhas.isEmpty())
@@ -53,7 +60,7 @@ public class CampanhaController {
     }
 
     @GetMapping
-    public ResponseEntity getAllCampanhas() {
+    public ResponseEntity<?> getAllCampanhas() {
         List<ReadCampanhaDto> campanhas = _campanhaService.getAllCampanhas();
         if (campanhas == null)
             return status(204).build();
@@ -62,7 +69,10 @@ public class CampanhaController {
     }
 
     @PatchMapping("/alterarValor/{cod}/{valorNovo}")
-    public ResponseEntity alterarValor(@PathVariable Integer cod, @PathVariable Double valorNovo) {
+    public ResponseEntity<?> alterarValor(@PathVariable Integer cod, @PathVariable Double valorNovo) {
+        if (cod == null || cod == 0)
+            return status(400).build();
+
         try {
             _campanhaService.alterarValor(cod, valorNovo);
             return status(204).build();
@@ -72,12 +82,24 @@ public class CampanhaController {
     }
 
     @DeleteMapping("/{cod}")
-    public ResponseEntity apagarCampanha(@PathVariable Integer cod) {
+    public ResponseEntity<?> apagarCampanha(@PathVariable Integer cod) {
+        if (cod == null || cod == 0)
+            return status(400).build();
+
         try {
             _campanhaService.apagarCampanha(cod);
             return status(204).build();
         } catch (IllegalArgumentException ex) {
             return status(404).build();
         }
+    }
+
+    @GetMapping("/{cod}")
+    public ResponseEntity<ReadCampanhaDto> getCampanhaById(Integer cod){
+        if (cod == null || cod == 0)
+            return status(400).build();
+
+        ReadCampanhaDto campanha = _campanhaService.getCampanhaById(cod);
+        return campanha == null ? status(404).build() : status(200).body(campanha);
     }
 }

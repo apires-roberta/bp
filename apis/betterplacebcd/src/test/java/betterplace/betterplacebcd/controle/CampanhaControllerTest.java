@@ -43,7 +43,7 @@ class CampanhaControllerTest {
 
         when(repository.findAll()).thenReturn(new ArrayList<>());
 
-        ResponseEntity<List<Campanha>> resposta = campanhaController.getAllCampanhas();
+        ResponseEntity<?> resposta = campanhaController.getAllCampanhas();
 
         assertEquals(204, resposta.getStatusCodeValue());
 

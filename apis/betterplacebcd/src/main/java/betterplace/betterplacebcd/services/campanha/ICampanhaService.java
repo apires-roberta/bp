@@ -11,4 +11,6 @@ public interface ICampanhaService {
     void alterarValor(Integer cod, Double valorNovo);
     void apagarCampanha(Integer cod);
     List<ReadCampanhaDto> getCampanhaByFkOng(Integer fkOng);
+
+    ReadCampanhaDto getCampanhaById(Integer cod);
 }

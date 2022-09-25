@@ -1,6 +1,7 @@
 package betterplace.betterplacebcd.entidade;
 
 import betterplace.betterplacebcd.data.dto.campanha.CreateCampanhaDto;
+import betterplace.betterplacebcd.data.enums.TipoCampanha;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -21,8 +22,7 @@ public class Campanha {
     @NotNull @NotBlank @Size(min = 2, max = 25)
     private String nomeItem;
 
-    @NotNull @NotBlank
-    private String tipoCampanha;
+    private TipoCampanha tipoCampanha;
 
     @NotNull @NotBlank @Size(min = 2, max = 100)
     private String descCampanha;
@@ -40,7 +40,7 @@ public class Campanha {
     public Campanha(CreateCampanhaDto novaCampanha, Ong ong) {
         this.nomeCampanha = novaCampanha.getNomeCampanha();
         this.nomeItem = novaCampanha.getNomeItem();
-        this.tipoCampanha = novaCampanha.getTipoCampanha();
+        this.tipoCampanha = TipoCampanha.valueOf(novaCampanha.getTipoCampanha().toUpperCase()); //Converte a String passada para UpperCase e dps para ENUM, se não existir o ENUM vai resultar em erro 400
         this.descCampanha = novaCampanha.getDescCampanha();
         this.valorNecessario = novaCampanha.getValorNecessario();
         this.dataCriacao = LocalDateTime.now();
@@ -99,11 +99,11 @@ public class Campanha {
         this.dataCriacao = dataCriacao;
     }
 
-    public String getTipoCampanha() {
+    public TipoCampanha getTipoCampanha() {
         return tipoCampanha;
     }
 
-    public void setTipoCampanha(String tipoCampanha) {
+    public void setTipoCampanha(TipoCampanha tipoCampanha) {
         this.tipoCampanha = tipoCampanha;
     }
 }

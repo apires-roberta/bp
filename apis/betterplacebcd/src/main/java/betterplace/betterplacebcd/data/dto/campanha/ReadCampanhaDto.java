@@ -1,5 +1,8 @@
 package betterplace.betterplacebcd.data.dto.campanha;
 
+import betterplace.betterplacebcd.data.enums.TipoCampanha;
+import betterplace.betterplacebcd.data.enums.TipoCampanhaConverter;
+
 import java.time.LocalDateTime;
 
 public class ReadCampanhaDto {
@@ -7,10 +10,11 @@ public class ReadCampanhaDto {
     private Integer ongCod;
     private String nomeCampanha;
     private String nomeItem;
-    private String tipoCampanha;
+    private TipoCampanha tipoCampanha;
     private String descCampanha;
     private Double valorNecessario;
     private LocalDateTime dataCriacao;
+    private Double totalDoado;
 
     public Integer getIdCampanha() {
         return idCampanha;
@@ -44,11 +48,11 @@ public class ReadCampanhaDto {
         this.nomeItem = nomeItem;
     }
 
-    public String getTipoCampanha() {
+    public TipoCampanha getTipoCampanha() {
         return tipoCampanha;
     }
 
-    public void setTipoCampanha(String tipoCampanha) {
+    public void setTipoCampanha(TipoCampanha tipoCampanha) {
         this.tipoCampanha = tipoCampanha;
     }
 
@@ -74,5 +78,13 @@ public class ReadCampanhaDto {
 
     public void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+
+    public Double getTotalDoado() {
+        return totalDoado;
+    }
+
+    public void setTotalDoado(Double totalDoado) {
+        this.totalDoado = totalDoado;
     }
 }

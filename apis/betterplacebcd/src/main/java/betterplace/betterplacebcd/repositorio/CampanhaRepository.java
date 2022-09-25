@@ -4,6 +4,7 @@ import betterplace.betterplacebcd.entidade.Campanha;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CampanhaRepository extends JpaRepository<Campanha, Integer> {
     List<Campanha> findByOngCod(Integer idOng);
