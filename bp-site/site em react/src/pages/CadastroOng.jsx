@@ -5,8 +5,12 @@ import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
 import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
-import apiLogin from "../apiLogin"
+import apiLogin from "../apiLogin";
 import apiCep from "../apiCep";
+import Swal from 'sweetalert2'
+
+// CommonJS
+const Swal = require('sweetalert2')
 
 function CadastroOng() {
     const [funcData, setFuncData] = useState({
@@ -43,6 +47,11 @@ function CadastroOng() {
 
 
             }).then((resposta) => {
+                Swal.fire(
+                    'Usuário cadastrado',
+                    'Parabéns! Agora você faz parte da família bp',
+                    'success'
+                  );
                 console.log("post ok", resposta);
                 redirecionar("login")
             })
