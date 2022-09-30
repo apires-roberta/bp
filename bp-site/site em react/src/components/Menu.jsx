@@ -6,10 +6,11 @@ import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
 import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
-import contaBranco from "../img/conta em branco.png"
-import contaPreto from "../img/conta em preto.png"
-import notificacaoBranco from "../img/notificacao em branco.png"
-import notificacaoPreto from "../img/notificacao em preto.png"
+import contaBranco from "../img/conta em branco.png";
+import contaPreto from "../img/conta em preto.png";
+import notificacaoBranco from "../img/notificacao em branco.png";
+import notificacaoPreto from "../img/notificacao em preto.png";
+import BarraPesquisa from "./BarraPesquisa";
 
 
 function Menu(props) {
@@ -182,6 +183,7 @@ function Menu(props) {
                         <EstiloMenu>
                             <img alt="" onClick={()=>redirecionar("home")} className="logo" src={logo} />
                             <Title>bp</Title>
+                            <BarraPesquisa/>
                             <div className="divDireita">
                                 <img alt="" onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
                                 <Botao onClick={()=>redirecionar("campanhas-doador")}>Campanhas</Botao>

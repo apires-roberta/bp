@@ -1,0 +1,30 @@
+
+  .ong-list {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(200px, 1fr)
+    );
+    list-style: none;
+    grid-gap: 1.5rem;
+  }
+  
+  .ong-list img {
+    max-width: 100%;
+  }
+  input::placeholder{
+    color: white;
+    text-align: center;
+  }
+  .divOng{
+        float: left;
+        margin-top: 15px;
+        margin-left: 100px;
+  }
+  .divImagem{
+    background-size: 100px 100px;
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-position: 25% 75%;
+  }
