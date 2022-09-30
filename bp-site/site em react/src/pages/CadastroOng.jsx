@@ -7,7 +7,6 @@ import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
 import apiLogin from "../apiLogin";
 import apiCep from "../apiCep";
-import Swal from 'sweetalert2'
 
 // CommonJS
 const Swal = require('sweetalert2')
@@ -34,7 +33,6 @@ function CadastroOng() {
             funcData.telefone = document.getElementById("idTelefone").value;
             funcData.cep = document.getElementById("idCep").value;
             funcData.numero = document.getElementById("idNumero").value;
-            console.log(funcData);
             apiLogin.post("/bp/ong/cadastroOng", {
                 nome: funcData.nome,
                 email: funcData.email,
@@ -46,15 +44,14 @@ function CadastroOng() {
                 numero: funcData.numero
 
 
-            }).then((resposta) => {
+            }).then((resposta) =>{
                 Swal.fire(
                     'Usuário cadastrado',
                     'Parabéns! Agora você faz parte da família bp',
                     'success'
                   );
                 console.log("post ok", resposta);
-                redirecionar("login")
-            })
+            }).catch((resposta) =>{alert(resposta.response.status)})
         }
         else{
             document.getElementById("idConfirmarSenha").style="border: 2px solid red";
