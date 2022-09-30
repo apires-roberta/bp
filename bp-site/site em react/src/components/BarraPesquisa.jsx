@@ -42,7 +42,7 @@ export default function BarraPesquisa() {
   //   // })
   // }
 
-  const DivResult = styled.div`
+  const DivResult = styled.table`
      background-color: ${({ theme }) => theme.menu};
      width: 400px;
      height: 40px;
@@ -58,12 +58,12 @@ export default function BarraPesquisa() {
         <DivResult key={item.cod}>
           {/*<div className="divImagem" style={{ backgroundImage: `url(data:image/jpeg;base64,${item.fotoPerfil}`, float: 'left' }}></div>
           <h1 className="h1Nome">{item.nome}</h1>*/}
-          <table>
-            <tr>
-              <td className="divImagem" style={{ backgroundImage: `url(data:image/jpeg;base64,${item.fotoPerfil}`, float: 'left' }}></td>
+          <DivResult key={item.cod}>
+            <tr className="tableImg">
+              <td ><div className="divImagem" style={{ backgroundImage: `url(data:image/jpeg;base64,${item.fotoPerfil}`, float: 'left' }}></div></td>
               <td>{item.nome}</td>
             </tr>
-          </table>
+            </DivResult>
         </DivResult>
       ))}
     </div>
