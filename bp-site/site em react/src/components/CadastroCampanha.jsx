@@ -31,7 +31,7 @@ function CadastroCampanha() {
             }).then((resposta) => {
                 console.log("post ok", resposta);
                 sessionStorage.setItem("idCampanha", resposta.data)
-                redirecionar("campanhas-ong")
+                redirecionar("campanha")
             })
         
     }

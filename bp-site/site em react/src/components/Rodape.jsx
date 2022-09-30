@@ -6,7 +6,7 @@ import styled from "styled-components";
 import React from "react";
 
 function Rodape() {
-    const DivRodape=styled.div`
+    const DivRodape=styled.footer`
     display: block;
     margin-top: 5%;
     height: 300px;

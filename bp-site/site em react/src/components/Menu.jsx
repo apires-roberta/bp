@@ -41,13 +41,6 @@ function Menu(props) {
         z-index:99;
         top: 0;
     `;
-    const EstiloMenu2 = styled.div`
-        width: 100%;
-        height: 10vh;
-        box-shadow: ${({ theme }) => theme.borda};
-        background-color:${({ theme }) => theme.menu};
-        top: 0;
-    `;
 
     const Title = styled.span`
         color:${({ theme }) => theme.logo};
@@ -66,15 +59,6 @@ function Menu(props) {
         top: 10%;
     `;
 
-    const Botao = styled.button`
-        text-align: center;
-        background-color: ${({ theme }) => theme.azulClaro};
-        color: white;
-        border: none;
-        border-radius: 50px;
-        box-shadow: ${({ theme }) => theme.borda};
-        cursor:pointer;
-    `;
     const estilo = {
         float: "right",
         marginRight: "10%"
@@ -84,7 +68,7 @@ function Menu(props) {
         height: 100%;
         width: 0;
         position: fixed;
-        z-index: 1;
+        z-index: 100;
         top: 0;
         left: 0;
         background-color: ${({ theme }) => theme.body};
@@ -94,7 +78,7 @@ function Menu(props) {
         padding-top: 60px;
     `;
 
-    const A = styled.a`
+    const A = styled.span`
         color: ${({ theme }) => theme.logo};
     `;
 
@@ -110,63 +94,6 @@ function Menu(props) {
                             <img alt="" onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
                             <Title>bp</Title>
                         </EstiloMenu>
-                        <MenuLateral id="mySidenav" className="sidenav">
-                            <A href="" className="closebtn" onClick={closeNav}>&times;</A>
-                            <A href="">Configurações</A>
-                        </MenuLateral>
-                        <MenuLateralBotao onClick={openNav}>&#9776;</MenuLateralBotao>
-                    </Fragment>
-                </ThemeProvider>
-            </>
-        );
-    }
-    else if(props.funcao === "campanha"){
-        return (
-            <>
-                <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-                    <Fragment>
-                        <GlobalTheme />
-                        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap" rel="stylesheet"></link>
-                        <EstiloMenu>
-                            <img alt="" onClick={()=>redirecionar("home")} className="logo" src={logo} />
-                            <Title>bp</Title>
-                            <div className="divDireita">
-                                <img src={theme === "light" ? notificacaoPreto : notificacaoBranco} alt="" />
-                                <img onClick={()=>redirecionar(sessionStorage.getItem("tipo"))} src={theme === "light" ? contaPreto : contaBranco} alt="" />
-                                <img alt="" style={estilo} onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
-                            </div>
-                        </EstiloMenu>
-                        <MenuLateral id="mySidenav" className="sidenav">
-                            <A href="" className="closebtn" onClick={closeNav}>&times;</A>
-                            <A href="">Configurações</A>
-                        </MenuLateral>
-                        <MenuLateralBotao onClick={openNav}>&#9776;</MenuLateralBotao>
-                    </Fragment>
-                </ThemeProvider>
-            </>
-        );
-    }
-    else if(props.funcao==="menunota"){
-        return (
-            <>
-                <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-                    <Fragment>
-                        <GlobalTheme />
-                        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap" rel="stylesheet"></link>
-                        <EstiloMenu2>
-                            <img alt="" onClick={()=>redirecionar("home")} className="logo" src={logo} />
-                            <Title>bp</Title>
-                            <div className="divDireita">
-                                <img src={theme === "light" ? notificacaoPreto : notificacaoBranco} alt="" />
-                                <img src={theme === "light" ? contaPreto : contaBranco} alt="" />
-                                <img alt="" style={estilo} onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
-                            </div>
-                        </EstiloMenu2>
-                        <MenuLateral id="mySidenav" className="sidenav">
-                            <A href="" className="closebtn" onClick={closeNav}>&times;</A>
-                            <A href="">Configurações</A>
-                        </MenuLateral>
-                        <MenuLateralBotao onClick={openNav}>&#9776;</MenuLateralBotao>
                     </Fragment>
                 </ThemeProvider>
             </>
@@ -183,15 +110,14 @@ function Menu(props) {
                             <img alt="" onClick={()=>redirecionar("home")} className="logo" src={logo} />
                             <Title>bp</Title>
                             <div className="divDireita">
-                                <img alt="" onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
-                                <Botao onClick={()=>redirecionar("campanhas-doador")}>Campanhas</Botao>
                                 <img src={theme === "light" ? notificacaoPreto : notificacaoBranco} alt="" />
-                                <img src={theme === "light" ? contaPreto : contaBranco} alt="" />
+                                <img onClick={()=>redirecionar("Perfil")} src={theme === "light" ? contaPreto : contaBranco} alt="" />
+                                <img alt="" style={estilo} onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
                             </div>
                         </EstiloMenu>
                         <MenuLateral id="mySidenav" className="sidenav">
                             <A href="" className="closebtn" onClick={closeNav}>&times;</A>
-                            <A href="">Configurações</A>
+                            <A onClick={()=>redirecionar("Perfil")}>Perfil</A>
                         </MenuLateral>
                         <MenuLateralBotao onClick={openNav}>&#9776;</MenuLateralBotao>
                     </Fragment>
@@ -199,15 +125,16 @@ function Menu(props) {
             </>
         );
     }
-
 }
 
 export default Menu;
 
 function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("mySidenav").style.width = "20%";
+    document.getElementById("mySidenav").style.boxShadow = "0 0 0 100vmax rgba(0, 0, 0, .3)";
 }
 function closeNav() {
+    document.getElementById("mySidenav").style.boxShadow = "";
     document.getElementById("mySidenav").style.width = "0";
 }
 function redirecionar(pagina) {

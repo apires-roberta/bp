@@ -11,8 +11,9 @@ export function Grafico(props) {
   const H3Grafico = styled.h3`
     padding-top: 8%;
     color: ${({ theme }) => theme.logo};
-  `;
+  `; 
   var valores = calcularRestante(props.valorDesejado,props.valorAtual)
+  console.log(props.valorAtual)
   configGrafico(valores);
   return (
   <>

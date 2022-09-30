@@ -80,7 +80,7 @@ function CartaoPerfilOng(){
                         </Divtext>
                     </DivLogin>
                     <div style={alinhaBtn}>
-                        <Link to="/campanhas-ong"><button style={estiloBtn} class="btn">Campanha</button></Link>
+                        <Link to="/campanha"><button style={estiloBtn} class="btn">Campanha</button></Link>
                         <Link to="/feed"><button style={estiloBtn} class="btn">Feed</button></Link>
                         <Link to="/dashboard"><button style={estiloBtn} class="btn">Dashboard</button></Link>
                     </div>

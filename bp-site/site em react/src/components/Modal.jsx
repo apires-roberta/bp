@@ -13,7 +13,7 @@ export default function BasicModal() {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: '33%',
     border: 'none',
     boxShadow: 24,
     borderRadius: "20px"
@@ -21,7 +21,7 @@ export default function BasicModal() {
   const DivInfo = styled.div`
         width: 24.5%;
         margin-left: 8%;
-        margin-bottom: 5%;
+        margin-top: 4%;
         float: left;
         box-shadow: ${({ theme }) => theme.borda};
         border-radius: 10px;
