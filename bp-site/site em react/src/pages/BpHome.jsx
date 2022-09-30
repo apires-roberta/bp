@@ -144,10 +144,10 @@ function BpHome(props) {
                     <h1>bp</h1>
                 </div>
                 <div class="div-botoes-menu-lua">
-                    <button><img style={estilo} onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} /></button>
+                    <button><img style={estilo} alt="" onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} /></button>
                 </div>
                 <div class="div-botoes-menu">
-                    <Botao onClick={()=>redirecionar("campanhas-doador")}> Campanhas |</Botao>
+                    <Botao onClick={()=>redirecionar("campanha")}> Campanhas |</Botao>
                     <Botao class="botao-nav"> Sobre nós |</Botao>
                     <Botao onClick={()=>redirecionar("login")} class="botao-nav"> Entrar |</Botao>
                     <Botao onClick={()=>redirecionar("cadastro-doador")} class="botao-nav"> Cadastra-se |</Botao>

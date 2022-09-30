@@ -8,20 +8,20 @@ function CardCampanhaOng(props) {
     function guardarCampanha(id){
         apiCampanha.delete(`/campanha/${id}`).then((resposta) => {
           console.log("post ok", resposta);
-          redirecionar("campanhas-ong");
+          redirecionar("campanha");
       })
       } 
     function alterarValorBanco(id){
         var valor = parseFloat(document.getElementById(`mudarValor${id}`).value)
         apiCampanha.patch(`/campanha/alterarValor/${id}/${valor}`).then((resposta) => {
           console.log("post ok", resposta);
-          redirecionar("campanhas-ong");
+          redirecionar("campanha");
       })
       }
     const DivInfo = styled.div`
         width: 20%;
         margin-left: 8%;
-        margin-bottom: 5%;
+        margin-top: 4%;
         padding-top: 3%;
         padding-left: 2%;
         padding-right: 2%;

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.3",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.8.2",
@@ -22,6 +24,7 @@
     "react-scripts": "5.0.1",
     "react-simple-maps": "^3.0.0",
     "styled-components": "^5.3.5",
+    "sweetalert2": "^11.4.35",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
