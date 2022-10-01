@@ -6,7 +6,7 @@ import styled from "styled-components";
 export default function BarraPesquisa() {
   const [info, setInfo] = useState([]);
   const [text, setText] = useState("");
-  const response = [];
+  const element = "";
 
   useEffect(() => {
     if (text) {
@@ -29,18 +29,12 @@ export default function BarraPesquisa() {
             })
             .catch((error) => {
               console.log('Catch:', error);
+              element = <h1>Não encontrado</h1>;
             });
         });
     }
+    
   }, [text]);
-
-  // const chamarPesquisa = (any) => {
-  //   setText(any);
-
-  //   // apiConsulta.get(`bp/ong/get/${text}`).then((dados) => {
-  //   //   console.log(dados);
-  //   // })
-  // }
 
   const DivResult = styled.table`
      background-color: ${({ theme }) => theme.menu};
@@ -48,24 +42,34 @@ export default function BarraPesquisa() {
      height: 40px;
     `;
 
+  const TdEstilo = styled.td`
+    @import url(https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap);
+    color: ${({ theme }) => theme.logo};
+    text-align: left;
+    width: 280px;
+    font-size: 25px;
+    font-family: 'Comfortaa', cursive;
+    padding-left: 15px;
+   `;
+
   return (
     <div className="divOng">
       <SearchInput
         value={text}
         onChange={(search) => setText(search)}
       />
-      <br />{text && !info.length ? <h1>Não encontrado</h1> : info.map(item => (
+      <br />{text && info.length ?  info.map(item => (
         <DivResult key={item.cod}>
           {/*<div className="divImagem" style={{ backgroundImage: `url(data:image/jpeg;base64,${item.fotoPerfil}`, float: 'left' }}></div>
           <h1 className="h1Nome">{item.nome}</h1>*/}
           <DivResult key={item.cod}>
             <tr className="tableImg">
-              <td ><div className="divImagem" style={{ backgroundImage: `url(data:image/jpeg;base64,${item.fotoPerfil}`, float: 'left' }}></div></td>
-              <td>{item.nome}</td>
+              <td ><div className="divImagem" style={{ backgroundImage: `url(data:image/jpeg;base64,${item.fotoPerfil}`, float: 'left' }}></div><br /></td>
+              <TdEstilo>{item.nome}</TdEstilo>
             </tr>
-            </DivResult>
+          </DivResult>
         </DivResult>
-      ))}
+      )): <h1>{element}</h1>}
     </div>
   );
 }
