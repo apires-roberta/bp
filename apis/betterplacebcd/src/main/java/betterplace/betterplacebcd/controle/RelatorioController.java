@@ -1,9 +1,8 @@
 package betterplace.betterplacebcd.controle;
 
-import betterplace.betterplacebcd.classes.*;
-import betterplace.betterplacebcd.data.dto.usuario.ReadUsuarioDto;
-import betterplace.betterplacebcd.entidade.Doacao;
-import betterplace.betterplacebcd.entidade.Campanha;
+import betterplace.betterplacebcd.classes.forecast.ExportarDados;
+import betterplace.betterplacebcd.classes.forecast.Forecast;
+import betterplace.betterplacebcd.classes.forecast.GravarArquivo;
 import betterplace.betterplacebcd.repositorio.*;
 import betterplace.betterplacebcd.services.relatorio.IRelatorioService;
 import betterplace.betterplacebcd.servicesreferences.IDoadorService;
@@ -14,9 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
 
 import static org.springframework.http.ResponseEntity.*;
 

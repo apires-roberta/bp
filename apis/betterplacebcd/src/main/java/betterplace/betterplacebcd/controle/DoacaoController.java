@@ -1,8 +1,6 @@
 package betterplace.betterplacebcd.controle;
 
-import betterplace.betterplacebcd.classes.Notificacao;
 import betterplace.betterplacebcd.data.dto.doacao.CreateDoacaoDto;
-import betterplace.betterplacebcd.entidade.Doacao;
 import betterplace.betterplacebcd.repositorio.DoacoesRepository;
 import betterplace.betterplacebcd.services.doacao.IDoacaoService;
 import feign.FeignException;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 
 import static org.springframework.http.ResponseEntity.status;
 

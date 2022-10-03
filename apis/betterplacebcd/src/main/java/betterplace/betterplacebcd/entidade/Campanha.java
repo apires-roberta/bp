@@ -6,6 +6,7 @@ import betterplace.betterplacebcd.data.enums.TipoCampanha;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 public class Campanha {
@@ -47,6 +48,19 @@ public class Campanha {
         this.valorNecessario = novaCampanha.getValorNecessario();
         this.dataCriacao = LocalDateTime.now();
         this.ong = ong;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Campanha)) return false;
+        Campanha campanha = (Campanha) o;
+        return isDisponivel() == campanha.isDisponivel() && Objects.equals(getIdCampanha(), campanha.getIdCampanha()) && Objects.equals(getOng(), campanha.getOng()) && Objects.equals(getNomeCampanha(), campanha.getNomeCampanha()) && Objects.equals(getNomeItem(), campanha.getNomeItem()) && getTipoCampanha() == campanha.getTipoCampanha() && Objects.equals(getDescCampanha(), campanha.getDescCampanha()) && Objects.equals(getValorNecessario(), campanha.getValorNecessario()) && Objects.equals(getDataCriacao(), campanha.getDataCriacao());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIdCampanha(), getOng(), getNomeCampanha(), getNomeItem(), getTipoCampanha(), getDescCampanha(), getValorNecessario(), getDataCriacao(), isDisponivel());
     }
 
     public Ong getOng() {

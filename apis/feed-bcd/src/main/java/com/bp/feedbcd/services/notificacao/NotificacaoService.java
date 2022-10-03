@@ -40,7 +40,10 @@ public class NotificacaoService implements INotificacaoService {
 
         try {
             ReadUsuarioDto ong = _ongService.getOngById(idOng); //Verifica se ONG existe
-            enfileirarDoadores(ong);
+            Thread thread = new Thread(() -> {
+                enfileirarDoadores(ong);
+            });
+            thread.start();
         } catch (FeignException.NotFound ex) {
             throw ex;
         } catch (Exception ex) {
@@ -62,7 +65,7 @@ public class NotificacaoService implements INotificacaoService {
 
         while (!filaInscritos.isEmpty())
             try {
-                notificar("Novo post da ong " + ong.getNome()+"!", "Venha Conferir as novidades", filaInscritos.poll());
+                notificar("Novo post da ong " + ong.getNome() + "!", "Venha Conferir as novidades", filaInscritos.poll());
             } catch (FeignException.NotFound ex) {
                 throw ex;
             } catch (Exception ex) {
@@ -96,7 +99,7 @@ public class NotificacaoService implements INotificacaoService {
     public void deleteNotificacao() {
         try {
             Optional<NotificacaoFeed> notificacao = notificacaoRepository.findById(pilhaNotificacoes.pop().getId());
-            if(notificacao.isEmpty()) throw new IllegalStateException();
+            if (notificacao.isEmpty()) throw new IllegalStateException();
 
             pilhaNotificacoesDesfeitas.push(notificacao.get());
             notificacaoRepository.delete(notificacao.get());

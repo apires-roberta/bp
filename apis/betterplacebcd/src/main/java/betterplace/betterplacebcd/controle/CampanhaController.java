@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 import static org.springframework.http.ResponseEntity.*;
@@ -108,6 +109,7 @@ public class CampanhaController {
     public ResponseEntity<?> alterarDisponibilidadeCampanha(@PathVariable Integer idCampanha){
         if (idCampanha == null || idCampanha <= 0)
             return status(400).build();
+
         try {
             _campanhaService.alterarDisponibilidadeCampanha(idCampanha);
             return status(204).build();
@@ -116,5 +118,18 @@ public class CampanhaController {
         }catch (Exception ex){
             return status(500).body(ex.getMessage());
         }
+    }
+
+    @GetMapping("/recomendacao/{idCampanha}")
+    public ResponseEntity<List<ReadCampanhaDto>> getRecomendacoesByIdCampanha(@PathVariable @Positive int idCampanha){
+        try {
+            List<ReadCampanhaDto> recomendacoes = _campanhaService.getRecomendacoesByIdCampanha(idCampanha);
+            return  recomendacoes.isEmpty() ? status(204).build() : status(200).body(recomendacoes);
+        }catch (NullPointerException ex){
+            return status(404).build();
+        }catch (Exception ex){
+            throw ex;
+        }
+
     }
 }

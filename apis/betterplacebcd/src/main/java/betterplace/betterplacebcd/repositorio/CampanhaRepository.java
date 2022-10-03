@@ -10,4 +10,5 @@ public interface CampanhaRepository extends JpaRepository<Campanha, Integer> {
     List<Campanha> findByOngCod(Integer idOng);
     Campanha findByIdCampanha(Integer idCampanha);
     Integer countByOngCod(Integer idOng);
+    List<Campanha> findByDisponivelTrue();
 }

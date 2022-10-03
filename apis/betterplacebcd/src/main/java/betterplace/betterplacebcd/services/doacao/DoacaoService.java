@@ -1,6 +1,6 @@
 package betterplace.betterplacebcd.services.doacao;
 
-import betterplace.betterplacebcd.classes.Notificacao;
+import betterplace.betterplacebcd.classes.ed.Notificacao;
 import betterplace.betterplacebcd.data.dto.doacao.CreateDoacaoDto;
 import betterplace.betterplacebcd.entidade.Campanha;
 import betterplace.betterplacebcd.entidade.Doacao;
@@ -12,8 +12,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
-
-import java.util.Timer;
 
 @Service
 public class DoacaoService implements IDoacaoService{

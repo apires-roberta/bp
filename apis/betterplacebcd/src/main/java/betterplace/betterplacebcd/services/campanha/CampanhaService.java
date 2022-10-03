@@ -1,8 +1,11 @@
 package betterplace.betterplacebcd.services.campanha;
 
+import betterplace.betterplacebcd.classes.ed.HashTable;
+import betterplace.betterplacebcd.classes.ed.Node;
 import betterplace.betterplacebcd.data.dto.campanha.CreateCampanhaDto;
 import betterplace.betterplacebcd.data.dto.campanha.ReadCampanhaDto;
 import betterplace.betterplacebcd.data.dto.usuario.ReadUsuarioDto;
+import betterplace.betterplacebcd.data.enums.TipoCampanha;
 import betterplace.betterplacebcd.entidade.Campanha;
 import betterplace.betterplacebcd.entidade.Ong;
 import betterplace.betterplacebcd.repositorio.CampanhaRepository;
@@ -38,23 +41,12 @@ public class CampanhaService implements ICampanhaService{
         if (campanhas.isEmpty())
             return null;
 
- /*       List<ReadCampanhaDto> readCampanhaDtos = campanhas.stream()
-                                                      .map(campanha -> _mapper.map(campanha, ReadCampanhaDto.class))
-                                                      .collect(Collectors.toList());*/
-        List<ReadCampanhaDto> readCampanhaDtos = new ArrayList<>();
-
-        for (Campanha campanha : campanhas) {
-            ReadCampanhaDto campanhaDto = _mapper.map(campanha, ReadCampanhaDto.class);
-            campanhaDto.setTotalDoado(_doacoesRepository.sumValorDoadoCampanha(campanha.getIdCampanha()));
-            readCampanhaDtos.add(campanhaDto);
-        }
-        return readCampanhaDtos;
+        return getReadCampanhaDtosComTotalDoado(campanhas);
     }
 
     @Override
     public void alterarValor(Integer cod, Double valorNovo) {
         Campanha campanha = _campanhaRepository.findByIdCampanha(cod);
-
         if (campanha == null)
             throw new IllegalArgumentException(String.format("Campanha de ID %d não existe!", cod));
 
@@ -77,14 +69,7 @@ public class CampanhaService implements ICampanhaService{
         if (campanhas == null || campanhas.isEmpty())
             return null;
 
-        List<ReadCampanhaDto> readCampanhaDtos = new ArrayList<>();
-        for (Campanha campanha : campanhas) {
-            ReadCampanhaDto campanhaDto = _mapper.map(campanha, ReadCampanhaDto.class);
-            campanhaDto.setTotalDoado(_doacoesRepository.sumValorDoadoCampanha(campanha.getIdCampanha()));
-            readCampanhaDtos.add(campanhaDto);
-        }
-
-        return readCampanhaDtos;
+        return getReadCampanhaDtosComTotalDoado(campanhas);
     }
 
     @Override
@@ -106,5 +91,43 @@ public class CampanhaService implements ICampanhaService{
 
         campanha.setDisponivel(!campanha.isDisponivel());
         _campanhaRepository.save(campanha);
+    }
+
+    @Override
+    public List<ReadCampanhaDto> getRecomendacoesByIdCampanha(int idCampanha) {
+        HashTable hashTable = new HashTable(TipoCampanha.values().length);
+        List<Campanha> campanhas = _campanhaRepository.findByDisponivelTrue();
+
+        //campanhas.stream().forEach(campanha -> hashTable.insere(campanha.getTipoCampanha().getIdTipoCampanha()));
+//        for (Campanha campanha : campanhas) {
+//            hashTable.insere(campanha.getTipoCampanha().getIdTipoCampanha());
+//        }
+        //TODO Colocar HashTable do tipo Campanha
+        Node nodeBuscado = hashTable.busca(idCampanha);
+
+        if (nodeBuscado == null)
+            throw new NullPointerException();
+
+        List<ReadCampanhaDto> campanhasRecomendadas = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            if (nodeBuscado == null)
+                break;
+
+            campanhasRecomendadas.add(_mapper.map(_campanhaRepository.findByIdCampanha(nodeBuscado.getInfo()), ReadCampanhaDto.class));
+            nodeBuscado = nodeBuscado.getNext();
+        }
+
+        return campanhasRecomendadas;
+    }
+
+    private List<ReadCampanhaDto> getReadCampanhaDtosComTotalDoado(List<Campanha> campanhas) {
+        List<ReadCampanhaDto> readCampanhaDtos = new ArrayList<>();
+
+        for (Campanha campanha : campanhas) {
+            ReadCampanhaDto campanhaDto = _mapper.map(campanha, ReadCampanhaDto.class);
+            campanhaDto.setTotalDoado(_doacoesRepository.sumValorDoadoCampanha(campanha.getIdCampanha()));
+            readCampanhaDtos.add(campanhaDto);
+        }
+        return readCampanhaDtos;
     }
 }

@@ -1,6 +1,7 @@
 package betterplace.betterplacebcd.services.relatorio;
 
-import betterplace.betterplacebcd.classes.*;
+import betterplace.betterplacebcd.classes.ed.ListaObj;
+import betterplace.betterplacebcd.classes.forecast.*;
 import betterplace.betterplacebcd.data.dto.usuario.ReadUsuarioDto;
 import betterplace.betterplacebcd.entidade.Campanha;
 import betterplace.betterplacebcd.entidade.Doacao;

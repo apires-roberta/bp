@@ -15,4 +15,6 @@ public interface ICampanhaService {
     ReadCampanhaDto getCampanhaById(Integer cod);
 
     void alterarDisponibilidadeCampanha(Integer idCampanha);
+
+    List<ReadCampanhaDto> getRecomendacoesByIdCampanha(int idCampanha);
 }
