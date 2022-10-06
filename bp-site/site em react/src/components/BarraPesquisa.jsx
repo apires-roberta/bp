@@ -19,7 +19,7 @@ export default function BarraPesquisa() {
           console.log(response);
         })
         .catch((error) => {
-          fetch(
+          /*fetch(
             `http://localhost:8080/bp/doador/get/${text}`
           )
             .then((response) => response.json())
@@ -30,7 +30,7 @@ export default function BarraPesquisa() {
             .catch((error) => {
               console.log('Catch:', error);
               element = <h1>Não encontrado</h1>;
-            });
+            });*/
         });
     }
     

@@ -21,6 +21,10 @@ function Feed(){
         const localTheme = window.localStorage.getItem("theme");
         localTheme && setTheme(localTheme);
     }, []);
+    useEffect(() => {
+        
+        
+      }, []);
     return(
         <>
         <Menu funcaoDark={toggleTheme}/>
