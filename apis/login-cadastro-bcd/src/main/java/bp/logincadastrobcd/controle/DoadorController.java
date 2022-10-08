@@ -52,7 +52,7 @@ public class DoadorController {
 
         boolean atualizado = _doadorService.atualizarFotoDoador(idUsuario, fotoPerfil);
 
-        return atualizado ? status(200).build() : status(404).build();
+        return atualizado ? status(204).build() : status(404).build();
     }
     @DeleteMapping("/logoff/{idUsuario}")
     public ResponseEntity logoff(@PathVariable Integer idUsuario){
@@ -61,7 +61,7 @@ public class DoadorController {
 
         boolean deslogado = _doadorService.logoff(idUsuario);
 
-        return deslogado ? status(200).build() : status(404).build();
+        return deslogado ? status(204).build() : status(404).build();
     }
     @DeleteMapping("/deletarConta/{idUsuario}")
     public ResponseEntity deletarConta(@PathVariable Integer idUsuario){
@@ -69,7 +69,7 @@ public class DoadorController {
             return status(404).build();
 
         boolean deletado = _doadorService.deletarConta(idUsuario);
-        return deletado ? status(200).build() : status(404).build();
+        return deletado ? status(204).build() : status(404).build();
     }
 
     @GetMapping("/{idUsuario}")
@@ -87,4 +87,6 @@ public class DoadorController {
 
         return doadores == null ? status(404).build() : status(200).body(doadores);
     }
+
+
 }
