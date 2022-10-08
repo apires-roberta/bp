@@ -1,13 +1,13 @@
 package betterplace.betterplacebcd.entidade;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.br.CNPJ;
+
+import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Ong extends Usuario {
-    //@CNPJ @NotNull
+    @CNPJ @NotNull
     private String cnpj;
 
     public String getCnpj() {

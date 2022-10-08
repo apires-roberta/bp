@@ -2,7 +2,7 @@ package betterplace.betterplacebcd.entidade;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 @Entity
