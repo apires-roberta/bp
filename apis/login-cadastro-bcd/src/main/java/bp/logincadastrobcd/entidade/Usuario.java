@@ -1,9 +1,11 @@
 package bp.logincadastrobcd.entidade;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
@@ -33,22 +35,30 @@ public abstract class Usuario {
     private byte[] fotoPerfil;
 
     @NotNull
+    @Column(length = 8)
+    @Size(min = 8)
     private String cep;
 
     @NotNull
-    private Integer numeroResidencia;
-
+    private Integer numero;
+    @Value("#{T(java.time.LocalDateTime).now()}")
     private LocalDateTime dataCriacaoConta;
 
+    @PastOrPresent
+    @NotNull
+    private LocalDate dataNascimento;
+
     public Usuario() {
+        this.dataCriacaoConta = LocalDateTime.now();
     }
 
-    public Usuario(String nome, String email, String senha, String usuario, String telefone) {
+    public Usuario(String nome, String email, String senha, String usuario, String telefone, LocalDate dataNascimento) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.usuario = usuario;
         this.telefone = telefone;
+        this.dataNascimento = dataNascimento;
         this.dataCriacaoConta = LocalDateTime.now();
     }
 
@@ -60,12 +70,12 @@ public abstract class Usuario {
         this.cep = cep;
     }
 
-    public Integer getNumeroResidencia() {
-        return numeroResidencia;
+    public Integer getNumero() {
+        return numero;
     }
 
-    public void setNumeroResidencia(Integer numeroResidencia) {
-        this.numeroResidencia = numeroResidencia;
+    public void setNumero(Integer numeroResidencia) {
+        this.numero = numeroResidencia;
     }
 
     public Integer getCod() {
@@ -139,4 +149,13 @@ public abstract class Usuario {
     public void setDataCriacaoConta(LocalDateTime dataCriacaoConta) {
         this.dataCriacaoConta = dataCriacaoConta;
     }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+    
 }

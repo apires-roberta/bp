@@ -1,6 +1,8 @@
 package bp.logincadastrobcd.controle;
 
+import bp.logincadastrobcd.dto.doador.UpdateDoadorDto;
 import bp.logincadastrobcd.dto.ong.CreateOng;
+import bp.logincadastrobcd.dto.ong.UpdateOngDto;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
 import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
 import bp.logincadastrobcd.service.IOngService;
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import java.util.List;
 
@@ -86,5 +90,16 @@ public class OngController {
         List<ReadUsuarioDto> ongs = _ongService.getOngsByNome(nomeOng);
 
         return ongs == null ? status(404).build() : status(200).body(ongs);
+    }
+
+    @PatchMapping("/novas-infos/{idUsuario}")
+    public ResponseEntity<?> atualizarDadosCadastrais(@PathVariable @NotNull @Positive Integer idUsuario,
+                                                      @RequestBody @Valid UpdateOngDto ongAtualizada){
+        try {
+            boolean atualizado = _ongService.atualizarDadosCadastrais(idUsuario, ongAtualizada);
+            return atualizado ? status(204).build() : status(404).build();
+        }catch (Exception ex){
+            throw ex;
+        }
     }
 }

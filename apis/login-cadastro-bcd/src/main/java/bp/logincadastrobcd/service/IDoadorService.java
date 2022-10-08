@@ -1,6 +1,7 @@
 package bp.logincadastrobcd.service;
 
 import bp.logincadastrobcd.dto.doador.CreateDoador;
+import bp.logincadastrobcd.dto.doador.UpdateDoadorDto;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
 import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
 
@@ -20,4 +21,6 @@ public interface IDoadorService {
     ReadUsuarioDto getDoador(Integer idUsuario);
 
     List<ReadUsuarioDto> getDoadorByNome(String nomeDoador);
+
+    boolean atualizarDadosCadastrais(Integer idUsuario, UpdateDoadorDto doadorAtualizado);
 }

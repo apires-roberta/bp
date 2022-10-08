@@ -1,10 +1,10 @@
 package bp.logincadastrobcd.service;
 
 import bp.logincadastrobcd.dto.doador.CreateDoador;
+import bp.logincadastrobcd.dto.doador.UpdateDoadorDto;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
 import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
 import bp.logincadastrobcd.entidade.Doador;
-import bp.logincadastrobcd.entidade.Ong;
 import bp.logincadastrobcd.repositorio.DoadorRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,72 +17,78 @@ import java.util.Optional;
 
 @Service
 @CrossOrigin
-public class DoadorService implements IDoadorService{
+public class DoadorService implements IDoadorService {
     @Autowired
-    private DoadorRepository repository;
+    private DoadorRepository _repository;
     @Autowired
     private ModelMapper _mapper;
+
     @Override
     public Integer login(LoginUsuarioDto usuarioLogin) {
-        if (!repository.existsByEmailAndSenha(usuarioLogin.getEmail(), usuarioLogin.getSenha()))
+        if (!_repository.existsByEmailAndSenha(usuarioLogin.getEmail(), usuarioLogin.getSenha()))
             return null;
 
-        Doador doador = repository.findByEmail(usuarioLogin.getEmail());
+        Doador doador = _repository.findByEmail(usuarioLogin.getEmail());
         doador.setAutenticado(true);
-        repository.save(doador);
+        _repository.save(doador);
         return doador.getCod();
     }
+
     @Override
     public String cadastro(CreateDoador novoDoador) {
-        if (repository.existsByEmail(novoDoador.getEmail()))
+        if (_repository.existsByEmail(novoDoador.getEmail()))
             return "Existente"; //409 - Conflict
 
         if (novoDoador.getCpf() == null || novoDoador.getEmail() == null || novoDoador.getSenha() == null)
             return "Bad Request";
 
         Doador doadorMap = _mapper.map(novoDoador, Doador.class);
-        repository.save(doadorMap);
+        _repository.save(doadorMap);
 
         return doadorMap.getCod().toString();
     }
+
     @Override
     public boolean atualizarFotoDoador(Integer idDoador, byte[] fotoPerfil) {
-        if (!repository.existsById(idDoador))
+        if (!_repository.existsById(idDoador))
             return false;
 
-        Optional<Doador> doador = repository.findByCod(idDoador);
+        Optional<Doador> doador = _repository.findByCod(idDoador);
         if (doador.isEmpty())
             return false;
 
         doador.get().setFotoPerfil(fotoPerfil);
-        repository.save(doador.get());
+        _repository.save(doador.get());
         return true;
     }
+
     @Override
     public boolean logoff(Integer idUsuario) {
-        if (!repository.existsByCodAndAutenticadoTrue(idUsuario))
+        if (!_repository.existsByCodAndAutenticadoTrue(idUsuario))
             return false;
 
-        Optional<Doador> doador = repository.findByCod(idUsuario);
+        Optional<Doador> doador = _repository.findByCod(idUsuario);
         if (doador.isEmpty())
             return false;
 
         doador.get().setAutenticado(false);
-        repository.save(doador.get());
+        _repository.save(doador.get());
         return true;
     }
+
     @Override
     public boolean deletarConta(Integer idUsuario) {
-        Optional<Doador> doador = repository.findByCod(idUsuario);
+        Optional<Doador> doador = _repository.findByCod(idUsuario);
         if (doador.isEmpty())
             return false;
 
-        repository.delete(doador.get());
+        _repository.delete(doador.get());
         return true;
     }
+
     @Override
     public ReadUsuarioDto getDoador(Integer idUsuario) {
-        Optional<Doador> doador = repository.findByCod(idUsuario);
+        Optional<Doador> doador = _repository.findByCod(idUsuario);
         if (doador.isEmpty())
             return null;
 
@@ -92,7 +98,7 @@ public class DoadorService implements IDoadorService{
 
     @Override
     public List<ReadUsuarioDto> getDoadorByNome(String nomeDoador) {
-        List<Doador> doadores = repository.findByNomeContains(nomeDoador);
+        List<Doador> doadores = _repository.findByNomeContains(nomeDoador);
 
         if (doadores.isEmpty())
             return null;
@@ -100,9 +106,20 @@ public class DoadorService implements IDoadorService{
         List<ReadUsuarioDto> doadoresDto = new ArrayList<>();
 
         for (Doador doador : doadores) {
-            doadoresDto.add(_mapper.map(doador,ReadUsuarioDto.class));
+            doadoresDto.add(_mapper.map(doador, ReadUsuarioDto.class));
         }
-
         return doadoresDto;
+    }
+
+    @Override
+    public boolean atualizarDadosCadastrais(Integer idUsuario, UpdateDoadorDto doadorAtualizado) {
+        Optional<Doador> doadorAtualOpt = _repository.findByCod(idUsuario);
+        if (doadorAtualOpt.isEmpty())
+            return false;
+
+        Doador doadorAtual = doadorAtualOpt.get();
+        _mapper.map(doadorAtualizado, doadorAtual);
+        _repository.save(doadorAtual);
+        return true;
     }
 }

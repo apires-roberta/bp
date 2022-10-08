@@ -1,19 +1,14 @@
-package bp.logincadastrobcd.entidade;
-
+package bp.logincadastrobcd.dto.doador;
+import bp.logincadastrobcd.dto.usuario.UpdateUsuarioDto;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.Entity;
-import javax.validation.constraints.NotNull;
-
-@Entity
-public class Doador extends Usuario {
-    @CPF @NotNull
+public class UpdateDoadorDto extends UpdateUsuarioDto {
+    @CPF
     private String cpf;
 
     public String getCpf() {
         return cpf;
     }
-
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }

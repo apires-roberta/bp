@@ -1,6 +1,7 @@
 package bp.logincadastrobcd.controle;
 
 import bp.logincadastrobcd.dto.doador.CreateDoador;
+import bp.logincadastrobcd.dto.doador.UpdateDoadorDto;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
 import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
 import bp.logincadastrobcd.service.IDoadorService;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.ValidationException;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import java.util.List;
 
@@ -67,8 +71,8 @@ public class DoadorController {
     public ResponseEntity deletarConta(@PathVariable Integer idUsuario){
         if (idUsuario == null)
             return status(404).build();
-
         boolean deletado = _doadorService.deletarConta(idUsuario);
+
         return deletado ? status(204).build() : status(404).build();
     }
 
@@ -78,15 +82,24 @@ public class DoadorController {
             return status(404).build();
 
         ReadUsuarioDto doador = _doadorService.getDoador(idUsuario);
+
         return doador != null ? status(200).body(doador) : status(404).build();
     }
 
     @GetMapping("/nomeDoador")
     public ResponseEntity<List<ReadUsuarioDto>> getDoadorsByNome(@RequestParam String nomeDoador){
         List<ReadUsuarioDto> doadores = _doadorService.getDoadorByNome(nomeDoador);
-
         return doadores == null ? status(404).build() : status(200).body(doadores);
     }
 
-
+    @PatchMapping("/novas-infos/{idUsuario}")
+    public ResponseEntity<?> atualizarDadosCadastrais(@PathVariable @NotNull @Positive Integer idUsuario,
+                                                      @RequestBody @Valid UpdateDoadorDto doadorAtualizado){
+        try {
+            boolean atualizado = _doadorService.atualizarDadosCadastrais(idUsuario, doadorAtualizado);
+            return atualizado ? status(204).build() : status(404).build();
+        }catch (Exception ex){
+            throw ex;
+        }
+    }
 }
