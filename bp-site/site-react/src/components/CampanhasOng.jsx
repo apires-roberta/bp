@@ -26,7 +26,7 @@ function CampanhasOng() {
   return (
     <>
           <DivInfo>{
-            campanha.slice(0,5).map((item) => (
+            campanha.map((item) => (
               <CardCampanhaOng nome={item.nomeCampanha}
                 descCampanha={item.descCampanha}
                 valorCampanha={item.valorNecessario}
