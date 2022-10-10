@@ -42,14 +42,14 @@ public abstract class Usuario {
     @NotNull
     private Integer numero;
     @Value("#{T(java.time.LocalDateTime).now()}")
-    private LocalDateTime dataCriacaoConta;
+    private LocalDate dataCriacaoConta;
 
     @PastOrPresent
     @NotNull
     private LocalDate dataNascimento;
 
     public Usuario() {
-        this.dataCriacaoConta = LocalDateTime.now();
+
     }
 
     public Usuario(String nome, String email, String senha, String usuario, String telefone, LocalDate dataNascimento) {
@@ -59,7 +59,6 @@ public abstract class Usuario {
         this.usuario = usuario;
         this.telefone = telefone;
         this.dataNascimento = dataNascimento;
-        this.dataCriacaoConta = LocalDateTime.now();
     }
 
     public String getCep() {
@@ -142,11 +141,11 @@ public abstract class Usuario {
         this.fotoPerfil = fotoPerfil;
     }
 
-    public LocalDateTime getDataCriacaoConta() {
+    public LocalDate getDataCriacaoConta() {
         return dataCriacaoConta;
     }
 
-    public void setDataCriacaoConta(LocalDateTime dataCriacaoConta) {
+    public void setDataCriacaoConta(LocalDate dataCriacaoConta) {
         this.dataCriacaoConta = dataCriacaoConta;
     }
 
