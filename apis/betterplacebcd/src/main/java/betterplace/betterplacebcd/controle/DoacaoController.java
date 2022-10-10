@@ -1,6 +1,7 @@
 package betterplace.betterplacebcd.controle;
 
 import betterplace.betterplacebcd.data.dto.doacao.CreateDoacaoDto;
+import betterplace.betterplacebcd.data.dto.doacao.ReadDoacaoDto;
 import betterplace.betterplacebcd.repositorio.DoacoesRepository;
 import betterplace.betterplacebcd.services.doacao.IDoacaoService;
 import feign.FeignException;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
+
+import java.util.List;
 
 import static org.springframework.http.ResponseEntity.status;
 
@@ -23,13 +26,26 @@ public class DoacaoController {
     @Autowired
     private IDoacaoService _doacaoService;
     @PostMapping("")
-    public ResponseEntity doar(@RequestBody @Valid CreateDoacaoDto doacaoDto){
+    public ResponseEntity<?> doar(@RequestBody @Valid CreateDoacaoDto doacaoDto){
         if (doacaoDto == null)
             return status(400).build();
 
         try {
             _doacaoService.doar(doacaoDto);
             return status(201).build();
+        }catch (FeignException.NotFound ex){
+            return status(404).build();
+        }
+    }
+
+    @GetMapping("/campanha/{idCampanha}")
+    public ResponseEntity<List<ReadDoacaoDto>> getDoacoesByIdCampanha(@PathVariable Integer idCampanha){
+        if (idCampanha == null || idCampanha <= 0)
+            return status(400).build();
+
+        try {
+            List<ReadDoacaoDto> doacoes = _doacaoService.getDoacoesByIdCampanha(idCampanha);
+            return doacoes.isEmpty() ? status(204).build() : status(200).body(doacoes);
         }catch (FeignException.NotFound ex){
             return status(404).build();
         }

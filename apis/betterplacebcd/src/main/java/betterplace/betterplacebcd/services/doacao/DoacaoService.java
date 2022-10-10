@@ -2,6 +2,7 @@ package betterplace.betterplacebcd.services.doacao;
 
 import betterplace.betterplacebcd.classes.ed.Notificacao;
 import betterplace.betterplacebcd.data.dto.doacao.CreateDoacaoDto;
+import betterplace.betterplacebcd.data.dto.doacao.ReadDoacaoDto;
 import betterplace.betterplacebcd.entidade.Campanha;
 import betterplace.betterplacebcd.entidade.Doacao;
 import betterplace.betterplacebcd.entidade.Doador;
@@ -13,23 +14,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class DoacaoService implements IDoacaoService{
     @Autowired
-    private CampanhaRepository campanhaRepository;
+    private CampanhaRepository _campanhaRepository;
     @Autowired
-    private DoacoesRepository doacoesRepository;
+    private DoacoesRepository _doacoesRepository;
     @Autowired
     private IDoadorService _doadorService;
     @Autowired
     private ModelMapper _mapper;
     @Override
     public void doar(CreateDoacaoDto doacaoDto) {
-        Campanha campanha = campanhaRepository.findByIdCampanha(doacaoDto.getIdCampanha());
+        Campanha campanha = _campanhaRepository.findByIdCampanha(doacaoDto.getIdCampanha());
         Doador doador = _mapper.map(_doadorService.getUsuarioById(doacaoDto.getIdDoador()), Doador.class);
 
         Doacao doacao = new Doacao(campanha, doador, doacaoDto.getValorDoacao());
-        doacoesRepository.save(doacao);
+        _doacoesRepository.save(doacao);
         StopWatch sw = new StopWatch();
         //notificar(doacao); //Tempo de Execução: 6261061200ns
         Thread thread = new Thread(() -> {
@@ -38,7 +42,21 @@ public class DoacaoService implements IDoacaoService{
         sw.start();
         thread.start();
         sw.stop();
-        System.out.println("Doar terminou em " + sw.getTotalTimeNanos() +" s");
+    }
+
+    @Override
+    public List<ReadDoacaoDto> getDoacoesByIdCampanha(Integer idCampanha) {
+        List<Doacao> doacoes = _doacoesRepository.findByCampanhaIdCampanhaOrderByDataDoacaoDesc(idCampanha);
+        List<ReadDoacaoDto> doacoesDto = new ArrayList<>();
+
+        if (doacoes.isEmpty())
+            return doacoesDto;
+
+        for (Doacao doacao : doacoes) {
+            doacoesDto.add(_mapper.map(doacao, ReadDoacaoDto.class));
+        }
+
+        return doacoesDto;
     }
 
     private void notificar(Doacao doacao) {
