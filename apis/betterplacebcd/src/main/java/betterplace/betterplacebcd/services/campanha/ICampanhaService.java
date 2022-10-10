@@ -17,4 +17,10 @@ public interface ICampanhaService {
     void alterarDisponibilidadeCampanha(Integer idCampanha);
 
     List<ReadCampanhaDto> getRecomendacoesByIdCampanha(int idCampanha);
+
+    List<ReadCampanhaDto> getCampanhasDisponiveisByOng(Integer idCampanha);
+
+    void indisponibilizarTodasCampanhasByOng(Integer idOng);
+
+    Integer getQuantidadeCampanhasDisponiveisByOng(Integer idOng);
 }

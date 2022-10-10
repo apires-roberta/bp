@@ -47,7 +47,7 @@ public class CampanhaController {
         }
     }
 
-    @GetMapping("/Ong/{fkOng}")
+    @GetMapping("/ong/{fkOng}")
     public ResponseEntity<List<ReadCampanhaDto>> getCampanhasByFkOng(@PathVariable Integer fkOng) {
         if (fkOng == null || fkOng == 0)
             return status(400).build();
@@ -69,7 +69,7 @@ public class CampanhaController {
         return status(200).body(campanhas);
     }
 
-    @PatchMapping("/alterarValor/{cod}/{valorNovo}")
+    @PatchMapping("/alterarValor/campanha/{cod}/valor/{valorNovo}")
     public ResponseEntity<?> alterarValor(@PathVariable Integer cod, @PathVariable Double valorNovo) {
         if (cod == null || cod <= 0)
             return status(400).build();
@@ -105,7 +105,7 @@ public class CampanhaController {
         return campanha == null ? status(404).build() : status(200).body(campanha);
     }
 
-    @PatchMapping("/disponivel/{idCampanha}")
+    @PatchMapping("/disponibilidade/{idCampanha}")
     public ResponseEntity<?> alterarDisponibilidadeCampanha(@PathVariable Integer idCampanha){
         if (idCampanha == null || idCampanha <= 0)
             return status(400).build();
@@ -130,6 +130,48 @@ public class CampanhaController {
         }catch (Exception ex){
             throw ex;
         }
+    }
 
+    @GetMapping("/disponiveis/ong/{idOng}")
+    public ResponseEntity<List<ReadCampanhaDto>> getCampanhasDisponiveis(@PathVariable Integer idOng){
+        if (idOng == null || idOng <= 0)
+            return status(400).build();
+
+        try {
+            List<ReadCampanhaDto> campanhas = _campanhaService.getCampanhasDisponiveisByOng(idOng);
+            return campanhas.isEmpty() ? status(204).build() : status(200).body(campanhas);
+        }catch (FeignException.NotFound ex){
+            return status(404).build();
+        }
+    }
+
+    @PatchMapping("/indisponivel/ong/{idOng}")
+    public ResponseEntity<?> indisponibilizarTodasCampanhasByOng(@PathVariable Integer idOng){
+        if (idOng == null || idOng <= 0)
+            return status(400).build();
+
+        try {
+            _campanhaService.indisponibilizarTodasCampanhasByOng(idOng);
+            return status(204).build();
+        }catch (FeignException.NotFound ex){
+            return status(404).build();
+        }catch (Exception ex){
+            return status(500).body(ex.getMessage());
+        }
+    }
+
+    @GetMapping("/quantidade-disponiveis/ong/{idOng}")
+    public ResponseEntity<Integer> getQuantidadeCampanhasDisponiveisByOng(@PathVariable Integer idOng){
+        if (idOng == null || idOng <= 0)
+            return status(400).build();
+
+        try {
+            Integer qtdDisponiveis = _campanhaService.getQuantidadeCampanhasDisponiveisByOng(idOng);
+            return status(200).body(qtdDisponiveis);
+        }catch (FeignException.NotFound ex){
+            return status(404).build();
+        }catch (Exception ex){
+            throw ex;
+        }
     }
 }

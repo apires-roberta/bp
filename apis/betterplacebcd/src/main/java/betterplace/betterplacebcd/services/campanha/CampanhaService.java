@@ -120,6 +120,37 @@ public class CampanhaService implements ICampanhaService{
         return campanhasRecomendadas;
     }
 
+    @Override
+    public List<ReadCampanhaDto> getCampanhasDisponiveisByOng(Integer idOng) {
+        verificaOngExiste(idOng);
+        List<Campanha> campanhasDisponiveis = _campanhaRepository.findByOngCodAndDisponivelTrue(idOng);
+
+        return getReadCampanhaDtosComTotalDoado(campanhasDisponiveis);
+    }
+
+    @Override
+    public void indisponibilizarTodasCampanhasByOng(Integer idOng) {
+        verificaOngExiste(idOng);
+        List<Campanha> campanhas = _campanhaRepository.findByOngCod(idOng);
+
+        for (Campanha campanha : campanhas) {
+            campanha.setDisponivel(false);
+            _campanhaRepository.save(campanha);
+        }
+    }
+
+    @Override
+    public Integer getQuantidadeCampanhasDisponiveisByOng(Integer idOng) {
+        verificaOngExiste(idOng);
+        Integer qtdCampanhasDisponiveis = _campanhaRepository.countByOngCodAndDisponivelTrue(idOng);
+
+        return qtdCampanhasDisponiveis == null ? 0 : qtdCampanhasDisponiveis;
+    }
+
+    private void verificaOngExiste(Integer idOng) {
+        _ongService.getOngById(idOng);
+    }
+
     private List<ReadCampanhaDto> getReadCampanhaDtosComTotalDoado(List<Campanha> campanhas) {
         List<ReadCampanhaDto> readCampanhaDtos = new ArrayList<>();
 
