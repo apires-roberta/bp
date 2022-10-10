@@ -134,40 +134,40 @@ function BpHome(props) {
         <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <Fragment>
              <GlobalTheme />
-            <div class="imagem-circulos-2">
+            <div className="imagem-circulos-2">
                 <img src={circulos} alt="imagem-ilustrativa-circulos-2" />
             </div>
             
-            <div class="menu">
-                <div class="div-logo-menu">
-                    <img src={logo} alt="logo" class="logo" />
+            <div className="menu">
+                <div className="div-logo-menu">
+                    <img src={logo} alt="logo" className="logo" />
                     <h1>bp</h1>
                 </div>
-                <div class="div-botoes-menu-lua">
+                <div className="div-botoes-menu-lua">
                     <button><img style={estilo} alt="" onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} /></button>
                 </div>
-                <div class="div-botoes-menu">
+                <div className="div-botoes-menu">
                     <Botao onClick={()=>redirecionar("campanha")}> Campanhas |</Botao>
-                    <Botao class="botao-nav"> Sobre nós |</Botao>
-                    <Botao onClick={()=>redirecionar("login")} class="botao-nav"> Entrar |</Botao>
-                    <Botao onClick={()=>redirecionar("cadastro-doador")} class="botao-nav"> Cadastra-se |</Botao>
+                    <Botao className="botao-nav"> Sobre nós |</Botao>
+                    <Botao onClick={()=>redirecionar("login")} className="botao-nav"> Entrar |</Botao>
+                    <Botao onClick={()=>redirecionar("cadastro-doador")} className="botao-nav"> Cadastra-se |</Botao>
                  </div>
             </div>
-            <div class="div-descricao-imagem-circulos">
-                <div class="texto-descricao-bp">
+            <div className="div-descricao-imagem-circulos">
+                <div className="texto-descricao-bp">
                     <h1>Organizamos, <br />ouvimos e ajudamos.</h1>
                     <p>A bp tem como intuito ajudar ONGs e <br />
                         pessoas que querem ajudar a se conectarem. <br />
                         Dessa forma monstamos um sistema que <br />
                         cumpre com essa conexão.</p>
                 </div>
-                <div class="imagem-circulos">
+                <div className="imagem-circulos">
                     <img src={circulos2} alt="imagem-ilustrativa-circulos" />
                 </div>
             </div>
 
-            <Contribuir class="box-2">
-                <div class="div-por-que-contribuir">
+            <Contribuir className="box-2">
+                <div className="div-por-que-contribuir">
                     <h1>
                         Por que <br />
                         contribuir?
@@ -185,87 +185,87 @@ function BpHome(props) {
                     </p>
                 </div>
 
-                <div class="div-imagem-homem-recebendo-doacao">
+                <div className="div-imagem-homem-recebendo-doacao">
                     <img src={imagemHomem} alt="imagem-homem-recebendo-doacao" />
                 </div>
             </Contribuir>
 
-            <Box3 class="box-3">
+            <Box3 className="box-3">
                 <Diferenca>Faça a Diferença!</Diferenca>
             </Box3>
 
-            <div class="box-4i">
-                <ValorDoacao class="box">
-                    <div class="gallery">
+            <div className="box-4i">
+                <ValorDoacao className="box">
+                    <div className="gallery">
                         <Gallery> R$10,00 </Gallery>
                     </div>
-                    <div class="desc">
+                    <div className="desc">
                         <p>É possível contribuir com pouco</p>
                     </div>
                 </ValorDoacao>
 
-                <ValorDoacao class="box">
-                    <div class="gallery">
+                <ValorDoacao className="box">
+                    <div className="gallery">
                     <Gallery> R$20,00 </Gallery>
                     </div>
-                    <div class="desc">
+                    <div className="desc">
                         <p>Todos ao seu redor irão agradecer</p>
                     </div>
                 </ValorDoacao>
 
-                <ValorDoacao class="box">
-                    <div class="gallery">
+                <ValorDoacao className="box">
+                    <div className="gallery">
                     <Gallery> R$30,00 </Gallery>
                     </div>
-                    <div class="desc">
+                    <div className="desc">
                         <p>Uma pequena mudança faz a diferença</p>
                     </div>
                 </ValorDoacao>
 
-                <ValorDoacao class="box">
-                    <div class="gallery">
+                <ValorDoacao className="box">
+                    <div className="gallery">
                     <Gallery> R$40,00 </Gallery>
                     </div>
-                    <div class="desc">
+                    <div className="desc">
                         <p>Sua atitude pode influênciar aos outros</p>
                     </div>
                 </ValorDoacao>
 
-                <ValorDoacao class="box">
-                    <div class="gallery">
+                <ValorDoacao className="box">
+                    <div className="gallery">
                      <Gallery> R$50,00 </Gallery>
                     </div>
-                    <div class="desc">
+                    <div className="desc">
                         <p>Juntos somos mais fortes</p>
                     </div>
                 </ValorDoacao>
             </div>
 
-            <Box4 id="sobre" class="box-4">
+            <Box4 id="sobre" className="box-4">
                 <QuemSomos>Quem somos?</QuemSomos>
             </Box4>
 
-            <div class="box-5">
-                <Sobre class="sobre">
+            <div className="box-5">
+                <Sobre className="sobre">
                     <Nomeh2>bp</Nomeh2>
                     <TextoP>Somos uma empresa que <br /> buscar ajudar ONGs e <br /> pessoas que procuram doar.<br />
                         Com nossos sistema unimos <br /> as duas satisfazendo os dois <br />polos.
                     </TextoP>
                 </Sobre>
-                <div class="img-sobre">
+                <div className="img-sobre">
                     <img src={logo2} alt="logo" />
                 </div>
             </div>
 
             <footer>
-                <div class="box-6">
-                    <div class="div-logo">
+                <div className="box-6">
+                    <div className="div-logo">
                         <img src={logo} alt="logo" />
                         <h1>Better Place</h1>
                     </div>
-                    <div class="div-info">
+                    <div className="div-info">
                         <p>E-mail: better.place@gmail.com<br />Tel: 4444-333</p>
-                        <div class="img-redes-sociais">
+                        <div className="img-redes-sociais">
                             <img src={facebook} alt="logo-facebook" />
                             <img src={linkedin} alt="logo-linkedin" />
                             <img src={telegram} alt="logo-telegram" />

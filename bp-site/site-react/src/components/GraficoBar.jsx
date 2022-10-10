@@ -75,10 +75,3 @@ function configGrafico(v1, v2, cor){
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min) + min);
     }
-
-/*
-    100 - valorDesejado
-     x  - valorAtual
-
-     x = (100*valorAtual)/valorDesejado
-*/

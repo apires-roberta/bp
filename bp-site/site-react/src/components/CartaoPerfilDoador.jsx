@@ -1,5 +1,15 @@
 import styled from "styled-components";
+import apiLogin from "../apiLogin"
+import React, { useState, useEffect } from "react";
 function CartaoPerfilDoador() {
+    const [perfil, setperfil] = useState([]);
+    useEffect(() => {
+        apiLogin.get(`/bp/doador/${sessionStorage.getItem("idDoador")}`).then((resposta) => {
+          if (resposta.status === 200) {
+            setperfil(resposta.data)
+          }
+        })
+      }, [])
     const Cartao = styled.div`
         height:90vh;
         margin-top:8%;
@@ -81,8 +91,8 @@ function CartaoPerfilDoador() {
                     <img style={fotoFundo} src="https://f8n-production.s3.amazonaws.com/creators/profile/rf7rdju95-237-2376520-twitter-header-wallpapers-minimalist-dual-monitor-wallpaper-4k-jpg-cqlv2j.jpg" alt="" />
                 </DivImagem>
                 <div style={estilo}>
-                    <span style={nomeOng}>Marina Ferraz<br /></span>
-                    <span style={slogan}>Professora, 41 anos</span>
+                    <span style={nomeOng}>{perfil.nome}<br /></span>
+                    <span style={slogan}>{} anos</span>
                 </div>
                 <DivLogin>
                     <img alt="" style={fotoPerfil} src="https://images03.brasildefato.com.br/d753690c552a7a06b95d7b17ea689f06.jpeg" />
@@ -99,6 +109,25 @@ function CartaoPerfilDoador() {
             </Cartao>
         </>
     );
+}
+
+function idade(ano_aniversario, mes_aniversario, dia_aniversario) {
+    var d = new Date,
+        ano_atual = d.getFullYear(),
+        mes_atual = d.getMonth() + 1,
+        dia_atual = d.getDate(),
+
+        ano_aniversario = +ano_aniversario,
+        mes_aniversario = +mes_aniversario,
+        dia_aniversario = +dia_aniversario,
+
+        quantos_anos = ano_atual - ano_aniversario;
+
+    if (mes_atual < mes_aniversario || mes_atual == mes_aniversario && dia_atual < dia_aniversario) {
+        quantos_anos--;
+    }
+
+    return quantos_anos < 0 ? 0 : quantos_anos;
 }
 
 export default CartaoPerfilDoador;

@@ -62,10 +62,3 @@ function configGrafico(valores){
     ],
   };
 }
-
-/*
-    100 - valorDesejado
-     x  - valorAtual
-
-     x = (100*valorAtual)/valorDesejado
-*/

@@ -49,7 +49,7 @@ export default function BasicModal() {
         onClose={handleClose}
       >
         <Box sx={style} className="caixa">
-          <CadastroCampanha></CadastroCampanha>
+          <CadastroCampanha/>
         </Box>
       </Modal>
     </div>

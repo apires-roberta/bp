@@ -33,7 +33,8 @@ const P = styled.p`
 `;
 
 const estiloH2={
-    height: "4vh"
+    height: "4vh",
+    overflow: "hidden"
 }
 
 const estiloDiv = {
@@ -55,9 +56,9 @@ const estiloH3 = {
 return (
     <>
         <DivInfo onClick={()=>redirecionar(props.campanha)} style={estiloDiv}>
-            <h2 style={estiloH2}>{nome}</h2>
+            <h2 className='block-with-text' style={estiloH2} title={nome}>{nome}</h2>
             <P>{props.descCampanha}</P><br />
-            <img style={estiloImg} class="img-estrela" src={estrela} alt="" />
+            <img style={estiloImg} className="img-estrela" src={estrela} alt="" />
             <h3 style={estiloH3}>R${props.valorCampanha}</h3>
         </DivInfo>
     </>

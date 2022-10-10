@@ -112,7 +112,7 @@ function CadastroDoador() {
                     <div className="cadastro">
                         <DivCadastro>
                             <Titulo>Cadastre-se como doador:</Titulo>
-                            <div class="esquerda">
+                            <div className="esquerda">
                                 <div className="inputDiv">
                                     <span className="nomeInput">Nome:</span><br/>
                                     <InputStyle type="text" id="idNome"/>
@@ -136,7 +136,7 @@ function CadastroDoador() {
                                 <Input nome="Numero:" id="idNumero" tipo="text" />
                                 <Input nome="Cidade:" id="idCidade" tipo="text" />
                             </div>
-                            <div class="direita">
+                            <div className="direita">
                                 <div className="inputDiv">
                                     <span className="nomeInput">Usuário:</span><br/>
                                     <InputStyle type="text" id="idUsuario"/>
@@ -158,8 +158,8 @@ function CadastroDoador() {
                                 <Input nome="Estado:" id="idEstado" tipo="text" />
                             </div>
                         </DivCadastro>
-                        <div class="botao">
-                            <Botao onClick={enviar} class="btnCadastrar">Cadastrar</Botao><br />
+                        <div className="botao">
+                            <Botao onClick={enviar} className="btnCadastrar">Cadastrar</Botao><br />
                             <Span>Para se cadastrar como Ong <a onClick={() => redirecionar("cadastro-ong")}>clique aqui!</a></Span>
                         </div>
                     </div>

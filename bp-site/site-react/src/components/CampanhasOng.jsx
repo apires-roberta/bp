@@ -12,7 +12,7 @@ function CampanhasOng() {
       margin-left: 8%;
       height: auto;
       overflow:hidden;
-    `;
+    `; 
 
   useEffect(() => {
     apiCampanha.get(`/campanha/Ong/${sessionStorage.getItem("idOng")}/`).then((resposta) => {
@@ -26,11 +26,11 @@ function CampanhasOng() {
   return (
     <>
           <DivInfo>{
-            campanha.slice(0,5).map((item) => (
+            campanha.map((item) => (
               <CardCampanhaOng nome={item.nomeCampanha}
                 descCampanha={item.descCampanha}
                 valorCampanha={item.valorNecessario}
-                id={item.idCampanha} />
+                id={item.idCampanha} validacao={item.disponivel} />
 
             ))
           }
