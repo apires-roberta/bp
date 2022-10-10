@@ -29,7 +29,7 @@ public class InscricaoController {
             return status(404).build();
         return criado ? status(201).build() : status(409).build();
     }
-    @GetMapping("/{idOng}")
+    @GetMapping("/ong/{idOng}")
     public ResponseEntity<List<ReadUsuarioDto>> getInscritosOng(@PathVariable Integer idOng) {
         if (idOng == null)
             return status(400).build();
