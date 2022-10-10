@@ -52,7 +52,7 @@ function CardDados(props) {
                 <h2 style={estiloH2}>{props.nome}</h2>
                 <H2 style={estiloH2Mes}>{props.mes}</H2>
                 <P>{props.descricao}</P><br />
-                <img style={estiloImg} class="img-estrela" src={estrela} alt="" />
+                <img style={estiloImg} className="img-estrela" src={estrela} alt="" />
                 <h3 style={estiloH3}>R${props.valorCampanha}</h3>
             </DivInfo>
         </>

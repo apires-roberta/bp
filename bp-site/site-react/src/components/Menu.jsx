@@ -11,6 +11,7 @@ import contaPreto from "../img/conta em preto.png";
 import notificacaoBranco from "../img/notificacao em branco.png";
 import notificacaoPreto from "../img/notificacao em preto.png";
 import BarraPesquisa from "./BarraPesquisa";
+import MenuPerfil from "./MenuPerfil";
 
 
 function Menu(props) {
@@ -112,16 +113,12 @@ function Menu(props) {
                             <Title>bp</Title>
                             <BarraPesquisa/>
                             <div className="divDireita">
-                                <img src={theme === "light" ? notificacaoPreto : notificacaoBranco} alt="" />
-                                <img onClick={()=>redirecionar("Perfil")} src={theme === "light" ? contaPreto : contaBranco} alt="" />
-                                <img alt="" style={estilo} onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
+                                <img onMouseEnter={fecharMenu} src={theme === "light" ? notificacaoPreto : notificacaoBranco} alt="" />
+                                <div onMouseEnter={manterMenu}><img src={theme === "light" ? contaPreto : contaBranco} alt="" /></div>
+                                <img onMouseEnter={fecharMenu} alt="" style={estilo} onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
                             </div>
+                            <MenuPerfil/>
                         </EstiloMenu>
-                        <MenuLateral id="mySidenav" className="sidenav">
-                            <A href="" className="closebtn" onClick={closeNav}>&times;</A>
-                            <A onClick={()=>redirecionar("Perfil")}>Perfil</A>
-                        </MenuLateral>
-                        <MenuLateralBotao onClick={openNav}>&#9776;</MenuLateralBotao>
                     </Fragment>
                 </ThemeProvider>
             </>
@@ -131,14 +128,14 @@ function Menu(props) {
 
 export default Menu;
 
-function openNav() {
-    document.getElementById("mySidenav").style.width = "20%";
-    document.getElementById("mySidenav").style.boxShadow = "0 0 0 100vmax rgba(0, 0, 0, .3)";
-}
-function closeNav() {
-    document.getElementById("mySidenav").style.boxShadow = "";
-    document.getElementById("mySidenav").style.width = "0";
-}
 function redirecionar(pagina) {
     window.location.href = "http://localhost:3000/"+pagina;
+}
+
+function manterMenu(){
+    document.getElementById("divMenu").style.display="block";
+}
+
+function fecharMenu(){
+    document.getElementById("divMenu").style.display="none";
 }

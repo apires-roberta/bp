@@ -15,13 +15,13 @@ function Rodape() {
     `;
     return (
         <DivRodape>
-            <div class="div-logo">
+            <div className="div-logo">
                 <img src={logo} alt="logo" />
                 <h1>Better Place</h1>
             </div>
-            <div class="div-info">
+            <div className="div-info">
                 <p>E-mail: better.place@gmail.com<br />Tel: 4444-333</p>
-                <div class="img-redes-sociais">
+                <div className="img-redes-sociais">
                     <img src={facebook} alt="logo-facebook" />
                     <img src={linkedin} alt="logo-linkedin" />
                     <img src={telegram} alt="logo-telegram" />

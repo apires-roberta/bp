@@ -2,11 +2,13 @@ import AlterarBranco from '../img/AlterarBranco.png'
 import AlterarPreto from '../img/AlterarPreto.png'
 import LixeiraCinza from '../img/Lixeira.png'
 import LixeiraVermelha from '../img/LixeiraHover.png'
+import LockIcon from '@mui/icons-material/Lock';
 import styled from "styled-components";
 import apiCampanha from '../apiCampanha';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 function CardCampanhaOng(props) {
     function guardarCampanha(id){
-        apiCampanha.delete(`/campanha/${id}`).then((resposta) => {
+        apiCampanha.patch(`/campanha/disponivel/${id}`).then((resposta) => {
           console.log("post ok", resposta);
           redirecionar("campanha");
       })
@@ -17,6 +19,18 @@ function CardCampanhaOng(props) {
           console.log("post ok", resposta);
           redirecionar("campanha");
       })
+      }
+      function Imagem(){
+        const estiloLixeira = {
+            float: "right",
+            marginTop: "0"
+        }
+        if(props.validacao){
+            return <LockOpenIcon sx={estiloLixeira} value="teste" id="teste"/>;
+          }
+          else{
+            return <LockIcon sx={estiloLixeira}/>;
+          }
       }
     const DivInfo = styled.div`
         width: 20%;
@@ -34,10 +48,12 @@ function CardCampanhaOng(props) {
     `;
 
     const P = styled.p`
-        margin-top: 10%;
+        margin-top: 20%;
         color: ${({ theme }) => theme.letraInfo};
         height: 15vh;
     `;
+
+    var Cadeado;
 
     const estiloH2 = {
         height: "4vh",
@@ -52,11 +68,6 @@ function CardCampanhaOng(props) {
         float: "left",
         width: "10%",
         marginTop: "6%"
-    }
-
-    const estiloLixeira = {
-        float: "right",
-        width: "8%"
     }
 
     const estiloH3 = {
@@ -98,9 +109,11 @@ function CardCampanhaOng(props) {
         <>
             <DivInfo style={estiloDiv}>
                 <h2 style={estiloH2}>{props.nome}</h2>
-                <img onClick={()=>guardarCampanha(props.id)} id={`imgLixeira${props.id}`} onMouseOver={()=>lixeiraMouse(props.id)} onMouseLeave={()=>lixeira(props.id)} src={LixeiraCinza} style={estiloLixeira} alt="" /><br />
+                <div onClick={() => guardarCampanha(props.id)}>
+                <Imagem/>
+                </div>
                 <P>{props.descCampanha}</P><br />
-                <img onClick={()=>alterarValor(props.id)} style={estiloImg} class="img-estrela" src={localTheme === "light" ? AlterarPreto : AlterarBranco} alt="" />
+                <img onClick={()=>alterarValor(props.id)} style={estiloImg} className="img-estrela" src={localTheme === "light" ? AlterarPreto : AlterarBranco} alt="" />
                 <h3 style={estiloH3}>R$</h3><DivValor id={`mudarValor${props.id}`}/> <button id={`botao${props.id}`} onClick={()=>alterarValorBanco(props.id)} style={estiloButton}>enviar</button>
                 <h3 id={`valorFixo${props.id}`} style={estiloH3Valor}>{props.valorCampanha}</h3>
             </DivInfo>
@@ -124,6 +137,10 @@ function redirecionar(pagina) {
     window.location.href = "http://localhost:3000/"+pagina;
   }
 
+function disponivel(id){
+    var cadeado
+}
+
   function alterarValor(id){
     var input = document.getElementById(`mudarValor${id}`);
     var valor = document.getElementById(`valorFixo${id}`);
@@ -133,3 +150,5 @@ function redirecionar(pagina) {
     botao.style = "display: inline; width: 30%; font-size: 16px; margin-top: 7%;";
     valor.style = "display: none;";
   }
+
+  

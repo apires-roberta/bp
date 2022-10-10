@@ -24,19 +24,21 @@ function Login() {
             console.log("post ok", resposta);
             sessionStorage.setItem("tipo", "PerfilDoador");
             sessionStorage.setItem("idDoador", resposta.data)
-            redirecionar("PerfilDoador");
+            redirecionar("Perfil");
+        }).catch((resposta) =>{
+            apiLogin.post("/bp/ong/login", {
+                email: funcData.email,
+                senha: funcData.senha
+            }).then((resposta) => {
+                console.log("post ok", resposta);
+                sessionStorage.setItem("idOng", resposta.data)
+                sessionStorage.setItem("tipo", "PerfilOng");
+                redirecionar("Perfil");
+            }).catch((resposta) =>{
+                document.getElementById("idEmail").style="border: 2px solid red";
+                document.getElementById("idSenha").style="border: 2px solid red";
+            })
         })
-        apiLogin.post("/bp/ong/login", {
-            email: funcData.email,
-            senha: funcData.senha
-        }).then((resposta) => {
-            console.log("post ok", resposta);
-            sessionStorage.setItem("idOng", resposta.data)
-            sessionStorage.setItem("tipo", "PerfilOng");
-            redirecionar("PerfilOng");
-        })
-        document.getElementById("idEmail").style="border: 2px solid red";
-        document.getElementById("idSenha").style="border: 2px solid red";
     }
     const [theme, setTheme] = useState("light");
 

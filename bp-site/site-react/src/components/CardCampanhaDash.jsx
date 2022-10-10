@@ -54,7 +54,7 @@ return (
         <DivInfo onClick={redirecionar} style={estiloDiv}>
             <h2 style={estiloH2Nome}>{props.nome}</h2>
             <P>{props.descCampanha}</P><br />
-            <img style={estiloImg} class="img-estrela" src={estrela} alt="" />
+            <img style={estiloImg} className="img-estrela" src={estrela} alt="" />
             <h3 style={estiloH3}>R${props.valorCampanha}</h3>
         </DivInfo>
     </>
