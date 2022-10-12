@@ -62,12 +62,10 @@ export default function BarraPesquisa() {
         <DivResult key={item.cod}>
           {/*<div className="divImagem" style={{ backgroundImage: `url(data:image/jpeg;base64,${item.fotoPerfil}`, float: 'left' }}></div>
           <h1 className="h1Nome">{item.nome}</h1>*/}
-          <DivResult key={item.cod}>
             <tr className="tableImg">
               <td ><div className="divImagem" style={{ backgroundImage: `url(data:image/jpeg;base64,${item.fotoPerfil}`, float: 'left' }}></div><br /></td>
               <TdEstilo>{item.nome}</TdEstilo>
             </tr>
-          </DivResult>
         </DivResult>
       )): <h1>{element}</h1>}
     </div>

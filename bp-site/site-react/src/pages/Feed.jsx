@@ -62,8 +62,8 @@ function Feed() {
                             <AddIcon />
                             <Modal open={open} onClose={handleClose}>
                             <Box sx={style} className="caixa">
-          <CadastroFeed/>
-        </Box>
+                             <CadastroFeed/>
+                             </Box>
                             </Modal>
                         </Fab>
                     </div>

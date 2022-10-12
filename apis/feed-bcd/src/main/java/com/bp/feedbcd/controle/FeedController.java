@@ -15,6 +15,7 @@ import static org.springframework.http.ResponseEntity.status;
 @Service
 @RestController
 @RequestMapping("/feed")
+@CrossOrigin
 public class FeedController {
     @Autowired
     private IFeedService _feedService;
