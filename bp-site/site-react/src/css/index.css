@@ -58,16 +58,6 @@ select:focus{
     padding-bottom: 2%;
 }
 
-.divCadastrar{
-    margin-top: 44%;
-    text-align: center;
-    font-size: 20px;
-}
-
-.divCadastrar .btnDireita{
-    margin-left: 2%;
-}
-
 .divDireita{
     float: right;
     margin-right: 3%;

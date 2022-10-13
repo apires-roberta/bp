@@ -76,3 +76,7 @@ function Feed() {
 }
 
 export default Feed;
+
+function redirecionar(pagina) {
+    window.location.href = "http://localhost:3000/" + pagina;
+  }

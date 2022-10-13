@@ -7,6 +7,7 @@ import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
 import apiLogin from "../apiLogin"
 import apiCep from "../apiCep";
+import Rodape from "../components/Rodape";
 
 function CadastroDoador() {
     const [funcData, setFuncData] = useState({
@@ -109,7 +110,6 @@ function CadastroDoador() {
             <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
                 <Fragment>
                     <GlobalTheme />
-                    <div className="cadastro">
                         <DivCadastro>
                             <Titulo>Cadastre-se como doador:</Titulo>
                             <div className="esquerda">
@@ -162,7 +162,7 @@ function CadastroDoador() {
                             <Botao onClick={enviar} className="btnCadastrar">Cadastrar</Botao><br />
                             <Span>Para se cadastrar como Ong <a onClick={() => redirecionar("cadastro-ong")}>clique aqui!</a></Span>
                         </div>
-                    </div>
+                    <Rodape/>
                 </Fragment>
             </ThemeProvider>
 

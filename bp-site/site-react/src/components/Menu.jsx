@@ -12,6 +12,8 @@ import notificacaoBranco from "../img/notificacao em branco.png";
 import notificacaoPreto from "../img/notificacao em preto.png";
 import BarraPesquisa from "./BarraPesquisa";
 import MenuPerfil from "./MenuPerfil";
+import imgPesquisaBranco from "../img/pesquisaImagemBranco.svg";
+import imgPesquisaPreto from "../img/pesquisaImagemPreto.svg";
 
 
 function Menu(props) {
@@ -116,6 +118,7 @@ function Menu(props) {
                                 <img onMouseEnter={fecharMenu} src={theme === "light" ? notificacaoPreto : notificacaoBranco} alt="" />
                                 <div onMouseEnter={manterMenu}><img src={theme === "light" ? contaPreto : contaBranco} alt="" /></div>
                                 <img onMouseEnter={fecharMenu} alt="" style={estilo} onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
+                                <img src={theme === "light" ? imgPesquisaPreto : imgPesquisaBranco} alt="" />
                             </div>
                             <MenuPerfil/>
                         </EstiloMenu>

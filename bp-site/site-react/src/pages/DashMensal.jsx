@@ -36,7 +36,7 @@ function DashMensal() {
       }
     return (
         <>
-            <Menu funcaoDark={toggleTheme} funcao="cadastro" />
+            <Menu funcaoDark={toggleTheme} funcao="" />
             <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
                 <Fragment>
                     <GlobalTheme />

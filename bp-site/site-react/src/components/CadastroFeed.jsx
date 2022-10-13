@@ -1,18 +1,22 @@
 import Input from "../components/Input";
 import styled from "styled-components";
-import React, { useState } from "react";
+import React from "react";
 import apiFeed from "../apiFeed";
 
 function CadastroFeed(){
 
     async function enviar(e) {
         e.preventDefault();
-        var descricao = document.getElementById("idDescricao").value;
+        /*var descricao = document.getElementById("idDescricao").value;
         apiFeed.post("/feed/", {
             descricao: descricao,
             idOng: sessionStorage.getItem("idOng")
         }).then((resposta) => {
-            console.log("post ok", resposta);
+            if(resposta.status===201){*/
+            apiFeed.patch(`/feed/5`,{
+                fotoFeed: document.getElementById('imagem').src
+                
+            //})}
         })
     }
 const DivCadastro = styled.div`
@@ -38,13 +42,27 @@ const DivCadastro = styled.div`
         margin-top: 6%;
         margin-left: 30%;
     `;
+
+    const estilo={
+        display: "none"
+    }
 return (
     <DivCadastro>
         <Input tipo="text" id="idDescricao" nome="Descricao"/>
-        <input type="file" id="idFoto"/>
+        <input onChange={imagem} type="file" id="idFoto"/>
+        <img style={estilo} alt="" id="imagem"/>
         <Botao onClick={enviar}>Cadastrar</Botao>
     </DivCadastro>
 );
 }
 
 export default CadastroFeed;
+function imagem(){
+    let file = document.getElementById('idFoto'); 
+    let photo = document.getElementById('imagem'); 
+    let reader = new FileReader();    
+    reader.onload = () => {
+        photo.src = reader.result;
+    }
+    reader.readAsDataURL(file.files[0]);
+}

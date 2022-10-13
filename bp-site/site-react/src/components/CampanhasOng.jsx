@@ -15,7 +15,7 @@ function CampanhasOng() {
     `; 
 
   useEffect(() => {
-    apiCampanha.get(`/campanha/Ong/${sessionStorage.getItem("idOng")}/`).then((resposta) => {
+    apiCampanha.get(`/campanha/ong/${sessionStorage.getItem("idOng")}/`).then((resposta) => {
       console.log(resposta)
       if (resposta.status === 200) {
         setcampanha(resposta.data)
