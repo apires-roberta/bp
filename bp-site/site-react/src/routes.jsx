@@ -12,6 +12,7 @@ import DashMapa from "./pages/DashMapa";
 import Perfil from "./pages/Perfil";
 import Campanha from "./pages/Campanha";
 import BpNotaFiscal from "./pages/bpNotaFiscal";
+import VerPerfil from "./pages/VerPerfil";
 
 function Rotas() {
     return (
@@ -30,6 +31,7 @@ function Rotas() {
                 <Route path="/Perfil" element={<Perfil/>} />
                 <Route path="/Campanha" element={<Campanha/>} />
                 <Route path="/BpNotaFiscal" element={<BpNotaFiscal/>} />
+                <Route path="/PerfilResultado" element={<VerPerfil/>} />
             </Routes>
         </BrowserRouter>
     );

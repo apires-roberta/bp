@@ -6,14 +6,14 @@ import GlobalTheme from "../globals";
 import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
 import apiLogin from "../apiLogin"
+import Rodape from "../components/Rodape";
 
 function Login() {
     const [funcData, setFuncData] = useState({
         email: "",
         senha: ""
     })
-    async function enviar(e) {
-        e.preventDefault();
+    async function enviar() {
         funcData.email = document.getElementById("idEmail").value;
         funcData.senha = document.getElementById("idSenha").value;
         console.log(funcData);
@@ -40,6 +40,13 @@ function Login() {
             })
         })
     }
+
+    document.addEventListener('keydown', function (event) {
+        if (event.code === 'Enter'){
+            enviar()
+        }
+    });
+
     const [theme, setTheme] = useState("light");
 
     const toggleTheme = () => {
@@ -57,15 +64,13 @@ function Login() {
     }, []);
     const DivLogin = styled.div`
         width: 40%;
-        float: left;
         margin-left: 30%;
-        margin-top: 5%;
+        margin-top: 10%;
+        padding-top: 1.5%;
         color: #01396F;
         height: 60vh;
         box-shadow: ${({ theme }) => theme.borda};
         color: ${({ theme }) => theme.azulClaro};
-        position: fixed;
-        top: 8%;
     `;
     const Titulo = styled.h1`
         text-align: center;
@@ -103,11 +108,22 @@ function Login() {
         height: 5vh;
         margin-top: 1%;
         margin-bottom: 5%;
+        font-size: 20px;
     `;
 
     const Texto = styled.span`
         color: ${({ theme }) => theme.logo}
     `;
+
+    const estilo = {
+        textAlign: "center",
+        fontSize: "20px",
+        marginTop: "2%"
+    }
+
+    const estiloButao={
+        marginLeft: "5%"
+    }
     return (
         <>
             <Menu funcaoDark={toggleTheme} funcao="cadastro" />
@@ -121,11 +137,12 @@ function Login() {
                 <Botao onClick={enviar} className="btnLogar">Entrar</Botao><br/>
                 <a style={aCentro}>Esqueceu a senha?</a>
             </DivLogin>
-            <div className="divCadastrar">
+            <div style={estilo}>
                 <Texto>Cadastre-se como:</Texto><br/>
                 <BotaoPequeno onClick={() => redirecionar("cadastro-ong")}>Ong</BotaoPequeno>
-                <BotaoPequeno onClick={() => redirecionar("cadastro-doador")} className="btnDireita">Doador</BotaoPequeno>
+                <BotaoPequeno style={estiloButao} onClick={() => redirecionar("cadastro-doador")} className="btnDireita">Doador</BotaoPequeno>
             </div>
+            <Rodape/>
             </Fragment>
             </ThemeProvider>
         </>

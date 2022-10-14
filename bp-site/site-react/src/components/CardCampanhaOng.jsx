@@ -1,21 +1,27 @@
 import AlterarBranco from '../img/AlterarBranco.png'
 import AlterarPreto from '../img/AlterarPreto.png'
-import LixeiraCinza from '../img/Lixeira.png'
-import LixeiraVermelha from '../img/LixeiraHover.png'
 import LockIcon from '@mui/icons-material/Lock';
 import styled from "styled-components";
 import apiCampanha from '../apiCampanha';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 function CardCampanhaOng(props) {
-    function guardarCampanha(id){
-        apiCampanha.patch(`/campanha/disponivel/${id}`).then((resposta) => {
-          console.log("post ok", resposta);
-          redirecionar("campanha");
-      })
+    function guardarCampanha(id,disponivel){
+        if(!disponivel){
+            apiCampanha.patch(`/campanha/indisponivel/ong/${sessionStorage.getItem("idOng")}`).then((resposta)=>
+            {
+                if(resposta.status===204){
+                    apiCampanha.patch(`/campanha/disponibilidade/${id}`).then((resposta) => {
+                        console.log("post ok", resposta);
+                        redirecionar("campanha");
+                    })
+                }
+            })
+        }
+        
       } 
     function alterarValorBanco(id){
-        var valor = parseFloat(document.getElementById(`mudarValor${id}`).value)
-        apiCampanha.patch(`/campanha/alterarValor/${id}/${valor}`).then((resposta) => {
+        var valor = parseFloat(document.getElementById(`mudarValor${id}`).value.replace(",","."))
+        apiCampanha.patch(`/campanha/alterarValor/campanha/${id}/valor/${valor}`).then((resposta) => {
           console.log("post ok", resposta);
           redirecionar("campanha");
       })
@@ -52,8 +58,6 @@ function CardCampanhaOng(props) {
         color: ${({ theme }) => theme.letraInfo};
         height: 15vh;
     `;
-
-    var Cadeado;
 
     const estiloH2 = {
         height: "4vh",
@@ -109,13 +113,13 @@ function CardCampanhaOng(props) {
         <>
             <DivInfo style={estiloDiv}>
                 <h2 style={estiloH2}>{props.nome}</h2>
-                <div onClick={() => guardarCampanha(props.id)}>
+                <div onClick={() => guardarCampanha(props.id, props.validacao)}>
                 <Imagem/>
                 </div>
                 <P>{props.descCampanha}</P><br />
                 <img onClick={()=>alterarValor(props.id)} style={estiloImg} className="img-estrela" src={localTheme === "light" ? AlterarPreto : AlterarBranco} alt="" />
                 <h3 style={estiloH3}>R$</h3><DivValor id={`mudarValor${props.id}`}/> <button id={`botao${props.id}`} onClick={()=>alterarValorBanco(props.id)} style={estiloButton}>enviar</button>
-                <h3 id={`valorFixo${props.id}`} style={estiloH3Valor}>{props.valorCampanha}</h3>
+                <h3 id={`valorFixo${props.id}`} style={estiloH3Valor}>{props.valorCampanha.toFixed(2).replace(".",",")}</h3>
             </DivInfo>
         </>
     );
@@ -123,23 +127,9 @@ function CardCampanhaOng(props) {
 
 export default CardCampanhaOng;
 
-function lixeiraMouse(id) {
-    var imgLixeira = document.getElementById(`imgLixeira${id}`);
-    imgLixeira.src = `${LixeiraVermelha}`;
-}
-
-function lixeira(id) {
-    var imgLixeira = document.getElementById(`imgLixeira${id}`);
-    imgLixeira.src = `${LixeiraCinza}`;
-}
-
 function redirecionar(pagina) {
     window.location.href = "http://localhost:3000/"+pagina;
   }
-
-function disponivel(id){
-    var cadeado
-}
 
   function alterarValor(id){
     var input = document.getElementById(`mudarValor${id}`);

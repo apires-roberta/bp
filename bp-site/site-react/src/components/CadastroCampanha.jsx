@@ -21,6 +21,10 @@ function CadastroCampanha() {
             funcData.tipoCampanha = document.getElementById("tipoCampanha").value;
             funcData.valorNecessario = parseFloat(document.getElementById("idValor").value);
             console.log(funcData);
+            apiCampanha.patch(`/campanha/indisponivel/ong/${sessionStorage.getItem("idOng")}`).then((resposta)=>
+            {
+                console.log("post ok", resposta);
+            })
             apiCampanha.post("/campanha/", {
                 nomeCampanha: funcData.nomeCampanha,
                 nomeItem: funcData.nomeItem,

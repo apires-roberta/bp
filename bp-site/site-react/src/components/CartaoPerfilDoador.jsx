@@ -7,6 +7,7 @@ function CartaoPerfilDoador() {
         apiLogin.get(`/bp/doador/${sessionStorage.getItem("idDoador")}`).then((resposta) => {
           if (resposta.status === 200) {
             setperfil(resposta.data)
+            console.log(resposta.data)
           }
         })
       }, [])
@@ -57,11 +58,11 @@ function CartaoPerfilDoador() {
         width: "100%"
     }
     const nomeOng = {
-        fontSize: "40px",
-        color: "white"
+        fontSize: "32px",
+        color: "white",
     }
     const slogan = {
-        fontSize: "20px",
+        fontSize: "24px",
         color: "white",
     }
     const alinhaBtn = {
@@ -84,6 +85,7 @@ function CartaoPerfilDoador() {
         marginTop:"20%",
         marginRight:"5%"
     }
+    if(perfil!='')
     return (
         <>
             <Cartao>
@@ -92,7 +94,7 @@ function CartaoPerfilDoador() {
                 </DivImagem>
                 <div style={estilo}>
                     <span style={nomeOng}>{perfil.nome}<br /></span>
-                    <span style={slogan}>{} anos</span>
+                    <span id="idIdade" style={slogan}>{idade(perfil.dataNascimento)} anos</span>
                 </div>
                 <DivLogin>
                     <img alt="" style={fotoPerfil} src="https://images03.brasildefato.com.br/d753690c552a7a06b95d7b17ea689f06.jpeg" />
@@ -111,15 +113,16 @@ function CartaoPerfilDoador() {
     );
 }
 
-function idade(ano_aniversario, mes_aniversario, dia_aniversario) {
+function idade(data) {
+    var ano_aniversario, mes_aniversario, dia_aniversario;
+    data=data.split("-")
+    ano_aniversario=data[0]
+    mes_aniversario=data[1]
+    dia_aniversario=data[2]
     var d = new Date,
         ano_atual = d.getFullYear(),
         mes_atual = d.getMonth() + 1,
         dia_atual = d.getDate(),
-
-        ano_aniversario = +ano_aniversario,
-        mes_aniversario = +mes_aniversario,
-        dia_aniversario = +dia_aniversario,
 
         quantos_anos = ano_atual - ano_aniversario;
 
