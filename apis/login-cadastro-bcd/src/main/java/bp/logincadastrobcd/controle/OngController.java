@@ -1,10 +1,9 @@
 package bp.logincadastrobcd.controle;
 
-import bp.logincadastrobcd.dto.doador.UpdateDoadorDto;
 import bp.logincadastrobcd.dto.ong.CreateOng;
+import bp.logincadastrobcd.dto.ong.ReadOngDto;
 import bp.logincadastrobcd.dto.ong.UpdateOngDto;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
-import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
 import bp.logincadastrobcd.service.IOngService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -77,17 +76,17 @@ public class OngController {
     }
 
     @GetMapping("/{idUsuario}")
-    public ResponseEntity<ReadUsuarioDto> getOng(@PathVariable Integer idUsuario) {
+    public ResponseEntity<ReadOngDto> getOng(@PathVariable Integer idUsuario) {
         if (idUsuario == null)
             return status(404).build();
 
-        ReadUsuarioDto doador = _ongService.getOng(idUsuario);
-        return doador != null ? status(200).body(doador) : status(404).build();
+        ReadOngDto ong = _ongService.getOng(idUsuario);
+        return ong != null ? status(200).body(ong) : status(404).build();
     }
 
     @GetMapping("/nomeOng")
-    public ResponseEntity<List<ReadUsuarioDto>> getOngsByNome(@RequestParam String nomeOng){
-        List<ReadUsuarioDto> ongs = _ongService.getOngsByNome(nomeOng);
+    public ResponseEntity<List<ReadOngDto>> getOngsByNome(@RequestParam String nomeOng){
+        List<ReadOngDto> ongs = _ongService.getOngsByNome(nomeOng);
 
         return ongs == null ? status(404).build() : status(200).body(ongs);
     }

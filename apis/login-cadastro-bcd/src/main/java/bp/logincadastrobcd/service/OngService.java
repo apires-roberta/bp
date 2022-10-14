@@ -1,6 +1,7 @@
 package bp.logincadastrobcd.service;
 
 import bp.logincadastrobcd.dto.ong.CreateOng;
+import bp.logincadastrobcd.dto.ong.ReadOngDto;
 import bp.logincadastrobcd.dto.ong.UpdateOngDto;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
 import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
@@ -80,26 +81,26 @@ public class OngService implements IOngService{
         return true;
     }
     @Override
-    public ReadUsuarioDto getOng(Integer idUsuario) {
+    public ReadOngDto getOng(Integer idUsuario) {
         Optional<Ong> ong = _repository.findByCod(idUsuario);
         if (ong.isEmpty())
             return null;
 
-        ReadUsuarioDto ongDto = _mapper.map(ong.get(), ReadUsuarioDto.class);
+        ReadOngDto ongDto = _mapper.map(ong.get(), ReadOngDto.class);
         return ongDto;
     }
 
     @Override
-    public List<ReadUsuarioDto> getOngsByNome(String nomeOng) {
+    public List<ReadOngDto> getOngsByNome(String nomeOng) {
         List<Ong> ongs = _repository.findByNomeContains(nomeOng);
 
         if (ongs.isEmpty())
             return null;
 
-        List<ReadUsuarioDto> ongsDto = new ArrayList<>();
+        List<ReadOngDto> ongsDto = new ArrayList<>();
 
         for (Ong ong : ongs) {
-            ongsDto.add(_mapper.map(ong,ReadUsuarioDto.class));
+            ongsDto.add(_mapper.map(ong,ReadOngDto.class));
         }
 
         return ongsDto;
