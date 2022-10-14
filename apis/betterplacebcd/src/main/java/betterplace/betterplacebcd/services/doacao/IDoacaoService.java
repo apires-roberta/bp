@@ -6,7 +6,9 @@ import betterplace.betterplacebcd.data.dto.doacao.ReadDoacaoDto;
 import java.util.List;
 
 public interface IDoacaoService {
-    void doar (CreateDoacaoDto doacaoDto);
+    Integer doar (CreateDoacaoDto doacaoDto);
 
     List<ReadDoacaoDto> getDoacoesByIdCampanha(Integer idCampanha);
+
+    ReadDoacaoDto getDoacaoByIdDoacao(Integer idDoacao);
 }

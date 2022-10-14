@@ -7,9 +7,13 @@ public class ReadDoacaoDto {
 
     private Integer campanhaIdCampanha;
 
+    private String CampanhaOngNome;
+
     private Integer doadorCod;
 
     private Double valorDoacao;
+
+    private Double pontuacao;
 
     public Integer getIdDoacao() {
         return idDoacao;
@@ -41,5 +45,17 @@ public class ReadDoacaoDto {
 
     public void setValorDoacao(Double valorDoacao) {
         this.valorDoacao = valorDoacao;
+    }
+
+    public String getCampanhaOngNome() {
+        return CampanhaOngNome;
+    }
+
+    public void setCampanhaOngNome(String campanhaOngNome) {
+        CampanhaOngNome = campanhaOngNome;
+    }
+
+    public Double getPontuacao() {
+        return 5 + valorDoacao * 0.5;
     }
 }

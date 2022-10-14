@@ -31,10 +31,12 @@ public class DoacaoController {
             return status(400).build();
 
         try {
-            _doacaoService.doar(doacaoDto);
-            return status(201).build();
+           Integer idDoacao =  _doacaoService.doar(doacaoDto);
+            return status(201).body(idDoacao);
         }catch (FeignException.NotFound ex){
             return status(404).build();
+        }catch (FeignException.ServiceUnavailable ex){
+            return status(503).build();
         }
     }
 
@@ -48,6 +50,19 @@ public class DoacaoController {
             return doacoes.isEmpty() ? status(204).build() : status(200).body(doacoes);
         }catch (FeignException.NotFound ex){
             return status(404).build();
+        }
+    }
+
+    @GetMapping("/{idDoacao}")
+    public ResponseEntity<ReadDoacaoDto> getDoacaoById(@PathVariable Integer idDoacao) {
+        if (idDoacao == null || idDoacao <= 0)
+            return status(400).build();
+
+        try {
+            ReadDoacaoDto doacao = _doacaoService.getDoacaoByIdDoacao(idDoacao);
+            return doacao == null ? status(404).build() : status(200).body(doacao);
+        }catch (Exception ex){
+            throw ex;
         }
     }
 }

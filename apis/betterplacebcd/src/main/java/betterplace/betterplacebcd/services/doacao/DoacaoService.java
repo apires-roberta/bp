@@ -28,20 +28,20 @@ public class DoacaoService implements IDoacaoService{
     @Autowired
     private ModelMapper _mapper;
     @Override
-    public void doar(CreateDoacaoDto doacaoDto) {
+    public Integer doar(CreateDoacaoDto doacaoDto) {
         Campanha campanha = _campanhaRepository.findByIdCampanha(doacaoDto.getIdCampanha());
         Doador doador = _mapper.map(_doadorService.getUsuarioById(doacaoDto.getIdDoador()), Doador.class);
 
         Doacao doacao = new Doacao(campanha, doador, doacaoDto.getValorDoacao());
         _doacoesRepository.save(doacao);
-        StopWatch sw = new StopWatch();
+
         //notificar(doacao); //Tempo de Execução: 6261061200ns
         Thread thread = new Thread(() -> {
             notificar(doacao);
         }); //Tempo de Execução: 248600 ns
-        sw.start();
         thread.start();
-        sw.stop();
+
+        return doacao.getIdDoacao();
     }
 
     @Override
@@ -57,6 +57,12 @@ public class DoacaoService implements IDoacaoService{
         }
 
         return doacoesDto;
+    }
+
+    @Override
+    public ReadDoacaoDto getDoacaoByIdDoacao(Integer idDoacao) {
+        Doacao doacao = _doacoesRepository.getById(idDoacao);
+        return _mapper.map(doacao, ReadDoacaoDto.class);
     }
 
     private void notificar(Doacao doacao) {
