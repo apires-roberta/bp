@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface FeedRepository extends JpaRepository<Feed, Long> {
     List<Feed> findAllByOrderByDataPublicacaoDesc();
-
     Feed findByCodigo(long codigo);
-
-
+    List<Feed> findByOngCod(Integer idOng);
 }

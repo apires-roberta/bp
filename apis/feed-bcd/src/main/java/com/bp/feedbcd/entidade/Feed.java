@@ -16,8 +16,6 @@ public class Feed {
     private String descricao;
     @Column(length = 50_000_000)
     private byte[] fotoFeed;
-    @Column(length = 50_000_000)
-    private byte[] fotoPerfilOng;
 
     public Feed(Ong ong, String descricao) {
         this.ong = ong;
@@ -26,6 +24,7 @@ public class Feed {
     }
 
     public Feed() {
+        this.dataPublicacao = LocalDateTime.now();
     }
 
     public LocalDateTime getDataPublicacao() {
@@ -64,13 +63,5 @@ public class Feed {
 
     public void setFkOng(Ong ong) {
         this.ong = ong;
-    }
-
-    public byte[] getFotoPerfilOng() {
-        return fotoPerfilOng;
-    }
-
-    public void setFotoPerfilOng(byte[] fotoPerfilOng) {
-        this.fotoPerfilOng = fotoPerfilOng;
     }
 }

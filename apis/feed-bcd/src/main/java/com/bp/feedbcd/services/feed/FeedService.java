@@ -1,6 +1,7 @@
 package com.bp.feedbcd.services.feed;
 
 import com.bp.feedbcd.data.dto.feed.CreateFeedDto;
+import com.bp.feedbcd.data.dto.feed.ReadFeedDto;
 import com.bp.feedbcd.data.dto.usuario.ReadUsuarioDto;
 import com.bp.feedbcd.entidade.Feed;
 import com.bp.feedbcd.entidade.Ong;
@@ -12,12 +13,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class FeedService implements IFeedService{
     @Autowired
-    private FeedRepository repository;
+    private FeedRepository _repository;
     @Autowired
     private IOngService _ongService;
     @Autowired
@@ -26,12 +28,18 @@ public class FeedService implements IFeedService{
     private ModelMapper _mapper;
 
     @Override
-    public List<Feed> getFeeds() {
-        List<Feed> feeds = repository.findAllByOrderByDataPublicacaoDesc();
-        if (feeds.isEmpty())
-            return null;
+    public List<ReadFeedDto> getFeeds() {
+        List<Feed> feeds = _repository.findAllByOrderByDataPublicacaoDesc();
+        List<ReadFeedDto> feedsDto = new ArrayList<>();
 
-        return feeds;
+        if (feeds.isEmpty())
+            return feedsDto;
+
+        for (Feed feed : feeds) {
+            feedsDto.add(_mapper.map(feed, ReadFeedDto.class));
+        }
+
+        return feedsDto;
     }
 
     @Override
@@ -43,7 +51,7 @@ public class FeedService implements IFeedService{
                 return null;
 
             Feed feed = new Feed(_mapper.map(usuarioDto, Ong.class), novoFeed.getDescricao());
-            repository.save(feed);
+            _repository.save(feed);
             _notificacaoService.createNotificacao(usuarioDto.getCod());
             return feed.getCodigo();
         }catch (FeignException.NotFound notFound){
@@ -53,24 +61,41 @@ public class FeedService implements IFeedService{
 
     @Override
     public boolean atualizarFotosFeed(byte[] fotoFeed, Long idFeed) {
-        Feed novoFeed = repository.findByCodigo(idFeed);
-        ReadUsuarioDto ong = _ongService.getOngById(novoFeed.getOng().getCod());
-        if (novoFeed == null || ong == null)
+        Feed novoFeed = _repository.findByCodigo(idFeed);
+        if (novoFeed == null)
             return false;
 
         novoFeed.setFotoFeed(fotoFeed);
-
-        novoFeed.setFotoPerfilOng(ong.getFotoPerfil());
-        repository.save(novoFeed);
+        _repository.save(novoFeed);
         return true;
     }
 
     @Override
     public boolean deleteFeed(long idFeed) {
-        if (!repository.existsById(idFeed))
+        if (!_repository.existsById(idFeed))
             return false;
 
-        repository.deleteById(idFeed);
+        _repository.deleteById(idFeed);
         return true;
+    }
+
+    @Override
+    public List<ReadFeedDto> getFeedsByIdOng(Integer idOng) {
+        verificaOngExiste(idOng);
+        
+        List<Feed> feeds = _repository.findByOngCod(idOng);
+        List<ReadFeedDto> feedsDto = new ArrayList<>();
+        if (feeds.isEmpty())
+            return feedsDto;
+
+        for (Feed feed : feeds) {
+            feedsDto.add(_mapper.map(feed, ReadFeedDto.class));
+        }
+
+        return feedsDto;
+    }
+
+    private void verificaOngExiste(Integer idOng) {
+        _ongService.getOngById(idOng);
     }
 }

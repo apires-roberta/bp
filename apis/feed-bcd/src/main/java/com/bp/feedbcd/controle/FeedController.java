@@ -1,8 +1,10 @@
 package com.bp.feedbcd.controle;
 
 import com.bp.feedbcd.data.dto.feed.CreateFeedDto;
+import com.bp.feedbcd.data.dto.feed.ReadFeedDto;
 import com.bp.feedbcd.entidade.Feed;
 import com.bp.feedbcd.services.feed.IFeedService;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -20,8 +22,8 @@ public class FeedController {
     @Autowired
     private IFeedService _feedService;
     @GetMapping
-    public ResponseEntity<List<Feed>> getFeeds() {
-        List<Feed> feeds = _feedService.getFeeds();
+    public ResponseEntity<List<ReadFeedDto>> getFeeds() {
+        List<ReadFeedDto> feeds = _feedService.getFeeds();
         return feeds != null ? status(200).body(feeds) : status(204).build();
     }
 
@@ -47,5 +49,21 @@ public class FeedController {
         boolean deletado = _feedService.deleteFeed(idFeed);
 
         return deletado ? status(204).build() : status(404).build();
+    }
+
+    @GetMapping("/ong/{idOng}")
+    public ResponseEntity<List<ReadFeedDto>> getFeedsByIdOng(@PathVariable Integer idOng){
+        if (idOng == null || idOng <= 0)
+            return status(400).build();
+
+        try {
+            List<ReadFeedDto> feeds = _feedService.getFeedsByIdOng(idOng);
+
+            return feeds.isEmpty() ? status(204).build() : status(200).body(feeds);
+        }catch (FeignException.NotFound ex){
+            return status(404).build();
+        }catch (Exception ex){
+            throw ex;
+        }
     }
 }
