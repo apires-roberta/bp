@@ -10,6 +10,7 @@ import betterplace.betterplacebcd.entidade.Doador;
 import betterplace.betterplacebcd.repositorio.CampanhaRepository;
 import betterplace.betterplacebcd.repositorio.DoacoesRepository;
 import betterplace.betterplacebcd.servicesreferences.IDoadorService;
+import betterplace.betterplacebcd.servicesreferences.IOngService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class DoacaoService implements IDoacaoService {
     private DoacoesRepository _doacoesRepository;
     @Autowired
     private IDoadorService _doadorService;
+    @Autowired
+    private IOngService _ongService;
     @Autowired
     private ModelMapper _mapper;
 
@@ -76,11 +79,24 @@ public class DoacaoService implements IDoacaoService {
         return doacao != null ? _mapper.map(doacao, ReadDoacaoDto.class) : null;
     }
 
+    @Override
+    public Double getTotalRecebidoOng(Integer idOng) {
+        verificaOngExiste(idOng);
+
+        Double valor = _doacoesRepository.sumValorDoadoOng(idOng);
+
+        return valor == null ? 0 : valor;
+    }
+
     private void notificar(Doacao doacao) {
         String mensagem = String.format("%s mandou R$%.2f para campanha: %s", doacao.getDoador().getNome(),
                 doacao.getValorDoacao(), doacao.getCampanha().getNomeCampanha());
         String email = doacao.getCampanha().getOng().getEmail();
         Notificacao novaNotificacao = new Notificacao();
         novaNotificacao.novaDoacao(email, mensagem);
+    }
+
+    private void verificaOngExiste(Integer idOng) {
+        _ongService.getOngById(idOng);
     }
 }

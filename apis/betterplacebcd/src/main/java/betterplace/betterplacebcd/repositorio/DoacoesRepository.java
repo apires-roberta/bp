@@ -13,4 +13,7 @@ public interface DoacoesRepository extends JpaRepository<Doacao, Integer> {
     double sumValorDoadoCampanha(Integer idCampanha);
     Doacao findByIdDoacao(Integer idDoacao);
     Doacao findFirstByDoadorCodAndCampanhaIdCampanhaOrderByDataDoacaoDesc(Integer idDoador, Integer idCampanha);
+    @Query("SELECT coalesce(sum(d.valorDoacao), 0) from Doacao d where d.campanha.idCampanha in " +
+                "(select camp.idCampanha from Campanha camp where camp.ong.cod = ?1)")
+    double sumValorDoadoOng(Integer idOng);
 }

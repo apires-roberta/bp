@@ -69,10 +69,24 @@ public class DoacaoController {
     public ResponseEntity<ReadDoacaoDto> getUltimaDoacaoDoadorCampanha(@PathVariable Integer idDoador, @PathVariable Integer idCampanha){
         if (idDoador <= 0 || idCampanha <= 0 || idDoador == null || idCampanha == null)
             return status(400).build();
-
         try {
             ReadDoacaoDto doacao = _doacaoService.getUltimaDoacaoDoadorCampanha(idDoador, idCampanha);
             return doacao == null ? status(404).build() : status(200).body(doacao);
+        }catch (Exception ex){
+            throw ex;
+        }
+    }
+
+    @GetMapping("total/ong/{idOng}")
+    public ResponseEntity<Double> getTotalRecebidoOng(@PathVariable Integer idOng){
+        if (idOng <= 0 || idOng == null)
+            return status(400).build();
+
+        try {
+            Double valor = _doacaoService.getTotalRecebidoOng(idOng);
+            return valor == null ? status(404).build() : status(200).body(valor);
+        }catch (FeignException.NotFound ex){
+            return status(404).build();
         }catch (Exception ex){
             throw ex;
         }

@@ -13,4 +13,6 @@ public interface IDoacaoService {
     ReadDoacaoDto getDoacaoByIdDoacao(Integer idDoacao);
 
     ReadDoacaoDto getUltimaDoacaoDoadorCampanha(Integer idDoador, Integer idCampanha);
+
+    Double getTotalRecebidoOng(Integer idOng);
 }
