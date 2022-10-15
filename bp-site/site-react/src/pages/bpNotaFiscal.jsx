@@ -31,9 +31,9 @@ function BpNotaFiscal(){
         width: 40%;
         float: left;
         margin-left: 30%;
-        margin-top: 5%;
+        margin-top: 4%;
         color: #01396F;
-        height: 65vh;
+        height: 68vh;
         background-color:${({ theme }) => theme.body};
         box-shadow: ${({ theme }) => theme.borda};
         color: ${({ theme }) => theme.azulClaro};
@@ -52,7 +52,7 @@ function BpNotaFiscal(){
     const imgPonto = {
         width: "50%",
         position: "relative",
-        marginTop: "4vh",
+        marginTop: "12vh",
     }
     const nomeOng = {
         fontSize: "50px",
@@ -91,8 +91,23 @@ function BpNotaFiscal(){
     }
 
     const pontos = {
-        textAlign:"center"
+        textAlign:"center",
+        fontSize:"30px"
     }
+
+    const [info, setInfo] = useState([]);
+
+    useEffect(() => {
+        fetch(
+            `http://localhost:8082/doacao/doador/${sessionStorage.getItem('idDoador')}/campanha/${sessionStorage.getItem('codCampanha')}`
+          )
+            .then((response) => response.json())
+            .then((response) => {
+              setInfo(response);
+              console.log(response);
+            })
+    }, []);
+
     return <>
 
         <Menu funcaoDark={toggleTheme}/>
@@ -100,14 +115,15 @@ function BpNotaFiscal(){
             <Fragment>
                 <GlobalTheme />
                 <DivLogin>
-                    <Divtext>
-                        <div><span style={nomeOng}>ActionAId</span></div>
+                
+                    <Divtext key={info.campanhaIdCampanha}>
+                        <div><span style={nomeOng}>{info.campanhaOngNome}</span></div>
                         <div><span style={tituloNotaFiscal}>Comprovante Fiscal </span></div>
                         <div><span style={tituloValor}>Valor doado:</span></div>
-                        <div><span style={valorNota}>R$500,00</span></div>
+                        <div><span style={valorNota}><br/>R$ {info.valorDoacao}</span></div>
                         <div>
                             <div style={alinha}><img style={imgPonto} src={picturePoint} /></div>
-                            <div style={alinha}><br /><br /><span style={pontos}>200</span></div>
+                            <div style={alinha}><br /><br /><span style={pontos}>Pontuação:<br/><br/>{info.pontuacao}</span></div>
                             <div style={alinha}><img style={imgPonto} src={picturePoint} /></div>
                         </div>
                         <div><span style={textComp}>Nota emitida pela ONG ActionAid Ltda</span></div>

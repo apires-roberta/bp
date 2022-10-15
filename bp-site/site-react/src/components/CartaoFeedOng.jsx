@@ -1,7 +1,7 @@
 import '../css/styles.css';
 import styled from "styled-components";
 import React, { useEffect, useState } from 'react';
-function CartaoFeed(){
+function CartaoFeedOng(){
     const Cartao = styled.div`
         heigth: 200px;
         margin-top: 8%;
@@ -48,9 +48,8 @@ function CartaoFeed(){
     const [info, setInfo] = useState([]);
 
     useEffect(() => {
-        //getInstaFeed()
         fetch(
-            `http://localhost:8081/feed`
+            `http://localhost:8081/feed/ong/${sessionStorage.getItem('cod')}`
           )
             .then((response) => response.json())
             .then((response) => {
@@ -88,4 +87,4 @@ function CartaoFeed(){
     );
 }
 
-export default CartaoFeed;
+export default CartaoFeedOng;

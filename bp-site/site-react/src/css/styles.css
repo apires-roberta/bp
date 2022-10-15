@@ -59,3 +59,21 @@ input::placeholder {
   margin-bottom:1%;
   height: 55vh;
 }
+
+.link{
+  text-decoration: none;
+  float: right;
+  width: 280px;
+  padding-top: 10%;
+}
+
+.logoPerfilView{
+  background-size: 120px 120px;
+  width: 120px;
+  height: 120px;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  margin-left: 20%;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
