@@ -70,6 +70,12 @@ public class DoacaoService implements IDoacaoService {
             return doacao != null ? _mapper.map(doacao, ReadDoacaoDto.class) : null;
     }
 
+    @Override
+    public ReadDoacaoDto getUltimaDoacaoDoadorCampanha(Integer idDoador, Integer idCampanha) {
+        Doacao doacao = _doacoesRepository.findFirstByDoadorCodAndCampanhaIdCampanhaOrderByDataDoacaoDesc(idDoador, idCampanha);
+        return doacao != null ? _mapper.map(doacao, ReadDoacaoDto.class) : null;
+    }
+
     private void notificar(Doacao doacao) {
         String mensagem = String.format("%s mandou R$%.2f para campanha: %s", doacao.getDoador().getNome(),
                 doacao.getValorDoacao(), doacao.getCampanha().getNomeCampanha());
