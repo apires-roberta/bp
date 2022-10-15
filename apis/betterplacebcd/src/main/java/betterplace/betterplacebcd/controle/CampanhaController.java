@@ -174,4 +174,19 @@ public class CampanhaController {
             throw ex;
         }
     }
+
+    @GetMapping("/quantidade/ong/{idOng}")
+    public ResponseEntity<Integer> getQuantidadeCampanhasTotalByOng(@PathVariable Integer idOng){
+        if (idOng == null || idOng <= 0)
+            return status(400).build();
+
+        try {
+            Integer qtdTotal = _campanhaService.getQuantidadeCampanhasTotalByOng(idOng);
+            return status(200).body(qtdTotal);
+        }catch (FeignException.NotFound ex){
+            return status(404).build();
+        }catch (Exception ex){
+            throw ex;
+        }
+    }
 }

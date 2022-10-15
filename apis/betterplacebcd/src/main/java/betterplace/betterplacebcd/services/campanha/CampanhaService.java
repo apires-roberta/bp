@@ -147,6 +147,14 @@ public class CampanhaService implements ICampanhaService{
         return qtdCampanhasDisponiveis == null ? 0 : qtdCampanhasDisponiveis;
     }
 
+    @Override
+    public Integer getQuantidadeCampanhasTotalByOng(Integer idOng) {
+        verificaOngExiste(idOng);
+        Integer qtdCampanhasTotal = _campanhaRepository.countByOngCod(idOng);
+
+        return qtdCampanhasTotal == null ? 0 : qtdCampanhasTotal;
+    }
+
     private void verificaOngExiste(Integer idOng) {
         _ongService.getOngById(idOng);
     }

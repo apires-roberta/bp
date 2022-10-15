@@ -23,4 +23,6 @@ public interface ICampanhaService {
     void indisponibilizarTodasCampanhasByOng(Integer idOng);
 
     Integer getQuantidadeCampanhasDisponiveisByOng(Integer idOng);
+
+    Integer getQuantidadeCampanhasTotalByOng(Integer idOng);
 }
