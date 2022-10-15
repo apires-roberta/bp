@@ -7,6 +7,8 @@ public class ReadUsuarioDto {
     private String nome, email, usuario, telefone;
     private byte[] fotoPerfil;
     private LocalDate dataNascimento;
+    private String bio;
+    private byte[] fotoCapa;
 
     public String getNome() {
         return nome;
@@ -32,4 +34,11 @@ public class ReadUsuarioDto {
         return dataNascimento;
     }
 
+    public String getBio() {
+        return bio;
+    }
+
+    public byte[] getFotoCapa() {
+        return fotoCapa;
+    }
 }

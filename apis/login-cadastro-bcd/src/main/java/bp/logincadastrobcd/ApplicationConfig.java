@@ -1,11 +1,6 @@
 package bp.logincadastrobcd;
 
-import bp.logincadastrobcd.dto.doador.UpdateDoadorDto;
-import bp.logincadastrobcd.entidade.Doador;
-import org.modelmapper.Condition;
-import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeMap;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

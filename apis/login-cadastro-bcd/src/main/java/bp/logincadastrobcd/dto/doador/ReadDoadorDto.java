@@ -1,9 +1,9 @@
 package bp.logincadastrobcd.dto.doador;
-import bp.logincadastrobcd.dto.usuario.UpdateUsuarioDto;
-import org.hibernate.validator.constraints.br.CPF;
 
-public class UpdateDoadorDto extends UpdateUsuarioDto {
-    @CPF
+import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
+
+public class ReadDoadorDto extends ReadUsuarioDto {
+
     private String cpf;
     private double pontuacao;
 

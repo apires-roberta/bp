@@ -3,6 +3,7 @@ package betterplace.betterplacebcd.services.doacao;
 import betterplace.betterplacebcd.classes.ed.Notificacao;
 import betterplace.betterplacebcd.data.dto.doacao.CreateDoacaoDto;
 import betterplace.betterplacebcd.data.dto.doacao.ReadDoacaoDto;
+import betterplace.betterplacebcd.data.dto.doador.UpdateDoadorDto;
 import betterplace.betterplacebcd.entidade.Campanha;
 import betterplace.betterplacebcd.entidade.Doacao;
 import betterplace.betterplacebcd.entidade.Doador;
@@ -12,7 +13,6 @@ import betterplace.betterplacebcd.servicesreferences.IDoadorService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StopWatch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +35,15 @@ public class DoacaoService implements IDoacaoService{
         Doacao doacao = new Doacao(campanha, doador, doacaoDto.getValorDoacao());
         _doacoesRepository.save(doacao);
 
+        UpdateDoadorDto updateDoador = new UpdateDoadorDto();
+        updateDoador.setPontuacao(doador.getPontuacao() + (5 + doacao.getValorDoacao() * 0.5));
+        _doadorService.atualizarDadosCadastrais(doador.getCod(), updateDoador);
+
         //notificar(doacao); //Tempo de Execução: 6261061200ns
         Thread thread = new Thread(() -> {
             notificar(doacao);
         }); //Tempo de Execução: 248600 ns
+
         thread.start();
 
         return doacao.getIdDoacao();

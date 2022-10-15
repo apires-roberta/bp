@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
-import java.time.LocalDate;
 
 @MappedSuperclass
 public abstract class Usuario {
@@ -30,7 +29,7 @@ public abstract class Usuario {
     @NotNull
     private boolean autenticado = false;
 
-    @Column(length = 50_000_000)
+    @Column(length = 50_000)
     private byte[] fotoPerfil;
 
     @NotNull
@@ -40,26 +39,20 @@ public abstract class Usuario {
 
     @NotNull
     private Integer numero;
-    @Value("#{T(java.time.LocalDate).now()}")
+    @Value("#{T(java.time.LocalDateTime).now()}")
     private LocalDate dataCriacaoConta;
 
-    @PastOrPresent
-    @NotNull
+    @PastOrPresent    @NotNull
     private LocalDate dataNascimento;
 
+    private String bio;
+
+    @Column(length = 50_000)
+    private byte[] fotoCapa;
+    
     public Usuario() {
-        this.dataCriacaoConta = LocalDate.now();
     }
 
-    public Usuario(String nome, String email, String senha, String usuario, String telefone, LocalDate dataNascimento) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.usuario = usuario;
-        this.telefone = telefone;
-        this.dataNascimento = dataNascimento;
-        this.dataCriacaoConta = LocalDate.now();
-    }
 
     public String getCep() {
         return cep;
@@ -156,5 +149,20 @@ public abstract class Usuario {
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-    
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public byte[] getFotoCapa() {
+        return fotoCapa;
+    }
+
+    public void setFotoCapa(byte[] fotoCapa) {
+        this.fotoCapa = fotoCapa;
+    }
 }

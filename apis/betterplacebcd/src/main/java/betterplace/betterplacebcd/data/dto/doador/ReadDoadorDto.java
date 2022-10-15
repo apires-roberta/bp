@@ -1,9 +1,10 @@
-package bp.logincadastrobcd.dto.doador;
-import bp.logincadastrobcd.dto.usuario.UpdateUsuarioDto;
-import org.hibernate.validator.constraints.br.CPF;
+package betterplace.betterplacebcd.data.dto.doador;
 
-public class UpdateDoadorDto extends UpdateUsuarioDto {
-    @CPF
+
+import betterplace.betterplacebcd.data.dto.usuario.ReadUsuarioDto;
+
+public class ReadDoadorDto extends ReadUsuarioDto {
+
     private String cpf;
     private double pontuacao;
 

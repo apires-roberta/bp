@@ -916,7 +916,7 @@ bp|schema||bp||UPDATE|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
     <column id="284" parent="277" name="id_campanha">
-      <AutoIncrement>6</AutoIncrement>
+      <AutoIncrement>2</AutoIncrement>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -931,321 +931,355 @@ bp|schema||bp||UPDATE|G</Grants>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="287" parent="277" name="nome_campanha">
-      <DataType>varchar(45)|0s</DataType>
+    <column id="287" parent="277" name="disponivel">
+      <DataType>bit(1)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="288" parent="277" name="nome_item">
-      <DataType>varchar(25)|0s</DataType>
+    <column id="288" parent="277" name="nome_campanha">
+      <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="289" parent="277" name="tipo_campanha">
-      <DataType>varchar(255)|0s</DataType>
+    <column id="289" parent="277" name="nome_item">
+      <DataType>varchar(25)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="290" parent="277" name="valor_necessario">
-      <DataType>double|0s</DataType>
-      <NotNull>1</NotNull>
+    <column id="290" parent="277" name="tipo_campanha">
+      <DataType>int|0s</DataType>
       <Position>7</Position>
     </column>
-    <column id="291" parent="277" name="ong_cod">
-      <DataType>int|0s</DataType>
+    <column id="291" parent="277" name="valor_necessario">
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <foreign-key id="292" parent="277" name="FKi7xjyvahgse78mh0cfqbpi9by">
+    <column id="292" parent="277" name="ong_cod">
+      <DataType>int|0s</DataType>
+      <Position>9</Position>
+    </column>
+    <foreign-key id="293" parent="277" name="FKi7xjyvahgse78mh0cfqbpi9by">
       <ColNames>ong_cod</ColNames>
       <RefColNames>cod</RefColNames>
       <RefTableName>ong</RefTableName>
     </foreign-key>
-    <index id="293" parent="277" name="FKi7xjyvahgse78mh0cfqbpi9by">
+    <index id="294" parent="277" name="FKi7xjyvahgse78mh0cfqbpi9by">
       <ColNames>ong_cod</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="294" parent="277" name="PRIMARY">
+    <key id="295" parent="277" name="PRIMARY">
       <ColNames>id_campanha</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="295" parent="278" name="id_doacao">
-      <AutoIncrement>6</AutoIncrement>
+    <column id="296" parent="278" name="id_doacao">
+      <AutoIncrement>4</AutoIncrement>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="296" parent="278" name="data_doacao">
+    <column id="297" parent="278" name="data_doacao">
       <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="297" parent="278" name="valor_doacao">
+    <column id="298" parent="278" name="valor_doacao">
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="298" parent="278" name="campanha_id_campanha">
+    <column id="299" parent="278" name="campanha_id_campanha">
       <DataType>int|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="299" parent="278" name="doador_cod">
+    <column id="300" parent="278" name="doador_cod">
       <DataType>int|0s</DataType>
       <Position>5</Position>
     </column>
-    <foreign-key id="300" parent="278" name="FK2aab0179jyd6ag3nbc6owwa7a">
+    <foreign-key id="301" parent="278" name="FK2aab0179jyd6ag3nbc6owwa7a">
       <ColNames>campanha_id_campanha</ColNames>
       <RefColNames>id_campanha</RefColNames>
       <RefTableName>campanha</RefTableName>
     </foreign-key>
-    <foreign-key id="301" parent="278" name="FKrcfu3yrbdwm4438q4hbk4p538">
+    <foreign-key id="302" parent="278" name="FKrcfu3yrbdwm4438q4hbk4p538">
       <ColNames>doador_cod</ColNames>
       <RefColNames>cod</RefColNames>
       <RefTableName>doador</RefTableName>
     </foreign-key>
-    <index id="302" parent="278" name="FK2aab0179jyd6ag3nbc6owwa7a">
+    <index id="303" parent="278" name="FK2aab0179jyd6ag3nbc6owwa7a">
       <ColNames>campanha_id_campanha</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="303" parent="278" name="FKrcfu3yrbdwm4438q4hbk4p538">
+    <index id="304" parent="278" name="FKrcfu3yrbdwm4438q4hbk4p538">
       <ColNames>doador_cod</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="304" parent="278" name="PRIMARY">
+    <key id="305" parent="278" name="PRIMARY">
       <ColNames>id_doacao</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="305" parent="279" name="cod">
-      <AutoIncrement>5</AutoIncrement>
+    <column id="306" parent="279" name="cod">
+      <AutoIncrement>4</AutoIncrement>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="306" parent="279" name="email">
-      <DataType>varchar(255)|0s</DataType>
+    <column id="307" parent="279" name="autenticado">
+      <DataType>bit(1)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="307" parent="279" name="nome">
-      <DataType>varchar(45)|0s</DataType>
+    <column id="308" parent="279" name="cep">
+      <DataType>varchar(8)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="308" parent="279" name="telefone">
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
+    <column id="309" parent="279" name="data_criacao_conta">
+      <DataType>date|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="309" parent="279" name="usuario">
-      <DataType>varchar(20)|0s</DataType>
+    <column id="310" parent="279" name="data_nascimento">
+      <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="310" parent="279" name="autenticado">
-      <DataType>bit(1)|0s</DataType>
+    <column id="311" parent="279" name="email">
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="311" parent="279" name="cep">
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>7</Position>
-    </column>
     <column id="312" parent="279" name="foto_perfil">
       <DataType>longblob|0s</DataType>
+      <Position>7</Position>
+    </column>
+    <column id="313" parent="279" name="nome">
+      <DataType>varchar(45)|0s</DataType>
+      <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="313" parent="279" name="numero">
+    <column id="314" parent="279" name="numero">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="314" parent="279" name="senha">
+    <column id="315" parent="279" name="senha">
       <DataType>varchar(16)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="315" parent="279" name="cpf">
+    <column id="316" parent="279" name="telefone">
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="316" parent="279" name="data_criacao_conta">
-      <DataType>datetime(6)|0s</DataType>
+    <column id="317" parent="279" name="usuario">
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <column id="317" parent="279" name="numero_residencia">
-      <DataType>int|0s</DataType>
+    <column id="318" parent="279" name="cpf">
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>13</Position>
     </column>
-    <column id="318" parent="279" name="data_nascimento">
-      <DataType>date|0s</DataType>
+    <column id="319" parent="279" name="bio">
+      <DataType>varchar(255)|0s</DataType>
       <Position>14</Position>
     </column>
-    <key id="319" parent="279" name="PRIMARY">
+    <column id="320" parent="279" name="foto_capa">
+      <DataType>blob|0s</DataType>
+      <Position>15</Position>
+    </column>
+    <column id="321" parent="279" name="pontuacao">
+      <DataType>double|0s</DataType>
+      <Position>16</Position>
+    </column>
+    <key id="322" parent="279" name="PRIMARY">
       <ColNames>cod</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="320" parent="280" name="codigo">
-      <AutoIncrement>7</AutoIncrement>
+    <column id="323" parent="280" name="codigo">
+      <AutoIncrement>3</AutoIncrement>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="321" parent="280" name="data_publicacao">
+    <column id="324" parent="280" name="data_publicacao">
       <DataType>datetime(6)|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="322" parent="280" name="descricao">
+    <column id="325" parent="280" name="descricao">
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="323" parent="280" name="foto_feed">
+    <column id="326" parent="280" name="foto_feed">
       <DataType>longblob|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="324" parent="280" name="foto_perfil_ong">
+    <column id="327" parent="280" name="foto_perfil_ong">
       <DataType>longblob|0s</DataType>
       <Position>5</Position>
     </column>
-    <column id="325" parent="280" name="ong_cod">
+    <column id="328" parent="280" name="ong_cod">
       <DataType>int|0s</DataType>
       <Position>6</Position>
     </column>
-    <foreign-key id="326" parent="280" name="FKk2udmxo1mi9kehgqxv6sa9g7t">
+    <foreign-key id="329" parent="280" name="FKk2udmxo1mi9kehgqxv6sa9g7t">
       <ColNames>ong_cod</ColNames>
       <RefColNames>cod</RefColNames>
       <RefTableName>ong</RefTableName>
     </foreign-key>
-    <index id="327" parent="280" name="FKk2udmxo1mi9kehgqxv6sa9g7t">
+    <index id="330" parent="280" name="FKk2udmxo1mi9kehgqxv6sa9g7t">
       <ColNames>ong_cod</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="328" parent="280" name="PRIMARY">
+    <key id="331" parent="280" name="PRIMARY">
       <ColNames>codigo</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="329" parent="281" name="doador_cod">
+    <column id="332" parent="281" name="doador_cod">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="330" parent="281" name="ong_cod">
+    <column id="333" parent="281" name="ong_cod">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="331" parent="281" name="FKidj535td4gooau6l8f33obu28">
+    <foreign-key id="334" parent="281" name="FKidj535td4gooau6l8f33obu28">
       <ColNames>doador_cod</ColNames>
       <RefColNames>cod</RefColNames>
       <RefTableName>doador</RefTableName>
     </foreign-key>
-    <foreign-key id="332" parent="281" name="FK77bu2mx7hfc70xyl9m21yp3h1">
+    <foreign-key id="335" parent="281" name="FK77bu2mx7hfc70xyl9m21yp3h1">
       <ColNames>ong_cod</ColNames>
       <RefColNames>cod</RefColNames>
       <RefTableName>ong</RefTableName>
     </foreign-key>
-    <index id="333" parent="281" name="FKidj535td4gooau6l8f33obu28">
-      <ColNames>doador_cod</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="334" parent="281" name="FK77bu2mx7hfc70xyl9m21yp3h1">
+    <index id="336" parent="281" name="FK77bu2mx7hfc70xyl9m21yp3h1">
       <ColNames>ong_cod</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="335" parent="282" name="id">
-      <AutoIncrement>7</AutoIncrement>
+    <key id="337" parent="281" name="PRIMARY">
+      <ColNames>doador_cod
+ong_cod</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="338" parent="282" name="id">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="336" parent="282" name="data_notificacao">
+    <column id="339" parent="282" name="data_notificacao">
       <DataType>datetime(6)|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="337" parent="282" name="inscricao_doador_cod">
+    <column id="340" parent="282" name="inscricao_doador_cod">
       <DataType>int|0s</DataType>
       <Position>3</Position>
     </column>
-    <column id="338" parent="282" name="inscricao_ong_cod">
+    <column id="341" parent="282" name="inscricao_ong_cod">
       <DataType>int|0s</DataType>
       <Position>4</Position>
     </column>
-    <key id="339" parent="282" name="PRIMARY">
+    <foreign-key id="342" parent="282" name="FKo7vdlhl3l5l10c6www57e2auo">
+      <ColNames>inscricao_doador_cod
+inscricao_ong_cod</ColNames>
+      <RefColNames>doador_cod
+ong_cod</RefColNames>
+      <RefTableName>inscricao</RefTableName>
+    </foreign-key>
+    <index id="343" parent="282" name="FKo7vdlhl3l5l10c6www57e2auo">
+      <ColNames>inscricao_doador_cod
+inscricao_ong_cod</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="344" parent="282" name="PRIMARY">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="340" parent="283" name="cod">
-      <AutoIncrement>3</AutoIncrement>
+    <column id="345" parent="283" name="cod">
+      <AutoIncrement>2</AutoIncrement>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="341" parent="283" name="email">
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="342" parent="283" name="nome">
-      <DataType>varchar(45)|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <column id="343" parent="283" name="telefone">
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>4</Position>
-    </column>
-    <column id="344" parent="283" name="usuario">
-      <DataType>varchar(20)|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>5</Position>
-    </column>
-    <column id="345" parent="283" name="foto_perfil">
-      <DataType>longblob|0s</DataType>
-      <Position>6</Position>
-    </column>
     <column id="346" parent="283" name="autenticado">
       <DataType>bit(1)|0s</DataType>
       <NotNull>1</NotNull>
-      <Position>7</Position>
+      <Position>2</Position>
     </column>
     <column id="347" parent="283" name="cep">
+      <DataType>varchar(8)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="348" parent="283" name="data_criacao_conta">
+      <DataType>datetime(6)|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <column id="349" parent="283" name="data_nascimento">
+      <DataType>date|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="350" parent="283" name="email">
       <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="351" parent="283" name="foto_perfil">
+      <DataType>longblob|0s</DataType>
+      <Position>7</Position>
+    </column>
+    <column id="352" parent="283" name="nome">
+      <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="348" parent="283" name="numero">
+    <column id="353" parent="283" name="numero">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="349" parent="283" name="senha">
+    <column id="354" parent="283" name="senha">
       <DataType>varchar(16)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="350" parent="283" name="cnpj">
+    <column id="355" parent="283" name="telefone">
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="351" parent="283" name="data_criacao_conta">
-      <DataType>datetime(6)|0s</DataType>
+    <column id="356" parent="283" name="usuario">
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <column id="352" parent="283" name="numero_residencia">
-      <DataType>int|0s</DataType>
+    <column id="357" parent="283" name="cnpj">
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>13</Position>
     </column>
-    <key id="353" parent="283" name="PRIMARY">
+    <column id="358" parent="283" name="bio">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>14</Position>
+    </column>
+    <column id="359" parent="283" name="foto_capa">
+      <DataType>blob|0s</DataType>
+      <Position>15</Position>
+    </column>
+    <key id="360" parent="283" name="PRIMARY">
       <ColNames>cod</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>

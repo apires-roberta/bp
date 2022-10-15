@@ -22,8 +22,6 @@ import static org.springframework.http.ResponseEntity.status;
 @RequestMapping("/doacao")
 public class DoacaoController {
     @Autowired
-    private DoacoesRepository doacoesRepository;
-    @Autowired
     private IDoacaoService _doacaoService;
     @PostMapping("")
     public ResponseEntity<?> doar(@RequestBody @Valid CreateDoacaoDto doacaoDto){
@@ -57,7 +55,6 @@ public class DoacaoController {
     public ResponseEntity<ReadDoacaoDto> getDoacaoById(@PathVariable Integer idDoacao) {
         if (idDoacao == null || idDoacao <= 0)
             return status(400).build();
-
         try {
             ReadDoacaoDto doacao = _doacaoService.getDoacaoByIdDoacao(idDoacao);
             return doacao == null ? status(404).build() : status(200).body(doacao);

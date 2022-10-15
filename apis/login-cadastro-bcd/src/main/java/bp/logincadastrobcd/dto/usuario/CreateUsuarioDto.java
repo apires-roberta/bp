@@ -34,6 +34,8 @@ public class CreateUsuarioDto {
     @PastOrPresent
     @NotNull
     private LocalDate dataNascimento;
+    private String bio;
+    private byte[] fotoCapa;
 
     public String getNome() {
         return nome;
@@ -97,5 +99,21 @@ public class CreateUsuarioDto {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public byte[] getFotoCapa() {
+        return fotoCapa;
+    }
+
+    public void setFotoCapa(byte[] fotoCapa) {
+        this.fotoCapa = fotoCapa;
     }
 }

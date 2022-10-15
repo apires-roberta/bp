@@ -1,9 +1,9 @@
 package bp.logincadastrobcd.service;
 
 import bp.logincadastrobcd.dto.doador.CreateDoador;
+import bp.logincadastrobcd.dto.doador.ReadDoadorDto;
 import bp.logincadastrobcd.dto.doador.UpdateDoadorDto;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
-import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
 import bp.logincadastrobcd.entidade.Doador;
 import bp.logincadastrobcd.repositorio.DoadorRepository;
 import org.modelmapper.ModelMapper;
@@ -87,26 +87,26 @@ public class DoadorService implements IDoadorService {
     }
 
     @Override
-    public ReadUsuarioDto getDoador(Integer idUsuario) {
+    public ReadDoadorDto getDoador(Integer idUsuario) {
         Optional<Doador> doador = _repository.findByCod(idUsuario);
         if (doador.isEmpty())
             return null;
 
-        ReadUsuarioDto doadorDto = _mapper.map(doador.get(), ReadUsuarioDto.class);
+        ReadDoadorDto doadorDto = _mapper.map(doador.get(), ReadDoadorDto.class);
         return doadorDto;
     }
 
     @Override
-    public List<ReadUsuarioDto> getDoadorByNome(String nomeDoador) {
+    public List<ReadDoadorDto> getDoadorByNome(String nomeDoador) {
         List<Doador> doadores = _repository.findByNomeContains(nomeDoador);
 
         if (doadores.isEmpty())
             return null;
 
-        List<ReadUsuarioDto> doadoresDto = new ArrayList<>();
+        List<ReadDoadorDto> doadoresDto = new ArrayList<>();
 
         for (Doador doador : doadores) {
-            doadoresDto.add(_mapper.map(doador, ReadUsuarioDto.class));
+            doadoresDto.add(_mapper.map(doador, ReadDoadorDto.class));
         }
         return doadoresDto;
     }

@@ -1,5 +1,6 @@
 package bp.logincadastrobcd.dto.usuario;
 
+import javax.persistence.Column;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
@@ -10,6 +11,9 @@ public class UpdateUsuarioDto {
     private String email;
     @Size(min = 2, max = 20)
     private String usuario;
+    private String bio;
+    private byte[] fotoPerfil;
+    private byte[] fotoCapa;
     @Pattern(regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})") //Exemplo: (11) 92005-7526
     private String telefone;
     @Positive
@@ -74,5 +78,21 @@ public class UpdateUsuarioDto {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public byte[] getFotoCapa() {
+        return fotoCapa;
+    }
+
+    public void setFotoCapa(byte[] fotoCapa) {
+        this.fotoCapa = fotoCapa;
     }
 }

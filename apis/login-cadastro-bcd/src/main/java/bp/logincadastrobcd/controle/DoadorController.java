@@ -1,6 +1,7 @@
 package bp.logincadastrobcd.controle;
 
 import bp.logincadastrobcd.dto.doador.CreateDoador;
+import bp.logincadastrobcd.dto.doador.ReadDoadorDto;
 import bp.logincadastrobcd.dto.doador.UpdateDoadorDto;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
 import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
@@ -77,18 +78,18 @@ public class DoadorController {
     }
 
     @GetMapping("/{idUsuario}")
-    public ResponseEntity<ReadUsuarioDto> getDoador(@PathVariable Integer idUsuario) {
+    public ResponseEntity<ReadDoadorDto> getDoador(@PathVariable Integer idUsuario) {
         if (idUsuario == null)
             return status(404).build();
 
-        ReadUsuarioDto doador = _doadorService.getDoador(idUsuario);
+        ReadDoadorDto doador = _doadorService.getDoador(idUsuario);
 
         return doador != null ? status(200).body(doador) : status(404).build();
     }
 
     @GetMapping("/nomeDoador")
-    public ResponseEntity<List<ReadUsuarioDto>> getDoadorsByNome(@RequestParam String nomeDoador){
-        List<ReadUsuarioDto> doadores = _doadorService.getDoadorByNome(nomeDoador);
+    public ResponseEntity<List<ReadDoadorDto>> getDoadorsByNome(@RequestParam String nomeDoador){
+        List<ReadDoadorDto> doadores = _doadorService.getDoadorByNome(nomeDoador);
         return doadores == null ? status(404).build() : status(200).body(doadores);
     }
 
