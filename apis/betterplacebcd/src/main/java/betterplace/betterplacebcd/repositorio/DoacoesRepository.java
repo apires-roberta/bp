@@ -11,5 +11,5 @@ public interface DoacoesRepository extends JpaRepository<Doacao, Integer> {
     List<Doacao> findByCampanhaIdCampanhaOrderByDataDoacaoDesc(Integer idCampanha);
     @Query("SELECT coalesce(sum(d.valorDoacao), 0) from Doacao d where d.campanha.idCampanha = ?1") //Igual o NVL do Oracle -> Se a soma dos valores doados der null, ele retorna 0
     double sumValorDoadoCampanha(Integer idCampanha);
-
+    Doacao findByIdDoacao(Integer idDoacao);
 }

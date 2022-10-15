@@ -13,12 +13,11 @@ import betterplace.betterplacebcd.servicesreferences.IDoadorService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class DoacaoService implements IDoacaoService{
+public class DoacaoService implements IDoacaoService {
     @Autowired
     private CampanhaRepository _campanhaRepository;
     @Autowired
@@ -27,6 +26,7 @@ public class DoacaoService implements IDoacaoService{
     private IDoadorService _doadorService;
     @Autowired
     private ModelMapper _mapper;
+
     @Override
     public Integer doar(CreateDoacaoDto doacaoDto) {
         Campanha campanha = _campanhaRepository.findByIdCampanha(doacaoDto.getIdCampanha());
@@ -66,8 +66,8 @@ public class DoacaoService implements IDoacaoService{
 
     @Override
     public ReadDoacaoDto getDoacaoByIdDoacao(Integer idDoacao) {
-        Doacao doacao = _doacoesRepository.getById(idDoacao);
-        return _mapper.map(doacao, ReadDoacaoDto.class);
+            Doacao doacao = _doacoesRepository.findByIdDoacao(idDoacao);
+            return doacao != null ? _mapper.map(doacao, ReadDoacaoDto.class) : null;
     }
 
     private void notificar(Doacao doacao) {
