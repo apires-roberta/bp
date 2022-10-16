@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SearchInput from './SearchInput';
 import '../css/styles.css';
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function BarraPesquisa() {
   const [info, setInfo] = useState([]);
@@ -17,6 +18,7 @@ export default function BarraPesquisa() {
         .then((response) => {
           setInfo(response);
           console.log(response);
+          
         })
         .catch((error) => {
           /*fetch(
@@ -60,11 +62,14 @@ export default function BarraPesquisa() {
       />
       <br />{text && info.length ?  info.map(item => (
         <DivResult key={item.cod}>
-          {/*<div className="divImagem" style={{ backgroundImage: `url(data:image/jpeg;base64,${item.fotoPerfil}`, float: 'left' }}></div>
-          <h1 className="h1Nome">{item.nome}</h1>*/}
+          {sessionStorage.setItem('cod',`${item.cod}`)}
             <tr className="tableImg">
+            <Link to="/PerfilResultado" >
               <td ><div className="divImagem" style={{ backgroundImage: `url(data:image/jpeg;base64,${item.fotoPerfil}`, float: 'left' }}></div><br /></td>
-              <TdEstilo>{item.nome}</TdEstilo>
+            </Link>
+            <Link to="/PerfilResultado" className='link'>  
+              <TdEstilo>{item.nome}</TdEstilo> 
+            </Link>
             </tr>
         </DivResult>
       )): <h1>{element}</h1>}
