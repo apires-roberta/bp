@@ -88,6 +88,14 @@ public class DoacaoService implements IDoacaoService {
         return valor == null ? 0 : valor;
     }
 
+    @Override
+    public Integer getQtdDoacoesDoador(Integer idDoador) {
+        verificaDoadorExiste(idDoador);
+
+        Integer qtdDoacoes = _doacoesRepository.countByDoadorCod(idDoador);
+        return qtdDoacoes == null ? 0 : qtdDoacoes;
+    }
+
     private void notificar(Doacao doacao) {
         String mensagem = String.format("%s mandou R$%.2f para campanha: %s", doacao.getDoador().getNome(),
                 doacao.getValorDoacao(), doacao.getCampanha().getNomeCampanha());
@@ -98,5 +106,8 @@ public class DoacaoService implements IDoacaoService {
 
     private void verificaOngExiste(Integer idOng) {
         _ongService.getOngById(idOng);
+    }
+    private void verificaDoadorExiste(Integer idDoador) {
+        _doadorService.getUsuarioById(idDoador);
     }
 }

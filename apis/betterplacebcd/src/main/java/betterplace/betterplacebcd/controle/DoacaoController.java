@@ -91,4 +91,20 @@ public class DoacaoController {
             throw ex;
         }
     }
+    
+    @GetMapping("quantidade/doador/{idDoador}")
+    public ResponseEntity<Integer> getQtdDoacoesDoador(@PathVariable Integer idDoador){
+        if (idDoador <= 0 || idDoador == null)
+            return status(400).build();
+
+        try {
+            Integer qtdDoacoes = _doacaoService.getQtdDoacoesDoador(idDoador);
+
+            return qtdDoacoes == null ? status(404).build() : status(200).body(qtdDoacoes);
+        }catch (FeignException.NotFound ex){
+            return status(404).build();
+        }catch (Exception ex){
+            throw ex;
+        }
+    }
 }

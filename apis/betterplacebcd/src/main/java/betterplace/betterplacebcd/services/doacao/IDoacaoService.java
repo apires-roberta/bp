@@ -15,4 +15,6 @@ public interface IDoacaoService {
     ReadDoacaoDto getUltimaDoacaoDoadorCampanha(Integer idDoador, Integer idCampanha);
 
     Double getTotalRecebidoOng(Integer idOng);
+
+    Integer getQtdDoacoesDoador(Integer idDoador);
 }
