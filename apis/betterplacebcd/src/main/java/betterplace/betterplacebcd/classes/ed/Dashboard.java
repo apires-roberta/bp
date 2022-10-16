@@ -7,12 +7,22 @@ public class Dashboard {
     private List<Object> doacoesDia;
     private Object doacoesSemana;
     private Object doacoesValor;
+    private Integer mes;
 
-    public Dashboard(Integer idCampanha, List<Object> doacoesDia, Object doacoesSemana, Object doacoesValor) {
+    public Dashboard(Integer idCampanha, List<Object> doacoesDia, Object doacoesSemana, Object doacoesValor, Integer mes) {
         this.idCampanha = idCampanha;
         this.doacoesDia = doacoesDia;
         this.doacoesSemana = doacoesSemana;
         this.doacoesValor = doacoesValor;
+        this.mes = mes;
+    }
+
+    public Integer getMes() {
+        return mes;
+    }
+
+    public void setMes(Integer mes) {
+        this.mes = mes;
     }
 
     public Integer getIdCampanha() {

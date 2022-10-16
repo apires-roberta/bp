@@ -28,8 +28,8 @@ public class DashboardService implements  IDashboardService{
     }
 
     @Override
-    public List<Object> getDoacoesDia(String diaInicio, String diaFinal, Integer idCampanha){
-        List<Object> doacoes = _doacoesRepository.getDoacoesDia(diaInicio, diaFinal, idCampanha);
+    public List<Object> getDoacoesDia(Integer mes, Integer idCampanha){
+        List<Object> doacoes = _doacoesRepository.getDoacoesDia(mes, idCampanha);
         if(doacoes==null){
             return null;
         }
@@ -37,8 +37,8 @@ public class DashboardService implements  IDashboardService{
     }
 
     @Override
-    public List<Object> getDoacoesMes(String d1, String d2, String d3, String d4, String d5, String d6, String d7, String d8, String d9, String d10, Integer idCampanha){
-        List<Object> semana = _doacoesRepository.getDoacoesMes(d1,d2,d3,d4,d5,d6,d7,d8,d9,d10, idCampanha);
+    public List<Object> getDoacoesMes(Integer mes, Integer idCampanha){
+        List<Object> semana = _doacoesRepository.getDoacoesMes(mes, idCampanha);
         if(semana==null){
             return null;
         }
@@ -46,8 +46,8 @@ public class DashboardService implements  IDashboardService{
     }
 
     @Override
-    public List<Object> getDoacoesValor(Integer idCampanha){
-        List<Object> valor = _doacoesRepository.getDoacoesValor(idCampanha);
+    public List<Object> getDoacoesValor(Integer mes, Integer idCampanha){
+        List<Object> valor = _doacoesRepository.getDoacoesValor(mes, idCampanha);
         if(valor==null){
             return null;
         }

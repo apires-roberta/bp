@@ -9,6 +9,11 @@ public class ReadUsuarioDto {
     private LocalDate dataNascimento;
     private String bio;
     private byte[] fotoCapa;
+    private LocalDate dataCriacaoConta;
+
+    public LocalDate getDataCriacaoConta() {
+        return dataCriacaoConta;
+    }
 
     public String getNome() {
         return nome;
