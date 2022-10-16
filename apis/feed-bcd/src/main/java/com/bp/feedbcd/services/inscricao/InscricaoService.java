@@ -34,8 +34,8 @@ public class InscricaoService implements IInscricaoService {
             if (inscricaoRepository.existsByOngCodAndDoadorCod(novaInscricao.getFkOng(), novaInscricao.getFkDoador()))
                 return false;
 
-            ReadUsuarioDto ong = _ongService.getOngById(novaInscricao.getFkOng());
-            ReadUsuarioDto doador = _doadorService.getUsuarioById(novaInscricao.getFkDoador());
+            ReadUsuarioDto ong = verificaOngExiste(novaInscricao.getFkOng());
+            ReadUsuarioDto doador = verificaDoadorExiste(novaInscricao.getFkDoador());
 
             Inscricao inscricao = new Inscricao(_mapper.map(ong, Ong.class), _mapper.map(doador, Doador.class));
             inscricaoRepository.save(inscricao);
@@ -61,5 +61,40 @@ public class InscricaoService implements IInscricaoService {
         }catch (FeignException.NotFound notFound){
             return null;
         }
+    }
+
+    @Override
+    public List<Integer> getInscricoesDoador(Integer idDoador) {
+        try {
+            verificaDoadorExiste(idDoador);
+            List<Integer> inscricoes = inscricaoRepository.findByDoadorCod(idDoador);
+
+            return inscricoes;
+        }catch (FeignException.NotFound notFound){
+            return null;
+        }
+    }
+
+    @Override
+    public Boolean deleteInscricao(CreateInscricaoDto delInscricao) {
+        try {
+            Inscricao inscricao = inscricaoRepository.findByOngCodAndDoadorCod(delInscricao.getFkOng(), delInscricao.getFkDoador());
+            if (inscricao == null)
+                throw new IllegalArgumentException();
+
+            inscricaoRepository.delete(inscricao);
+            return true;
+        }catch (IllegalArgumentException notFound){
+            return false;
+        }catch (Exception ex){
+            throw ex;
+        }
+    }
+
+    private ReadUsuarioDto verificaDoadorExiste(Integer idDoador) {
+        return _doadorService.getUsuarioById(idDoador);
+    }
+    private ReadUsuarioDto verificaOngExiste(Integer idOng) {
+        return _ongService.getOngById(idOng);
     }
 }

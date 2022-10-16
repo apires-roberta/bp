@@ -10,4 +10,8 @@ public interface IInscricaoService {
     Boolean createInscricao(CreateInscricaoDto novaInscricao);
 
     List<ReadUsuarioDto> getInscritosOng(Integer idOng);
+
+    List<Integer> getInscricoesDoador(Integer idDoador);
+
+    Boolean deleteInscricao(CreateInscricaoDto delInscricao);
 }

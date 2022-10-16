@@ -1,5 +1,8 @@
 package com.bp.feedbcd.entidade;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -10,6 +13,7 @@ public class NotificacaoFeed {
     private Integer id;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Inscricao inscricao;
 
     private LocalDateTime dataNotificacao;
