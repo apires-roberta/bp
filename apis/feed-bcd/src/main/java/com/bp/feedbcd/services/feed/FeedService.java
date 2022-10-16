@@ -6,7 +6,9 @@ import com.bp.feedbcd.data.dto.usuario.ReadUsuarioDto;
 import com.bp.feedbcd.entidade.Feed;
 import com.bp.feedbcd.entidade.Ong;
 import com.bp.feedbcd.repository.FeedRepository;
+import com.bp.feedbcd.services.inscricao.IInscricaoService;
 import com.bp.feedbcd.services.notificacao.INotificacaoService;
+import com.bp.feedbcd.servicesreferences.IDoadorService;
 import com.bp.feedbcd.servicesreferences.IOngService;
 import feign.FeignException;
 import org.modelmapper.ModelMapper;
@@ -23,7 +25,11 @@ public class FeedService implements IFeedService{
     @Autowired
     private IOngService _ongService;
     @Autowired
+    private IDoadorService _doadorService;
+    @Autowired
     private INotificacaoService _notificacaoService;
+    @Autowired
+    private IInscricaoService _inscricaoService;
     @Autowired
     private ModelMapper _mapper;
 
@@ -95,7 +101,25 @@ public class FeedService implements IFeedService{
         return feedsDto;
     }
 
+    @Override
+    public List<ReadFeedDto> getFeedsByIdDoador(Integer idDoador) {
+        verificaDoadorExiste(idDoador);
+
+        List<Integer> inscricoes = _inscricaoService.getInscricoesDoador(idDoador);
+        List<Feed> feeds = _repository.findAllByOngCodInOrderByDataPublicacaoDesc(inscricoes);
+        List<ReadFeedDto> feedsDto = new ArrayList<>();
+        if (feeds.isEmpty())
+            return feedsDto;
+        for (Feed feed : feeds) {
+            feedsDto.add(_mapper.map(feed, ReadFeedDto.class));
+        }
+        return feedsDto;
+    }
+
     private void verificaOngExiste(Integer idOng) {
         _ongService.getOngById(idOng);
+    }
+    private void verificaDoadorExiste(Integer idDoador) {
+        _doadorService.getUsuarioById(idDoador);
     }
 }

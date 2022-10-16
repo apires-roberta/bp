@@ -14,4 +14,6 @@ public interface IFeedService {
     boolean deleteFeed(long idFeed);
 
     List<ReadFeedDto> getFeedsByIdOng(Integer idOng);
+
+    List<ReadFeedDto> getFeedsByIdDoador(Integer idDoador);
 }

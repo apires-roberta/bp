@@ -2,9 +2,9 @@ package com.bp.feedbcd.controle;
 
 import com.bp.feedbcd.data.dto.feed.CreateFeedDto;
 import com.bp.feedbcd.data.dto.feed.ReadFeedDto;
-import com.bp.feedbcd.entidade.Feed;
 import com.bp.feedbcd.services.feed.IFeedService;
 import feign.FeignException;
+import feign.RetryableException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -62,6 +62,24 @@ public class FeedController {
             return feeds.isEmpty() ? status(204).build() : status(200).body(feeds);
         }catch (FeignException.NotFound ex){
             return status(404).build();
+        }catch (Exception ex){
+            throw ex;
+        }
+    }
+
+    @GetMapping("/doador/{idDoador}")
+    public ResponseEntity<List<ReadFeedDto>> getFeedsDoador(@PathVariable Integer idDoador){
+        if (idDoador == null || idDoador <= 0)
+            return status(400).build();
+
+        try {
+            List<ReadFeedDto> feeds = _feedService.getFeedsByIdDoador(idDoador);
+
+            return feeds.isEmpty() ? status(204).build() : status(200).body(feeds);
+        }catch (FeignException.NotFound ex){
+            return status(404).build();
+        }catch (RetryableException ex){
+            return status(503).build();
         }catch (Exception ex){
             throw ex;
         }
