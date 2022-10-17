@@ -13,5 +13,7 @@ public interface IInscricaoService {
 
     List<Integer> getInscricoesDoador(Integer idDoador);
 
-    Boolean deleteInscricao(CreateInscricaoDto delInscricao);
+    void deleteInscricao(CreateInscricaoDto delInscricao);
+
+    void existeInscricao(CreateInscricaoDto existeInscricao);
 }

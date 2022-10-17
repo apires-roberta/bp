@@ -45,11 +45,31 @@ public class InscricaoController {
     }
 
     @DeleteMapping()
-    public ResponseEntity deleteInscricao(@RequestBody CreateInscricaoDto delInscricao) {
+    public ResponseEntity<?> deleteInscricao(@RequestBody CreateInscricaoDto delInscricao) {
         if (delInscricao == null)
             return status(400).build();
 
-        Boolean deletado = _inscricaoService.deleteInscricao(delInscricao);
-        return deletado ? status(204).build() : status(404).build();
+        try {
+            _inscricaoService.deleteInscricao(delInscricao);
+
+            return status(204).build();
+        }catch (IllegalArgumentException ex){
+            return status(404).build();
+        }catch (Exception ex){
+            throw ex;
+        }
+    }
+
+    @GetMapping("/existe/doador/{idDoador}/ong/{idOng}")
+    public ResponseEntity<?> existeInscricao(@PathVariable Integer idDoador, @PathVariable Integer idOng){
+        CreateInscricaoDto existsInscricao = new CreateInscricaoDto(idOng, idDoador);
+        try {
+            _inscricaoService.existeInscricao(existsInscricao);
+            return status(204).build();
+        }catch (IllegalArgumentException ex){
+            return status(404).build();
+        }catch (Exception ex){
+            throw ex;
+        }
     }
 }

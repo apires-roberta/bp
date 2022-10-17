@@ -76,16 +76,28 @@ public class InscricaoService implements IInscricaoService {
     }
 
     @Override
-    public Boolean deleteInscricao(CreateInscricaoDto delInscricao) {
+    public void deleteInscricao(CreateInscricaoDto delInscricao) {
         try {
             Inscricao inscricao = inscricaoRepository.findByOngCodAndDoadorCod(delInscricao.getFkOng(), delInscricao.getFkDoador());
             if (inscricao == null)
                 throw new IllegalArgumentException();
 
             inscricaoRepository.delete(inscricao);
-            return true;
         }catch (IllegalArgumentException notFound){
-            return false;
+            throw notFound;
+        }catch (Exception ex){
+            throw ex;
+        }
+    }
+
+    @Override
+    public void existeInscricao(CreateInscricaoDto existeInscricao) {
+        try {
+            Inscricao inscricao = inscricaoRepository.findByOngCodAndDoadorCod(existeInscricao.getFkOng(), existeInscricao.getFkDoador());
+            if (inscricao == null)
+                throw new IllegalArgumentException();
+        }catch (IllegalArgumentException notFound){
+            throw notFound;
         }catch (Exception ex){
             throw ex;
         }
