@@ -2,14 +2,8 @@ package betterplace.betterplacebcd.controle;
 
 import betterplace.betterplacebcd.data.dto.campanha.CreateCampanhaDto;
 import betterplace.betterplacebcd.data.dto.campanha.ReadCampanhaDto;
-import betterplace.betterplacebcd.data.dto.usuario.ReadUsuarioDto;
-import betterplace.betterplacebcd.entidade.Campanha;
-import betterplace.betterplacebcd.entidade.Ong;
-import betterplace.betterplacebcd.repositorio.CampanhaRepository;
 import betterplace.betterplacebcd.services.campanha.ICampanhaService;
-import betterplace.betterplacebcd.servicesreferences.IOngService;
 import feign.FeignException;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

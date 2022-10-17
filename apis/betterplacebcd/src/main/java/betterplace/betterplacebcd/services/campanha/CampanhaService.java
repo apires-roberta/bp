@@ -37,11 +37,11 @@ public class CampanhaService implements ICampanhaService{
 
     @Override
     public List<ReadCampanhaDto> getAllCampanhas() {
-        List<Campanha> campanhas = _campanhaRepository.findAll();
+        List<Campanha> campanhas = _campanhaRepository.findByDisponivelTrueOrderByDataCriacaoDesc();
         if (campanhas.isEmpty())
             return null;
 
-        return getReadCampanhaDtosComTotalDoado(campanhas);
+        return getReadCampanhaDtoComTotalDoado(campanhas);
     }
 
     @Override
@@ -65,11 +65,11 @@ public class CampanhaService implements ICampanhaService{
 
     @Override
     public List<ReadCampanhaDto> getCampanhaByFkOng(Integer fkOng) {
-        List<Campanha> campanhas = _campanhaRepository.findByOngCod(fkOng);
+        List<Campanha> campanhas = _campanhaRepository.findByOngCodOrderByDataCriacaoDesc(fkOng);
         if (campanhas == null || campanhas.isEmpty())
             return null;
 
-        return getReadCampanhaDtosComTotalDoado(campanhas);
+        return getReadCampanhaDtoComTotalDoado(campanhas);
     }
 
     @Override
@@ -96,42 +96,36 @@ public class CampanhaService implements ICampanhaService{
     @Override
     public List<ReadCampanhaDto> getRecomendacoesByIdCampanha(int idCampanha) {
         HashTable hashTable = new HashTable(TipoCampanha.values().length);
-        List<Campanha> campanhas = _campanhaRepository.findByDisponivelTrue();
-
-        //campanhas.stream().forEach(campanha -> hashTable.insere(campanha.getTipoCampanha().getIdTipoCampanha()));
-//        for (Campanha campanha : campanhas) {
-//            hashTable.insere(campanha.getTipoCampanha().getIdTipoCampanha());
-//        }
-        //TODO Colocar HashTable do tipo Campanha
-        Node nodeBuscado = hashTable.busca(idCampanha);
-
-        if (nodeBuscado == null)
-            throw new NullPointerException();
-
+        List<ReadCampanhaDto> campanhas = getReadCampanhaDtoComTotalDoado(_campanhaRepository.findByDisponivelTrueAndIdCampanhaIsNot(idCampanha));
         List<ReadCampanhaDto> campanhasRecomendadas = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            if (nodeBuscado == null)
-                break;
 
-            campanhasRecomendadas.add(_mapper.map(_campanhaRepository.findByIdCampanha(nodeBuscado.getInfo()), ReadCampanhaDto.class));
-            nodeBuscado = nodeBuscado.getNext();
+        for (ReadCampanhaDto campanha : campanhas) {
+            hashTable.insere(campanha.getIdCampanha(), campanha.getTipoCampanha().getIdTipoCampanha());
         }
 
+        Integer tipoCampanha = _campanhaRepository.findTipoCampanhaByIdCampanha(idCampanha);
+        tipoCampanha = tipoCampanha == 3 ? 4 : tipoCampanha + 1; //Tive que colocar esse +1 por causa de um bug bizarro do jpa que retorna o tipo_campanha - 1, mesmo a query dando certo no mysql
+
+        Node recomendacao = hashTable.busca(tipoCampanha);
+        for (int i = 0; i < 3 && recomendacao != null; i++) {
+            campanhasRecomendadas.add(getReadCampanhaDtoComTotalDoado(_campanhaRepository.findByIdCampanha(recomendacao.getInfo())));
+            recomendacao = recomendacao.getNext();
+        }
         return campanhasRecomendadas;
     }
 
     @Override
     public List<ReadCampanhaDto> getCampanhasDisponiveisByOng(Integer idOng) {
         verificaOngExiste(idOng);
-        List<Campanha> campanhasDisponiveis = _campanhaRepository.findByOngCodAndDisponivelTrue(idOng);
+        List<Campanha> campanhasDisponiveis = _campanhaRepository.findByOngCodAndDisponivelTrueOrderByDataCriacaoDesc(idOng);
 
-        return getReadCampanhaDtosComTotalDoado(campanhasDisponiveis);
+        return getReadCampanhaDtoComTotalDoado(campanhasDisponiveis);
     }
 
     @Override
     public void indisponibilizarTodasCampanhasByOng(Integer idOng) {
         verificaOngExiste(idOng);
-        List<Campanha> campanhas = _campanhaRepository.findByOngCod(idOng);
+        List<Campanha> campanhas = _campanhaRepository.findByOngCodOrderByDataCriacaoDesc(idOng);
 
         for (Campanha campanha : campanhas) {
             campanha.setDisponivel(false);
@@ -159,7 +153,7 @@ public class CampanhaService implements ICampanhaService{
         _ongService.getOngById(idOng);
     }
 
-    private List<ReadCampanhaDto> getReadCampanhaDtosComTotalDoado(List<Campanha> campanhas) {
+    private List<ReadCampanhaDto> getReadCampanhaDtoComTotalDoado(List<Campanha> campanhas) {
         List<ReadCampanhaDto> readCampanhaDtos = new ArrayList<>();
 
         for (Campanha campanha : campanhas) {
@@ -168,5 +162,11 @@ public class CampanhaService implements ICampanhaService{
             readCampanhaDtos.add(campanhaDto);
         }
         return readCampanhaDtos;
+    }
+
+    private ReadCampanhaDto getReadCampanhaDtoComTotalDoado(Campanha campanha){
+        ReadCampanhaDto dto = _mapper.map(campanha, ReadCampanhaDto.class);
+        dto.setTotalDoado(_doacoesRepository.sumValorDoadoCampanha(campanha.getIdCampanha()));
+        return dto;
     }
 }

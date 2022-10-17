@@ -14,7 +14,6 @@ public class ReadCampanhaDto {
     private Double valorNecessario;
     private LocalDateTime dataCriacao;
     private Double totalDoado;
-    private boolean disponivel;
 
     public Integer getIdCampanha() {
         return idCampanha;
@@ -86,13 +85,5 @@ public class ReadCampanhaDto {
 
     public void setTotalDoado(Double totalDoado) {
         this.totalDoado = totalDoado;
-    }
-
-    public boolean isDisponivel() {
-        return disponivel;
-    }
-
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
     }
 }

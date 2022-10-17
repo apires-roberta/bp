@@ -1,5 +1,4 @@
 package betterplace.betterplacebcd.classes.ed;
-
 public class HashTable {
     ListaLigada[] tabela;
 
@@ -19,6 +18,10 @@ public class HashTable {
         tabela[funcaoHash(num)].insereNode(num);
     }
 
+    public void insere(Integer idCampanha, int idTipoCampanha){
+        tabela[funcaoHash(idTipoCampanha)].insereNode(idCampanha);
+    }
+
     public boolean existe(int num){
         return tabela[funcaoHash(num)].buscaNode(num) == null ? false : true;
     }
@@ -35,6 +38,6 @@ public class HashTable {
     }
 
     public Node busca(int idObj) {
-        return tabela[funcaoHash(idObj)].buscaNode(idObj);
+        return tabela[funcaoHash(idObj)].getHead().getNext();
     }
 }

@@ -37,11 +37,11 @@ public class RelatorioService implements IRelatorioService {
 
     @Override
     public String[] montarDados(Integer idOng) {
-        if (campanhaRepository.findByOngCod(idOng).isEmpty()) {
+        if (campanhaRepository.findByOngCodOrderByDataCriacaoDesc(idOng).isEmpty()) {
             return null;
         }
         ListaObj<DadosCsv> dados = new ListaObj(campanhaRepository.countByOngCod(idOng));
-        for (Campanha campanha : campanhaRepository.findByOngCod(idOng)) {
+        for (Campanha campanha : campanhaRepository.findByOngCodOrderByDataCriacaoDesc(idOng)) {
             Object[] listaObj = new Object[12];
             listaObj[0] = campanha.getNomeCampanha();
             listaObj[1] = campanha.getNomeItem();
@@ -123,7 +123,7 @@ public class RelatorioService implements IRelatorioService {
         ReadUsuarioDto ong = _ongService.getOngById(idOng);
         nomeOng = ong.getNome();
 
-        for (Campanha campanha : campanhaRepository.findByOngCod(idOng)) {
+        for (Campanha campanha : campanhaRepository.findByOngCodOrderByDataCriacaoDesc(idOng)) {
             nomeCampanha = campanha.getNomeCampanha();
             itemCampanha = campanha.getNomeItem();
             descCampanha = campanha.getDescCampanha();

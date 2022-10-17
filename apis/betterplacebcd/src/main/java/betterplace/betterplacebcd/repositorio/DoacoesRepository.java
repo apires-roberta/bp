@@ -16,10 +16,8 @@ public interface DoacoesRepository extends JpaRepository<Doacao, Integer> {
     @Query("SELECT coalesce(sum(d.valorDoacao), 0) from Doacao d where d.campanha.idCampanha in " +
                 "(select camp.idCampanha from Campanha camp where camp.ong.cod = ?1)")
     double sumValorDoadoOng(Integer idOng);
-
     @Query(value="call proc_doacoes_dia(?1,?2)", nativeQuery = true)
     List<Object> getDoacoesDia(Integer mes, Integer idCampanha);
-
     @Query(value="call proc_doacoes_semana(?1,?2)", nativeQuery = true)
     List<Object> getDoacoesMes(Integer mes, Integer idCampanha);
 
@@ -28,6 +26,5 @@ public interface DoacoesRepository extends JpaRepository<Doacao, Integer> {
 
     @Query(value="call proc_estado(?1)", nativeQuery = true)
     List<Object> getProcedure(String estado);
-
     Integer countByDoadorCod(Integer idDoador);
 }
