@@ -44,14 +44,14 @@ public class InscricaoController {
         return inscritos.isEmpty() ? status(204).build() : status(200).body(inscritos);
     }
 
-    @DeleteMapping()
-    public ResponseEntity<?> deleteInscricao(@RequestBody CreateInscricaoDto delInscricao) {
+    @DeleteMapping("doador/{idDoador}/ong/{idOng}")
+    public ResponseEntity<?> deleteInscricao(@PathVariable Integer idDoador, @PathVariable Integer idOng) {
+        CreateInscricaoDto delInscricao = new CreateInscricaoDto(idOng, idDoador);
         if (delInscricao == null)
             return status(400).build();
 
         try {
             _inscricaoService.deleteInscricao(delInscricao);
-
             return status(204).build();
         }catch (IllegalArgumentException ex){
             return status(404).build();
