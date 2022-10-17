@@ -99,24 +99,33 @@ select:focus{
     margin-left: 5%;
     text-align: center;
     float: left;
-    margin-top: 6%;
+    margin-top: 5%;
 }
 
 .graficoBarra {
-    width: 35%;
-    margin-left: 5%;
+    width: 40%;
+    margin-left: 6%;
     text-align: center;
     float: left;
-    margin-top: 1%;
+    margin-top: 2%;
     height: 40vh;
 }
 
 .graficoBarraSemanal {
-    width: 80%;
-    margin-left: 10%;
+    width: 40%;
+    margin-left: 6%;
     text-align: center;
     float: left;
     margin-top: 2%;
+    height: 40vh;
+}
+
+.graficoEstado {
+    width: 40%;
+    margin-left: 6%;
+    text-align: center;
+    float: left;
+    margin-top: 5%;
     height: 40vh;
 }
 
@@ -224,7 +233,7 @@ input:focus{
 
 svg{
     height: 70vh;
-    width: 50%;
     float: left;
     margin-top: 8%;
+    margin-left: 25%;
 }

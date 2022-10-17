@@ -7,6 +7,9 @@ import {
   Marker,
   Annotation
 } from "react-simple-maps";
+import ColetarDados from "./GraficoEstado";
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
 
 
 import brTopoJson from "../data/br-topo.json";
@@ -66,7 +69,7 @@ function MapChart(props) {
                 <Geography
                   key={geo.rsmKey + "-Geography"}
                   geography={geo}
-                  onClick={() => console.log( geo.properties.id )}
+                  onClick={()=>abrirModal(geo.properties.id)}
                   style={{
                     default: {
                       ...geographyStyle,
@@ -140,19 +143,42 @@ function MapChart(props) {
       </Geographies>
     );
   };
+  const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '80%',
+        border: 'none',
+        boxShadow: 24,
+        borderRadius: "20px",
+        height: '80%',
+        backgroundColor: 'white'
+    };
 
+    function abrirModal(estado){
+      sessionStorage.setItem("estado", estado)
+      handleOpen()
+    }
   return (
     <>
       <ComposableMap
         projection="geoMercator"
         projectionConfig={{
           scale: 800,
-          center: [-53, -15]
+          center: [-50, -15]
         }}
       >
         {renderGeograph(brTopoJson, "BR")}
         </ComposableMap>
-        
+        <Modal open={open} onClose={handleClose}>
+          <Box sx={style} className="caixa">
+            <ColetarDados />
+          </Box>
+        </Modal>
         </>
   );
 };

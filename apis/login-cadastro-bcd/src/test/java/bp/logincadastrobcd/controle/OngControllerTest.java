@@ -53,13 +53,6 @@ class OngControllerTest {
     }
 
     @Test
-    @DisplayName("atualizar foto inválida Deve retornar 404 id inválido")
-    void atualizarFotoDoador() {
-        byte[] lista = new byte[10];
-        assertEquals(404, ongController.atualizarFotoOng(0,lista).getStatusCodeValue());
-    }
-
-    @Test
     @DisplayName("logoff Deve retornar 404 id não existe")
     void logoff() {
         assertEquals(404, ongController.logoff(0).getStatusCodeValue());

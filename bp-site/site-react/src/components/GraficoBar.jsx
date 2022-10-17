@@ -19,39 +19,43 @@ var data;
 var options;
 
 export function GraficoBar(props) {
+    var vetorDados=props.dados;
     const vetorValor=[]
     const vetorDias=[]
+    var titulo;
     if(props.grafico=="Semanal"){
-        for (var i=0;i<5;i++){
-            vetorValor.push(getRandomInt(0,100));  
-            vetorDias.push("S"+(i+1))                          
-        }
+            for(var j=0; j<vetorDados.length; j++){
+                vetorValor.push(vetorDados[j]) 
+                vetorDias.push("S"+(j+1))
+            }
+            titulo = "Quantidade doação X Semana"
     }
     else{
-        for (var i=0;i<6;i++){
-            vetorValor.push(getRandomInt(0,100)); 
-            if(i<5) vetorDias.push("R$"+(i+1)+"0,00")
-            else vetorDias.push("OV")                       
+        for(var i=0; i<vetorDados.length; i++){
+            vetorValor.push(vetorDados[i]) 
+            vetorDias.push(i==vetorDados.length-1 ? 'OV':'R$'+(i+1)+'0,00')
         }
+        titulo = "Quantidade doação X Valores"
     }
     
-  configGrafico(vetorValor, vetorDias, props.cor);
+  configGrafico(vetorValor, vetorDias, props.cor, titulo);
   return (
   <>
   <Bar data={data} options={options}/>
   </>
   );
 }
-function configGrafico(v1, v2, cor){
+function configGrafico(v1, v2, cor, titulo){
     const labels=v2
     options= {
-        scale: {            
-            max: 100
-        },
         plugins: {
             legend: {
                 display: false,
             },
+            title:{
+                display: true,
+                text: titulo,
+              },
             tooltip:{
                 enabled: false,
             },
@@ -69,9 +73,3 @@ function configGrafico(v1, v2, cor){
       ],
     };
   }
-  
-  function getRandomInt(min, max) {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min) + min);
-    }

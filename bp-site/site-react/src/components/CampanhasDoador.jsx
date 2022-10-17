@@ -27,7 +27,7 @@ function CampanhasDoador() {
           <DivInfo>
             {
               campanha.map((item) => (
-                <CardCampanhaDoador id={sessionStorage.setItem('codCampanha',`${item.ongCod}`)}
+                <CardCampanhaDoador id={item.ongCod}
                 descCampanha={item.descCampanha}
                 valorCampanha={item.valorNecessario}
                 nome={item.nomeCampanha}
@@ -35,7 +35,7 @@ function CampanhasDoador() {
                 
                 />
               ))
-            };
+            }
           </DivInfo>
     </>
   );

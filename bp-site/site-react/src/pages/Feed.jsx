@@ -2,7 +2,6 @@ import Menu from "../components/Menu";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
-import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
 import CartaoFeed from "../components/CartaoFeed";
 import Fab from '@mui/material/Fab';
@@ -11,7 +10,6 @@ import Rodape from "../components/Rodape";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import CadastroFeed from '../components/CadastroFeed';
-import CadastroCampanha from "../components/CadastroCampanha";
 
 function Feed() {
     const [theme, setTheme] = useState("light");
@@ -50,6 +48,11 @@ function Feed() {
         boxShadow: 24,
         borderRadius: "20px"
       };
+      function fechar(){
+        if(open){
+            handleClose()
+        }
+    }
     return (
         <>
             <Menu funcaoDark={toggleTheme} />
@@ -57,10 +60,10 @@ function Feed() {
                 <Fragment>
                     <GlobalTheme />
                     <CartaoFeed />
-                    <div style={estilo}>
+                    <div style={estilo} onClick={fechar}>
                         <Fab onClick={handleOpen} color="inherit" aria-label="add" sx={`background-color: ${theme === "light" ? "#01396F" : "#0070DC"}; color: white; float: right; margin-right: 10%; position: relative;`}>
                             <AddIcon />
-                            <Modal open={open} onClose={handleClose}>
+                            <Modal open={open}>
                             <Box sx={style} className="caixa">
                              <CadastroFeed/>
                              </Box>

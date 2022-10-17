@@ -46,9 +46,9 @@
                 <div class="pesquisa"><p>R$</p><input type="text" class="valor" id="valor" onkeyup="letras()"></div>
             </div>
             <div class="imagem">
-                <img id="imagem" class="logoEmpresa"/>
+                <img style="display: none" id="imagem" class="logoEmpresa"/>
                 <label for="arquivo">Enviar foto do produto</label>
-                <input type="file" class="foto" name="arquivo" id="arquivo" accept="image/*">
+                <input onchange="teste()" type="file" class="foto" name="arquivo" id="arquivo" accept="image/*">
             </div>
             <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>
@@ -57,7 +57,7 @@
     <footer>
         <div class="box-6">
             <div class="div-logo">
-                <img src="img/logo.png" alt="">
+                <img style="display:none;" src="img/logo.png" alt="">
                 <h1>Better Place</h1>
             </div>
             <div class="div-info">
@@ -74,16 +74,12 @@
 </html>
 
 <script>
-    'use strict'
+    function teste(){
+        console.log(imagem())
+    }
+    function imagem(){
         let photo = document.getElementById('imagem');
         let file = document.getElementById('arquivo');
-        
-
-        photo.addEventListener('click', () => {
-            file.click();
-        });
-
-        file.addEventListener('change', () => {
         
             if (file.files.length <= 0) {
                 return;
@@ -96,8 +92,7 @@
             }
         
             reader.readAsDataURL(file.files[0]);
-        });
-        console.log(file)
+        }
 
         function letras(){
             var strValor = valor.value

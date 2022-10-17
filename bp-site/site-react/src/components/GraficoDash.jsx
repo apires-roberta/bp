@@ -22,14 +22,15 @@ ChartJS.register(
 var data;
 var options;
 
-export function GraficoDash(props) {
-    const vetorValor=[]
-    const vetorDias=[]
-    for (var i=0;i<props.dia;i++){
-        vetorValor.push(getRandomInt(0,100));  
-        vetorDias.push(i+1)                          
+export function GraficoDash(props) { 
+  var vetorDados=props.dados
+    var vetorValor=[]
+    var vetorDias=[]
+    for(var i=0; i<vetorDados.length; i++){
+      vetorValor.push(vetorDados[i][1])
+      vetorDias.push(vetorDados[i][0].substring(8,10))
     }
-  configGrafico(vetorValor, vetorDias, props.cor);
+  configGrafico(vetorValor, vetorDias, props.cor, props.titulo);
   return (
   <>
   <Line data={data} options={options}/>
@@ -37,12 +38,11 @@ export function GraficoDash(props) {
   );
 }
 
-
-function configGrafico(v1, v2, cor){
+ 
+function configGrafico(v1, v2, cor, titulo){
   const labels=v2
   options= {
-    scale: {            
-        max: 100,
+    scale: {
         grid:{
             borderColor:"red"
         }
@@ -51,6 +51,10 @@ function configGrafico(v1, v2, cor){
     plugins: {
         legend: {
             display: false,
+        },
+        title:{
+          display: true,
+          text: titulo,
         },
         tooltip:{
             enabled: false,
@@ -69,9 +73,3 @@ function configGrafico(v1, v2, cor){
     ],
   };
 }
-
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min);
-  }

@@ -19,15 +19,15 @@ export default function BasicModal() {
     borderRadius: "20px"
   };
   const DivInfo = styled.div`
-        width: 24.5%;
-        margin-left: 8%;
+        width: 23.8%;
+        margin-left: 7%;
         margin-top: 4%;
         float: left;
         box-shadow: ${({ theme }) => theme.borda};
         border-radius: 10px;
         color: ${({ theme }) => theme.logo};
         border: ${({ theme }) => theme.bordaInfo} 2px solid;
-        height: 38.4vh;
+        height: 43vh;
         text-align: center;
     `;
 
@@ -37,7 +37,7 @@ export default function BasicModal() {
 
   const estiloP = {
     fontSize: "160px",
-    paddingTop: "18%"
+    paddingTop: "22%"
   };
   return (
     <div>

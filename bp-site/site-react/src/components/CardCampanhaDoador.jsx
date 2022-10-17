@@ -59,7 +59,7 @@ return (
             <h2 className='block-with-text' style={estiloH2} title={nome}>{nome}</h2>
             <P>{props.descCampanha}</P><br />
             <img style={estiloImg} className="img-estrela" src={estrela} alt="" />
-            <h3 style={estiloH3}>R${props.valorCampanha}</h3>
+            <h3 style={estiloH3}>R${props.valorCampanha.toFixed(2).replace(".",",")}</h3>
         </DivInfo>
     </>
 );

@@ -40,8 +40,9 @@ function CadastroDoador() {
             usuario: funcData.usuario,
             telefone: funcData.telefone,
             cep: funcData.cep,
-            numeroResidencia: funcData.numeroResidencia,
-            dataNascimento: funcData.dataNascimento
+            numero: funcData.numeroResidencia,
+            dataNascimento: funcData.dataNascimento,
+            bios: null
 
 
         }).then((resposta) => {

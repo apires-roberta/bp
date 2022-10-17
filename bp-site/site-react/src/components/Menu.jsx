@@ -14,6 +14,8 @@ import BarraPesquisa from "./BarraPesquisa";
 import MenuPerfil from "./MenuPerfil";
 import imgPesquisaBranco from "../img/pesquisaImagemBranco.svg";
 import imgPesquisaPreto from "../img/pesquisaImagemPreto.svg";
+import campanhaPreto from "../img/campanhaPreto.svg";
+import campanhaBranco from "../img/campanhaBranco.svg";
 
 
 function Menu(props) {
@@ -86,6 +88,10 @@ function Menu(props) {
         color: ${({ theme }) => theme.logo};
     `;
 
+    const pesquisa = {
+        display: "none",
+    }
+
     if (props.funcao === "cadastro") {
         return (
             <>
@@ -113,12 +119,15 @@ function Menu(props) {
                         <EstiloMenu>
                             <img alt="" onClick={()=>redirecionar("home")} className="logo" src={logo} />
                             <Title>bp</Title>
+                            <div id={"idPesquisa"} style={pesquisa}>
                             <BarraPesquisa/>
+                            </div>
                             <div className="divDireita">
-                                <img onMouseEnter={fecharMenu} src={theme === "light" ? notificacaoPreto : notificacaoBranco} alt="" />
+                                <img onMouseEnter={fecharMenu} src={theme === "light" ? notificacaoPreto : notificacaoBranco} title="Notificação" alt="" />
                                 <div onMouseEnter={manterMenu}><img src={theme === "light" ? contaPreto : contaBranco} alt="" /></div>
-                                <img onMouseEnter={fecharMenu} alt="" style={estilo} onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
-                                <img src={theme === "light" ? imgPesquisaPreto : imgPesquisaBranco} alt="" />
+                                <img onMouseEnter={fecharMenu} alt="" style={estilo} onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} title={theme === "light" ? "Modo escuro" : "Modo claro"} />
+                                <img onClick={()=>redirecionar("campanha")}src={theme === "light" ? campanhaPreto : campanhaBranco} title="Campanhas" alt="" />
+                                <img onClick={trocarBarra} src={theme === "light" ? imgPesquisaPreto : imgPesquisaBranco} title="Pesquisar" alt="" />
                             </div>
                             <MenuPerfil/>
                         </EstiloMenu>
@@ -141,4 +150,21 @@ function manterMenu(){
 
 function fecharMenu(){
     document.getElementById("divMenu").style.display="none";
+}
+
+function trocarBarra(){
+    if(document.getElementById("idPesquisa").style.display=="none"){
+        abrirPesquisa()
+    }
+    else{
+        fecharPesquisa()
+    }
+}
+
+function abrirPesquisa(){
+    document.getElementById("idPesquisa").style.display="block";
+}
+
+function fecharPesquisa(){
+    document.getElementById("idPesquisa").style.display="none";
 }

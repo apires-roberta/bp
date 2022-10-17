@@ -1,4 +1,3 @@
-import Input from "../components/Input";
 import Menu from "../components/Menu";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../theme";
@@ -8,8 +7,15 @@ import React, { Fragment, useState, useEffect } from "react";
 import apiLogin from "../apiLogin"
 import CardDados from "../components/CardDados";
 import { GraficoDash } from "../components/GraficoDash";
-
-function DashMensal() {
+import apiCampanha from "../apiCampanha";
+import dados from "../ColetarDadors";
+import Rodape from "../components/Rodape";
+function DashMensal(){
+    console.log(dados);
+    const[vetorDados, setVetorDados] = useState([]);
+    useEffect(() => {
+        setVetorDados(dados)
+    },[])
     const [theme, setTheme] = useState("light");
 
     const toggleTheme = () => {
@@ -27,43 +33,38 @@ function DashMensal() {
     }, []);
     const DivInfo = styled.div`
       width: 100%;
-      margin-top: 5%;
-      height: 50vh;
+      margin-top: 1%;
     `;
     const estiloDiv = {
         marginLeft: "10%",
         marginTop: "6%"
-      }
+    }
+    const estiloDiv2 = {
+        width: "100%",
+        height: "55vh",
+        marginTop: "5%"
+    }
+    const vetorMeses={7:"JUL", 8:'AGO', 9:'SET', 10:'OUT', 11:'NOV', 12:'DEZ'}
     return (
-        <>
+        <> 
             <Menu funcaoDark={toggleTheme} funcao="" />
             <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
                 <Fragment>
                     <GlobalTheme />
-                    <DivInfo>
-                        <CardDados style={estiloDiv} nome="Campanha" valorCampanha="1000,00" descricao="descrição" mes="JAN"/>
-                        <div className="graficoDash" onClick={()=>redirecionar("DashboardDetalhado")}>
-                            <GraficoDash cor={theme === "light" ? "#01396F" : "#0070DC"} dia={31}/>
-                        </div>
+                    <DivInfo> 
+                        {
+                            vetorDados.map((vetor)=>(
+                                <div style={estiloDiv2}>
+                                    <CardDados style={estiloDiv} id={vetor[0]} mes={vetorMeses[vetor[2]]}/>
+                                    <div id="grafico" className="graficoDash" onClick={() => dadosDashboardDetalhado(vetor[5])}>
+                                        <GraficoDash cor={theme === "light" ? "#01396F" : "#0070DC"} dados={vetor[1]}/>
+                                    </div>
+                                </div>
+                            )
+                            ) 
+                        }
                     </DivInfo>
-                    <DivInfo>
-                        <CardDados style={estiloDiv} nome="Campanha" valorCampanha="1000,00" descricao="descrição" mes="FEV"/>
-                        <div className="graficoDash">
-                            <GraficoDash cor={theme === "light" ? "#01396F" : "#0070DC"} dia={28}/>
-                        </div>
-                    </DivInfo>
-                    <DivInfo>
-                        <CardDados style={estiloDiv} nome="Campanha" valorCampanha="1000,00" descricao="descrição" mes="MAR"/>
-                        <div className="graficoDash">
-                            <GraficoDash cor={theme === "light" ? "#01396F" : "#0070DC"} dia={31}/>
-                        </div>
-                    </DivInfo>
-                    <DivInfo>
-                        <CardDados style={estiloDiv} nome="Campanha" valorCampanha="1000,00" descricao="descrição" mes="ABR"/>
-                        <div className="graficoDash">
-                            <GraficoDash cor={theme === "light" ? "#01396F" : "#0070DC"} dia={30}/>
-                        </div>
-                    </DivInfo>
+                    <Rodape/>
                 </Fragment>
             </ThemeProvider>
 
@@ -77,3 +78,7 @@ function redirecionar(pagina) {
     window.location.href = "http://localhost:3000/" + pagina;
 }
 
+function dadosDashboardDetalhado(mesSelecionado){
+    sessionStorage.setItem("mes", mesSelecionado)
+    redirecionar("DashboardDetalhado")
+}

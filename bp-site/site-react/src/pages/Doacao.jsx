@@ -62,6 +62,7 @@ function Doacao() {
 
   useEffect(() => {
     apiCampanha.get(`/campanha/${sessionStorage.getItem("campanha")}`).then((resposta) => {
+      console.log(resposta )
       if (resposta.status === 200) {  
         setcampanha(resposta.data)
       }
@@ -95,9 +96,7 @@ function Doacao() {
           <GlobalTheme />
           <div className="teste">
             <CardDados style={estiloDiv}
-              nome={campanha.nomeCampanha}
-              descricao={campanha.descCampanha}
-              valorCampanha={campanha.valorNecessario} />
+            id={sessionStorage.getItem("campanha")} />
             <div className="grafico">
               <Grafico valorDesejado={campanha.valorNecessario} valorAtual={Number(campanha.totalDoado)}/>
             </div>

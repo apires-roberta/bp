@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import apiLogin from "../apiLogin"
 import React, { useState, useEffect } from "react";
+import apiCampanha from "../apiCampanha";
+import contaBranco from "../img/usuarioBranco.png";
+import contaPreto from "../img/usuarioPreto.png";
+import capaBranco from "../img/fundoBranco.png";
 function CartaoPerfilDoador() {
     const [perfil, setperfil] = useState([]);
+    const [qtdColaboracao, setColaboracao] = useState();
     useEffect(() => {
         apiLogin.get(`/bp/doador/${sessionStorage.getItem("idDoador")}`).then((resposta) => {
           if (resposta.status === 200) {
@@ -11,6 +16,12 @@ function CartaoPerfilDoador() {
           }
         })
       }, [])
+      apiCampanha.get(`/doacao/quantidade/doador/${sessionStorage.getItem("idDoador")}`).then((resposta) => {
+        if(resposta.status===200){
+            console.log(resposta.data)
+            setColaboracao(resposta.data)
+        }
+      })
     const Cartao = styled.div`
         height:90vh;
         margin-top:8%;
@@ -55,7 +66,8 @@ function CartaoPerfilDoador() {
     }
     const fotoPerfil = {
         borderRadius: "3%",
-        width: "100%"
+        width: "90%",
+        marginLeft: "5%"
     }
     const nomeOng = {
         fontSize: "32px",
@@ -85,26 +97,27 @@ function CartaoPerfilDoador() {
         marginTop:"20%",
         marginRight:"5%"
     }
+    const localTheme = window.localStorage.getItem("theme");
     if(perfil!='')
     return (
         <>
             <Cartao>
                 <DivImagem>
-                    <img style={fotoFundo} src="https://f8n-production.s3.amazonaws.com/creators/profile/rf7rdju95-237-2376520-twitter-header-wallpapers-minimalist-dual-monitor-wallpaper-4k-jpg-cqlv2j.jpg" alt="" />
+                    <img style={fotoFundo} src={perfil.fotoCapa==null?capaBranco:perfil.fotoCapa} alt="" />
                 </DivImagem>
                 <div style={estilo}>
                     <span style={nomeOng}>{perfil.nome}<br /></span>
                     <span id="idIdade" style={slogan}>{idade(perfil.dataNascimento)} anos</span>
                 </div>
                 <DivLogin>
-                    <img alt="" style={fotoPerfil} src="https://images03.brasildefato.com.br/d753690c552a7a06b95d7b17ea689f06.jpeg" />
+                    <img alt="" style={fotoPerfil} src={perfil.fotoPerfil==null?localTheme === "light" ? contaPreto : contaBranco:perfil.fotoPerfil} />
                     <Divtext>
-                        <span>Colaborações:<br></br></span><span>5</span><br /><br />
-                        <span>Pontuação:</span><br></br><span>2534</span>
+                        <span>Colaborações:<br></br></span><span>{qtdColaboracao}</span><br /><br />
+                        <span>Pontuação:</span><br></br><span>{perfil.pontuacao}</span>
                     </Divtext>
                 </DivLogin>
                 <div style={alinhaBtn}>
-                    <span style={titulosCartao}> Bio:</span><br /><br /><span>"Sou mãe e casada, gosto muito de poder ajudar as pessoas da forma que posso!"</span><br /><br /><br />
+                    <span style={titulosCartao}> Bio:</span><br /><br /><span>"{perfil.bio}"</span><br /><br /><br />
                     <span style={titulosCartao}> Medalhas:</span><br /><br />
                     <img alt="" style={imgMedalhas} src="https://cdn-icons-png.flaticon.com/512/2583/2583381.png" /><img alt="" style={imgMedalhas} src="https://cdn-icons-png.flaticon.com/512/2583/2583350.png" /> <img alt="" style={imgMedalhas} src="https://cdn-icons-png.flaticon.com/512/2583/2583448.png" />
                 </div>

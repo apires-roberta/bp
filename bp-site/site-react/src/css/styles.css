@@ -77,3 +77,16 @@ input::placeholder {
   margin-bottom: 16px;
   margin-top: 16px;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+ 
+::-webkit-scrollbar-thumb {
+  background: #0070DC; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #01396F; 
+}

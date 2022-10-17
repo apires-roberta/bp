@@ -69,13 +69,6 @@ class DoadorControllerTest {
     }*/
 
     @Test
-    @DisplayName("atualizar foto inválida Deve retornar 404 id inválido")
-    void atualizarFotoDoador() {
-        byte[] lista = new byte[10];
-        assertEquals(404, doadorController.atualizarFotoDoador(0,lista).getStatusCodeValue());
-    }
-
-    @Test
     @DisplayName("logoff Deve retornar 404 id não existe")
     void logoff() {
         assertEquals(404, doadorController.logoff(0).getStatusCodeValue());

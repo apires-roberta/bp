@@ -40,7 +40,7 @@ function CardCampanhaOng(props) {
       }
     const DivInfo = styled.div`
         width: 20%;
-        margin-left: 8%;
+        margin-left: 6.8%;
         margin-top: 4%;
         padding-top: 3%;
         padding-left: 2%;
@@ -84,7 +84,8 @@ function CardCampanhaOng(props) {
     const estiloH3Valor = {
         float: "left",
         paddingTop: "7%",
-        fontWeight: "normal"
+        fontWeight: "normal",
+        display: "block"
     }
 
     const DivValor = styled.input`
@@ -104,8 +105,7 @@ function CardCampanhaOng(props) {
         width: "30%",
         fontSize: "16px",
         marginTop: "7%",
-        display: "none",
-        backgroundColor: "red"
+        display: "none"
     }
     
     const localTheme = window.localStorage.getItem("theme");
@@ -135,10 +135,16 @@ function redirecionar(pagina) {
     var input = document.getElementById(`mudarValor${id}`);
     var valor = document.getElementById(`valorFixo${id}`);
     var botao = document.getElementById(`botao${id}`);
-
-    input.style = "display: inline;";
-    botao.style = "display: inline; width: 30%; font-size: 16px; margin-top: 7%;";
-    valor.style = "display: none;";
+    if(valor.style.display=="block"){    
+        input.style = "display: inline;";
+        botao.style = "display: inline; width: 30%; font-size: 16px; margin-top: 7%;";
+        valor.style = "display: none;";
+    }
+    else{
+        input.style = "display: none;";
+        botao.style = "display: none;";
+        valor.style = "display: block; float: left; padding-top: 7%; margin-left: 3%; font-weight: normal";
+    }
   }
 
   

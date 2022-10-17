@@ -54,8 +54,12 @@ export default function BarraPesquisa() {
     padding-left: 15px;
    `;
 
+   const estiloPesquisa={
+    marginLeft: "13%"
+   }
+
   return (
-    <div className="divOng">
+    <div className="divOng" style={estiloPesquisa}>
       <SearchInput
         value={text}
         onChange={(search) => setText(search)}
