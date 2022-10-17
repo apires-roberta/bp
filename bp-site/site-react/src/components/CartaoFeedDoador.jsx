@@ -1,7 +1,7 @@
 import '../css/styles.css';
 import styled from "styled-components";
 import React, { useEffect, useState } from 'react';
-function CartaoFeed(){
+function CartaoFeedDoador(){
     const Cartao = styled.div`
         heigth: 200px;
         margin-top: 8%;
@@ -49,7 +49,7 @@ function CartaoFeed(){
 
     useEffect(() => {
         fetch(
-            `http://localhost:8081/feed`
+            `http://localhost:8081/feed/doador/${sessionStorage.getItem('idDoador')}`
           )
             .then((response) => response.json())
             .then((response) => {
@@ -87,4 +87,4 @@ function CartaoFeed(){
     );
 }
 
-export default CartaoFeed;
+export default CartaoFeedDoador;
