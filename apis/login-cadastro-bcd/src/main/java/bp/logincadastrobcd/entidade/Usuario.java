@@ -1,12 +1,11 @@
 package bp.logincadastrobcd.entidade;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @MappedSuperclass
 public abstract class Usuario {
@@ -31,8 +30,8 @@ public abstract class Usuario {
     @NotNull
     private boolean autenticado = false;
 
-    @Column(length = 50_000)
-    private byte[] fotoPerfil;
+    //@Column(length = 50_000)
+    private /*byte[]*/ URL fotoPerfil;
 
     @NotNull
     @Column(length = 8)
@@ -49,8 +48,8 @@ public abstract class Usuario {
 
     private String bio;
 
-    @Column(length = 50_000)
-    private byte[] fotoCapa;
+    //@Column(length = 50_000)
+    private /*byte[]*/ URL fotoCapa;
     
     public Usuario() {
     }
@@ -128,11 +127,11 @@ public abstract class Usuario {
         this.autenticado = autenticado;
     }
 
-    public byte[] getFotoPerfil() {
+    public URL getFotoPerfil() {
         return fotoPerfil;
     }
 
-    public void setFotoPerfil(byte[] fotoPerfil) {
+    public void setFotoPerfil(URL fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
     }
 
@@ -160,11 +159,11 @@ public abstract class Usuario {
         this.bio = bio;
     }
 
-    public byte[] getFotoCapa() {
+    public URL getFotoCapa() {
         return fotoCapa;
     }
 
-    public void setFotoCapa(byte[] fotoCapa) {
+    public void setFotoCapa(URL fotoCapa) {
         this.fotoCapa = fotoCapa;
     }
 }

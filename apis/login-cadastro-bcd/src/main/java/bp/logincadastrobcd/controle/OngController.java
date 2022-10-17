@@ -49,15 +49,15 @@ public class OngController {
 
         return status(201).body(resultado);
     }
-    @PatchMapping(value = "/{idUsuario}", consumes = "image/jpeg")
-    public ResponseEntity atualizarFotoOng(@PathVariable Integer idUsuario, @RequestBody byte[] fotoPerfil){
-        if (idUsuario == null || fotoPerfil == null)
-            return status(400).build();
-
-        boolean atualizado = _ongService.atualizarFotoOng(idUsuario, fotoPerfil);
-
-        return atualizado ? status(200).build() : status(404).build();
-    }
+//    @PatchMapping(value = "/{idUsuario}", consumes = "image/jpeg")
+//    public ResponseEntity atualizarFotoOng(@PathVariable Integer idUsuario, @RequestBody byte[] fotoPerfil){
+//        if (idUsuario == null || fotoPerfil == null)
+//            return status(400).build();
+//
+//        boolean atualizado = _ongService.atualizarFotoOng(idUsuario, fotoPerfil);
+//
+//        return atualizado ? status(200).build() : status(404).build();
+//    }
     @DeleteMapping("/logoff/{idUsuario}")
     public ResponseEntity logoff(@PathVariable Integer idUsuario) {
         if (idUsuario == null)

@@ -50,15 +50,15 @@ public class DoadorController {
 
         return status(201).body(resultado);
     }
-    @PatchMapping(value = "/{idUsuario}", consumes = "image/jpeg")
-    public ResponseEntity atualizarFotoDoador(@PathVariable Integer idUsuario, @RequestBody byte[] fotoPerfil){
-        if (idUsuario == null || fotoPerfil == null)
-            return status(400).build();
-
-        boolean atualizado = _doadorService.atualizarFotoDoador(idUsuario, fotoPerfil);
-
-        return atualizado ? status(204).build() : status(404).build();
-    }
+//    @PatchMapping(value = "/{idUsuario}", consumes = "image/jpeg")
+//    public ResponseEntity atualizarFotoDoador(@PathVariable Integer idUsuario, @RequestBody byte[] fotoPerfil){
+//        if (idUsuario == null || fotoPerfil == null)
+//            return status(400).build();
+//
+//        boolean atualizado = _doadorService.atualizarFotoDoador(idUsuario, fotoPerfil);
+//
+//        return atualizado ? status(204).build() : status(404).build();
+//    }
     @DeleteMapping("/logoff/{idUsuario}")
     public ResponseEntity logoff(@PathVariable Integer idUsuario){
         if (idUsuario == null)

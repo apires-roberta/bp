@@ -14,7 +14,7 @@ public interface IOngService {
 
     String cadastro(CreateOng novoUsuario);
 
-    boolean atualizarFotoOng(Integer idUsuario, byte[] fotoPerfil);
+    //boolean atualizarFotoOng(Integer idUsuario, byte[] fotoPerfil);
 
     boolean logoff(Integer idUsuario);
 

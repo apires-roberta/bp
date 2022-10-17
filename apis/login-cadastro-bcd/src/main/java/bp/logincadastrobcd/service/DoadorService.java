@@ -48,7 +48,7 @@ public class DoadorService implements IDoadorService {
         return doadorMap.getCod().toString();
     }
 
-    @Override
+    /*@Override
     public boolean atualizarFotoDoador(Integer idDoador, byte[] fotoPerfil) {
         if (!_repository.existsById(idDoador))
             return false;
@@ -60,7 +60,7 @@ public class DoadorService implements IDoadorService {
         doador.get().setFotoPerfil(fotoPerfil);
         _repository.save(doador.get());
         return true;
-    }
+    }*/
 
     @Override
     public boolean logoff(Integer idUsuario) {

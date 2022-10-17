@@ -1,6 +1,7 @@
 package bp.logincadastrobcd.dto.usuario;
 
 import javax.validation.constraints.*;
+import java.net.URL;
 import java.time.LocalDate;
 
 public class CreateUsuarioDto {
@@ -24,6 +25,7 @@ public class CreateUsuarioDto {
     @NotNull
     @Pattern(regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})") //Exemplo: (11) 92005-7526
     private String telefone;
+
     @NotNull
     @Positive
     private String cep;
@@ -35,6 +37,8 @@ public class CreateUsuarioDto {
     @NotNull
     private LocalDate dataNascimento;
     private String bio;
+    private URL fotoPerfil;
+    private URL fotoCapa;
 
     public String getNome() {
         return nome;
@@ -106,5 +110,21 @@ public class CreateUsuarioDto {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public URL getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(URL fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
+    }
+
+    public URL getFotoCapa() {
+        return fotoCapa;
+    }
+
+    public void setFotoCapa(URL fotoCapa) {
+        this.fotoCapa = fotoCapa;
     }
 }

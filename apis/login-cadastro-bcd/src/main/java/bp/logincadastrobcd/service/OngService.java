@@ -45,7 +45,7 @@ public class OngService implements IOngService{
 
         return doadorMap.getCod().toString();
     }
-    @Override
+    /*@Override
     public boolean atualizarFotoOng(Integer idUsuario, byte[] fotoPerfil) {
         if (!_repository.existsById(idUsuario))
             return false;
@@ -57,7 +57,7 @@ public class OngService implements IOngService{
         ong.get().setFotoPerfil(fotoPerfil);
         _repository.save(ong.get());
         return true;
-    }
+    }*/
     @Override
     public boolean logoff(Integer idUsuario) {
         if (!_repository.existsByCodAndAutenticadoTrue(idUsuario))

@@ -13,7 +13,7 @@ public interface IDoadorService {
     Integer login(LoginUsuarioDto usuarioLogin);
     String cadastro(CreateDoador novoDoador);
 
-    boolean atualizarFotoDoador(Integer idDoador, byte[] fotoPerfil);
+    //boolean atualizarFotoDoador(Integer idDoador, byte[] fotoPerfil);
 
     boolean logoff(Integer idUsuario);
 

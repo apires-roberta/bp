@@ -1,14 +1,20 @@
 package betterplace.betterplacebcd.data.dto.usuario;
 
+import java.net.URL;
 import java.time.LocalDate;
 
 public class ReadUsuarioDto {
     private Integer cod;
     private String nome, email, usuario, telefone;
-    private byte[] fotoPerfil;
+    private /*byte[]*/ URL fotoPerfil;
     private LocalDate dataNascimento;
     private String bio;
-    private byte[] fotoCapa;
+    private /*byte[]*/ URL fotoCapa;
+    private LocalDate dataCriacaoConta;
+
+    public LocalDate getDataCriacaoConta() {
+        return dataCriacaoConta;
+    }
 
     public String getNome() {
         return nome;
@@ -26,7 +32,7 @@ public class ReadUsuarioDto {
         return telefone;
     }
 
-    public byte[] getFotoPerfil() { return fotoPerfil; }
+    public /*byte[]*/ URL getFotoPerfil() { return fotoPerfil; }
 
     public Integer getCod() { return cod; }
 
@@ -38,7 +44,7 @@ public class ReadUsuarioDto {
         return bio;
     }
 
-    public byte[] getFotoCapa() {
+    public /*byte[]*/ URL getFotoCapa() {
         return fotoCapa;
     }
 }

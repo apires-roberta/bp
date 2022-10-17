@@ -1,7 +1,7 @@
 package bp.logincadastrobcd.dto.usuario;
 
-import javax.persistence.Column;
 import javax.validation.constraints.*;
+import java.net.URL;
 import java.time.LocalDate;
 
 public class UpdateUsuarioDto {
@@ -12,8 +12,8 @@ public class UpdateUsuarioDto {
     @Size(min = 2, max = 20)
     private String usuario;
     private String bio;
-    private byte[] fotoPerfil;
-    private byte[] fotoCapa;
+    private /*byte[]*/ URL fotoPerfil;
+    private /*byte[]*/ URL fotoCapa;
     @Pattern(regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})") //Exemplo: (11) 92005-7526
     private String telefone;
     @Positive
@@ -88,11 +88,19 @@ public class UpdateUsuarioDto {
         this.bio = bio;
     }
 
-    public byte[] getFotoCapa() {
+    public /*byte[]*/ URL getFotoCapa() {
         return fotoCapa;
     }
 
-    public void setFotoCapa(byte[] fotoCapa) {
+    public void setFotoCapa(/*byte[]*/ URL fotoCapa) {
         this.fotoCapa = fotoCapa;
+    }
+
+    public URL getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(URL fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
 }
