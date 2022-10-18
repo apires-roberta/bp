@@ -13,6 +13,7 @@ import Perfil from "./pages/Perfil";
 import Campanha from "./pages/Campanha";
 import BpNotaFiscal from "./pages/bpNotaFiscal";
 import VerPerfil from "./pages/VerPerfil";
+import HistoricoDoacao from "./pages/HistoricoDoacao";
 
 function Rotas() {
     return (
@@ -32,6 +33,7 @@ function Rotas() {
                 <Route path="/Campanha" element={<Campanha/>} />
                 <Route path="/BpNotaFiscal" element={<BpNotaFiscal/>} />
                 <Route path="/PerfilResultado" element={<VerPerfil/>} />
+                <Route path="/HistoricoDoacao" element={<HistoricoDoacao/>} />
             </Routes>
         </BrowserRouter>
     );
