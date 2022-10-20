@@ -13,7 +13,9 @@ import Perfil from "./pages/Perfil";
 import Campanha from "./pages/Campanha";
 import BpNotaFiscal from "./pages/bpNotaFiscal";
 import VerPerfil from "./pages/VerPerfil";
-import HistoricoDoacao from "./pages/HistoricoDoacao";
+import HistoricoDoacao from "./pages/HistoricoDoacao"
+import AlterarDadosDoador from "./pages/AlterarDadosDoador";
+import AlterarDadosOng from "./pages/AlterarDadosOng";
 
 function Rotas() {
     return (
@@ -34,6 +36,8 @@ function Rotas() {
                 <Route path="/BpNotaFiscal" element={<BpNotaFiscal/>} />
                 <Route path="/PerfilResultado" element={<VerPerfil/>} />
                 <Route path="/HistoricoDoacao" element={<HistoricoDoacao/>} />
+                <Route path="/AlterarDadosDoador" element={<AlterarDadosDoador/>} />
+                <Route path="/AlterarDadosOng" element={<AlterarDadosOng/>} />
             </Routes>
         </BrowserRouter>
     );
