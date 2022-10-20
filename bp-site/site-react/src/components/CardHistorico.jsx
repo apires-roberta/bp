@@ -9,8 +9,8 @@ import { width } from '@mui/system';
 
 function HistoricoDoacao() {
 const DivInfo = styled.div`
-width: 50%;
-margin-left: 22%;
+width: 30%;
+margin-left: 33%;
 margin-top: 5%;
 padding-top: 3%;
 padding-left: 2%;
@@ -60,7 +60,7 @@ fontWeight: "normal"
 const DivValor = styled.input`
 float: left;
 margin-left: 3%;
-width: 30%;
+width: 20%;
 margin-top: 7%;
 border: none;
 border-bottom:solid 2px ${({ theme }) => theme.azulClaro};
@@ -78,11 +78,11 @@ display: "none",
 backgroundColor: "red"
 }
 const notaicone ={
-width : "13%",
+width : "25%",
 height : "10vh",
 marginTop: "0%",
 float : "left",
-marginLeft: "0%",
+marginLeft: "35%",
 marginBottom : "0%"
 }
 const localTheme = window.localStorage.getItem("theme");
