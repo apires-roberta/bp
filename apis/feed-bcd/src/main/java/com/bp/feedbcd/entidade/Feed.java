@@ -3,6 +3,8 @@ package com.bp.feedbcd.entidade;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import java.net.URL;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,12 +17,13 @@ public class Feed {
     @NotNull @NotBlank
     private String descricao;
     @Column(length = 50_000_000)
-    private byte[] fotoFeed;
+    private URL fotoFeed;
 
-    public Feed(Ong ong, String descricao) {
+    public Feed(Ong ong, String descricao, URL fotoFeed) {
         this.ong = ong;
         this.dataPublicacao = LocalDateTime.now();
         this.descricao = descricao;
+        this.fotoFeed = fotoFeed;
     }
 
     public Feed() {
@@ -42,11 +45,11 @@ public class Feed {
     public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
-    public byte[] getFotoFeed() {
+    public URL getFotoFeed() {
         return fotoFeed;
     }
 
-    public void setFotoFeed(byte[] fotoFeed) {
+    public void setFotoFeed(URL fotoFeed) {
         this.fotoFeed = fotoFeed;
     }
     public String getDescricao() {

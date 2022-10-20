@@ -6,10 +6,10 @@ import java.time.LocalDate;
 public class ReadUsuarioDto {
     private Integer cod;
     private String nome, email, usuario, telefone;
-    private /*byte[]*/ URL fotoPerfil;
+    private /*URL*/ URL fotoPerfil;
     private LocalDate dataNascimento;
     private String bio;
-    private /*byte[]*/ URL fotoCapa;
+    private /*URL*/ URL fotoCapa;
     private LocalDate dataCriacaoConta;
 
     public LocalDate getDataCriacaoConta() {
@@ -32,7 +32,7 @@ public class ReadUsuarioDto {
         return telefone;
     }
 
-    public /*byte[]*/ URL getFotoPerfil() { return fotoPerfil; }
+    public /*URL*/ URL getFotoPerfil() { return fotoPerfil; }
 
     public Integer getCod() { return cod; }
 
@@ -44,7 +44,7 @@ public class ReadUsuarioDto {
         return bio;
     }
 
-    public /*byte[]*/ URL getFotoCapa() {
+    public /*URL*/ URL getFotoCapa() {
         return fotoCapa;
     }
 }

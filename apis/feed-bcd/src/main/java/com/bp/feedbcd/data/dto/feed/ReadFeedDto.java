@@ -6,6 +6,8 @@ import com.bp.feedbcd.entidade.Ong;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import java.net.URL;
 import java.time.LocalDateTime;
 
 public class ReadFeedDto {
@@ -16,9 +18,7 @@ public class ReadFeedDto {
     @NotBlank
     private String descricao;
     @Column(length = 50_000_000)
-    private byte[] fotoFeed;
-    @Column(length = 50_000_000)
-    private byte[] fotoPerfilOng;
+    private URL fotoFeed;
 
     public Long getCodigo() {
         return codigo;
@@ -52,19 +52,11 @@ public class ReadFeedDto {
         this.descricao = descricao;
     }
 
-    public byte[] getFotoFeed() {
+    public URL getFotoFeed() {
         return fotoFeed;
     }
 
-    public void setFotoFeed(byte[] fotoFeed) {
+    public void setFotoFeed(URL fotoFeed) {
         this.fotoFeed = fotoFeed;
-    }
-
-    public byte[] getFotoPerfilOng() {
-        return fotoPerfilOng;
-    }
-
-    public void setFotoPerfilOng(byte[] fotoPerfilOng) {
-        this.fotoPerfilOng = fotoPerfilOng;
     }
 }

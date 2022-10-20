@@ -15,6 +15,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class FeedService implements IFeedService{
             if (usuarioDto == null)
                 return null;
 
-            Feed feed = new Feed(_mapper.map(usuarioDto, Ong.class), novoFeed.getDescricao());
+            Feed feed = new Feed(_mapper.map(usuarioDto, Ong.class), novoFeed.getDescricao(), novoFeed.getFotoFeed());
             _repository.save(feed);
             _notificacaoService.createNotificacao(usuarioDto.getCod());
             return feed.getCodigo();
@@ -66,7 +67,7 @@ public class FeedService implements IFeedService{
     }
 
     @Override
-    public boolean atualizarFotosFeed(byte[] fotoFeed, Long idFeed) {
+    public boolean atualizarFotosFeed(URL fotoFeed, Long idFeed) {
         Feed novoFeed = _repository.findByCodigo(idFeed);
         if (novoFeed == null)
             return false;

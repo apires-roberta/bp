@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.net.URL;
 import java.time.LocalDate;
 
 @MappedSuperclass
@@ -30,7 +31,7 @@ public abstract class Usuario {
     private boolean autenticado = false;
 
     @Column(length = 50_000)
-    private byte[] fotoPerfil;
+    private URL fotoPerfil;
 
     @NotNull
     @Column(length = 8)
@@ -48,7 +49,7 @@ public abstract class Usuario {
     private String bio;
 
     @Column(length = 50_000)
-    private byte[] fotoCapa;
+    private URL fotoCapa;
     
     public Usuario() {
     }
@@ -126,11 +127,11 @@ public abstract class Usuario {
         this.autenticado = autenticado;
     }
 
-    public byte[] getFotoPerfil() {
+    public URL getFotoPerfil() {
         return fotoPerfil;
     }
 
-    public void setFotoPerfil(byte[] fotoPerfil) {
+    public void setFotoPerfil(URL fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
     }
 
@@ -158,11 +159,11 @@ public abstract class Usuario {
         this.bio = bio;
     }
 
-    public byte[] getFotoCapa() {
+    public URL getFotoCapa() {
         return fotoCapa;
     }
 
-    public void setFotoCapa(byte[] fotoCapa) {
+    public void setFotoCapa(URL fotoCapa) {
         this.fotoCapa = fotoCapa;
     }
 }

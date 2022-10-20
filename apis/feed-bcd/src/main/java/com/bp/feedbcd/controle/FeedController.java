@@ -35,14 +35,14 @@ public class FeedController {
         return feedId != null ? status(201).body(feedId) : status(404).build();
     }
 
-    @PatchMapping(value = "/{idFeed}", consumes = "image/jpeg")
-    public  ResponseEntity<Void> atualizarFotosFeed(@RequestBody byte[] fotoFeed, @PathVariable long idFeed){
+    /*@PatchMapping(value = "/{idFeed}", consumes = "image/jpeg")
+    public  ResponseEntity<Void> atualizarFotosFeed(@RequestBody URL fotoFeed, @PathVariable long idFeed){
         if (fotoFeed == null)
             return status(400).build();
 
         boolean atualizado = _feedService.atualizarFotosFeed(fotoFeed, idFeed);
         return atualizado ? status(204).build() : status(404).build();
-    }
+    }*/
 
     @DeleteMapping("/{idFeed}")
     public ResponseEntity<Void> deleteFeed(@PathVariable long idFeed){
