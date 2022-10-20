@@ -8,6 +8,8 @@ import React, { Fragment, useState, useEffect } from "react";
 import apiLogin from "../apiLogin"
 import Rodape from "../components/Rodape";
 
+const Swal = require('sweetalert2')
+
 function Login() {
     const [funcData, setFuncData] = useState({
         email: "",
@@ -17,13 +19,15 @@ function Login() {
         funcData.email = document.getElementById("idEmail").value;
         funcData.senha = document.getElementById("idSenha").value;
         console.log(funcData);
-        if(funcData.email=="adm@bp.com" && funcData.senha=="Senha123"){
-            redirecionar("DashboardMapa")
-        }
         apiLogin.post("/bp/doador/login", {
             email: funcData.email,
             senha: funcData.senha
         }).then((resposta) => {
+            Swal.fire(
+                'Login efetuado',
+                'Vamos lá!',
+                'success'
+              );
             console.log("post ok", resposta);
             sessionStorage.setItem("tipo", "PerfilDoador");
             sessionStorage.setItem("idDoador", resposta.data)
