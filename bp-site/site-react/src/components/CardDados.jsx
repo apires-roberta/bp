@@ -5,11 +5,13 @@ import React, { useState, useEffect } from "react";
 
 function CardDados(props) {
     const [campanha, setcampanha] = useState([]);
+    const [valor, setValor] = useState([]);
     useEffect(() => {
         apiCampanha.get(`/campanha/${props.id}`).then((resposta) => {
           if (resposta.status === 200) {  
             console.log(resposta.data)
             setcampanha(resposta.data)
+            setValor(resposta.data.valorNecessario.toFixed(2).replace(".",","))
           }
         })
       }, [])
@@ -64,7 +66,7 @@ function CardDados(props) {
                 <H2 style={estiloH2Mes}>{props.mes}</H2>
                 <P>{campanha.descCampanha}</P><br />
                 <img style={estiloImg} className="img-estrela" src={estrela} alt="" />
-                <h3 style={estiloH3}>R${campanha.valorNecessario.toFixed(2).replace(".",",")}</h3>
+                <h3 style={estiloH3}>R${valor}</h3>
             </DivInfo>
         </>
     );

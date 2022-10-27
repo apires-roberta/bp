@@ -4,6 +4,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import styled from "styled-components";
 import apiCampanha from '../apiCampanha';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
+import ip from '../ip';
 function CardCampanhaOng(props) {
     function guardarCampanha(id,disponivel){
         if(!disponivel){
@@ -128,14 +129,14 @@ function CardCampanhaOng(props) {
 export default CardCampanhaOng;
 
 function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/"+pagina;
+    window.location.href = `http://${ip}:3000/`+pagina;
   }
 
   function alterarValor(id){
     var input = document.getElementById(`mudarValor${id}`);
     var valor = document.getElementById(`valorFixo${id}`);
     var botao = document.getElementById(`botao${id}`);
-    if(valor.style.display=="block"){    
+    if(valor.style.display==="block"){    
         input.style = "display: inline;";
         botao.style = "display: inline; width: 30%; font-size: 16px; margin-top: 7%;";
         valor.style = "display: none;";

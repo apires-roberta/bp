@@ -8,6 +8,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import apiLogin from "../apiLogin"
 import Rodape from "../components/Rodape";
 import CardHistorico from "../components/CardHistorico";
+import ip from '../ip';
 
 function HistoricoDoacao() {
 const [theme, setTheme] = useState("light");
@@ -107,5 +108,5 @@ const [theme, setTheme] = useState("light");
   export default HistoricoDoacao;
 
   function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/"+pagina;
+    window.location.href = `http://${ip}:3000/`+pagina;
   }

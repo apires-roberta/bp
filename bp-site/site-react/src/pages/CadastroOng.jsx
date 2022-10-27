@@ -7,6 +7,7 @@ import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
 import apiLogin from "../apiLogin";
 import apiCep from "../apiCep";
+import ip from '../ip';
 
 // CommonJS
 const Swal = require('sweetalert2')
@@ -51,7 +52,29 @@ function CadastroOng() {
                     'success'
                   );
                 console.log("post ok", resposta);
-            }).catch((resposta) =>{alert(resposta.response.status)})
+            }).catch((resposta) =>{
+                if(resposta.response.status >= 500){
+                    Swal.fire(
+                        'Ops! Erro de servidor',
+                        'Desculpe! Nossos servidores estão instáveis',
+                        'success'
+                      );
+                }
+                else if (resposta.response.status == 409){
+                    Swal.fire(
+                        'Não foi possível completar a ação!',
+                        'Ong já cadastrada!',
+                        'warning'
+                      );
+                }
+                else{
+                    Swal.fire(
+                        'Não foi possível completar a ação!',
+                        'Dados invalidos!',
+                        'warning'
+                      );
+                }
+            })
         }
         else{
             document.getElementById("idConfirmarSenha").style="border: 2px solid red";
@@ -118,7 +141,7 @@ function CadastroOng() {
     const Span = styled.span`
         color:${({ theme }) => theme.logo};
     `;
-
+    if(sessionStorage.getItem("tipo")===""||sessionStorage.getItem("tipo")===null)
     return (
         <>
             <Menu funcaoDark={toggleTheme} funcao="cadastro" />
@@ -160,12 +183,16 @@ function CadastroOng() {
 
         </>
     );
+    
+    else{
+        redirecionar("Perfil")
+    }
 }
 
 export default CadastroOng;
 
 function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/" + pagina;
+    window.location.href = `http://${ip}:3000/` + pagina;
 }
 
 function teste(){

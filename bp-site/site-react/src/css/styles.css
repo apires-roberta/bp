@@ -53,10 +53,10 @@ input::placeholder {
 }
 
 .imgFotoDoacao{
-  background-size: 100% 52vh;
   background-repeat: no-repeat;
-  width: 100%;
-  margin-bottom:1%;
+  width: 90%;
+  margin-left: 5%;
+  margin-bottom:5%;
   height: 55vh;
 }
 

@@ -2,6 +2,7 @@ import Input from "../components/Input";
 import styled from "styled-components";
 import React, { useState } from "react";
 import apiCampanha from "../apiCampanha";
+import ip from '../ip';
 
 function CadastroCampanha() {
     const funcData = useState({
@@ -109,5 +110,5 @@ function CadastroCampanha() {
 export default CadastroCampanha;
 
 function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/"+pagina;
+    window.location.href = `http://${ip}:3000/`+pagina;
   }

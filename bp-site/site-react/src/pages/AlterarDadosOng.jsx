@@ -8,15 +8,106 @@ import React, { Fragment, useState, useEffect } from "react";
 import apiLogin from "../apiLogin"
 import apiCep from "../apiCep";
 import CartaoPerfilDoador from "../components/CartaoPerfilDoador";
-
+import contaBranco from "../img/usuarioBranco.png";
+import contaPreto from "../img/usuarioPreto.png";
+import capaBranco from "../img/fundoBranco.png";
+import { Upload } from "@aws-sdk/lib-storage";
+import { S3 } from "@aws-sdk/client-s3";
+import DadosS3 from "../DadosS3";
 
 function AlterarDadosOng() {
+function teste3(){
+    var photo = document.getElementById('idImagemPerfil');
+    var file = document.getElementById('arquivo2');
+
+    file.addEventListener('change', () => {
+
+        if (file.files.length <= 0) {
+            return;
+        }
+
+        let reader = new FileReader();
+
+        reader.onload = () => {
+            photo.src = reader.result;
+        }
+
+        reader.readAsDataURL(file.files[0]);
+    });
+    console.log("foto", photo)
+}
+
+function upload (id, nome){
+    var nomeFoto = nome.replaceAll(" ","_")
+    var fileInput = document.getElementById(id);
+    if(fileInput.files.length>0){
+    var file = fileInput.files[0];
+
+    const target = {Bucket:"s3-lab04-juan", Key:nomeFoto, Body:file}//s3-project-bp
+    const creds = {accessKeyId:DadosS3.chave_acesso, secretAccessKey:DadosS3.chave_secreta, sessionToken:DadosS3.session_token}
+
+    try {
+      const parallelUploads3 = new Upload({
+        client: new S3({region:"us-east-1", credentials:creds}),
+        leavePartsOnError: false, // optional manually handle dropped parts
+        params: target,
+      });
+    
+      parallelUploads3.on("httpUploadProgress", (progress) => {
+        console.log(progress);
+      });
+    
+      parallelUploads3.done();
+    } catch (e) {
+      return "";
+    } finally {
+        return "https://s3-lab04-juan.s3.amazonaws.com/"+nomeFoto;
+    }
+    }
+}
+
+function teste2(){
+    var photo = document.getElementById('idImagemFundo');
+    var file = document.getElementById('teste');
+
+    file.addEventListener('change', () => {
+
+        if (file.files.length <= 0) {
+            return;
+        }
+
+        let reader = new FileReader();
+
+        reader.onload = () => {
+            photo.src = reader.result;
+        }
+
+        reader.readAsDataURL(file.files[0]);
+    });
+    console.log("foto", photo)
+}
+
+    var [perfil, setperfil] = useState([]);
+    var [endereco, setendereco] = useState([]);
+    useEffect(() => {
+        apiLogin.get(`/bp/ong/${sessionStorage.getItem("idOng")}`).then((resposta) => {
+          if (resposta.status === 200) {
+            setperfil(resposta.data)
+            console.log("perfil",resposta.data)
+            apiCep.get(`/${"09560065"}/json`).then((resposta) => {
+                console.log("cep", resposta.data)
+                setendereco(resposta.data)
+            })
+          }
+        })
+      }, [])
     const [funcData, setFuncData] = useState({
         nome: "",
         email: "",
-        senha: "",
-        cpf: "",
+        bio: "",
         usuario: "",
+        cep: "",
+        numero: "",
         telefone: ""
 
     })
@@ -25,29 +116,27 @@ function AlterarDadosOng() {
         e.preventDefault();
         funcData.nome = document.getElementById("idNome").value;
         funcData.email = document.getElementById("idEmail").value;
-        funcData.senha = document.getElementById("idSenha").value;
-        funcData.cpf = document.getElementById("idCpf").value;
         funcData.usuario = document.getElementById("idUsuario").value;
         funcData.telefone = document.getElementById("idTelefone").value;
         funcData.cep = document.getElementById("idCep").value;
-        funcData.numeroResidencia = document.getElementById("idNumero").value;
-        funcData.dataNascimento = document.getElementById("idData").value;
+        funcData.numero = document.getElementById("idNumero").value;
+        funcData.bio = document.getElementById("idBio").value;
+        funcData.fotoPerfil = upload("arquivo2", funcData.nome+"Perfil")
+        funcData.fotoFundo = upload("teste", funcData.nome+"Capa")
         console.log(funcData);
-        apiLogin.post("/bp/doador/cadastroDoador", {
+        apiLogin.patch(`/bp/ong/novas-infos/${sessionStorage.getItem("idOng")}`, {
             nome: funcData.nome,
             email: funcData.email,
-            senha: funcData.senha,
-            cpf: funcData.cpf,
             usuario: funcData.usuario,
             telefone: funcData.telefone,
             cep: funcData.cep,
-            numeroResidencia: funcData.numeroResidencia,
-            dataNascimento: funcData.dataNascimento
-
-
+            numero: funcData.numero,
+            bio: funcData.bio,
+            fotoPerfil: funcData.fotoPerfil,
+            fotoCapa: funcData.fotoFundo
         }).then((resposta) => {
             console.log("post ok", resposta);
-            redirecionar("login")
+            //redirecionar("perfil")
         })
     }
     const [theme, setTheme] = useState("light");
@@ -69,56 +158,56 @@ function AlterarDadosOng() {
     const DivCadastro = styled.div`
         float: left;
         width: 52%;
-        margin-left: 10%;
+        margin-left: 5%;
         margin-top: 10%;
-        height: 70vh;
+        height: 73vh;
         box-shadow: ${({ theme }) => theme.borda};
         color: ${({ theme }) => theme.azulClaro};
     `;
     const DivNome = styled.div`
         height: 10vh;
-        margin-top:80%;
-        margin-left:30%;
-        float: left;
+        margin-top:60%;
         font-size:15px;
-        width: 10%;
+        text-align: center;
+    `;
+    const DivBio = styled.div`
+        height: 10vh;
+        font-size:15px;
+        text-align: center;
     `;
     const DivFoto = styled.div`
-        width: 180vh;
-        height: 10vh;
-        margin-top:12%;
-        margin-left:10%;
-        float: left;
-        position: absolute
+        width: 10%;
+        margin-top:8%;
+        margin-left:12.5%;
+        position: absolute;
     `;
 
     const DivPerfilAlterar = styled.div`
         float: left;
-        width: 30%;
-        margin-left: 5%;
+        width: 35%;
+        margin-left: 3%;
         margin-top: 10%;
-        height: 70vh;
+        height: 73vh;
         box-shadow: ${({ theme }) => theme.borda};
         color: ${({ theme }) => theme.azulClaro};
-        border-radius: 10px 10px 0px 0px;
+        border-radius: 10px 10px 10px 10px;
     `;
     const Botao = styled.button`
-        background-color: ${({ theme }) => theme.azulClaro};
-        color: white;
-        border: none;
-        border-radius: 50px;
-        box-shadow: ${({ theme }) => theme.borda};
-        cursor:pointer;
-        font-size: 32px;
-        width: 40%;
-        height: 7vh;
-        margin-top: 5%;
-        margin-bottom: 2%;
-        margin-left: 19%;
+    background-color: ${({ theme }) => theme.azulClaro};
+    color: white;
+    border: none;
+    border-radius: 50px;
+    box-shadow: ${({ theme }) => theme.borda};
+    font-size: 32px;
+    width: 62%;
+    height: 7vh;
+    margin-top: 6%;
+    margin-bottom: 2%;
+    margin-left: 19%;
     `;
     const DivImagem = styled.div`
         position: absolute;
-        width: 30%;
+        width: 35%;
     `;
     const Titulo = styled.h1`
         padding-top: 3%;
@@ -133,25 +222,14 @@ function AlterarDadosOng() {
         borderRadius: "10px 10px 0px 0px"
     }
     const fotoPerfil = {
-        borderRadius: "50%",
-        width: "11%",
+        width: "100%",
         height: "20vh",
     }
     const nomeOng = {
         fontSize: "32px",
         color: "{ theme }) => theme.letraInput}",
         align:"justify",
-        float: "left",
         display: "inline-block",
-        textAlign: "center",
-        marginLeft: "110%"
-       }
-       const BioOng = {
-        fontSize: "20px",
-        color: "{ theme }) => theme.letraInput}",
-        float: "left",
-        marginLeft: "6%",
-        textAlign: "center",
        }
 
     const InputStyle = styled.input`
@@ -164,6 +242,19 @@ function AlterarDadosOng() {
         border: ${({ theme }) => theme.bordaInput} 2px solid;
         color: ${({ theme }) => theme.letraInput};
     `;
+    
+    const estiloInput ={
+        display: "none"
+    }
+
+    const estiloLabel ={
+        backgroundColor: "red"
+    }
+
+    function pegarBio(){
+        document.getElementById("spanBio").innerHTML=document.getElementById("idBio").value
+    }
+
     return (
         <>
             <Menu funcaoDark={toggleTheme} funcao="cadastro" />
@@ -175,50 +266,75 @@ function AlterarDadosOng() {
                             <div className="esquerda">
                                 <div className="inputDiv">
                                     <span className="nomeInput" placeholder="Maria das Couves" >Nome:</span><br/>
-                                    <InputStyle type="text" id="idNome"/>
+                                    <InputStyle defaultValue={perfil.nome} type="text" id="idNome"/>
                                 </div>
                                 <div className="inputDiv">
                                     <span className="nomeInput">Email:</span><br/>
-                                    <InputStyle type="text" id="idEmail"/>
+                                    <InputStyle defaultValue={perfil.email} type="text" id="idEmail"/>
+                                
+                                <div className="inputDiv">
+                                    <span className="nomeInput">Bio:</span><br/>
+                                        <InputStyle defaultValue={perfil.bio == null ? "":perfil.bio} onChange={pegarBio} id="idBio" type="text" />
+                                    </div>
                                 </div>
                                 <div className="inputDiv">
-                                    <span className="nomeInput">CEP:</span><br/>
-                                    <InputStyle type="text" onBlur={teste} id="idCep"/>
+                                    <span className="nomeInput">Rua:</span><br/>
+                                    <InputStyle defaultValue={endereco.logradouro} disabled={true} type="text" id="idRua"/>
                                 </div>
-                                <Input nome="Numero:" id="idNumero" tipo="text" />
-                                <Input nome="Cidade:" id="idCidade" tipo="text" />
-                                <div className="Botao">
-                            <Botao onClick={enviar}>Atualizar</Botao><br/>
-                        </div>
+                                <div className="inputDiv">
+                                    <span className="nomeInput">Numero:</span><br/>
+                                    <InputStyle defaultValue={perfil.numero} type="text" onBlur={teste} id="idNumero"/>
+                                </div>
+                                <div className="inputDiv">
+                                    <span className="nomeInput">Cidade:</span><br/>
+                                    <InputStyle defaultValue={endereco.localidade} type="text" disabled={true} id="idCidade"/>
+                                </div>
                             </div>
                             <div className="direita">
                                 <div className="inputDiv">
                                     <span className="nomeInput">Usuário:</span><br/>
-                                    <InputStyle type="text" id="idUsuario"/>
+                                    <InputStyle defaultValue={perfil.usuario} type="text" id="idUsuario"/>
                                 </div>
                                 <div className="inputDiv">
                                     <span className="nomeInput">Telefone:</span><br/>
-                                    <InputStyle type="text" id="idTelefone"/>
+                                    <InputStyle defaultValue={perfil.telefone} type="text" id="idTelefone"/>
                                 </div>
-                                <Input nome="Rua:" id="idRua" tipo="text" />
-                                <Input nome="Bairro:" id="idBairro" tipo="text" />
-                                <Input nome="Estado:" id="idEstado" tipo="text" />
+                                <div className="inputDiv">
+                                    <span className="nomeInput">CEP:</span><br/>
+                                    <InputStyle defaultValue={perfil.cep} type="text" onBlur={teste} id="idCep"/>
+                                </div>
+                                <div className="inputDiv">
+                                    <span className="nomeInput">Bairro:</span><br/>
+                                    <InputStyle defaultValue={endereco.bairro} disabled={true} type="text" id="idBairro"/>
+                                </div>
+                                <div className="inputDiv">
+                                    <span className="nomeInput">Estado:</span><br/>
+                                    <InputStyle disabled={true} defaultValue={endereco.uf} type="text" id="idEstado"/>
+                                </div>
                                 <div className="Botao">
-                                
+                            <Botao onClick={enviar}>Atualizar</Botao><br/>
                         </div>
                             </div>
                         </DivCadastro>
                         <DivPerfilAlterar>
                             <DivImagem>
-                                <img style={fotoFundo} src="http://guiadefontes.msf.org.br/wp-content/uploads/2017/01/org-actionaid-1024x443.jpg" alt="" />
+                                <label for="teste">
+                                <img onClick={teste2} id="idImagemFundo" style={fotoFundo} src={perfil.fotoCapa == null ? capaBranco : perfil.fotoCapa} alt="" />
+                                </label>
+                                <input style={estiloInput} type="file" className="foto" name="teste" id="teste" accept="image/*"></input>
                             </DivImagem>
                             <DivFoto>
-                            <img alt="" style={fotoPerfil} src="https://captadores.org.br/wp-content/uploads/2021/04/actionaid-logo-vector.png" />
+                                <label forhtml="arquivo2"> 
+                                    <img onClick={teste3} id="idImagemPerfil" alt="" style={fotoPerfil} src={perfil.fotoPerfil == null ? theme === "light" ? contaPreto : contaBranco : perfil.fotoPerfil} />
+                                    <input style={estiloInput} type="file" className="foto" name="arquivo2" id="arquivo2" accept="image/*"></input>
+                                </label>
                             </DivFoto>
                             <DivNome>
-                                <span style={nomeOng}>Action Aid</span><br></br>
+                                <span style={nomeOng}>{perfil.nome}</span><br></br>
                             </DivNome>
-                            <span style={BioOng}>Ong que ajuda moradores de rua com necessidade</span>
+                            <DivBio>
+                            <span id="spanBio">{perfil.bio}</span>
+                            </DivBio>
 
                         </DivPerfilAlterar>
 
@@ -236,6 +352,10 @@ function redirecionar(pagina) {
     window.location.href = "http://localhost:3000/" + pagina;
 }
 
+function carregarGrafico(){
+    var elemento = document.getElementById()
+}
+
 function teste(){
     var cep = document.getElementById("idCep").value;
     apiCep.get(`/${cep}/json`).then((resposta) => {
@@ -246,3 +366,8 @@ function teste(){
         document.getElementById("idEstado").value=resposta.data.uf;
     })
 }
+
+/*
+
+                            
+                            */

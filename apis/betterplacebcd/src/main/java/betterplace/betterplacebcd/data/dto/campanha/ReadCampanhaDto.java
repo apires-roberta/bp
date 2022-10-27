@@ -14,6 +14,15 @@ public class ReadCampanhaDto {
     private Double valorNecessario;
     private LocalDateTime dataCriacao;
     private Double totalDoado;
+    private Boolean disponivel;
+
+    public Boolean getDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(Boolean disponivel) {
+        this.disponivel = disponivel;
+    }
 
     public Integer getIdCampanha() {
         return idCampanha;

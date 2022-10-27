@@ -6,6 +6,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import CartaoPerfilOng from "../components/CartaoPerfilOng";
 import Rodape from "../components/Rodape";
 import CartaoPerfilDoador from "../components/CartaoPerfilDoador";
+import ip from '../ip';
 function Perfil(){
     const [theme, setTheme] = useState("light");
 
@@ -60,5 +61,5 @@ function Perfil(){
 export default Perfil;
 
 function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/" + pagina;
+    window.location.href = `http://${ip}:3000/` + pagina;
   }

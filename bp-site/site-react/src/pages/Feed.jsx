@@ -10,6 +10,7 @@ import Rodape from "../components/Rodape";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import CadastroFeed from '../components/CadastroFeed';
+import ip from '../ip';
 
 function Feed() {
     const [theme, setTheme] = useState("light");
@@ -35,7 +36,11 @@ function Feed() {
 
     }, []);
     const estilo = {
-        marginBottom: "10%"
+        marginTop: "10%",
+        float: "right",
+        zIndex: "90",
+        position: "relative",
+        marginRight: "6%"
     }
 
     const style = {
@@ -48,6 +53,9 @@ function Feed() {
         boxShadow: 24,
         borderRadius: "20px"
       };
+    const estiloBotao={
+        margin: "0"
+    }
       function fechar(){
         if(open){
             handleClose()
@@ -60,17 +68,6 @@ function Feed() {
                 <Fragment>
                     <GlobalTheme />
                     <CartaoFeed />
-                    <div style={estilo} onClick={fechar}>
-                        <Fab onClick={handleOpen} color="inherit" aria-label="add" sx={`background-color: ${theme === "light" ? "#01396F" : "#0070DC"}; color: white; float: right; margin-right: 10%; position: relative;`}>
-                            <AddIcon />
-                            <Modal open={open}>
-                            <Box sx={style} className="caixa">
-                             <CadastroFeed/>
-                             </Box>
-                            </Modal>
-                        </Fab>
-                    </div>
-
                     <Rodape />
                 </Fragment>
             </ThemeProvider>
@@ -81,5 +78,17 @@ function Feed() {
 export default Feed;
 
 function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/" + pagina;
+    window.location.href = `http://${ip}:3000/` + pagina;
   }
+
+/*
+<div style={estilo} onClick={fechar}>
+                        <Fab onClick={handleOpen} color="inherit" aria-label="add" sx={`background-color: ${theme === "light" ? "#01396F" : "#0070DC"}; color: white; float: right; margin-right: 10%; position: relative;`}>
+                            <AddIcon sx={estiloBotao}/>
+                            <Modal open={open}>
+                            <Box sx={style} className="caixa">
+                             <CadastroFeed/>
+                             </Box>
+                            </Modal>
+                        </Fab>
+                    </div>*/

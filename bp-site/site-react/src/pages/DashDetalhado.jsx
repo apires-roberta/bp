@@ -10,6 +10,7 @@ import { GraficoDash } from "../components/GraficoDash";
 import { GraficoBar } from "../components/GraficoBar";
 import dados from "../ColetarDadors";
 import Rodape from "../components/Rodape";
+import ip from '../ip';
  
 function DashDetalhado() {
     
@@ -17,8 +18,12 @@ function DashDetalhado() {
     const [dadosMesAnterior, setMesAnterior] = useState([]);
     var mesEscolhido = sessionStorage.getItem("mes")
     useEffect(() => {
+        const interval = setInterval(()=>{
+        console.log(dados)
         setMesAtual([dados[mesEscolhido]]);
         setMesAnterior([mesEscolhido < 1 ? null : dados[mesEscolhido - 1]]);
+        return clearInterval(interval)
+    },200)
     }, []);
 
     const [theme, setTheme] = useState("light");
@@ -85,7 +90,7 @@ function DashDetalhado() {
                                         <>
                                         <DivInfo>
                                             <CardDados style={estiloDiv} id={dados[0]} mes={vetorMeses[dados[2]]} />
-                                            <div onClick={()=>redirecionar("Dashboard")} className="graficoDash">
+                                            <div className="graficoDash">
                                                 <GraficoDash cor={theme === "light" ? "#01396F" : "#0070DC"} dados={dados[1]} />
                                             </div>
                                             </DivInfo>
@@ -170,5 +175,5 @@ function somarValor(vetor) {
 }
 
 function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/" + pagina;
+    window.location.href = `http://${ip}:3000/` + pagina;
   }

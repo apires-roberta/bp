@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
 import apiCampanha from "../apiCampanha";
+import ip from '../ip';
   
   function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/"+pagina;
+    window.location.href = `http://${ip}:3000/`+pagina;
   }
 
 function BotaoDoacao(props){
@@ -39,12 +40,12 @@ function BotaoDoacao(props){
         box-shadow: ${({ theme }) => theme.borda};
         cursor:pointer;
         font-size: 24px;
-        width: 25%;
+        width: 20%;
         height: 8vh;
         margin-top: 2%;
         margin-bottom: 2%;
         color: ${({ theme }) => theme.bordaInput};
-        margin-left: 5%;
+        margin-left: 10%;
     `;
     return(
         <Botao onClick={()=>doar(props.valor)}>R${props.valor},00</Botao>

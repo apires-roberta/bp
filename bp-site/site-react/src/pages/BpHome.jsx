@@ -7,6 +7,7 @@ import logo2 from '../img/logo-2.png';
 import facebook from '../img/logo-facebook.png';
 import linkedin from '../img/logo-linkedin.png';
 import telegram from '../img/logo-telegram.png';
+import ip from '../ip';
 
 function BpHome() {
 
@@ -157,5 +158,5 @@ function BpHome() {
 export default BpHome;
 
 function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/" + pagina;
+    window.location.href = `http://${ip}:3000/` + pagina;
 }

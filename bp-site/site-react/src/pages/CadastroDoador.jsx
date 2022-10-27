@@ -8,6 +8,8 @@ import React, { Fragment, useState, useEffect } from "react";
 import apiLogin from "../apiLogin"
 import apiCep from "../apiCep";
 import Rodape from "../components/Rodape";
+import ip from '../ip';
+const Swal = require('sweetalert2')
 
 function CadastroDoador() {
     const [funcData, setFuncData] = useState({
@@ -48,7 +50,35 @@ function CadastroDoador() {
         }).then((resposta) => {
             console.log("post ok", resposta);
             redirecionar("login")
-        })
+        }).then((resposta) =>{
+            Swal.fire(
+                'Usuário cadastrado',
+                'Parabéns! Agora você faz parte da família bp',
+                'success'
+              );
+            console.log("post ok", resposta);
+        }).catch((resposta) =>{
+        if(resposta.response.status >= 500){
+            Swal.fire(
+                'Ops! Erro de servidor',
+                'Desculpe! Nossos servidores estão instáveis',
+                'success'
+              );
+        }
+        else if (resposta.response.status == 409){
+            Swal.fire(
+                'Não foi possível completar a ação!',
+                'Usuário já cadastrado!',
+                'warning'
+              );
+        }
+        else{
+            Swal.fire(
+                'Não foi possível completar a ação!',
+                'Dados invalidos!',
+                'warning'
+              );
+        }})
     }
     const [theme, setTheme] = useState("light");
 
@@ -65,6 +95,11 @@ function CadastroDoador() {
         const localTheme = window.localStorage.getItem("theme");
         localTheme && setTheme(localTheme);
     }, []);
+    document.addEventListener('keydown', function (event) {
+        if (event.code === 'Enter'){
+            enviar()
+        }
+    });
     const DivCadastro = styled.div`
         float: left;
         width: 80%;
@@ -105,6 +140,7 @@ function CadastroDoador() {
         border: ${({ theme }) => theme.bordaInput} 2px solid;
         color: ${({ theme }) => theme.letraInput};
     `;
+    if(sessionStorage.getItem("tipo")===""||sessionStorage.getItem("tipo")===null)
     return (
         <>
             <Menu funcaoDark={toggleTheme} funcao="cadastro" />
@@ -169,12 +205,15 @@ function CadastroDoador() {
 
         </>
     );
+    else{
+        redirecionar("Perfil")
+    }
 }
 
 export default CadastroDoador;
 
 function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/" + pagina;
+    window.location.href = `http://${ip}:3000/` + pagina;
 }
 
 function teste(){

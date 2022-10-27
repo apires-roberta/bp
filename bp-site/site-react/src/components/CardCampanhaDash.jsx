@@ -2,6 +2,7 @@ import estrela from '../img/estrela.png';
 import styled from "styled-components";
 import apiLogin from "../apiLogin";
 import { useEffect, useState } from 'react';
+import ip from '../ip';
 
 function CardCampanhaDash(props){
     
@@ -64,5 +65,5 @@ return (
   export default CardCampanhaDash;
 
   function redirecionar() {
-    window.location.href = "http://localhost:3000/doacao";
+    window.location.href = `http://${ip}:3000/doacao`;
   }

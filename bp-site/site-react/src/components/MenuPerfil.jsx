@@ -1,16 +1,21 @@
 import styled from "styled-components";
-import apiLogin from "../apiLogin"
+import apiLogin from "../apiLogin";
+import ip from '../ip';
 function MenuPerfil(){
     async function logout(){
         if(sessionStorage.getItem('tipo')==="PerfilOng"){
             apiLogin.delete(`/bp/ong/logoff/${sessionStorage.getItem('idOng')}`).then((resposta) => {
                 console.log("post ok", resposta);
+                sessionStorage.setItem("tipo", "");
+                sessionStorage.setItem("idOng", '')
                 redirecionar("login");
             })
         }
         else{
-            apiLogin.delete(`/bp/doador/logoff/${sessionStorage.getItem('idOng')}`).then((resposta) => {
+            apiLogin.delete(`/bp/doador/logoff/${sessionStorage.getItem('idDoador')}`).then((resposta) => {
                 console.log("post ok", resposta);
+                sessionStorage.setItem("idDoador", "")
+                sessionStorage.setItem("tipo", "");
                 redirecionar("login");
             })
         }
@@ -36,8 +41,7 @@ function MenuPerfil(){
         <>
            <Div onMouseEnter={manterMenu} onMouseLeave={fecharMenu} id={"divMenu"}>
                <P onClick={()=>redirecionar("perfil")}>Minha conta</P>
-               <P>Alterar dados cadastrais</P>
-               <P>Alterar dados do perfil</P>
+               <P onClick={()=>redirecionar("feed")}>Feed</P>
                <P onClick={logout}>Logout</P>
            </Div>
         </>
@@ -57,5 +61,5 @@ function fecharMenu(){
 }
 
 function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/"+pagina;
+    window.location.href = `http://${ip}:3000/`+pagina;
   }

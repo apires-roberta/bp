@@ -10,6 +10,7 @@ import AddIcon from '@mui/icons-material/Add';
 import Rodape from "../components/Rodape";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import ip from '../ip';
 
 function FeedDoador() {
     const [theme, setTheme] = useState("light");
@@ -65,5 +66,5 @@ function FeedDoador() {
 export default FeedDoador;
 
 function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/" + pagina;
+    window.location.href = `http://${ip}:3000/` + pagina;
   }

@@ -32,7 +32,6 @@ function CampanhasDoador() {
                 valorCampanha={item.valorNecessario}
                 nome={item.nomeCampanha}
                 campanha={item.idCampanha}
-                
                 />
               ))
             }

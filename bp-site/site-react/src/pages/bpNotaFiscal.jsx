@@ -99,7 +99,7 @@ function BpNotaFiscal(){
 
     useEffect(() => {
         fetch(
-            `http://localhost:8082/doacao/doador/${sessionStorage.getItem('idDoador')}/campanha/${sessionStorage.getItem('codCampanha')}`
+            `http://localhost:8082/doacao/doador/${sessionStorage.getItem('idDoador')}/campanha/${sessionStorage.getItem('campanha')}`
           )
             .then((response) => response.json())
             .then((response) => {
@@ -126,7 +126,6 @@ function BpNotaFiscal(){
                             <div style={alinha}><br /><br /><span style={pontos}>Pontuação:<br/><br/>{info.pontuacao}</span></div>
                             <div style={alinha}><img style={imgPonto} src={picturePoint} /></div>
                         </div>
-                        <div><span style={textComp}>Nota emitida pela ONG ActionAid Ltda</span></div>
                     </Divtext>
                 </DivLogin>
             </Fragment>

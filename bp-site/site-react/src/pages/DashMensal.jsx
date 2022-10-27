@@ -10,12 +10,18 @@ import { GraficoDash } from "../components/GraficoDash";
 import apiCampanha from "../apiCampanha";
 import dados from "../ColetarDadors";
 import Rodape from "../components/Rodape";
+import ip from '../ip';
 function DashMensal(){
     console.log(dados);
-    const[vetorDados, setVetorDados] = useState([]);
+    const[vetorDados, setVetorDados] = useState([[0,[],0,[],[],0]]);
     useEffect(() => {
+        const interval = setInterval(()=>{
         setVetorDados(dados)
+        return clearInterval(interval)
+    },200)
+        
     },[])
+    console.log(vetorDados)
     const [theme, setTheme] = useState("light");
 
     const toggleTheme = () => {
@@ -75,7 +81,7 @@ function DashMensal(){
 export default DashMensal;
 
 function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/" + pagina;
+    window.location.href = `http://${ip}:3000/` + pagina;
 }
 
 function dadosDashboardDetalhado(mesSelecionado){

@@ -7,8 +7,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import Rodape from "../components/Rodape";
 import CartaoFeedOng from "../components/CartaoFeedOng";
 import "../css/styles.css";
-import apiSeguir from "../apiSeguir";
-import apiJaSegue from "../apiJaSegue";
+import apiFeed from "../apiFeed";
 
 function VerPerfil() {
     const [theme, setTheme] = useState("light");
@@ -26,22 +25,12 @@ function VerPerfil() {
         const localTheme = window.localStorage.getItem("theme");
         localTheme && setTheme(localTheme);
     }, []);
-    const Cartao = styled.div`
-        margin-top:8%;
-        width:70%;
-        border-radius:14px;
-        box-shadow: ${({ theme }) => theme.bordaFeed};
-        background-color: ${({ theme }) => theme.body};
-        color: ${({ theme }) => theme.logo};
-        margin-left:15%;
-        position:relative;
-    `;
     const DivLogin = styled.div`
     width: 15%;
     float: left;
     margin-left: 25%;
     border-radius:10px;
-    margin-top: 8%;
+    margin-top: 12.5%;
     background-color:${({ theme }) => theme.body};
     position:relative;
     z-index:98;
@@ -52,7 +41,7 @@ function VerPerfil() {
     width: 20%;
     height: 35px;
     float: left;
-    margin-left: 20%;
+    margin-left: 18%;
     border-radius:10px;
     margin-top: 25%;
     position:relative;
@@ -60,14 +49,6 @@ function VerPerfil() {
     box-shadow: ${({ theme }) => theme.bordaFeed};
     color: ${({ theme }) => theme.azulClaro};
     background-color:${({ theme }) => theme.body};
-    `;
-    const Divtext = styled.div`
-    height: 10vh;
-    margin-top:10%;
-    float: left;
-    font-size:20px;
-    text-align: center;
-    width: 100%;
     `;
     const DivImagem = styled.div`
     position: absolute;
@@ -81,18 +62,6 @@ function VerPerfil() {
         borderRadius: "10px 10px 0px 0px",
         float: "left"
     }
-    const fotoPerfil = {
-        borderRadius: "3%",
-        width: "100%"
-    }
-    const nomeOng = {
-        fontSize: "40px",
-        color: "white",
-    }
-    const slogan = {
-        fontSize: "20px",
-        color: "white",
-    }
     const [bgColour, setBgColour] = useState("")
     const BtnSeguir = styled.button`
         width: 100%;
@@ -102,13 +71,8 @@ function VerPerfil() {
         background-color:${bgColour};
         border-radius:10px;
     `;
-    const estiloBtn = {
-        marginLeft: "12%",
-        marginTop: "5%"
-    }
 
     const [info, setInfo] = useState([]);
-    const [inscrito, setInscrito] = useState([]);
     const [verifica, setVerifica] = useState();
 
     useEffect(() => {
@@ -123,16 +87,6 @@ function VerPerfil() {
             })
     }, []);
 
-    const verificar = () => {
-        apiJaSegue.get(`inscricao/existe/doador/${sessionStorage.getItem('cod')}/ong/${sessionStorage.getItem('idDoador')}`).then(resp => {
-            if (console.error()) {
-                return true;
-            } else {
-                return false;
-            }
-        });
-    }
-
     useEffect(() => {
         fetch(
             `http://localhost:8081/inscricao/existe/doador/${sessionStorage.getItem('cod')}/ong/${sessionStorage.getItem('idDoador')}`
@@ -146,7 +100,7 @@ function VerPerfil() {
 
 
     const seguir = () => {
-        apiSeguir.post("inscricao", {
+        apiFeed.post("inscricao", {
             fkOng: sessionStorage.getItem('cod'),
             fkDoador: sessionStorage.getItem('idDoador')
         })
@@ -154,7 +108,7 @@ function VerPerfil() {
     }
 
     const Naoseguir = () => {
-        apiSeguir.delete(`doador/${sessionStorage.getItem('idDoador')}/ong/${sessionStorage.getItem('cod')}`, {
+        apiFeed.delete(`inscricao/doador/${sessionStorage.getItem('idDoador')}/ong/${sessionStorage.getItem('cod')}`, {
             
         })
         setVerifica(false);
@@ -186,6 +140,7 @@ function VerPerfil() {
                     <br /><br /><br /><br /><br /><br /><br /><br />
                     <br />
                     <CartaoFeedOng />
+                    <Rodape/>
                 </Fragment>
 
             </ThemeProvider>

@@ -36,7 +36,8 @@ function CartaoFeed(){
         paddingLeft: "7%",
         paddingRight: "7%",
         paddingBottom: "3%",
-        fontSize: "18px"
+        fontSize: "18px",
+        text: "justify"
     }
     const imgFotoDoacao={
         width: "100%",
@@ -71,7 +72,7 @@ function CartaoFeed(){
         <Cartao key={item.codigo} >
             <div style={imgNome} >
                 <div className="alinhamento-img" >
-                  <div className="logoPerfil" style={{ backgroundImage: `url(data:image/jpeg;base64,${item.fotoPerfilOng}`, float: 'left' }}></div>
+                  <div className="logoPerfil" style={{ backgroundImage: `url(${item.fotoPerfilOng})`, float: 'left' }}></div>
                 </div>
                 <div style={alinhamentoNome}>
                     <SpanEstilo>{item.ong.nome}</SpanEstilo><br/>
@@ -79,7 +80,7 @@ function CartaoFeed(){
                 </div>
             </div>
             <div style={descricao}>{item.descricao}</div>
-            <div className="imgFotoDoacao" style={{ backgroundImage: `url(data:image/jpeg;base64,${item.fotoFeed}`}}></div>
+            <img className="imgFotoDoacao" src={`${item.fotoFeed}`} alt="" />
         
         </Cartao>
         ))}

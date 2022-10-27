@@ -16,6 +16,7 @@ import imgPesquisaBranco from "../img/pesquisaImagemBranco.svg";
 import imgPesquisaPreto from "../img/pesquisaImagemPreto.svg";
 import campanhaPreto from "../img/campanhaPreto.svg";
 import campanhaBranco from "../img/campanhaBranco.svg";
+import ip from '../ip';
 
 
 function Menu(props) {
@@ -109,6 +110,29 @@ function Menu(props) {
             </>
         );
     }
+    else if(sessionStorage.getItem("tipo")==="PerfilOng"){
+        return(
+        <>
+                <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+                    <Fragment>
+                        <GlobalTheme />
+                        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap" rel="stylesheet"></link>
+                        <EstiloMenu>
+                            <img alt="" onClick={()=>redirecionar("home")} className="logo" src={logo} />
+                            <Title>bp</Title>
+                            <div className="divDireita">
+                                <img onMouseEnter={fecharMenu} src={theme === "light" ? notificacaoPreto : notificacaoBranco} title="Notificação" alt="" />
+                                <div onMouseEnter={manterMenu}><img src={theme === "light" ? contaPreto : contaBranco} alt="" /></div>
+                                <img onMouseEnter={fecharMenu} alt="" style={estilo} onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} title={theme === "light" ? "Modo escuro" : "Modo claro"} />
+                                <img onClick={()=>redirecionar("campanha")}src={theme === "light" ? campanhaPreto : campanhaBranco} title="Campanhas" alt="" />
+                            </div>
+                            <MenuPerfil/>
+                        </EstiloMenu>
+                    </Fragment>
+                </ThemeProvider>
+            </>
+            );
+    }
     else{
         return (
             <>
@@ -141,7 +165,7 @@ function Menu(props) {
 export default Menu;
 
 function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/"+pagina;
+    window.location.href = `http://${ip}:3000/`+pagina;
 }
 
 function manterMenu(){

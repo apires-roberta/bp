@@ -9,12 +9,22 @@ import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
 import CardDados from "../components/CardDados";
 import apiCampanha from "../apiCampanha";
+import CardCampanhaDoador from "../components/CardCampanhaDoador";
+import Rodape from "../components/Rodape";
+import ip from '../ip';
 
 function redirecionar(pagina) {
-  window.location.href = "http://localhost:3000/" + pagina;
+  window.location.href = `http://${ip}:3000/` + pagina;
 }
 
 function Doacao() {
+
+  const DivInfo = styled.div`
+      width: 80%;
+      margin-left: 3%;
+      overflow:auto;
+      padding:5%;
+    `;
 
   const funcData = useState({
     idDoador: "",
@@ -59,6 +69,7 @@ function Doacao() {
   }, []);
 
   const [campanha, setcampanha] = useState([]);
+  const [recomendados, setRecomendados] = useState([]);
 
   useEffect(() => {
     apiCampanha.get(`/campanha/${sessionStorage.getItem("campanha")}`).then((resposta) => {
@@ -69,10 +80,21 @@ function Doacao() {
     })
   }, [])
 
+  useEffect(()=>{
+    apiCampanha.get(`/campanha/recomendacao/${sessionStorage.getItem("campanha")}`).then((resposta) => {
+      console.log(resposta )
+      if (resposta.status === 200) {  
+        console.log(resposta.data)
+        setRecomendados(resposta.data)
+      }
+    })
+  },[])
+
   const DivValor = styled.div`
       margin-top: 10%;
       float: left;
       color: ${({ theme }) => theme.logo};
+      margin-left: 10%;
     `;
   const InputValor = styled.input`
       float: left;
@@ -85,9 +107,10 @@ function Doacao() {
       color:  ${({ theme }) => theme.logo};
     `;
   const estiloDiv = {
-    marginLeft: "10%"
+    marginLeft: "14%"
   }
   console.log(campanha.totalDoado)
+  if(sessionStorage.getItem('tipo')==="PerfilDoador")
   return (
     <>
       <Menu funcaoDark={toggleTheme} />
@@ -116,10 +139,27 @@ function Doacao() {
               <button onClick={doar}><img className="enviarValor" src={send} alt='' /></button>
             </div>
           </div>
+          <DivInfo>
+          {
+              recomendados.map((item) => (
+                <CardCampanhaDoador id={item.ongCod}
+                descCampanha={item.descCampanha}
+                valorCampanha={item.valorNecessario}
+                nome={item.nomeCampanha}
+                campanha={item.idCampanha}
+                
+                />
+              ))
+            }
+            </DivInfo>
+            <Rodape/>
         </Fragment>
       </ThemeProvider>
     </>
   );
+  else{
+    redirecionar("Perfil")
+  }
 }
 
 export default Doacao;
