@@ -39,92 +39,109 @@ function ColetarDados() {
                     dadosCampanha.push([vetor[i][1], vetor[i][2]]);
                 }
             }
+            var vetorDias = []
+                if(diaAtual<7){
+                    for(var d=6; d>=0; d--){
+                        if(diaAtual-d<=0){
+                            vetorDias.push(dia.getFullYear() + "-" + (dia.getMonth()) + "-" + (34-d))
+                        }
+                        else{
+                            vetorDias.push(dia.getFullYear() + "-" + (dia.getMonth() + 1) + "-0" + (diaAtual-d))
+                        }
+                    }
+                }
+                else{
+                    for(var d=0; d<7; d++){
+                        vetorDias.push(dia.getFullYear() + "-" + (dia.getMonth() + 1) + "-0" + (d < 10 ? "0" + d : d))
+                    }
+                }
             console.log(dadosOng)
             if (dadosOng.length > 0) {
                 var vetorDiaAtual = []
-                for (var i = (diaAtual - 6); i <= diaAtual; i++) {
+                
+                for (var i = 0; i <= 6; i++) {
                     vetorDiaAtual = []
                     for (var j = 0; j < dadosOng.length; j++) {
-                        if (dadosOng[j][1] == dia.getFullYear() + "-" + (dia.getMonth() + 1) + "-" + (i < 10 ? "0" + i : i)) {
+                        if (dadosOng[j][1] == vetorDias[i]) {
                             vetorDiaAtual = [dadosOng[j][1], dadosOng[j][0]];
                             break;
                         }
                     }
                     if (vetorDiaAtual.length == 0) {
-                        vetorDiaAtual = [dia.getFullYear() + "-" + (dia.getMonth() + 1) + "-" + (i < 10 ? "0" + i : i), 0]
+                        vetorDiaAtual = [vetorDias[i], 0]
                     }
                     vetorAtualOng.push(vetorDiaAtual)
                 }
             }
             else {
-                for (var i = (diaAtual - 6); i <= diaAtual; i++) {
-                    vetorAtualOng.push([dia.getFullYear() + "-" + (dia.getMonth() + 1) + "-" + (i < 10 ? "0" + i : i), 0])
+                for (var i = 0; i <= 6; i++) {
+                    vetorAtualOng.push([vetorDias[i], 0])
                 }
             }
 
             if (dadosDoador.length > 0) {
                 var vetorDiaAtual = []
-                for (var i = (diaAtual - 6); i <= diaAtual; i++) {
+                for (var i = 0; i <= 6; i++) {
                     vetorDiaAtual = []
                     for (var j = 0; j < dadosDoador.length; j++) {
-                        if (dadosDoador[j][1] == dia.getFullYear() + "-" + (dia.getMonth() + 1) + "-" + (i < 10 ? "0" + i : i)) {
+                        if (dadosDoador[j][1] == vetorDias[i]) {
                             vetorDiaAtual = [dadosDoador[j][1], dadosDoador[j][0]];
                             break;
                         }
                     }
                     if (vetorDiaAtual.length == 0) {
-                        vetorDiaAtual = [dia.getFullYear() + "-" + (dia.getMonth() + 1) + "-" + (i < 10 ? "0" + i : i), 0]
+                        vetorDiaAtual = [vetorDias[i], 0]
                     }
                     vetorAtualDoador.push(vetorDiaAtual)
                 }
             }
             else {
-                for (var i = (diaAtual - 6); i <= diaAtual; i++) {
-                    vetorAtualDoador.push([dia.getFullYear() + "-" + (dia.getMonth() + 1) + "-" + (i < 10 ? "0" + i : i), 0])
+                for (var i = 0; i <= 6; i++) {
+                    vetorAtualDoador.push([vetorDias[i], 0])
                 }
             }
 
             if (dadosDoacao.length > 0) {
                 var vetorDiaAtual = []
-                for (var i = (diaAtual - 6); i <= diaAtual; i++) {
+                for (var i = 0; i <= 6; i++) {
                     vetorDiaAtual = []
                     for (var j = 0; j < dadosDoacao.length; j++) {
-                        if (dadosDoacao[j][1] == dia.getFullYear() + "-" + (dia.getMonth() + 1) + "-" + (i < 10 ? "0" + i : i)) {
+                        if (dadosDoacao[j][1] == vetorDias[i]) {
                             vetorDiaAtual = [dadosDoacao[j][1], dadosDoacao[j][0]];
                             break;
                         }
                     }
                     if (vetorDiaAtual.length == 0) {
-                        vetorDiaAtual = [dia.getFullYear() + "-" + (dia.getMonth() + 1) + "-" + (i < 10 ? "0" + i : i), 0]
+                        vetorDiaAtual = [vetorDias[i], 0]
                     }
                     vetorAtualDoacao.push(vetorDiaAtual)
                 }
             }
             else {
-                for (var i = (diaAtual - 6); i <= diaAtual; i++) {
-                    vetorAtualDoacao.push([dia.getFullYear() + "-" + (dia.getMonth() + 1) + "-" + (i < 10 ? "0" + i : i), 0])
+                for (var i = 0; i <= 6; i++) {
+                    vetorAtualDoacao.push([vetorDias[i], 0])
                 }
             }
 
             if (dadosCampanha.length > 0) {
                 var vetorDiaAtual = []
-                for (var i = (diaAtual - 6); i <= diaAtual; i++) {
+                for (var i = 0; i <= 6; i++) {
                     vetorDiaAtual = []
                     for (var j = 0; j < dadosCampanha.length; j++) {
-                        if (dadosCampanha[j][1] == dia.getFullYear() + "-" + (dia.getMonth() + 1) + "-" + (i < 10 ? "0" + i : i)) {
+                        if (dadosCampanha[j][1] == vetorDias[i]) {
                             vetorDiaAtual = [dadosCampanha[j][1], dadosCampanha[j][0]];
                             break;
                         }
                     }
                     if (vetorDiaAtual.length == 0) {
-                        vetorDiaAtual = [dia.getFullYear() + "-" + (dia.getMonth() + 1) + "-" + (i < 10 ? "0" + i : i), 0]
+                        vetorDiaAtual = [vetorDias[i], 0]
                     }
                     vetorAtualCampanha.push(vetorDiaAtual)
                 }
             }
             else {
-                for (var i = (diaAtual - 6); i <= diaAtual; i++) {
-                    vetorAtualCampanha.push([dia.getFullYear() + "-" + (dia.getMonth() + 1) + "-" + (i < 10 ? "0" + i : i), 0])
+                for (var i = 0; i <= 6; i++) {
+                    vetorAtualCampanha.push([vetorDias[i], 0])
                 }
             }
             var vetorTeste=[];

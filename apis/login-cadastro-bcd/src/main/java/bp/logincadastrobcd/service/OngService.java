@@ -4,8 +4,6 @@ import bp.logincadastrobcd.dto.ong.CreateOng;
 import bp.logincadastrobcd.dto.ong.ReadOngDto;
 import bp.logincadastrobcd.dto.ong.UpdateOngDto;
 import bp.logincadastrobcd.dto.usuario.LoginUsuarioDto;
-import bp.logincadastrobcd.dto.usuario.ReadUsuarioDto;
-import bp.logincadastrobcd.entidade.Doador;
 import bp.logincadastrobcd.entidade.Ong;
 import bp.logincadastrobcd.repositorio.OngRepository;
 import org.modelmapper.ModelMapper;

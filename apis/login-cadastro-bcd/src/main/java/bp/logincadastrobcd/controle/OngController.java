@@ -49,7 +49,7 @@ public class OngController {
 
         return status(201).body(resultado);
     }
-//    @PatchMapping(value = "/{idUsuario}", consumes = "image/jpeg")
+    //    @PatchMapping(value = "/{idUsuario}", consumes = "image/jpeg")
 //    public ResponseEntity atualizarFotoOng(@PathVariable Integer idUsuario, @RequestBody byte[] fotoPerfil){
 //        if (idUsuario == null || fotoPerfil == null)
 //            return status(400).build();
