@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
-@FeignClient(name = "doadorService", url = "localhost:8080/bp/doador/")
+@FeignClient(name = "doadorService", url = "${loginCadastro}/doador/")
 public interface IDoadorService {
     @GetMapping("{idUsuario}")
     ReadDoadorDto getUsuarioById(@PathVariable Integer idUsuario);
