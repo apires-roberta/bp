@@ -25,4 +25,6 @@ public interface ICampanhaService {
     Integer getQuantidadeCampanhasDisponiveisByOng(Integer idOng);
 
     Integer getQuantidadeCampanhasTotalByOng(Integer idOng);
+
+    List<ReadCampanhaDto> getRecomendacoesPorDoacoesByIdCampanha(int idCampanha, int idDoador);
 }

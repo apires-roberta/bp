@@ -60,6 +60,8 @@ public class CampanhaService implements ICampanhaService{
         if (campanha == null)
             throw new IllegalArgumentException(String.format("Campanha de ID %d não existe!", cod));
 
+        if (_doacoesRepository.sumValorDoadoCampanha(cod) > 0)
+            throw new IllegalStateException("Campanha já contém doações");
         _campanhaRepository.delete(campanha);
     }
 
@@ -149,6 +151,11 @@ public class CampanhaService implements ICampanhaService{
         return qtdCampanhasTotal == null ? 0 : qtdCampanhasTotal;
     }
 
+    @Override
+    public List<ReadCampanhaDto> getRecomendacoesPorDoacoesByIdCampanha(int idCampanha, int idDoador) {
+        return getReadCampanhaDtoComTotalDoado(_campanhaRepository.getRecomendacoesByDoacoes(idCampanha, idDoador));
+    }
+
     private void verificaOngExiste(Integer idOng) {
         _ongService.getOngById(idOng);
     }
@@ -167,6 +174,7 @@ public class CampanhaService implements ICampanhaService{
     private ReadCampanhaDto getReadCampanhaDtoComTotalDoado(Campanha campanha){
         ReadCampanhaDto dto = _mapper.map(campanha, ReadCampanhaDto.class);
         dto.setTotalDoado(_doacoesRepository.sumValorDoadoCampanha(campanha.getIdCampanha()));
+
         return dto;
     }
 }

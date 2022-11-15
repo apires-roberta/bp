@@ -2,6 +2,8 @@ package betterplace.betterplacebcd.entidade;
 
 import betterplace.betterplacebcd.data.dto.campanha.CreateCampanhaDto;
 import betterplace.betterplacebcd.data.enums.TipoCampanha;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -13,7 +15,7 @@ public class Campanha {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCampanha;
 
-    @ManyToOne
+    @ManyToOne @OnDelete(action = OnDeleteAction.CASCADE)
     private Ong ong;
 
     @NotNull @NotBlank @Size(min = 2, max = 45)

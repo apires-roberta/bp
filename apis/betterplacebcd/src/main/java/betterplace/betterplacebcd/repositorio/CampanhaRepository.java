@@ -1,5 +1,6 @@
 package betterplace.betterplacebcd.repositorio;
 
+import betterplace.betterplacebcd.data.dto.campanha.ReadCampanhaDto;
 import betterplace.betterplacebcd.entidade.Campanha;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,4 +20,6 @@ public interface CampanhaRepository extends JpaRepository<Campanha, Integer> {
     //GetTipoCampanhaDto findTipoCampanhaByIdCampanha(Integer idCampanha);
     @Query("select c.tipoCampanha from Campanha c where c.idCampanha = ?1")
     Integer findTipoCampanhaByIdCampanha(Integer idCampanha);
+    @Query("SELECT camp from Campanha camp where camp.idCampanha in (select distinct d.campanha.idCampanha from Doacao as d where d.doador.cod in (select d.doador.cod from Doacao as d where d.campanha.idCampanha = ?1 and d.doador.cod <> ?2) and d.campanha.idCampanha <> ?1)")
+    List<Campanha> getRecomendacoesByDoacoes(int idCampanha, Integer idDoador);
 }

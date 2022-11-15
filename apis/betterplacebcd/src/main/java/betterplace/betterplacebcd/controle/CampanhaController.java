@@ -86,6 +86,8 @@ public class CampanhaController {
             return status(204).build();
         } catch (IllegalArgumentException ex) {
             return status(404).build();
+        }catch (IllegalStateException ex){
+            return status(422).body(ex.getMessage()); //422 — A entidade existe, mas o servidor se recusa a performar a ação. Nesse caso é pq se a campanha já recebeu uma doação, ela não pode ser deletada, apenas indisponibilizada
         }
     }
 
@@ -178,6 +180,18 @@ public class CampanhaController {
             Integer qtdTotal = _campanhaService.getQuantidadeCampanhasTotalByOng(idOng);
             return status(200).body(qtdTotal);
         }catch (FeignException.NotFound ex){
+            return status(404).build();
+        }catch (Exception ex){
+            throw ex;
+        }
+    }
+
+    @GetMapping("/recomendacao-PorDoacoes/campanha/{idCampanha}/doador/{idDoador}")
+    public ResponseEntity<List<ReadCampanhaDto>> getRecomendacoesPorDoacoesByIdCampanha(@PathVariable @Positive int idCampanha, @PathVariable @Positive int idDoador){
+        try {
+            List<ReadCampanhaDto> recomendacoes = _campanhaService.getRecomendacoesPorDoacoesByIdCampanha(idCampanha, idDoador);
+            return  recomendacoes.isEmpty() ? status(204).build() : status(200).body(recomendacoes);
+        }catch (NullPointerException ex){
             return status(404).build();
         }catch (Exception ex){
             throw ex;
