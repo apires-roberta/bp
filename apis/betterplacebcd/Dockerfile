@@ -1,3 +1,3 @@
 From openjdk:11
-copy /home/ubuntu/jars/betterPlace/betterplacebcd-0.0.1-SNAPSHOT.jar betterplacebcd-0.0.1-SNAPSHOT.jar
+copy betterplacebcd-0.0.1-SNAPSHOT.jar betterplacebcd-0.0.1-SNAPSHOT.jar
 CMD ["java","-jar","betterplacebcd-0.0.1-SNAPSHOT.jar","--spring.profiles.active=prod"]
