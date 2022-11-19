@@ -1,3 +1,4 @@
+docker stop login-jdbc-container
 docker rm login-jdbc-container
 docker image rm login-jdbc
 docker image build -t login-jdbc .

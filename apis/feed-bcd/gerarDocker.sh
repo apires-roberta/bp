@@ -1,3 +1,4 @@
+docker stop feed-jdbc-container
 docker rm feed-jdbc-container
 docker image rm feed-jdbc
 docker image build -t feed-jdbc .
