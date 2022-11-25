@@ -53,4 +53,12 @@ public class DashboardController {
             return status(204).build();
         return status(200).body(dadosEstado);
     }
+
+    @GetMapping("/alterar/{tipo}/{estado}")
+    public ResponseEntity<?> alterarDados(@PathVariable String estado, @PathVariable Integer tipo) {
+        Integer qtdAlterado = _dashboardService.alterarDados(tipo,estado);
+        if (qtdAlterado == null)
+            return status(204).build();
+        return status(200).body(qtdAlterado);
+    }
 }

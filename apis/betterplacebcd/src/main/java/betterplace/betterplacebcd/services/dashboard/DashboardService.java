@@ -63,4 +63,9 @@ public class DashboardService implements  IDashboardService{
         return dadosEstado;
     }
 
+    @Override
+    public Integer alterarDados(int tipo, String estado){
+        return _campanhaRepository.alterarDados(tipo, estado);
+    }
+
 }

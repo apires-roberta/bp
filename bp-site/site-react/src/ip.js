@@ -1,2 +1,2 @@
-export default "bpproject.hopto.org";
+export default "localhost";
 //bpproject.hopto.org

@@ -7,7 +7,6 @@ import React, { Fragment, useState, useEffect } from "react";
 import apiLogin from "../apiLogin"
 import CardDados from "../components/CardDados";
 import { GraficoDash } from "../components/GraficoDash";
-import apiCampanha from "../apiCampanha";
 import dados from "../ColetarDadors";
 import Rodape from "../components/Rodape";
 import ip from '../ip';

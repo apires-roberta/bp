@@ -22,4 +22,6 @@ public interface CampanhaRepository extends JpaRepository<Campanha, Integer> {
     Integer findTipoCampanhaByIdCampanha(Integer idCampanha);
     @Query("SELECT camp from Campanha camp where camp.idCampanha in (select distinct d.campanha.idCampanha from Doacao as d where d.doador.cod in (select d.doador.cod from Doacao as d where d.campanha.idCampanha = ?1 and d.doador.cod <> ?2) and d.campanha.idCampanha <> ?1)")
     List<Campanha> getRecomendacoesByDoacoes(int idCampanha, Integer idDoador);
+    @Query(value="call proc_alterar_campanha_teste(?1,?2)", nativeQuery=true)
+    Integer alterarDados(int tipo, String estado);
 }

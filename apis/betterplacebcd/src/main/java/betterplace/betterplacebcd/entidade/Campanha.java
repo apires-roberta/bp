@@ -37,6 +37,8 @@ public class Campanha {
 
     private boolean disponivel = true;
 
+    private Integer recomendado=0;
+
 
     public Campanha() {
         this.dataCriacao = LocalDateTime.now();
@@ -131,5 +133,13 @@ public class Campanha {
 
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
+    }
+
+    public Integer getRecomendado() {
+        return recomendado;
+    }
+
+    public void setRecomendado(Integer recomendado) {
+        this.recomendado = recomendado;
     }
 }

@@ -8,6 +8,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import apiLogin from "../apiLogin";
 import apiCep from "../apiCep";
 import ip from '../ip';
+import Rodape from "../components/Rodape";
 
 // CommonJS
 const Swal = require('sweetalert2')
@@ -148,7 +149,7 @@ function CadastroOng() {
             <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
                 <Fragment>
                     <GlobalTheme />
-                    <div className="cadastro">
+                    <div className="cadastro" style={{height: "135vh"}}>
                         <DivCadastro>
                             <Titulo>Cadastre-se como ong:</Titulo>
                             <div className="esquerda">
@@ -178,6 +179,7 @@ function CadastroOng() {
                             <Span>Para se cadastrar como Doador <a onClick={() => redirecionar("cadastro-doador")}>clique aqui!</a></Span>
                         </div>
                     </div>
+                <Rodape/>
                 </Fragment>
             </ThemeProvider>
 

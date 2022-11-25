@@ -1,5 +1,6 @@
 package betterplace.betterplacebcd.services.dashboard;
 import betterplace.betterplacebcd.entidade.Doacao;
+import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -10,4 +11,5 @@ public interface IDashboardService {
     List<Object> getDoacoesMes(Integer mes, Integer idCampanha);
     List<Object> getDoacoesValor(Integer mes, Integer idCampanha);
     List<Object> getProcedure(String estado);
+    Integer alterarDados(int tipo, String estado);
 }

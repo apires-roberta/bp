@@ -156,7 +156,8 @@ function MapChart(props) {
         boxShadow: 24,
         borderRadius: "20px",
         height: '80%',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        overflowY: 'scroll',
     };
 
     function abrirModal(estado){
