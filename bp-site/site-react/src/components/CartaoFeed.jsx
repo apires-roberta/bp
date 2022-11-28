@@ -73,7 +73,7 @@ function CartaoFeed(){
         <Cartao key={item.codigo} >
             <div style={imgNome} >
                 <div className="alinhamento-img" >
-                  <div className="logoPerfil" style={{ backgroundImage: `url(${item.fotoPerfilOng})`, float: 'left' }}></div>
+                  <img className="logoPerfil" src={`${item.fotoPerfilOng}`} alt="" />
                 </div>
                 <div style={alinhamentoNome}>
                     <SpanEstilo>{item.ong.nome}</SpanEstilo><br/>
