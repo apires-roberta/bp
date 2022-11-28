@@ -49,7 +49,7 @@ function CartaoFeedDoador(){
 
     useEffect(() => {
         fetch(
-            `http://localhost:8081/feed/doador/${sessionStorage.getItem('idDoador')}`
+            `http://52.0.52.140:8081/feed/doador/${sessionStorage.getItem('idDoador')}`
           )
             .then((response) => response.json())
             .then((response) => {

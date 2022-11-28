@@ -12,7 +12,7 @@ export default function BarraPesquisa() {
   useEffect(() => {
     if (text) {
       fetch(
-        `http://localhost:8080/bp/ong/nomeOng?nomeOng=${text}`
+        `http://52.0.52.140:8080/bp/ong/nomeOng?nomeOng=${text}`
       )
         .then((response) => response.json())
         .then((response) => {
@@ -22,7 +22,7 @@ export default function BarraPesquisa() {
         })
         .catch((error) => {
           /*fetch(
-            `http://localhost:8080/bp/doador/get/${text}`
+            `http://52.0.52.140:8080/bp/doador/get/${text}`
           )
             .then((response) => response.json())
             .then((response) => {

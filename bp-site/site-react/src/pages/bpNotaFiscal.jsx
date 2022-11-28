@@ -99,7 +99,7 @@ function BpNotaFiscal(){
 
     useEffect(() => {
         fetch(
-            `http://localhost:8082/doacao/doador/${sessionStorage.getItem('idDoador')}/campanha/${sessionStorage.getItem('campanha')}`
+            `http://52.0.52.140:8082/doacao/doador/${sessionStorage.getItem('idDoador')}/campanha/${sessionStorage.getItem('campanha')}`
           )
             .then((response) => response.json())
             .then((response) => {

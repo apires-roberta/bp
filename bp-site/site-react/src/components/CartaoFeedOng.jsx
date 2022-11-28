@@ -49,7 +49,7 @@ function CartaoFeedOng(){
 
     useEffect(() => {
         fetch(
-            `http://localhost:8081/feed/ong/${sessionStorage.getItem('cod')}`
+            `http://52.0.52.140:8081/feed/ong/${sessionStorage.getItem('cod')}`
           )
             .then((response) => response.json())
             .then((response) => {

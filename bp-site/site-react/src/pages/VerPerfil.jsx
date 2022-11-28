@@ -77,7 +77,7 @@ function VerPerfil() {
 
     useEffect(() => {
         fetch(
-            `http://localhost:8080/bp/ong/${sessionStorage.getItem('cod')}`
+            `http://52.0.52.140:8080/bp/ong/${sessionStorage.getItem('cod')}`
         )
             .then((response) => response.json())
             .then((response) => {
@@ -89,7 +89,7 @@ function VerPerfil() {
 
     useEffect(() => {
         fetch(
-            `http://localhost:8081/inscricao/existe/doador/${sessionStorage.getItem('cod')}/ong/${sessionStorage.getItem('idDoador')}`
+            `http://52.0.52.140:8081/inscricao/existe/doador/${sessionStorage.getItem('cod')}/ong/${sessionStorage.getItem('idDoador')}`
         ).then(function(response) {
             console.log(response.ok);
             setVerifica(response.ok);
