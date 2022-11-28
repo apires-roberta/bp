@@ -179,5 +179,5 @@ function Login() {
   export default Login;
 
   function redirecionar(pagina) {
-    window.location.href = "http://${ip}/"+pagina;
+    window.location.href = `http://${ip}/`+pagina;
   }

@@ -14,6 +14,7 @@ import capaBranco from "../img/fundoBranco.png";
 import { Upload } from "@aws-sdk/lib-storage";
 import { S3 } from "@aws-sdk/client-s3";
 import DadosS3 from "../DadosS3";
+import ip from "../ip";
 
 function AlterarDadosOng() {
 function teste3(){
@@ -352,7 +353,7 @@ function teste2(){
 export default AlterarDadosOng;
 
 function redirecionar(pagina) {
-    window.location.href = "http://${ip}/" + pagina;
+    window.location.href = `http://${ip}/` + pagina;
 }
 
 function carregarGrafico(){
