@@ -9,6 +9,7 @@ import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
 import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
+import ipBack from "../ipBack";
 
 function BpNotaFiscal(){
     const [theme, setTheme] = useState("light");
@@ -99,7 +100,7 @@ function BpNotaFiscal(){
 
     useEffect(() => {
         fetch(
-            `http://52.0.52.140:8082/doacao/doador/${sessionStorage.getItem('idDoador')}/campanha/${sessionStorage.getItem('campanha')}`
+            `http://${ipBack}/doacao/doador/${sessionStorage.getItem('idDoador')}/campanha/${sessionStorage.getItem('campanha')}`
           )
             .then((response) => response.json())
             .then((response) => {

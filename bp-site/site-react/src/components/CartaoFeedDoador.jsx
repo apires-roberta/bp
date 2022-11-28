@@ -1,5 +1,6 @@
 import '../css/styles.css';
 import styled from "styled-components";
+import ipBack from "../ipBack";
 import React, { useEffect, useState } from 'react';
 function CartaoFeedDoador(){
     const Cartao = styled.div`
@@ -49,7 +50,7 @@ function CartaoFeedDoador(){
 
     useEffect(() => {
         fetch(
-            `http://52.0.52.140:8081/feed/doador/${sessionStorage.getItem('idDoador')}`
+            `http://${ipBack}:8081/feed/doador/${sessionStorage.getItem('idDoador')}`
           )
             .then((response) => response.json())
             .then((response) => {

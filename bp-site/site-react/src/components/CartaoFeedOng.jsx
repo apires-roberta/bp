@@ -1,5 +1,6 @@
 import '../css/styles.css';
 import styled from "styled-components";
+import ipBack from "../ipBack";
 import React, { useEffect, useState } from 'react';
 function CartaoFeedOng(){
     const Cartao = styled.div`
@@ -49,7 +50,7 @@ function CartaoFeedOng(){
 
     useEffect(() => {
         fetch(
-            `http://52.0.52.140:8081/feed/ong/${sessionStorage.getItem('cod')}`
+            `http://${ipBack}:8081/feed/ong/${sessionStorage.getItem('cod')}`
           )
             .then((response) => response.json())
             .then((response) => {

@@ -8,6 +8,7 @@ import Rodape from "../components/Rodape";
 import CartaoFeedOng from "../components/CartaoFeedOng";
 import "../css/styles.css";
 import apiFeed from "../apiFeed";
+import ipBack from "../ipBack";
 
 function VerPerfil() {
     const [theme, setTheme] = useState("light");
@@ -77,7 +78,7 @@ function VerPerfil() {
 
     useEffect(() => {
         fetch(
-            `http://52.0.52.140:8080/bp/ong/${sessionStorage.getItem('cod')}`
+            `http://${ipBack}:8080/bp/ong/${sessionStorage.getItem('cod')}`
         )
             .then((response) => response.json())
             .then((response) => {
@@ -89,7 +90,7 @@ function VerPerfil() {
 
     useEffect(() => {
         fetch(
-            `http://52.0.52.140:8081/inscricao/existe/doador/${sessionStorage.getItem('cod')}/ong/${sessionStorage.getItem('idDoador')}`
+            `http://${ipBack}/inscricao/existe/doador/${sessionStorage.getItem('cod')}/ong/${sessionStorage.getItem('idDoador')}`
         ).then(function(response) {
             console.log(response.ok);
             setVerifica(response.ok);

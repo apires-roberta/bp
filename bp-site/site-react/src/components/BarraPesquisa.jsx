@@ -3,6 +3,7 @@ import SearchInput from './SearchInput';
 import '../css/styles.css';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import ipBack from "../ipBack";
 
 export default function BarraPesquisa() {
   const [info, setInfo] = useState([]);
@@ -12,7 +13,7 @@ export default function BarraPesquisa() {
   useEffect(() => {
     if (text) {
       fetch(
-        `http://52.0.52.140:8080/bp/ong/nomeOng?nomeOng=${text}`
+        `http://${ipBack}:8080/bp/ong/nomeOng?nomeOng=${text}`
       )
         .then((response) => response.json())
         .then((response) => {
