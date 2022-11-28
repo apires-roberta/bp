@@ -352,7 +352,7 @@ function teste2(){
 export default AlterarDadosOng;
 
 function redirecionar(pagina) {
-    window.location.href = "http://localhost:3000/" + pagina;
+    window.location.href = "http://${ip}/" + pagina;
 }
 
 function carregarGrafico(){
