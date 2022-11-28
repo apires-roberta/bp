@@ -106,7 +106,7 @@ public class CampanhaService implements ICampanhaService{
         }
 
         Integer tipoCampanha = _campanhaRepository.findTipoCampanhaByIdCampanha(idCampanha);
-        tipoCampanha = tipoCampanha == 3 ? 4 : tipoCampanha + 1; //Tive que colocar esse +1 por causa de um bug bizarro do jpa que retorna o tipo_campanha - 1, mesmo a query dando certo no mysql
+        tipoCampanha = tipoCampanha + 1; //Tive que colocar esse +1 por causa de um bug bizarro do jpa que retorna o tipo_campanha - 1, mesmo a query dando certo no mysql
 
         Node recomendacao = hashTable.busca(tipoCampanha);
         for (int i = 0; i < 3 && recomendacao != null; i++) {

@@ -17,4 +17,6 @@ public interface IDoacaoService {
     Double getTotalRecebidoOng(Integer idOng);
 
     Integer getQtdDoacoesDoador(Integer idDoador);
+
+    List<ReadDoacaoDto> getDoacoesByIdDoador(Integer idDoador);
 }

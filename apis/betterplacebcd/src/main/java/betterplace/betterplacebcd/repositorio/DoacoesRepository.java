@@ -23,8 +23,8 @@ public interface DoacoesRepository extends JpaRepository<Doacao, Integer> {
 
     @Query(value="call proc_doacoes_valor(?1,?2)", nativeQuery = true)
     List<Object> getDoacoesValor(Integer mes, Integer idCampanha);
-
     @Query(value="call proc_estado(?1)", nativeQuery = true)
     List<Object> getProcedure(String estado);
     Integer countByDoadorCod(Integer idDoador);
+    List<Doacao> findByDoadorCod(Integer idDoador);
 }

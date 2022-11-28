@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DoacaoService implements IDoacaoService {
@@ -96,6 +97,18 @@ public class DoacaoService implements IDoacaoService {
         return qtdDoacoes == null ? 0 : qtdDoacoes;
     }
 
+    @Override
+    public List<ReadDoacaoDto> getDoacoesByIdDoador(Integer idDoador) {
+        verificaDoadorExiste(idDoador);
+
+        List<ReadDoacaoDto> doacoes = _doacoesRepository.findByDoadorCod(idDoador)
+                                                        .stream()
+                                                        .map(doacao -> _mapper.map(doacao, ReadDoacaoDto.class))
+                                                        .collect(Collectors.toList());
+
+        return doacoes;
+    }
+
     private void notificar(Doacao doacao) {
         String mensagem = String.format("%s mandou R$%.2f para campanha: %s", doacao.getDoador().getNome(),
                 doacao.getValorDoacao(), doacao.getCampanha().getNomeCampanha());
@@ -103,7 +116,6 @@ public class DoacaoService implements IDoacaoService {
         Notificacao novaNotificacao = new Notificacao();
         novaNotificacao.novaDoacao(email, mensagem);
     }
-
     private void verificaOngExiste(Integer idOng) {
         _ongService.getOngById(idOng);
     }

@@ -107,4 +107,19 @@ public class DoacaoController {
             throw ex;
         }
     }
+    @GetMapping("doador/{idDoador}")
+    public ResponseEntity<List<ReadDoacaoDto>> getDoacoesByIdDoador(@PathVariable Integer idDoador){
+        if (idDoador <= 0 || idDoador == null)
+            return status(400).build();
+
+        try {
+            List<ReadDoacaoDto> doacoes = _doacaoService.getDoacoesByIdDoador(idDoador);
+
+            return doacoes == null ? status(404).build() : status(200).body(doacoes);
+        }catch (FeignException.NotFound ex){
+            return status(404).build();
+        }catch (Exception ex){
+            throw ex;
+        }
+    }
 }
