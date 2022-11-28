@@ -80,7 +80,7 @@ function DashMensal(){
 export default DashMensal;
 
 function redirecionar(pagina) {
-    window.location.href = `http://${ip}:3000/` + pagina;
+    window.location.href = `http://${ip}/` + pagina;
 }
 
 function dadosDashboardDetalhado(mesSelecionado){

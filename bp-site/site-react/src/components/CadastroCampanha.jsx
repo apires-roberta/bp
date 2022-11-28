@@ -110,5 +110,5 @@ function CadastroCampanha() {
 export default CadastroCampanha;
 
 function redirecionar(pagina) {
-    window.location.href = `http://${ip}:3000/`+pagina;
+    window.location.href = `http://${ip}/`+pagina;
   }

@@ -78,7 +78,7 @@ function Feed() {
 export default Feed;
 
 function redirecionar(pagina) {
-    window.location.href = `http://${ip}:3000/` + pagina;
+    window.location.href = `http://${ip}/` + pagina;
   }
 
 /*

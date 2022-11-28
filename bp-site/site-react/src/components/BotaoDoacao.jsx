@@ -4,7 +4,7 @@ import apiCampanha from "../apiCampanha";
 import ip from '../ip';
   
   function redirecionar(pagina) {
-    window.location.href = `http://${ip}:3000/`+pagina;
+    window.location.href = `http://${ip}/`+pagina;
   }
 
 function BotaoDoacao(props){

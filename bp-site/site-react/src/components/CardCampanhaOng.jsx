@@ -129,7 +129,7 @@ function CardCampanhaOng(props) {
 export default CardCampanhaOng;
 
 function redirecionar(pagina) {
-    window.location.href = `http://${ip}:3000/`+pagina;
+    window.location.href = `http://${ip}/`+pagina;
   }
 
   function alterarValor(id){

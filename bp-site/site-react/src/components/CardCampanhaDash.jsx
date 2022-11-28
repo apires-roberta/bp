@@ -65,5 +65,5 @@ return (
   export default CardCampanhaDash;
 
   function redirecionar() {
-    window.location.href = `http://${ip}:3000/doacao`;
+    window.location.href = `http://${ip}/doacao`;
   }
