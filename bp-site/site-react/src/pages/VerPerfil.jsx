@@ -91,7 +91,7 @@ function VerPerfil() {
 
     useEffect(() => {
         fetch(
-            `http://${ipBack}/inscricao/existe/doador/${sessionStorage.getItem('cod')}/ong/${sessionStorage.getItem('idDoador')}`
+            `http://${ipBack}:8081/inscricao/existe/doador/${sessionStorage.getItem('cod')}/ong/${sessionStorage.getItem('idDoador')}`
         ).then(function(response) {
             console.log(response.ok);
             setVerifica(response.ok);
