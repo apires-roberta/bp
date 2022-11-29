@@ -126,7 +126,7 @@ function VerPerfil() {
                         <img style={fotoFundo} src="http://guiadefontes.msf.org.br/wp-content/uploads/2017/01/org-actionaid-1024x443.jpg   " alt="" />
                     </DivImagem>
                     <DivLogin>
-                        <div className="logoPerfilView" style={{ backgroundImage: `url(data:image/jpeg;base64,${info.fotoPerfil}` }}></div>
+                        <img className="logoPerfilView" src={`${info.fotoPerfil}`} alt="" />
                     </DivLogin>
                     <DivAlinhaSeguir>
                         {verifica ? (
