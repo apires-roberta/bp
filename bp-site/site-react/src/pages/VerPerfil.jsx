@@ -84,6 +84,7 @@ function VerPerfil() {
             .then((response) => {
                 setInfo(response);
                 console.log(response);
+                console.log(info);
 
             })
     }, []);
@@ -123,7 +124,7 @@ function VerPerfil() {
                 <Fragment>
                     <GlobalTheme />
                     <DivImagem>
-                        <img style={fotoFundo} src="http://guiadefontes.msf.org.br/wp-content/uploads/2017/01/org-actionaid-1024x443.jpg   " alt="" />
+                        <img style={fotoFundo} src={`${info.fotoCapa}`} alt="" />
                     </DivImagem>
                     <DivLogin>
                         <img className="logoPerfilView" src={`${info.fotoPerfil}`} alt="" />
