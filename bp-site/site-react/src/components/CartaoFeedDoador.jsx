@@ -80,7 +80,7 @@ function CartaoFeedDoador(){
                 </div>
             </div>
             <div style={descricao}>{item.descricao}</div>
-            <div className="imgFotoDoacao" style={{ backgroundImage: `url(data:image/jpeg;base64,${item.fotoFeed}`}}></div>
+            <img className="imgFotoDoacao" src={`${item.fotoFeed}`} alt="" />
         
         </Cartao>
         ))}
