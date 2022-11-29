@@ -72,7 +72,7 @@ function CartaoFeedDoador(){
         <Cartao key={item.codigo} >
             <div style={imgNome} >
                 <div className="alinhamento-img" >
-                <img className="logoPerfil" src={`${item.fotoPerfilOng}`} alt="" />
+                <img className="logoPerfil" src={`${item.fotoPerfil}`} alt="" />
                 </div>
                 <div style={alinhamentoNome}>
                     <SpanEstilo>{item.ong.nome}</SpanEstilo><br/>
