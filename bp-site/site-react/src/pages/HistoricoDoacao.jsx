@@ -116,7 +116,7 @@ const [doacao, setDoacao] = useState([]);
                     <tr className="titulo"><th>Valor</th><th>Campanha</th><th>Ong</th><th>Data</th></tr>
                     {
                         doacao.map((item) => (
-                            <tr onClick={()=>campanhaEscolhida(item.idDoacao)} className="linha"><td>R${item.valorDoacao.toFixed(2).replace(".",",")}</td><td>Esquentar coracao</td><td>{item.campanhaOngNome}</td><td>31/07/2001</td></tr>
+                            <tr onClick={()=>campanhaEscolhida(item.idDoacao)} className="linha"><td>R${item.valorDoacao.toFixed(2).replace(".",",")}</td><td>{item.campanhaNomeCampanha}</td><td>{item.campanhaOngNome}</td><td>{item.dataDoacao.substring(8, 10)+"/"+item.dataDoacao.substring(5, 7)+"/"+item.dataDoacao.substring(0, 4)}</td></tr>
                           ))
                     }
                 </table>

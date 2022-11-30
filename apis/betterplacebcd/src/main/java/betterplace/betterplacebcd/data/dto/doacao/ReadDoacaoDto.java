@@ -2,6 +2,9 @@ package betterplace.betterplacebcd.data.dto.doacao;
 
 import betterplace.betterplacebcd.entidade.Doador;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class ReadDoacaoDto {
     private Integer idDoacao;
 
@@ -9,9 +12,13 @@ public class ReadDoacaoDto {
 
     private String CampanhaOngNome;
 
+    private String CampanhaNomeCampanha;
+
     private Integer doadorCod;
 
     private Double valorDoacao;
+
+    private LocalDateTime dataDoacao;
 
     private Double pontuacao;
 
@@ -57,5 +64,21 @@ public class ReadDoacaoDto {
 
     public Double getPontuacao() {
         return 5 + valorDoacao * 0.5;
+    }
+
+    public LocalDateTime getDataDoacao() {
+        return dataDoacao;
+    }
+
+    public void setDataDoacao(LocalDateTime dataDoacao) {
+        this.dataDoacao = dataDoacao;
+    }
+
+    public String getCampanhaNomeCampanha() {
+        return CampanhaNomeCampanha;
+    }
+
+    public void setCampanhaNomeCampanha(String campanhaNomeCampanha) {
+        CampanhaNomeCampanha = campanhaNomeCampanha;
     }
 }
