@@ -68,11 +68,10 @@ function CartaoFeedDoador(){
 
     return(
         <>
-        { info.map(item => (
         <Cartao key={item.codigo} >
             <div style={imgNome} >
                 <div className="alinhamento-img" >
-                <img className="logoPerfil" src={`${item.fotoPerfil}`} alt="" />
+                <img className="logoPerfil" src={item.fotoPerfil} alt="" />
                 </div>
                 <div style={alinhamentoNome}>
                     <SpanEstilo>{item.ong.nome}</SpanEstilo><br/>
@@ -83,7 +82,6 @@ function CartaoFeedDoador(){
             <img className="imgFotoDoacao" src={item.fotoFeed} alt="" />
         
         </Cartao>
-        ))}
         </>
     );
 }
