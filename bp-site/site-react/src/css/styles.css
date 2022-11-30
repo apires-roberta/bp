@@ -22,11 +22,9 @@ input::placeholder {
 }
 
 .divImagem {
-  background-size: 100px 100px;
+  float: left;
   width: 100px;
   height: 100px;
-  background-repeat: no-repeat;
-  background-position: 25% 75%;
   border-radius: 50%;
   margin-left: 10px;
   margin-bottom: 10px;
