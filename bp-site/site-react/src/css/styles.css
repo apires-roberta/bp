@@ -29,15 +29,20 @@ input::placeholder {
   margin-left: 10px;
   margin-bottom: 10px;
   margin-top: 10px;
-  border: 0px;
+  border: none;
 }
 
 .tableImg {
   width: 400px;
   border: 0px;
+  border: none;
 }
 .tableImg tr{
   width: 100px;
+  border: none;
+}
+.tableImg td{
+  border: none;
 }
 
 .logoPerfil{
