@@ -124,10 +124,10 @@ function VerPerfil() {
                 <Fragment>
                     <GlobalTheme />
                     <DivImagem>
-                        <img style={fotoFundo} src={`${info.fotoCapa}`} alt="" />
+                        <img style={fotoFundo} src={info.fotoCapa} alt="" />
                     </DivImagem>
                     <DivLogin>
-                        <img className="logoPerfilView" src={`${info.fotoPerfil}`} alt="" />
+                        <img className="logoPerfilView" src={info.fotoPerfil} alt="" />
                     </DivLogin>
                     <DivAlinhaSeguir>
                         {verifica ? (

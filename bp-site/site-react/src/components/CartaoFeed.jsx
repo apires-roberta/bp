@@ -73,7 +73,7 @@ function CartaoFeed(){
         <Cartao key={item.codigo} >
             <div style={imgNome} >
                 <div className="alinhamento-img" >
-                  <img className="logoPerfil" src={`${item.fotoPerfil}`} alt="" />
+                  <img className="logoPerfil" src={item.fotoPerfil} alt="" />
                 </div>
                 <div style={alinhamentoNome}>
                     <SpanEstilo>{item.ong.nome}</SpanEstilo><br/>
@@ -81,7 +81,7 @@ function CartaoFeed(){
                 </div>
             </div>
             <div style={descricao}>{item.descricao}</div>
-            <img className="imgFotoDoacao" src={`${item.fotoFeed}`} alt="" />
+            <img className="imgFotoDoacao" src={item.fotoFeed} alt="" />
         
         </Cartao>
         ))}
