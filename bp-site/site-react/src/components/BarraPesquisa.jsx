@@ -71,10 +71,11 @@ export default function BarraPesquisa() {
             <tr className="tableImg">
             <Link to="/PerfilResultado" >
               <td ><img className="divImagem" src={item.fotoPerfil} alt="" /><br /></td>
-            </Link>
+            </Link><td>
             <Link to="/PerfilResultado" className='link'>  
               <TdEstilo>{item.nome}</TdEstilo> 
             </Link>
+            </td>
             </tr>
         </DivResult>
       )): <h1>{element}</h1>}
