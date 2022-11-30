@@ -163,8 +163,8 @@ function Login() {
             </DivLogin>
             <div style={estilo}>
                 <Texto>Cadastre-se como:</Texto><br/>
-                <BotaoPequeno onClick={() => redirecionar("cadastro-ong")}>Ong</BotaoPequeno>
-                <BotaoPequeno style={estiloButao} onClick={() => redirecionar("cadastro-doador")} className="btnDireita">Doador</BotaoPequeno>
+                <BotaoPequeno onClick={() => redirecionar("cadastro/ong")}>Ong</BotaoPequeno>
+                <BotaoPequeno style={estiloButao} onClick={() => redirecionar("cadastro/doador")} className="btnDireita">Doador</BotaoPequeno>
             </div>
             <Rodape/>
             </Fragment>
