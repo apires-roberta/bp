@@ -41,7 +41,6 @@ input::placeholder {
 }
 
 .logoPerfil{
-  background-size: 100px 100px;
   width: 100px;
   height: 100px;
   background-repeat: no-repeat;
@@ -71,7 +70,6 @@ input::placeholder {
   float: left;
   width: 120px;
   height: 120px;
-  background-repeat: no-repeat;
   border-radius: 50%;
   margin-left: 20%;
   margin-bottom: 16px;

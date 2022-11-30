@@ -68,6 +68,7 @@ function CartaoFeedDoador(){
 
     return(
         <>
+        { info.map(item => (
         <Cartao key={item.codigo} >
             <div style={imgNome} >
                 <div className="alinhamento-img" >
@@ -82,6 +83,7 @@ function CartaoFeedDoador(){
             <img className="imgFotoDoacao" src={item.fotoFeed} alt="" />
         
         </Cartao>
+        ))}
         </>
     );
 }
