@@ -100,7 +100,7 @@ function BpNotaFiscal(){
 
     useEffect(() => {
         fetch(
-            `http://${ipBack}/doacao/doador/${sessionStorage.getItem('idDoador')}/campanha/${sessionStorage.getItem('campanha')}`
+            `http://${ipBack}:8082/doacao/${sessionStorage.getItem('idDoacao')}`
           )
             .then((response) => response.json())
             .then((response) => {

@@ -13,19 +13,19 @@ import Campanha from "./pages/Campanha";
 import BpNotaFiscal from "./pages/bpNotaFiscal";
 import VerPerfil from "./pages/VerPerfil";
 import HistoricoDoacao from "./pages/HistoricoDoacao"
-import AlterarDadosDoador from "./pages/AlterarDadosDoador";
-import AlterarDadosOng from "./pages/AlterarDadosOng";
-import UploadImageToS3WithNativeSdk from "./pages/aws";
+import AlterarDados from "./pages/AlterarDados";
+import Erro from "./pages/Erro";
 
 function Rotas() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="*" element={<BpHome />} />
-                <Route path="/cadastro-ong" element={<CadastroOng />} />
-                <Route path="/cadastro-doador" element={<CadastroDoador />} />
+                <Route path="*" element={<Erro />} />
+                <Route path="/" element={<BpHome />} />
+                <Route path="/cadastro/ong" element={<CadastroOng />} />
+                <Route path="/cadastro/doador" element={<CadastroDoador />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/doacao" element={<Doacao />} />
+                <Route path="/campanha/doacao" element={<Doacao />} />
                 <Route path="/feed" element={<Feed/>} />
                 <Route path="/NotaFiscal" element={<BpNotaFiscal/>} />
                 <Route path="/Dashboard" element={<DashMensal/>} />
@@ -34,10 +34,8 @@ function Rotas() {
                 <Route path="/Perfil" element={<Perfil/>} />
                 <Route path="/Campanha" element={<Campanha/>} />
                 <Route path="/PerfilResultado" element={<VerPerfil/>} />
-                <Route path="/HistoricoDoacao" element={<HistoricoDoacao/>} />
-                <Route path="/AlterarDadosDoador" element={<AlterarDadosDoador/>} />
-                <Route path="/AlterarDadosOng" element={<AlterarDadosOng/>} />
-                <Route path="/aws" element={<UploadImageToS3WithNativeSdk/>}/>
+                <Route path="/Historico" element={<HistoricoDoacao/>} />
+                <Route path="/AlterarDados" element={<AlterarDados/>} />
             </Routes>
         </BrowserRouter>
     );

@@ -28,6 +28,7 @@ function BotaoDoacao(props){
                 valorDoacao: funcData.valorDoacao
             }).then((resposta) => {
                 console.log("post ok", resposta);
+                sessionStorage.setItem("idDoacao", resposta.data)
                 redirecionar("NotaFiscal")
             })
         }

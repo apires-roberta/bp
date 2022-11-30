@@ -37,15 +37,32 @@ function MenuPerfil(){
         display: none;
         box-shadow: 10px 10px 50px 5px rgba(0, 0, 0, 0.2);
     `;
-    return (
-        <>
-           <Div onMouseEnter={manterMenu} onMouseLeave={fecharMenu} id={"divMenu"}>
-               <P onClick={()=>redirecionar("perfil")}>Minha conta</P>
-               <P onClick={()=>redirecionar("feed")}>Feed</P>
-               <P onClick={logout}>Logout</P>
-           </Div>
-        </>
-    );
+    if(sessionStorage.getItem("tipo")==='PerfilOng'){
+        return (
+            <>
+               <Div onMouseEnter={manterMenu} onMouseLeave={fecharMenu} id={"divMenu"}>
+                   <P onClick={()=>redirecionar("perfil")}>Minha conta</P>
+                   <P onClick={()=>redirecionar("feed")}>Feed</P>
+                   <P onClick={()=>redirecionar("AlterarDados")}>Alterar dados</P>
+                   <P onClick={logout}>Logout</P>
+               </Div>
+            </>
+        );
+    }
+    else{
+        return (
+            <>
+               <Div onMouseEnter={manterMenu} onMouseLeave={fecharMenu} id={"divMenu"}>
+                   <P onClick={()=>redirecionar("perfil")}>Minha conta</P>
+                   <P onClick={()=>redirecionar("feed")}>Feed</P>
+                   <P onClick={()=>redirecionar("AlterarDados")}>Alterar dados</P>
+                   <P onClick={()=>redirecionar("Historico")}>Historico doacao</P>
+                   <P onClick={logout}>Logout</P>
+               </Div>
+            </>
+        );
+    }
+    
 }
 
 

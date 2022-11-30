@@ -20,6 +20,7 @@ function ColetarDados() {
     const [vetorInformacoes, setVetor] = useState([]);
     const [vetorAlimento, setAlimento] = useState([]);
     const [vetorClima, setClima] = useState([]);
+    const [vetorSaude, setSaude] = useState([]);
     var dadosDoador = [];
     var dadosOng = [];
     var dadosDoacao = [];
@@ -182,7 +183,11 @@ function ColetarDados() {
             apiAnalytics.get(`/Clima/${vetorEstadoCapital[estado]}`).then((resposta) => {
                 console.log(resposta.data)
                 setClima(resposta.data)
-          })
+            })
+            apiAnalytics.get(`/Saude/${estado}`).then((resposta) => {
+                console.log(resposta.data)
+                setSaude(resposta.data)
+            })
         return clearInterval(interval)
         },200)
     }, []) 
@@ -229,7 +234,7 @@ function ColetarDados() {
                             <GraficoDash cor={theme === "light" ? "#01396F" : "#0070DC"} dados={vetor[0]} titulo="Quantidade de novos doadores (nos ultimos 7 dias)" />
                             <GraficoDash cor={theme === "light" ? "#01396F" : "#0070DC"} dados={vetor[1]} titulo="Quantidade de novas ONG (nos ultimos 7 dias)" />
                             <GraficoDash cor={theme === "light" ? "#01396F" : "#0070DC"} dados={vetorAlimento} titulo="Preço da cesta basica X mes" />
-                            <GraficoDash cor={theme === "light" ? "#01396F" : "#0070DC"} dados={[]} titulo="Problemas respiratorios X dia" />
+                            <GraficoDash cor={theme === "light" ? "#01396F" : "#0070DC"} dados={vetorSaude} titulo="Problemas respiratorios X dia" />
                         </div>
                         <div className="graficoEstado">
                             <GraficoDash cor={theme === "light" ? "#01396F" : "#0070DC"} dados={vetor[2]} titulo="Quantidade de novas doações (nos ultimos 7 dias)" />

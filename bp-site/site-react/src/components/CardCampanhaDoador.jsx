@@ -70,5 +70,5 @@ return (
 
   function redirecionar(campanhaEscolhida) {
     sessionStorage.setItem("campanha", campanhaEscolhida)
-    window.location.href = `http://${ip}/doacao`;
+    window.location.href = `http://${ip}/campanha/doacao`;
   }

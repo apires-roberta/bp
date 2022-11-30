@@ -40,7 +40,8 @@ function CardDados(props) {
 
     const estiloH2={
         float: "left",
-        height: "4vh"
+        height: "4vh",
+        overflow: "hidden"
     }
     
     const estiloImg={

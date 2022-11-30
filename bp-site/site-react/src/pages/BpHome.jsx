@@ -24,9 +24,9 @@ function BpHome() {
                 </div>
                 <div class="div-botoes-menu">
                     <button class="botao-nav" onClick={()=>redirecionar("campanha")}>Campanhas | </button>
-                    <button class="botao-nav" onClick={()=>redirecionar("home#sobre")}>Sobre nós | </button>
+                    <button class="botao-nav" onClick={()=>redirecionar("#sobre")}>Sobre nós | </button>
                     <button class="botao-nav" onClick={()=>redirecionar("login")}>Entrar | </button>
-                    <button class="botao-nav" onClick={()=>redirecionar("cadastro-doador")}>Cadastre-se</button>
+                    <button class="botao-nav" onClick={()=>redirecionar("cadastro/doador")}>Cadastre-se</button>
                 </div>
             </div>
 

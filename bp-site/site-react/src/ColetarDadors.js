@@ -18,8 +18,14 @@ apiLogin.get(`/bp/ong/${sessionStorage.getItem("idOng")}`).then((resposta) => {
             if(mes == data.getMonth()+1){
                 dia = data.getDate();
             }
-            else if(mes==9 || mes==11){
-                dia = 30;
+            else if(mes == 2){
+                dia=28
+            }
+            else if(mes == 1 || mes == 3 ||mes == 5 ||mes == 7 ||mes == 8 ||mes == 10 ||mes == 12){
+                dia = 31;
+            }
+            else{
+                dia=30;
             }
             for (var i = 1; i <= dia; i++) {
                 var qtdDoacao = 0;

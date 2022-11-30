@@ -16,7 +16,7 @@ import { S3 } from "@aws-sdk/client-s3";
 import DadosS3 from "../DadosS3";
 import ip from "../ip";
 
-function AlterarDadosOng() {
+function AlterarDadosDoador() {
 function teste3(){
     var photo = document.getElementById('idImagemPerfil');
     var file = document.getElementById('arquivo2');
@@ -38,7 +38,7 @@ function teste3(){
     console.log("foto", photo)
 }
 
-function upload (id, nome){
+function upload (id, nome, atual){
     var nomeFoto = nome.replaceAll(" ","_")
     var fileInput = document.getElementById(id);
     if(fileInput.files.length>0){
@@ -60,10 +60,13 @@ function upload (id, nome){
     
       parallelUploads3.done();
     } catch (e) {
-      return "";
+      return atual;
     } finally {
         return "https://s3-lab04-juan.s3.amazonaws.com/"+nomeFoto;
     }
+    }
+    else{
+        return atual;
     }
 }
 
@@ -91,7 +94,7 @@ function teste2(){
     var [perfil, setperfil] = useState([]);
     var [endereco, setendereco] = useState([]);
     useEffect(() => {
-        apiLogin.get(`/bp/ong/${sessionStorage.getItem("idOng")}`).then((resposta) => {
+        apiLogin.get(`/bp/doador/${sessionStorage.getItem("idDoador")}`).then((resposta) => {
           if (resposta.status === 200) {
             setperfil(resposta.data)
             console.log("perfil",resposta.data)
@@ -122,10 +125,10 @@ function teste2(){
         funcData.cep = document.getElementById("idCep").value;
         funcData.numero = document.getElementById("idNumero").value;
         funcData.bio = document.getElementById("idBio").value;
-        funcData.fotoPerfil = upload("arquivo2", funcData.nome+"Perfil")
-        funcData.fotoFundo = upload("teste", funcData.nome+"Capa")
+        funcData.fotoPerfil = upload("arquivo2", funcData.nome+"Perfil", perfil.fotoPerfil)
+        funcData.fotoFundo = upload("teste", funcData.nome+"Capa", perfil.fotoCapa)
         console.log(funcData);
-        apiLogin.patch(`/bp/ong/novas-infos/${sessionStorage.getItem("idOng")}`, {
+        apiLogin.patch(`/bp/doador/novas-infos/${sessionStorage.getItem("idDoador")}`, {
             nome: funcData.nome,
             email: funcData.email,
             usuario: funcData.usuario,
@@ -137,7 +140,7 @@ function teste2(){
             fotoCapa: funcData.fotoFundo
         }).then((resposta) => {
             console.log("post ok", resposta);
-            //redirecionar("perfil")
+            redirecionar("perfil")
         })
     }
     const [theme, setTheme] = useState("light");
@@ -347,14 +350,10 @@ function teste2(){
     );
 }
 
-export default AlterarDadosOng;
+export default AlterarDadosDoador;
 
 function redirecionar(pagina) {
     window.location.href = `http://${ip}/` + pagina;
-}
-
-function carregarGrafico(){
-    var elemento = document.getElementById()
 }
 
 function teste(){

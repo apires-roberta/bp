@@ -103,6 +103,24 @@ button {
     font-size: 20px;
 }
 
+.texto-descricao-bp-erro {
+    margin-top: 7%;
+    float: left;
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+}
+
+.texto-descricao-bp-erro h1 {
+    color: #01396F;
+    font-size: 32px;
+}
+
+.texto-descricao-bp-erro p {
+    margin-top: 16px;
+    font-size: 16px;
+}
+
 .imagem-circulos {
     margin-top: 50px;
     float: right;

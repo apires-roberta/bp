@@ -35,7 +35,19 @@ public class DashboardController {
         c.setTime(data);
         Format format = new SimpleDateFormat("MM");
         while (Integer.parseInt(format.format(c.getTime()))>=mes){
-            Integer idCampanha = _dashboardService.getMaiorCampanha("2022"+mes+"01", "2022"+mes+"31", cod);
+            Integer idCampanha;
+            System.out.println(mes);
+            String mesAtual=String.format("%02d", mes);
+            if(mes==2){
+                idCampanha = _dashboardService.getMaiorCampanha("2022"+mesAtual+"01", "2022"+mesAtual+"28", cod);
+            }
+            else if(mes == 1 || mes == 3 ||mes == 5 ||mes == 7 ||mes == 8 ||mes == 10 ||mes == 12){
+                idCampanha = _dashboardService.getMaiorCampanha("2022"+mesAtual+"01", "2022"+mesAtual+"31", cod);
+            }
+            else{
+                idCampanha = _dashboardService.getMaiorCampanha("2022"+mesAtual+"01", "2022"+mesAtual+"30", cod);
+            }
+
             List<Object> doacoes = _dashboardService.getDoacoesDia(mes, idCampanha);
             Object semana = _dashboardService.getDoacoesMes(mes, idCampanha);
             Object valor = _dashboardService.getDoacoesValor(mes, idCampanha);

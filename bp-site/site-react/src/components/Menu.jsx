@@ -101,7 +101,7 @@ function Menu(props) {
                         <GlobalTheme />
                         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap" rel="stylesheet"></link>
                         <EstiloMenu>
-                            <img alt="" onClick={()=>redirecionar("home")} className="logo" src={logo} />
+                            <img alt="" onClick={()=>redirecionar("")} className="logo" src={logo} />
                             <img alt="" onClick={toggleTheme} className="tema" src={theme === "light" ? lua : sol} />
                             <Title>bp</Title>
                         </EstiloMenu>
@@ -118,7 +118,7 @@ function Menu(props) {
                         <GlobalTheme />
                         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap" rel="stylesheet"></link>
                         <EstiloMenu>
-                            <img alt="" onClick={()=>redirecionar("home")} className="logo" src={logo} />
+                            <img alt="" onClick={()=>redirecionar("")} className="logo" src={logo} />
                             <Title>bp</Title>
                             <div className="divDireita">
                                 <img onMouseEnter={fecharMenu} src={theme === "light" ? notificacaoPreto : notificacaoBranco} title="Notificação" alt="" />
@@ -141,7 +141,7 @@ function Menu(props) {
                         <GlobalTheme />
                         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap" rel="stylesheet"></link>
                         <EstiloMenu>
-                            <img alt="" onClick={()=>redirecionar("home")} className="logo" src={logo} />
+                            <img alt="" onClick={()=>redirecionar("")} className="logo" src={logo} />
                             <Title>bp</Title>
                             <div id={"idPesquisa"} style={pesquisa}>
                             <BarraPesquisa/>

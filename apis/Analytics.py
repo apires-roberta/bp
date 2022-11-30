@@ -93,3 +93,22 @@ def clima(cidade):
                 soma+=dado2['temp']
         vetorDados.append([dia, round(soma/contador,2)])
     return vetorDados
+
+@app.route("/Saude/<estado>")
+def saude(estado):
+    resultado = pd.read_sql(f"select * from saude where estado = '{estado}'", cnxm)
+    if len(resultado)>0:
+        resultado.set_index('mes', inplace=True)
+        data = resultado['qtd']
+        model = AutoReg(data, lags=1)
+        model_fit = model.fit()
+        yhat = model_fit.predict(len(data), 15)
+        i=0
+        vetorMeses=[]
+        while i<4:
+            diaAtual = str(yhat.index[i])[0:10]
+            vetorMeses.append([diaAtual[0:5]+diaAtual[8:10]+diaAtual[4:7] , round(yhat[i],2)])
+            i+=1
+        return vetorMeses    
+    else:
+        return []

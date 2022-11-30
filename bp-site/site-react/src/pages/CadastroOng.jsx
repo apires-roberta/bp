@@ -176,7 +176,7 @@ function CadastroOng() {
                         </DivCadastro>
                         <div className="botao">
                             <Botao onClick={enviar} className="btnCadastrar">Cadastrar</Botao><br />
-                            <Span>Para se cadastrar como Doador <a onClick={() => redirecionar("cadastro-doador")}>clique aqui!</a></Span>
+                            <Span>Para se cadastrar como Doador <a onClick={() => redirecionar("cadastro/doador")}>clique aqui!</a></Span>
                         </div>
                     </div>
                 <Rodape/>

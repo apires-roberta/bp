@@ -62,7 +62,9 @@ function CardCampanhaOng(props) {
 
     const estiloH2 = {
         height: "4vh",
-        float: "left"
+        float: "left",
+        marginLeft: "15%",
+        overflow: 'hidden'
     }
 
     const estiloDiv = {
@@ -113,10 +115,11 @@ function CardCampanhaOng(props) {
     return (
         <>
             <DivInfo style={estiloDiv}>
-                <h2 style={estiloH2}>{props.nome}</h2>
-                <div onClick={() => guardarCampanha(props.id, props.validacao)}>
-                <Imagem/>
+                <div onClick={() => guardarCampanha(props.id, props.validacao)} style={{position:"absolute", float:"left"}}>
+                    <Imagem/>
                 </div>
+                <h2 title={props.nome} style={estiloH2}>{props.nome}</h2>
+                
                 <P>{props.descCampanha}</P><br />
                 <img onClick={()=>alterarValor(props.id)} style={estiloImg} className="img-estrela" src={localTheme === "light" ? AlterarPreto : AlterarBranco} alt="" />
                 <h3 style={estiloH3}>R$</h3><DivValor id={`mudarValor${props.id}`}/> <button id={`botao${props.id}`} onClick={()=>alterarValorBanco(props.id)} style={estiloButton}>enviar</button>

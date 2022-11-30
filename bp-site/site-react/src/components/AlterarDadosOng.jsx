@@ -1,5 +1,5 @@
-import Input from "../components/Input";
-import Menu from "../components/Menu";
+import Input from "./Input";
+import Menu from "./Menu";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../theme";
 import GlobalTheme from "../globals";
@@ -7,7 +7,7 @@ import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from "react";
 import apiLogin from "../apiLogin"
 import apiCep from "../apiCep";
-import CartaoPerfilDoador from "../components/CartaoPerfilDoador";
+import CartaoPerfilDoador from "./CartaoPerfilDoador";
 import contaBranco from "../img/usuarioBranco.png";
 import contaPreto from "../img/usuarioPreto.png";
 import capaBranco from "../img/fundoBranco.png";
@@ -38,7 +38,7 @@ function teste3(){
     console.log("foto", photo)
 }
 
-function upload (id, nome, atual){
+function upload (id, nome){
     var nomeFoto = nome.replaceAll(" ","_")
     var fileInput = document.getElementById(id);
     if(fileInput.files.length>0){
@@ -60,13 +60,10 @@ function upload (id, nome, atual){
     
       parallelUploads3.done();
     } catch (e) {
-      return atual;
+      return "";
     } finally {
         return "https://s3-lab04-juan.s3.amazonaws.com/"+nomeFoto;
     }
-    }
-    else{
-        return atual;
     }
 }
 
@@ -94,7 +91,7 @@ function teste2(){
     var [perfil, setperfil] = useState([]);
     var [endereco, setendereco] = useState([]);
     useEffect(() => {
-        apiLogin.get(`/bp/doador/${sessionStorage.getItem("idDoador")}`).then((resposta) => {
+        apiLogin.get(`/bp/ong/${sessionStorage.getItem("idOng")}`).then((resposta) => {
           if (resposta.status === 200) {
             setperfil(resposta.data)
             console.log("perfil",resposta.data)
@@ -125,10 +122,10 @@ function teste2(){
         funcData.cep = document.getElementById("idCep").value;
         funcData.numero = document.getElementById("idNumero").value;
         funcData.bio = document.getElementById("idBio").value;
-        funcData.fotoPerfil = upload("arquivo2", funcData.nome+"Perfil", perfil.fotoPerfil)
-        funcData.fotoFundo = upload("teste", funcData.nome+"Capa", perfil.fotoCapa)
+        funcData.fotoPerfil = upload("arquivo2", funcData.nome+"Perfil")
+        funcData.fotoFundo = upload("teste", funcData.nome+"Capa")
         console.log(funcData);
-        apiLogin.patch(`/bp/doador/novas-infos/${sessionStorage.getItem("idDoador")}`, {
+        apiLogin.patch(`/bp/ong/novas-infos/${sessionStorage.getItem("idOng")}`, {
             nome: funcData.nome,
             email: funcData.email,
             usuario: funcData.usuario,
@@ -140,7 +137,7 @@ function teste2(){
             fotoCapa: funcData.fotoFundo
         }).then((resposta) => {
             console.log("post ok", resposta);
-            redirecionar("perfil")
+            //redirecionar("perfil")
         })
     }
     const [theme, setTheme] = useState("light");

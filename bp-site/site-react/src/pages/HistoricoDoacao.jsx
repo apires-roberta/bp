@@ -9,9 +9,23 @@ import apiLogin from "../apiLogin"
 import Rodape from "../components/Rodape";
 import CardHistorico from "../components/CardHistorico";
 import ip from '../ip';
+import apiCampanha from "../apiCampanha";
 
 function HistoricoDoacao() {
+    function campanhaEscolhida(id){
+        sessionStorage.setItem("idDoacao", id)
+        redirecionar("NotaFiscal")
+    }
 const [theme, setTheme] = useState("light");
+const [doacao, setDoacao] = useState([]);
+    useEffect(() => {
+    apiCampanha.get(`/doacao/doador/${sessionStorage.getItem("idDoador")}`).then((resposta) => {
+      if (resposta.status === 200) {
+        setDoacao(resposta.data);
+        console.log(resposta.data)
+      }
+    })
+    }, [])
 
     const toggleTheme = () => {
         if (theme === "light") {
@@ -38,7 +52,8 @@ const [theme, setTheme] = useState("light");
     `;
     const Titulo = styled.h1`
         text-align: center;
-        margin-top: 10%;
+        margin-top: 5%;
+        margin-bottom: 5%;
     `;
     const Botao = styled.button`
         text-align: center;
@@ -90,13 +105,22 @@ const [theme, setTheme] = useState("light");
     }
     return (
         <>
-            <Menu funcaoDark={toggleTheme} funcao="cadastro" />
+            <Menu funcaoDark={toggleTheme}/>
             <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
                 <Fragment>
                     <GlobalTheme />
             <DivLogin>
                 <Titulo>Histórico de doações</Titulo>
-                <CardHistorico></CardHistorico>
+                <div style={{overflow: 'auto', height: "70%"}}>
+                <table>
+                    <tr className="titulo"><th>Valor</th><th>Campanha</th><th>Ong</th><th>Data</th></tr>
+                    {
+                        doacao.map((item) => (
+                            <tr onClick={()=>campanhaEscolhida(item.idDoacao)} className="linha"><td>R${item.valorDoacao.toFixed(2).replace(".",",")}</td><td>Esquentar coracao</td><td>{item.campanhaOngNome}</td><td>31/07/2001</td></tr>
+                          ))
+                    }
+                </table>
+                </div>
             </DivLogin>
             <Rodape/>
             </Fragment>

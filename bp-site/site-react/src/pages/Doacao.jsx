@@ -33,7 +33,7 @@ function Doacao() {
   })
   function doar() {
     var codigo = sessionStorage.getItem("idDoador")
-    var valor = document.getElementById("valores").value;
+    var valor = document.getElementById("valores").value.replace(",",".");
     if (codigo == null) {
       redirecionar("login")
     }
@@ -47,6 +47,7 @@ function Doacao() {
         valorDoacao: funcData.valorDoacao
       }).then((resposta) => {
         console.log("post ok", resposta);
+        sessionStorage.setItem("idDoacao", resposta.data)
         redirecionar("NotaFiscal")
       })
     }
