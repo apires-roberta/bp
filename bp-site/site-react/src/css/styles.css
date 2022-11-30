@@ -68,7 +68,7 @@ input::placeholder {
 }
 
 .logoPerfilView{
-  background-size: 120px 120px;
+  float: left;
   width: 120px;
   height: 120px;
   background-repeat: no-repeat;
