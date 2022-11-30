@@ -53,6 +53,7 @@ export default function BarraPesquisa() {
     font-size: 25px;
     font-family: 'Comfortaa', cursive;
     padding-left: 15px;
+    border: 0px;
    `;
 
    const estiloPesquisa={
