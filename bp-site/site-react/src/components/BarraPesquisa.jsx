@@ -43,6 +43,8 @@ export default function BarraPesquisa() {
      background-color: ${({ theme }) => theme.menu};
      width: 400px;
      height: 40px;
+     border: none;
+     margin-right: 30px;
     `;
 
   const TdEstilo = styled.td`
