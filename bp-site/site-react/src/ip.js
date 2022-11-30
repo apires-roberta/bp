@@ -1,2 +1,2 @@
-export default "52.0.52.140";
+export default "http://bpproject.hopto.org";
 //localhost:3000
