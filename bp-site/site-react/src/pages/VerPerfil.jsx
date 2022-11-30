@@ -91,7 +91,7 @@ function VerPerfil() {
 
     useEffect(() => {
         fetch(
-            `http://${ipBack}/inscricao/existe/doador/${sessionStorage.getItem('cod')}/ong/${sessionStorage.getItem('idDoador')}`
+            `http://${ipBack}:8081/inscricao/existe/doador/${sessionStorage.getItem('cod')}/ong/${sessionStorage.getItem('idDoador')}`
         ).then(function(response) {
             console.log(response.ok);
             setVerifica(response.ok);
@@ -124,10 +124,10 @@ function VerPerfil() {
                 <Fragment>
                     <GlobalTheme />
                     <DivImagem>
-                        <img style={fotoFundo} src={`${info.fotoCapa}`} alt="" />
+                        <img style={fotoFundo} src={info.fotoCapa} alt="" />
                     </DivImagem>
                     <DivLogin>
-                        <img className="logoPerfilView" src={`${info.fotoPerfil}`} alt="" />
+                        <img className="logoPerfilView" src={info.fotoPerfil} alt="" />
                     </DivLogin>
                     <DivAlinhaSeguir>
                         {verifica ? (

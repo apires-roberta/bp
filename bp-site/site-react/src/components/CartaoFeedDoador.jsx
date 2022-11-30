@@ -80,7 +80,7 @@ function CartaoFeedDoador(){
                 </div>
             </div>
             <div style={descricao}>{item.descricao}</div>
-            <img className="imgFotoDoacao" src={`${item.fotoFeed}`} alt="" />
+            <img className="imgFotoDoacao" src={item.fotoFeed} alt="" />
         
         </Cartao>
         ))}

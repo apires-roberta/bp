@@ -70,7 +70,7 @@ export default function BarraPesquisa() {
           {sessionStorage.setItem('cod',`${item.cod}`)}
             <tr className="tableImg">
             <Link to="/PerfilResultado" >
-              <td ><img className="divImagem" src={`${item.fotoPerfil}`} alt="" /><br /></td>
+              <td ><img className="divImagem" src={item.fotoPerfil} alt="" /><br /></td>
             </Link>
             <Link to="/PerfilResultado" className='link'>  
               <TdEstilo>{item.nome}</TdEstilo> 
