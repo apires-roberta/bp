@@ -22,8 +22,8 @@ function DashDetalhado() {
         console.log(dados)
         setMesAtual([dados[mesEscolhido]]);
         setMesAnterior([mesEscolhido < 1 ? null : dados[mesEscolhido - 1]]);
-        return clearInterval(interval)
-    },200)
+        return clearInterval(interval) 
+    },400)
     }, []);
 
     const [theme, setTheme] = useState("light");

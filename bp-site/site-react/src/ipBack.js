@@ -1,2 +1,3 @@
-export default "52.0.52.140";
+export default "localhost";
 //localhost
+//52.0.52.140
