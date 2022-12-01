@@ -23,7 +23,7 @@ function DashDetalhado() {
         setMesAtual([dados[mesEscolhido]]);
         setMesAnterior([mesEscolhido < 1 ? null : dados[mesEscolhido - 1]]);
         return clearInterval(interval) 
-    },1000)
+    },4000)
     }, []);
 
     const [theme, setTheme] = useState("light");
