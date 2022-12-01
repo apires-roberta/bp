@@ -72,12 +72,13 @@ function DashDetalhado() {
     const estilo = {
         height: "130vh"
     } 
-    const vetorMeses = { 7: "JUL", 8: 'AGO', 9: 'SET', 10: 'OUT', 11: 'NOV', 12: 'DEZ' }
+    const vetorMeses={1:"JAN", 2:'FEV', 3:'MAR', 4:'ABR', 5:'MAI', 6:'JUN',7:"JUL", 8:'AGO', 9:'SET', 10:'OUT', 11:'NOV', 12:'DEZ'}
     if (dadosMesAnterior[0] != null) {
         var qtdDoacaoMesAtual = somarQuantidade(dadosMesEscolhido[0][1])
         var qtdDoacaoMesAntigo = somarQuantidade(dadosMesAnterior[0][1])
         var qtdValorMesAtual = somarValor(dadosMesEscolhido[0][4][0])
         var qtdValorMesAntigo = somarValor(dadosMesAnterior[0][4][0])
+        console.log(dadosMesEscolhido,"lopes")
         return (
             <>
                 <Menu funcaoDark={toggleTheme} funcao="" />
