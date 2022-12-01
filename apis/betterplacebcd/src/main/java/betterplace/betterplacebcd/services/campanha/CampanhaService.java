@@ -37,7 +37,7 @@ public class CampanhaService implements ICampanhaService{
 
     @Override
     public List<ReadCampanhaDto> getAllCampanhas() {
-        List<Campanha> campanhas = _campanhaRepository.findByDisponivelTrueOrderByDataCriacaoDesc();
+        List<Campanha> campanhas = _campanhaRepository.findByDisponivelTrueOrderByRecomendadoDataCriacaoDesc();
         if (campanhas.isEmpty())
             return null;
 
