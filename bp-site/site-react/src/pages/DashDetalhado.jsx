@@ -119,6 +119,7 @@ function DashDetalhado() {
         );
     }
     else {
+        console.log(dadosMesEscolhido,"lopes")
         return (
             <>
                 <Menu funcaoDark={toggleTheme} funcao="" />
