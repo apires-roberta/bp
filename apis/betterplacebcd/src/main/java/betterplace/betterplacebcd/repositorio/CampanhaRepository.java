@@ -25,5 +25,5 @@ public interface CampanhaRepository extends JpaRepository<Campanha, Integer> {
     @Query(value="call proc_alterar_campanha_teste(?1,?2)", nativeQuery=true)
     Integer alterarDados(int tipo, String estado);
 
-    List<Campanha> findByDisponivelTrueOrderByRecomendadoDataCriacaoDesc();
+    List<Campanha> findByDisponivelTrueOrderByRecomendadoDesc();
 }
